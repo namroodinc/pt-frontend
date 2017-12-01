@@ -33,6 +33,7 @@
     "eslint-plugin-standard": "^3.0.1"
   },
   "dependencies": {
+    "autoprefixer": "^7.1.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
