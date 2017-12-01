@@ -1,0 +1,11 @@
+{
+    "extends": "standard",
+    
+    "rules": {
+      "quotes": [
+        0,
+        "double"
+      ],
+      "semi": 0
+    }
+}
