@@ -1,11 +1,18 @@
 {
-    "extends": "standard",
-    
+    "extends": [
+      "standard",
+      "react"
+    ],
+
     "rules": {
       "quotes": [
         0,
         "double"
       ],
-      "semi": 0
+      "semi": 0,
+      "indent": [
+        "error",
+        2
+      ]
     }
 }

@@ -1,0 +1,11 @@
+body {
+  background-color: blue;
+}
+
+$primaryColor: #0d7680;
+$white: #FFFFFF;
+
+:export {
+  primaryColor: $primaryColor;
+  white: $white;
+}
