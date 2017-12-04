@@ -1,5 +1,9 @@
 import React from "react";
 
+import {
+  Portfolio
+} from "../components/Index";
+
 export default class Home extends React.Component {
   render() {
     return (
@@ -7,9 +11,7 @@ export default class Home extends React.Component {
         className="container"
       >
 
-        <h1>
-          Home
-        </h1>
+        <Portfolio />
 
       </div>
     )

@@ -1,18 +1,18 @@
 import { observable, autorun } from "mobx";
 
-class DataStore {
-  @observable pageTitle = 'About Page';
+class Store {
+  @observable portfolioList = [];
 
-  retrievePageTitle() {
-    return this.pageTitle;
+  retrievePortfolioList() {
+    return this.portfolioList;
   }
 }
 
-let store = new DataStore;
+let store = new Store;
 export default store;
 
 autorun(() => {
   // Uncomment below this to see how autorun in action: https://mobx.js.org/refguide/autorun.html
-  // const { pageTitle } = store;
-  // console.log(pageTitle);
+  const { portfolioList } = store;
+  console.log(portfolioList);
 });

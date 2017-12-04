@@ -37,23 +37,21 @@ module.exports = {
       },
       {
         test: /\.css$|\.scss$/,
-        loader: extractSass.extract(
-          {
-            fallback: "style-loader",
-            use: [
-              {
-                loader: "css-loader"
-              },
-              {
-                loader: "postcss-loader"
-              },
-              {
-                loader: "sass-loader",
-                options: {}
-              }
-            ]
-          }
-        )
+        use: ['css-hot-loader'].concat(extractSass.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'postcss-loader'
+            },
+            {
+              loader: 'sass-loader',
+              options: {}
+            }
+          ]
+        }))
       }
     ]
   },
@@ -61,7 +59,11 @@ module.exports = {
     extractSass,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.EnvironmentPlugin([
-      "NODE_ENV"
+      "NODE_ENV",
+      "CONTENTFUL_BASE_URL",
+      "CONTENT_DELIVERY_ACCESS_TOKEN",
+      "CONTENT_PREVIEW_ACCESS_TOKEN",
+      "SPACE_ID"
     ])
   ]
 };
