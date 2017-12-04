@@ -27,7 +27,6 @@ export default class Portfolio extends React.Component {
 
     const mapPortfolioList = portfolioList.map(data => {
       const ASSET_ID = data.fields.featuredMedia.sys.id;
-      let featuredMedia = "";
 
       getApi(`${CONTENTFUL_BASE_URL}/spaces/${SPACE_ID}/assets/${ASSET_ID}?access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}`)
         .then(value => {
