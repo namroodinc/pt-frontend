@@ -1,0 +1,39 @@
+header {
+  background-color: $backgroundColor;
+  display: block;
+  font-family: $primaryFont;
+  padding: 15px;
+  position: fixed;
+  width: 100%;
+
+  .header {
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    max-width: $fullContainerWidth;
+
+    &__logo {
+      display: inline;
+      text-transform: uppercase;
+      &:after {
+        color: $primaryColor;
+        content: "//";
+        padding: 0 5px;
+      }
+    }
+
+    &__navigation {
+      display: inline;
+      &:after {
+        color: $primaryColor;
+        content: "."
+      }
+      & > a {
+        padding-right: 5px;
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}

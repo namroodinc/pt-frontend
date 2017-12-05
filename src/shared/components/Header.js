@@ -6,21 +6,37 @@ export default class Header extends React.Component {
     return (
       <header>
 
-        <h5>
-          Logo
-        </h5>
-
-        <Link
-          to="/repo"
+        <div
+          className="header"
         >
-          Repo
-        </Link>
 
-        <Link
-          to="/edit"
-        >
-          Edit
-        </Link>
+          <div
+            className="header__logo"
+          >
+            Ashoor Namrood
+          </div>
+
+          <div
+            className="header__navigation"
+          >
+            <Link
+              to="/"
+            >
+              home
+            </Link>
+            <Link
+              to="/work"
+            >
+              work
+            </Link>
+            <Link
+              to="/about"
+            >
+              about
+            </Link>
+          </div>
+
+        </div>
 
       </header>
     );

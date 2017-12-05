@@ -1,0 +1,7 @@
+$primaryFont: 'Inconsolata', monospace;
+$secondaryFont: 'Georgia', serif;
+
+:export {
+  primaryFont: $primaryFont;
+  secondaryFont: $secondaryFont;
+}

@@ -28,7 +28,12 @@ export default class AppController extends React.Component {
           />
           <Route
             exact
-            path="/edit"
+            path="/about"
+            component={Home}
+          />
+          <Route
+            exact
+            path="/work"
             component={Home}
           />
         </Switch>

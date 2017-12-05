@@ -1,11 +1,9 @@
-body {
-  background-color: white;
-}
-
+$backgroundColor: #f4f7f6;
 $primaryColor: #0d7680;
 $white: #FFFFFF;
 
 :export {
+  backgroundColor: $backgroundColor;
   primaryColor: $primaryColor;
   white: $white;
 }
