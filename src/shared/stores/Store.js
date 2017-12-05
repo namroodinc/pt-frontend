@@ -8,11 +8,11 @@ class Store {
   }
 }
 
-let store = new Store;
+let store = new Store();
 export default store;
 
 autorun(() => {
   // Uncomment below this to see how autorun in action: https://mobx.js.org/refguide/autorun.html
-  const { portfolioList } = store;
-  console.log(portfolioList);
+  // const { portfolioList } = store;
+  // console.log(portfolioList);
 });

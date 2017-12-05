@@ -1,23 +1,15 @@
 import React from "react";
 import { observer } from 'mobx-react';
-import request from "superagent";
-
-import { GridList, GridListTile, GridListTileBar } from 'material-ui/GridList';
+import Card, { CardContent } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
-import getApi from "../utils/getApi";
 
-const CONTENTFUL_BASE_URL = process.env.CONTENTFUL_BASE_URL;
-const CONTENT_DELIVERY_ACCESS_TOKEN = process.env.CONTENT_DELIVERY_ACCESS_TOKEN;
-const SPACE_ID = process.env.SPACE_ID;
+import Asset from "./Asset";
 
 @observer
 export default class Portfolio extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     Actions.updatePortfolioList();
   }
@@ -25,35 +17,35 @@ export default class Portfolio extends React.Component {
   render() {
     const portfolioList = Store.retrievePortfolioList();
 
-    const mapPortfolioList = portfolioList.map(data => {
-      const ASSET_ID = data.fields.featuredMedia.sys.id;
-
-      getApi(`${CONTENTFUL_BASE_URL}/spaces/${SPACE_ID}/assets/${ASSET_ID}?access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}`)
-        .then(value => {
-          featuredMedia = value;
-        });
-
+    const mappedPortfolioList = portfolioList.map((item, i) => {
+      const { featuredMedia, title } = item.fields;
       return {
-        featuredMedia
+        title,
+        featuredMedia: featuredMedia.sys.id
       }
     });
 
-    console.log(mapPortfolioList)
-
     return (
-      <header>
+      <div>
 
         <h5>
           Portfolio
         </h5>
 
-        <GridList
-          cellHeight={240}
-        >
+        {mappedPortfolioList.map((item, i) =>
+          <Card
+            key={i}
+          >
+            <Asset assetId={item.featuredMedia} />
+            <CardContent>
+              <Typography type="headline" component="h2">
+                Lizard
+              </Typography>
+            </CardContent>
+          </Card>
+        )}
 
-        </GridList>
-
-      </header>
+      </div>
     );
   }
 }
