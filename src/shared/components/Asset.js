@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import request from "superagent";
 
 const CONTENTFUL_BASE_URL = process.env.CONTENTFUL_BASE_URL;
 const CONTENT_DELIVERY_ACCESS_TOKEN = process.env.CONTENT_DELIVERY_ACCESS_TOKEN;
 const SPACE_ID = process.env.SPACE_ID;
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,3 +46,9 @@ export default class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  assetId: PropTypes.string
+};
+
+export default Header;

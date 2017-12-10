@@ -13,10 +13,10 @@ app.set("port", (process.env.PORT || 5001));
 
 app.use(compress());
 app.enable("view cache");
-app.set("views", "./src/server/views");
+app.set("views", "./src/client/views");
 app.engine("hbs", exphbs({
   defaultLayout: "main.hbs",
-  layoutsDir: "src/server/views/layouts/"
+  layoutsDir: "src/client/views/layouts/"
 }));
 app.set("view engine", "hbs");
 app.use(express.static("public"));

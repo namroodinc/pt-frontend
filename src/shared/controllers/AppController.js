@@ -10,10 +10,6 @@ import {
 } from "../handlers/Index";
 
 export default class AppController extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div>
