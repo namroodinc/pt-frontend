@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-  Portfolio
+  PortfolioList
 } from "../components/Index";
 
 export default class Home extends React.Component {
@@ -11,7 +11,7 @@ export default class Home extends React.Component {
         className="container"
       >
 
-        <Portfolio />
+        <PortfolioList />
 
       </div>
     )

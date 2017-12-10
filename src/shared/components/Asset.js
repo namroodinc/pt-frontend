@@ -38,10 +38,17 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div>
-        <img
-          src={this.state.assetUrl}
-        />
+      <div
+        className="asset"
+      >
+        <div
+          className="asset__media"
+        >
+          <img
+            className="asset__media__image"
+            src={this.state.assetUrl}
+          />
+        </div>
       </div>
     );
   }

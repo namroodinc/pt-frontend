@@ -1,9 +1,9 @@
 import Asset from "./Asset";
 import Header from "./Header";
-import Portfolio from "./Portfolio";
+import PortfolioList from "./PortfolioList";
 
 export {
   Asset,
   Header,
-  Portfolio
+  PortfolioList
 }
