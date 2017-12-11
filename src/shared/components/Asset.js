@@ -6,7 +6,7 @@ const CONTENTFUL_BASE_URL = process.env.CONTENTFUL_BASE_URL;
 const CONTENT_DELIVERY_ACCESS_TOKEN = process.env.CONTENT_DELIVERY_ACCESS_TOKEN;
 const SPACE_ID = process.env.SPACE_ID;
 
-class Header extends React.Component {
+class Asset extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,8 +54,8 @@ class Header extends React.Component {
   }
 }
 
-Header.propTypes = {
+Asset.propTypes = {
   assetId: PropTypes.string
 };
 
-export default Header;
+export default Asset;

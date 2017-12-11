@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+import {
+  Logo
+} from "./Icons/Index";
+
 export default class Header extends React.Component {
   render() {
     return (
@@ -13,6 +17,11 @@ export default class Header extends React.Component {
           <div
             className="header__logo"
           >
+            <Logo
+              bgColor="blue"
+              fgColor="yellow"
+              size={70}
+            />
             Ashoor Namrood
           </div>
 
