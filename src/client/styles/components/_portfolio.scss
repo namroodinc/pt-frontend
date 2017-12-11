@@ -1,5 +1,16 @@
-.portfolio {
+.portfolio-list {
+  column-count: 3;
+  column-gap: 20px;
   margin: auto;
   width: 100%;
   max-width: $fullContainerWidth;
+  &__item {
+    background-color: $white;
+    box-shadow: 0 0.5em 3em #DDDDDD;
+    break-inside: avoid;
+    margin-bottom: 20px;
+    &__content {
+      padding: 20px;
+    }
+  }
 }

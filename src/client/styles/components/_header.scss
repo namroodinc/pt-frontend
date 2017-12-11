@@ -1,34 +1,32 @@
 header {
-  background-color: $backgroundColor;
+  background-color: $primaryColor;
   display: block;
   font-family: $primaryFont;
-  padding: 15px;
+  margin-bottom: 20px;
+  padding: 10px;
   width: 100%;
 
   .header {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     margin: auto;
-    text-align: center;
     width: 100%;
     max-width: $fullContainerWidth;
 
     &__logo {
-      display: inline;
+      padding-right: 20px;
       text-transform: uppercase;
-      &:after {
-        color: $primaryColor;
-        content: "//";
-        padding: 0 5px;
-      }
     }
 
     &__navigation {
-      display: inline;
-      &:after {
-        color: $primaryColor;
-        content: "."
-      }
+      padding-left: 20px;
       & > a {
-        padding-right: 5px;
+        color: $secondaryColor;
+        font-size: 20px;
+        font-weight: bold;
+        padding-right: 20px;
+        text-transform: uppercase;
         &:last-child {
           padding-right: 0;
         }

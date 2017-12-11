@@ -18,11 +18,8 @@ export default class Header extends React.Component {
             className="header__logo"
           >
             <Logo
-              bgColor="blue"
-              fgColor="yellow"
-              size={70}
+              size={40}
             />
-            Ashoor Namrood
           </div>
 
           <div
@@ -31,17 +28,17 @@ export default class Header extends React.Component {
             <Link
               to="/"
             >
-              home
+              Home
             </Link>
             <Link
               to="/work"
             >
-              work
+              Work
             </Link>
             <Link
               to="/about"
             >
-              about
+              About
             </Link>
           </div>
 

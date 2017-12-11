@@ -1,6 +1,11 @@
 body {
   background-color: $backgroundColor;
-  font-family: $secondaryFont;
+  font-family: $primaryFont;
+  letter-spacing: 0.035em;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
 }
