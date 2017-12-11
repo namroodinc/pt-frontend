@@ -37,6 +37,8 @@ class Asset extends React.Component {
   }
 
   render() {
+    const { title } = this.props;
+
     return (
       <div
         className="asset"
@@ -47,6 +49,7 @@ class Asset extends React.Component {
           <img
             className="asset__media__image"
             src={this.state.assetUrl}
+            title={title}
           />
         </div>
       </div>
@@ -55,7 +58,8 @@ class Asset extends React.Component {
 }
 
 Asset.propTypes = {
-  assetId: PropTypes.string
+  assetId: PropTypes.string,
+  title: PropTypes.string
 };
 
 export default Asset;

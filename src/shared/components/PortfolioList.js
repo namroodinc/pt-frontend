@@ -1,25 +1,18 @@
 import React from "react";
 import { observer } from 'mobx-react';
-import Card, { CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardContent } from 'material-ui/Card';
 import { GridList, GridListTile } from 'material-ui/GridList';
 import Typography from 'material-ui/Typography';
+
+import Asset from "./Asset";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 @observer
 export default class PortfolioList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleFeaturedMedia = this.handleFeaturedMedia.bind(this);
-  }
-
   componentWillMount() {
     Actions.updatePortfolioList();
-  }
-
-  handleFeaturedMedia = (ASSET_ID) => {
-    //console.log(Promise.resolve(Actions.retrieveMediaItem(ASSET_ID)));
   }
 
   render() {
@@ -34,23 +27,26 @@ export default class PortfolioList extends React.Component {
     });
 
     return (
-      <div>
-
-        <h5>
-          Portfolio
-        </h5>
+      <div
+        className="portfolio"
+      >
 
         <GridList
-          cellHeight={400}
+          cellHeight="auto"
           cols={3}
+          spacing={20}
         >
           {mappedPortfolioList.map((item, i) =>
             <GridListTile
               key={i}
             >
-              <Card>
-                <CardMedia
-                  image={this.handleFeaturedMedia(item.featuredMedia)}
+              <Card
+                elevation={0}
+                raised={false}
+                square
+              >
+                <Asset
+                  assetId={item.featuredMedia}
                   title={item.title}
                 />
                 <CardContent>

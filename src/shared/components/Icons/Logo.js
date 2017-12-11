@@ -50,7 +50,7 @@ class Logo extends React.Component {
 Logo.propTypes = {
   bgColor: PropTypes.string,
   fgColor: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.number
 };
 
 export default Logo;
