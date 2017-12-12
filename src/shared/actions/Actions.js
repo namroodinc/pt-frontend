@@ -2,10 +2,7 @@ import { action } from "mobx";
 import request from "superagent";
 
 import Store from "../stores/Store";
-
-const CONTENTFUL_BASE_URL = process.env.CONTENTFUL_BASE_URL;
-const CONTENT_DELIVERY_ACCESS_TOKEN = process.env.CONTENT_DELIVERY_ACCESS_TOKEN;
-const SPACE_ID = process.env.SPACE_ID;
+import { CONTENTFUL_BASE_URL, CONTENT_DELIVERY_ACCESS_TOKEN, SPACE_ID } from "../utils/config";
 
 class Actions {
   @action updateEntry(ENTRY_ID) {
@@ -29,6 +26,7 @@ class Actions {
         if (err || !res.ok) {
           console.log('error');
         } else {
+          Store.assetsList = res.body.includes.Asset;
           Store.portfolioList = res.body.items;
         }
       });

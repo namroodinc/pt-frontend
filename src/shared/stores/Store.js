@@ -8,10 +8,15 @@ class Store {
     text: '',
     title: ''
   };
+  @observable assetsList = [];
   @observable portfolioList = [];
 
   retrieveEntry() {
     return this.entry;
+  }
+
+  retrieveAssetsList() {
+    return this.assetsList;
   }
 
   retrievePortfolioList() {

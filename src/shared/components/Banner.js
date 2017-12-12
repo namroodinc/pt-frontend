@@ -1,11 +1,13 @@
 import React from "react";
+import ReactHtmlParser from "react-html-parser";
 import PropTypes from "prop-types";
+import Marked from "marked";
 
 class Banner extends React.Component {
   render() {
     const { description, title } = this.props;
-    const bannerDescription = description || 'Banner Description missing.'; //TODO: Need a markdown-to-html function/method
-    const bannerTitle = title || 'Banner Title missing.';
+    const bannerDescription = Marked(description) || '';
+    const bannerTitle = title || '';
 
     return (
       <div
@@ -21,9 +23,7 @@ class Banner extends React.Component {
         <div
           className="banner__content"
         >
-          <p>
-            {bannerDescription}
-          </p>
+          {ReactHtmlParser(bannerDescription)}
         </div>
       </div>
     );

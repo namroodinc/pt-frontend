@@ -1,16 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import {
-  Header
-} from "../components/Index";
-
-import {
-  Page
-} from "../handlers/Index";
-
-const PAGE_HOME_ENTRY_ID = process.env.PAGE_HOME_ENTRY_ID;
-const PAGE_ABOUT_ENTRY_ID = process.env.PAGE_ABOUT_ENTRY_ID;
+import { Header } from "../components/Index";
+import { Page } from "../handlers/Index";
+import { PAGE_HOME_ENTRY_ID, PAGE_ABOUT_ENTRY_ID, PAGE_PORTFOLIO_ENTRY_ID } from "../utils/config";
 
 export default class AppController extends React.Component {
   render() {
@@ -32,7 +25,12 @@ export default class AppController extends React.Component {
           />
           <Route
             exact
-            path="/work"
+            path="/portfolio"
+            component={() => <Page entryId={PAGE_PORTFOLIO_ENTRY_ID} />}
+          />
+          <Route
+            exact
+            path="/portfolio/:id"
             component={Page}
           />
         </Switch>

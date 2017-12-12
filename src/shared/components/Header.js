@@ -17,9 +17,13 @@ export default class Header extends React.Component {
           <div
             className="header__logo"
           >
-            <Logo
-              size={30}
-            />
+            <Link
+              to="/"
+            >
+              <Logo
+                size={25}
+              />
+            </Link>
           </div>
 
           <div
@@ -31,9 +35,9 @@ export default class Header extends React.Component {
               Home
             </Link>
             <Link
-              to="/work"
+              to="/portfolio"
             >
-              Work
+              Portfolio
             </Link>
             <Link
               to="/about"

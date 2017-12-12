@@ -16,10 +16,10 @@
       }
     }
   }
-  @media screen and (max-width: $fullContainerWidth/2) {
+  @media screen and (max-width: $fullContainerWidth * 0.65) {
     column-count: 2;
   }
-  @media screen and (max-width: $fullContainerWidth/4) {
+  @media screen and (max-width: $fullContainerWidth * 0.4) {
     column-count: 1;
   }
 }

@@ -65,7 +65,8 @@ module.exports = {
       "CMA_ACCESS_TOKEN",
       "SPACE_ID",
       "PAGE_HOME_ENTRY_ID",
-      "PAGE_ABOUT_ENTRY_ID"
+      "PAGE_ABOUT_ENTRY_ID",
+      "PAGE_PORTFOLIO_ENTRY_ID"
     ])
   ]
 };
