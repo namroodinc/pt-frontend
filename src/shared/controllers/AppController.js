@@ -6,8 +6,11 @@ import {
 } from "../components/Index";
 
 import {
-  Home
+  Page
 } from "../handlers/Index";
+
+const PAGE_HOME_ENTRY_ID = process.env.PAGE_HOME_ENTRY_ID;
+const PAGE_ABOUT_ENTRY_ID = process.env.PAGE_ABOUT_ENTRY_ID;
 
 export default class AppController extends React.Component {
   render() {
@@ -20,17 +23,17 @@ export default class AppController extends React.Component {
           <Route
             exact
             path="/"
-            component={Home}
+            component={() => <Page entryId={PAGE_HOME_ENTRY_ID} />}
           />
           <Route
             exact
             path="/about"
-            component={Home}
+            component={() => <Page entryId={PAGE_ABOUT_ENTRY_ID} />}
           />
           <Route
             exact
             path="/work"
-            component={Home}
+            component={Page}
           />
         </Switch>
 

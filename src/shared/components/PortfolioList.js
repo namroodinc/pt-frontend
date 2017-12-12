@@ -17,9 +17,11 @@ export default class PortfolioList extends React.Component {
 
     const mappedPortfolioList = portfolioList.map((item, i) => {
       const { featuredMedia, title } = item.fields;
+      const { id } = item.sys;
       return {
-        title,
-        featuredMedia: featuredMedia.sys.id
+        assetId: featuredMedia.sys.id,
+        entryId: id,
+        title
       }
     });
 
@@ -32,16 +34,25 @@ export default class PortfolioList extends React.Component {
             className="portfolio-list__item"
             key={i}
           >
-            <Asset
-              assetId={item.featuredMedia}
-              title={item.title}
-            />
             <div
               className="portfolio-list__item__content"
             >
-              <h3>
-                {item.title}
-              </h3>
+              <Asset
+                assetId={item.assetId}
+                entryId={item.entryId}
+                title={item.title}
+              />
+              <div
+                className="portfolio-list__item__content__description"
+              >
+                <h3>
+                  <a
+                    href={`/portfolio/${item.entryId}`}
+                  >
+                    {item.title}
+                  </a>
+                </h3>
+              </div>
             </div>
           </div>
         )}

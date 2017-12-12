@@ -6,7 +6,7 @@ class Logo extends React.Component {
     const { bgColor, fgColor, size } = this.props;
 
     const logoBgColor = bgColor || '#000000';
-    const logoFgColor = fgColor || '#FFC100';
+    const logoFgColor = fgColor || '#FFFFFF';
     const logoSize = size || 400;
 
     return (

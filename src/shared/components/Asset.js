@@ -37,7 +37,7 @@ class Asset extends React.Component {
   }
 
   render() {
-    const { title } = this.props;
+    const { entryId, title } = this.props;
 
     return (
       <div
@@ -46,11 +46,24 @@ class Asset extends React.Component {
         <div
           className="asset__media"
         >
-          <img
-            className="asset__media__image"
-            src={this.state.assetUrl}
-            title={title}
-          />
+          {entryId &&
+            <a
+              href={`/portfolio/${entryId}`}
+            >
+              <img
+                className="asset__media__image"
+                src={this.state.assetUrl}
+                title={title}
+              />
+            </a>
+          }
+          {!entryId &&
+            <img
+              className="asset__media__image"
+              src={this.state.assetUrl}
+              title={title}
+            />
+          }
         </div>
       </div>
     );
@@ -59,6 +72,7 @@ class Asset extends React.Component {
 
 Asset.propTypes = {
   assetId: PropTypes.string,
+  entryId: PropTypes.string,
   title: PropTypes.string
 };
 
