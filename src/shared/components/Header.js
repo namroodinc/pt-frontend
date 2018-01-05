@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
-import {
-  Logo
-} from "./Icons/Index";
 
 export default class Header extends React.Component {
   render() {
@@ -20,9 +17,7 @@ export default class Header extends React.Component {
             <Link
               to="/"
             >
-              <Logo
-                size={25}
-              />
+              Logo
             </Link>
           </div>
 
@@ -35,9 +30,9 @@ export default class Header extends React.Component {
               Home
             </Link>
             <Link
-              to="/portfolio"
+              to="/publications"
             >
-              Portfolio
+              Publications
             </Link>
             <Link
               to="/about"

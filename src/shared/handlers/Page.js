@@ -5,16 +5,12 @@ import PropTypes from "prop-types";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import {
-  Banner,
-  PortfolioList
-} from "../components/Index";
 
 @observer
 class Page extends React.Component {
   componentWillMount() {
     const { entryId } = this.props;
-    Actions.updateEntry(entryId);
+    // Actions.updateEntry(entryId);
   }
 
   render() {
@@ -24,15 +20,6 @@ class Page extends React.Component {
       <div
         className="container"
       >
-
-        <Banner
-          title={title}
-          description={text}
-        />
-
-        {showPortfolio &&
-          <PortfolioList />
-        }
 
       </div>
     )

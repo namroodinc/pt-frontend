@@ -8,7 +8,7 @@ class Actions {
   @action updateEntry(ENTRY_ID) {
     request
       .get(`${CONTENTFUL_BASE_URL}/spaces/${SPACE_ID}/entries/${ENTRY_ID}`)
-      .query(`access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}&content_type=portfolio`)
+      .query(`access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}&content_type=publication`)
       .end(function(err, res) {
         if (err || !res.ok) {
           console.log('error');
@@ -21,12 +21,12 @@ class Actions {
   @action updatePortfolioList() {
     request
       .get(`${CONTENTFUL_BASE_URL}/spaces/${SPACE_ID}/entries`)
-      .query(`access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}&content_type=portfolio`)
+      .query(`access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}&content_type=publication`)
       .end(function(err, res) {
         if (err || !res.ok) {
           console.log('error');
         } else {
-          Store.assetsList = res.body.includes.Asset;
+          // Store.assetsList = res.body.includes.Asset;
           Store.portfolioList = res.body.items;
         }
       });
