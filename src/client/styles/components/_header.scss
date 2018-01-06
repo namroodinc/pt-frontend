@@ -1,10 +1,10 @@
 header {
-  background-color: $primaryColor;
+  background-color: $secondaryColor;
   box-sizing: border-box;
   display: block;
-  font-family: $primaryFont;
+  font-family: $headingFont;
   letter-spacing: 0.075em;
-  padding: 20px;
+  padding: 15px;
   width: 100%;
 
   .header {
@@ -18,16 +18,17 @@ header {
     &__logo {
       padding-right: 20px;
       text-transform: uppercase;
+      & > a {
+        color: $white;
+      }
     }
 
     &__navigation {
       padding-left: 20px;
       & > a {
-        color: $secondaryColor;
-        font-size: 18px;
-        font-weight: bold;
+        color: $white;
+        font-size: 14px;
         padding-right: 20px;
-        text-transform: uppercase;
         &:last-child {
           padding-right: 0;
         }

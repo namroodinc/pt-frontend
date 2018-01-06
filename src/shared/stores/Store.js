@@ -1,15 +1,9 @@
 import { observable, autorun } from "mobx";
 
 class Store {
-  @observable entry = {
-    showExperience: '',
-    showPortfolio: '',
-    showSkills: '',
-    text: '',
-    title: ''
-  };
+  @observable entry = {};
   @observable assetsList = [];
-  @observable portfolioList = [];
+  @observable publicationList = [];
 
   retrieveEntry() {
     return this.entry;
@@ -19,8 +13,8 @@ class Store {
     return this.assetsList;
   }
 
-  retrievePortfolioList() {
-    return this.portfolioList;
+  retrievePublicationList() {
+    return this.publicationList;
   }
 }
 
@@ -29,6 +23,6 @@ export default store;
 
 autorun(() => {
   // Uncomment below this to see how autorun in action: https://mobx.js.org/refguide/autorun.html
-  // const { portfolioList } = store;
-  // console.log(portfolioList);
+  // const { publicationList } = store;
+  // console.log(publicationList);
 });

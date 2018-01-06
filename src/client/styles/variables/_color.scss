@@ -1,11 +1,19 @@
 $backgroundColor: #FFFFFF;
 $primaryColor: #DFC228;
 $secondaryColor: #000000;
+$borderColor: #D1D3D4;
+$textColor: #222222;
+$textLinkColor: #3C3B3B;
+$subTextColor: #999999;
 $white: #FFFFFF;
 
 :export {
   backgroundColor: $backgroundColor;
   primaryColor: $primaryColor;
   secondaryColor: $secondaryColor;
+  borderColor: $borderColor;
+  textColor: $textColor;
+  textLinkColor: $textLinkColor;
+  subTextColor: $subTextColor;
   white: $white;
 }

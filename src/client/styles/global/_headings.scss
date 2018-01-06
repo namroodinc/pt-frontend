@@ -1,3 +1,31 @@
-h3 {
-  margin: 0;
+h1, h2, h3, h4 {
+  font-family: $headingFont;
+}
+
+h1, h2, h3, h4, h5 {
+  margin-top: 0;
+}
+
+h2 {
+  color: $textColor;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  & > a {
+    border-bottom: 1px solid $borderColor;
+    color: $textLinkColor;
+  }
+}
+
+h5 {
+  color: $subTextColor;
+  font-family: $primaryFont;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  padding-left: 1px;
+  & > a {
+    border-bottom: 2px solid $textLinkColor;
+    color: $textLinkColor;
+  }
 }

@@ -18,7 +18,7 @@ class Actions {
       });
   }
 
-  @action updatePortfolioList() {
+  @action updatePublicationList() {
     request
       .get(`${CONTENTFUL_BASE_URL}/spaces/${SPACE_ID}/entries`)
       .query(`access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}&content_type=publication`)
@@ -26,8 +26,7 @@ class Actions {
         if (err || !res.ok) {
           console.log('error');
         } else {
-          // Store.assetsList = res.body.includes.Asset;
-          Store.portfolioList = res.body.items;
+          Store.publicationList = res.body.items;
         }
       });
   }

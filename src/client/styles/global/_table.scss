@@ -1,0 +1,28 @@
+$padding: 7px;
+
+table {
+  border-collapse: collapse;
+  font-family: $headingFont;
+  font-size: 13px;
+  text-align: left;
+  width: 100%;
+
+  thead {
+    tr {
+      border-bottom: 1px solid $secondaryColor;
+      th {
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: $padding;
+      }
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid $borderColor;
+      td {
+        padding: $padding;
+      }
+    }
+  }
+}

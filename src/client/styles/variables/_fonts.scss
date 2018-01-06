@@ -1,7 +1,9 @@
+$headingFont: 'Open Sans', sans-serif;
 $primaryFont: 'Inconsolata', monospace;
-$secondaryFont: 'Georgia', serif;
+$secondaryFont: 'Cantata One', 'Georgia', serif;
 
 :export {
+  headingFont: $headingFont;
   primaryFont: $primaryFont;
   secondaryFont: $secondaryFont;
 }
