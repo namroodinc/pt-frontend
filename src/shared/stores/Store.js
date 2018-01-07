@@ -3,7 +3,12 @@ import { observable, autorun } from "mobx";
 class Store {
   @observable entry = {};
   @observable assetsList = [];
+  @observable loading = true;
   @observable publicationList = [];
+
+  isLoading() {
+    return this.loading;
+  }
 
   retrieveEntry() {
     return this.entry;

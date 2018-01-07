@@ -1,0 +1,14 @@
+$size: 30px;
+
+.rating {
+  border: 3px solid $borderColor;
+  border-radius: 50%;
+  float: left;
+  font-size: 16px;
+  height: $size;
+  line-height: $size;
+  margin-right: 10px;
+  padding: 2px;
+  text-align: center;
+  width: $size;
+}

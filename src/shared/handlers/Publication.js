@@ -9,6 +9,8 @@ import Marked from "marked";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
+import { Loading, Rating } from "../components/Index";
+
 @observer
 class Publication extends React.Component {
   componentWillMount() {
@@ -16,7 +18,9 @@ class Publication extends React.Component {
   }
 
   render() {
-    const { articles, country, description, name } = Store.retrieveEntry();
+    if (Store.isLoading()) return <Loading />;
+
+    const { articles, country, description, name, simpleRating } = Store.retrieveEntry();
     const publicationDescription = description || '';
 
     return (
@@ -30,6 +34,9 @@ class Publication extends React.Component {
             <Card>
               <CardContent>
                 <h2>
+                  <Rating
+                    rating={simpleRating}
+                  />
                   {name}
                 </h2>
                 <h5>
@@ -44,38 +51,34 @@ class Publication extends React.Component {
         <div
           className="container"
         >
-          <div
-            className="container"
-          >
-            <table>
-              <thead>
-                <tr>
-                  <th>
-                    &nbsp;
-                  </th>
-                  <th>
-                    Article
-                  </th>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  &nbsp;
+                </th>
+                <th>
+                  Article
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {articles.map((article, i) =>
+                <tr
+                  key={i}
+                >
+                  <td>
+                    <time>
+                      {moment(article.publishedAt).format('MMM. DD')}
+                    </time>
+                  </td>
+                  <td>
+                    {article.title}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {articles.map((article, i) =>
-                  <tr
-                    key={i}
-                  >
-                    <td>
-                      <time>
-                        {moment(article.publishedAt).format('MMM. DD')}
-                      </time>
-                    </td>
-                    <td>
-                      {article.title}
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+              )}
+            </tbody>
+          </table>
         </div>
 
       </div>
