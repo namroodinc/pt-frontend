@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import PropTypes from "prop-types";
 import Card, { CardContent } from "material-ui/Card";
 import moment from "moment";
+import { VictoryChart, VictoryLine } from "victory";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
@@ -20,8 +21,16 @@ class Publication extends React.Component {
   render() {
     if (Store.isLoading()) return <Loading />;
 
-    const { articles, country, description, name, simpleRating } = Store.retrieveEntry();
+    const { articles, circulationHistroy, country, description, name, simpleRating } = Store.retrieveEntry();
     const publicationDescription = description || '';
+
+    const circulationHistroyMapped = circulationHistroy.map(data => {
+      return {
+        x: data.year,
+        y: data.value
+      }
+    }).sort((a, b) => a.x - b.x);
+    console.log(circulationHistroyMapped);
 
     return (
       <div>
@@ -47,6 +56,27 @@ class Publication extends React.Component {
             </Card>
           </div>
         </div>
+
+
+        <div
+          className="container"
+        >
+
+        <VictoryChart>
+          <VictoryLine
+            scale={{
+              x: 'time'
+            }}
+            style={{
+              data: { stroke: "#c43a31" },
+              parent: { border: "1px solid #ccc"}
+            }}
+            data={circulationHistroyMapped}
+          />
+        </VictoryChart>
+
+        </div>
+
 
         <div
           className="container"
