@@ -10,7 +10,7 @@ import Marked from "marked";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Loading, Rating } from "../components/Index";
+import { Loading } from "../components/Index";
 
 @observer
 class Publication extends React.Component {
@@ -21,7 +21,7 @@ class Publication extends React.Component {
   render() {
     if (Store.isLoading()) return <Loading />;
 
-    const { articles, circulationHistroy, country, description, name, simpleRating } = Store.retrieveEntry();
+    const { articles, circulationHistroy, country, description, name } = Store.retrieveEntry();
     const publicationDescription = description || '';
 
     const circulationHistroyMapped = circulationHistroy.map(data => {
@@ -35,6 +35,9 @@ class Publication extends React.Component {
       return new Date(data.year, 1, 1)
     }).sort((a, b) => a.x - b.x);
 
+    const firstYear = tickValues[0];
+    const lastYear = tickValues[tickValues.length - 1];
+
     return (
       <div>
         <div
@@ -46,9 +49,6 @@ class Publication extends React.Component {
             <Card>
               <CardContent>
                 <h2>
-                  <Rating
-                    rating={simpleRating}
-                  />
                   {name}
                 </h2>
                 <h5>
@@ -68,8 +68,8 @@ class Publication extends React.Component {
             <VictoryLine
               domain={{
                 x: [
-                  new Date(1899, 1, 1),
-                  new Date(2018, 1, 1)
+                  firstYear,
+                  lastYear
                 ]
               }}
               interpolation="natural"
@@ -93,10 +93,13 @@ class Publication extends React.Component {
               standalone={false}
               tickValues={tickValues}
               tickFormat={(x) => {
-                if (x.getFullYear() === 2000) {
+                if (x.getFullYear() % 1000) {
                   return x.getFullYear();
+                } else if (x.getFullYear() % 10) {
+                  return x.getFullYear();
+                } else {
+                  return '';
                 }
-                return x.getFullYear().toString().slice(2);
               }}
             />
           </VictoryChart>

@@ -1,14 +1,21 @@
 h1, h2, h3, h4 {
-  font-family: $headingFont;
+  font-family: $bodyFont;
 }
 
 h1, h2, h3, h4, h5 {
   margin-top: 0;
 }
 
+h1 {
+  color: $headingColor;
+  font-size: 50px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
 h2 {
   color: $textColor;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 10px;
   & > a {

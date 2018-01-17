@@ -22,10 +22,11 @@ a {
 
 p {
   color: $textColor;
-  font-family: $secondaryFont;
-  font-size: 15px;
+  font-family: $bodyFont;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 22px;
+  letter-spacing: 0.002em;
+  line-height: 32px;
   margin-bottom: 10px;
   margin-top: 0;
 }

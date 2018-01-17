@@ -9,8 +9,6 @@ import Marked from "marked";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Rating } from "../components/Index";
-
 @observer
 export default class PublicationList extends React.Component {
   componentWillMount() {
@@ -30,9 +28,6 @@ export default class PublicationList extends React.Component {
           >
             <CardContent>
               <h2>
-                <Rating
-                  rating={publication.fields.simpleRating}
-                />
                 <Link
                   to={`/publication/${publication.sys.id}`}
                 >
