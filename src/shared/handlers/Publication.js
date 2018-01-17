@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import PropTypes from "prop-types";
 import Card, { CardContent } from "material-ui/Card";
 import moment from "moment";
-import { VictoryChart, VictoryLine } from "victory";
+import { VictoryAxis, VictoryChart, VictoryLine } from "victory";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
@@ -26,11 +26,14 @@ class Publication extends React.Component {
 
     const circulationHistroyMapped = circulationHistroy.map(data => {
       return {
-        x: data.year,
+        x: new Date(data.year, 1, 1),
         y: data.value
       }
     }).sort((a, b) => a.x - b.x);
-    console.log(circulationHistroyMapped);
+
+    const tickValues = circulationHistroy.map(data => {
+      return new Date(data.year, 1, 1)
+    }).sort((a, b) => a.x - b.x);
 
     return (
       <div>
@@ -57,26 +60,48 @@ class Publication extends React.Component {
           </div>
         </div>
 
-
         <div
           className="container"
         >
 
-        <VictoryChart>
-          <VictoryLine
-            scale={{
-              x: 'time'
-            }}
-            style={{
-              data: { stroke: "#c43a31" },
-              parent: { border: "1px solid #ccc"}
-            }}
-            data={circulationHistroyMapped}
-          />
-        </VictoryChart>
+          <VictoryChart>
+            <VictoryLine
+              domain={{
+                x: [
+                  new Date(1899, 1, 1),
+                  new Date(2018, 1, 1)
+                ]
+              }}
+              interpolation="natural"
+              scale={{
+                x: 'time',
+                y: 'linear'
+              }}
+              style={{
+                data: {
+                  stroke: '#c43a31'
+                },
+                parent: {
+                  border: '1px solid #ccc'
+                }
+              }}
+              data={circulationHistroyMapped}
+            />
+
+            <VictoryAxis
+              scale="time"
+              standalone={false}
+              tickValues={tickValues}
+              tickFormat={(x) => {
+                if (x.getFullYear() === 2000) {
+                  return x.getFullYear();
+                }
+                return x.getFullYear().toString().slice(2);
+              }}
+            />
+          </VictoryChart>
 
         </div>
-
 
         <div
           className="container"
