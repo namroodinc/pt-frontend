@@ -1,5 +1,5 @@
 header {
-  background-color: $secondaryColor;
+  background-color: $primaryColor;
   box-sizing: border-box;
   display: block;
   font-family: $bodyFont;
@@ -27,7 +27,7 @@ header {
       padding-left: 20px;
       & > a {
         color: $white;
-        font-size: 14px;
+        font-size: 16px;
         padding-right: 20px;
         &:last-child {
           padding-right: 0;

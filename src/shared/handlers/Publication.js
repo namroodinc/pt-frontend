@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import PropTypes from "prop-types";
 import Card, { CardContent } from "material-ui/Card";
 import moment from "moment";
-import { VictoryAxis, VictoryChart, VictoryLine } from "victory";
+import { VictoryAxis, VictoryChart, VictoryLabel, VictoryLine } from "victory";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
@@ -34,22 +34,36 @@ class Publication extends React.Component {
     const firstYear = circulationHistroyMapped[0].x;
     const lastYear = circulationHistroyMapped[circulationHistroyMapped.length - 1].x;
 
+    const maxValue = circulationHistroyMapped.reduce((max, p) => p.y > max ? p.y : max, circulationHistroyMapped[0].y);
+
     const styles = {
-      axisYears: {
+      axis: {
         axis: {
-          stroke: "black",
+          stroke: '#000000',
           strokeWidth: 1
         },
+        grid: {
+          stroke: '#CACACA',
+          strokeDasharray: '2, 7',
+          strokeWidth: 0.5
+        },
         ticks: {
-          size: 5,
-          stroke: "black",
+          size: 4,
+          stroke: '#000000',
           strokeWidth: 1
         },
         tickLabels: {
-          fill: "black",
-          fontFamily: "inherit",
-          fontSize: 10
+          fill: '#000000',
+          fontFamily: "'Inconsolata', monospace",
+          fontSize: 8,
+          letterSpacing: '0.002em'
         }
+      },
+      title: {
+        fontFamily: 'inherit',
+        fontSize: 15,
+        fontWeight: 700,
+        letterSpacing: '0.002em'
       }
     }
 
@@ -79,12 +93,49 @@ class Publication extends React.Component {
           className="container"
         >
 
-          <VictoryChart>
+          <VictoryChart
+            domainPadding={{
+              y: 15
+            }}
+            height={300}
+            width={450}
+          >
+
+            <VictoryLabel
+              x={0}
+              y={25}
+              style={styles.title}
+              text={`Newspaper Circulation ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
+            />
+
+            <VictoryAxis
+              scale="time"
+              standalone={false}
+              style={styles.axis}
+              tickLabelComponent={<VictoryLabel
+                dy={-5}
+              />}
+            />
+
+            <VictoryAxis
+              dependentAxis
+              orientation="left"
+              standalone={false}
+              style={styles.axis}
+              tickLabelComponent={<VictoryLabel
+                dx={5}
+              />}
+            />
+
             <VictoryLine
               domain={{
                 x: [
                   firstYear,
                   lastYear
+                ],
+                y: [
+                  0,
+                  maxValue
                 ]
               }}
               interpolation="natural"
@@ -97,18 +148,6 @@ class Publication extends React.Component {
                 }
               }}
               data={circulationHistroyMapped}
-            />
-
-            <VictoryAxis
-              scale="time"
-              standalone={false}
-              style={styles.axisYears}
-            />
-
-            <VictoryAxis
-              dependentAxis
-              orientation="left"
-              standalone={false}
             />
           </VictoryChart>
 
@@ -146,7 +185,6 @@ class Publication extends React.Component {
             </tbody>
           </table>
         </div>
-
       </div>
     )
   }
