@@ -1,4 +1,4 @@
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   font-family: $bodyFont;
 }
 
@@ -19,20 +19,14 @@ h2 {
   font-weight: 700;
   margin-bottom: 10px;
   & > a {
-    border-bottom: 1px solid $borderColor;
-    color: $textLinkColor;
+    color: $textColor;
   }
 }
 
 h5 {
   color: $subTextColor;
-  font-family: $primaryFont;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   margin-bottom: 10px;
   padding-left: 1px;
-  & > a {
-    border-bottom: 2px solid $textLinkColor;
-    color: $textLinkColor;
-  }
 }

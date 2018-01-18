@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
-import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
@@ -35,17 +34,16 @@ export default class PublicationList extends React.Component {
                 </Link>
               </h2>
               <h5>
-                {publication.fields.ownership}
+                {publication.fields.disambiguation}
               </h5>
               {ReactHtmlParser(Marked(publication.fields.description))}
             </CardContent>
             <CardActions>
-              <Button dense color="primary">
-                Share
-              </Button>
-              <Button dense color="primary">
-                Learn More
-              </Button>
+              <Link
+                to={`/publication/${publication.sys.id}`}
+              >
+                Read more
+              </Link>
             </CardActions>
           </Card>
         )}

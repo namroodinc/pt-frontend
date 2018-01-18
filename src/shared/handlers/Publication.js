@@ -21,22 +21,37 @@ class Publication extends React.Component {
   render() {
     if (Store.isLoading()) return <Loading />;
 
-    const { articles, circulationHistroy, country, description, name } = Store.retrieveEntry();
+    const { articles, circulationHistroy, description, disambiguation, name } = Store.retrieveEntry();
     const publicationDescription = description || '';
 
     const circulationHistroyMapped = circulationHistroy.map(data => {
       return {
-        x: new Date(data.year, 1, 1),
+        x: new Date(data.year, 0, 1),
         y: data.value
       }
     }).sort((a, b) => a.x - b.x);
 
-    const tickValues = circulationHistroy.map(data => {
-      return new Date(data.year, 1, 1)
-    }).sort((a, b) => a.x - b.x);
+    const firstYear = circulationHistroyMapped[0].x;
+    const lastYear = circulationHistroyMapped[circulationHistroyMapped.length - 1].x;
 
-    const firstYear = tickValues[0];
-    const lastYear = tickValues[tickValues.length - 1];
+    const styles = {
+      axisYears: {
+        axis: {
+          stroke: "black",
+          strokeWidth: 1
+        },
+        ticks: {
+          size: 5,
+          stroke: "black",
+          strokeWidth: 1
+        },
+        tickLabels: {
+          fill: "black",
+          fontFamily: "inherit",
+          fontSize: 10
+        }
+      }
+    }
 
     return (
       <div>
@@ -52,7 +67,7 @@ class Publication extends React.Component {
                   {name}
                 </h2>
                 <h5>
-                  {country}
+                  {disambiguation}
                 </h5>
                 {ReactHtmlParser(Marked(publicationDescription))}
               </CardContent>
@@ -73,10 +88,6 @@ class Publication extends React.Component {
                 ]
               }}
               interpolation="natural"
-              scale={{
-                x: 'time',
-                y: 'linear'
-              }}
               style={{
                 data: {
                   stroke: '#c43a31'
@@ -91,16 +102,13 @@ class Publication extends React.Component {
             <VictoryAxis
               scale="time"
               standalone={false}
-              tickValues={tickValues}
-              tickFormat={(x) => {
-                if (x.getFullYear() % 1000) {
-                  return x.getFullYear();
-                } else if (x.getFullYear() % 10) {
-                  return x.getFullYear();
-                } else {
-                  return '';
-                }
-              }}
+              style={styles.axisYears}
+            />
+
+            <VictoryAxis
+              dependentAxis
+              orientation="left"
+              standalone={false}
             />
           </VictoryChart>
 

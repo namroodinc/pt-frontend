@@ -18,6 +18,17 @@ export default {
     }
   },
   overrides: {
+    MuiCardActions: {
+      root: {
+        height: 'auto',
+        paddingLeft: 0,
+        paddingRight: 0
+      },
+      action: {
+        marginLeft: 0,
+        marginRight: 10
+      }
+    },
     MuiCardContent: {
       root: {
         padding: `10px 0 10px 0`
@@ -25,8 +36,8 @@ export default {
     },
     MuiPaper: {
       root: {
-        borderBottom: `1px solid ${borderColor}`,
-        marginBottom: 10
+        borderBottom: `0px solid ${borderColor}`,
+        marginBottom: 30
       },
       rounded: {
         borderRadius: 0
