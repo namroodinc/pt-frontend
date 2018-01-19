@@ -9,6 +9,7 @@ $textLinkColor: #3C3B3B;
 $subTextColor: #999999;
 $tableThBorder: #222222;
 $tableTdBorder: #CDCDCD;
+$ratingBarDefault: #F0F0F0;
 $white: #FFFFFF;
 
 :export {
@@ -23,5 +24,6 @@ $white: #FFFFFF;
   subTextColor: $subTextColor;
   tableThBorder: $tableThBorder;
   tableTdBorder: $tableTdBorder;
+  ratingBarDefault: $ratingBarDefault;
   white: $white;
 }

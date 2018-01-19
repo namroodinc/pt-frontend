@@ -10,7 +10,7 @@ import Marked from "marked";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Loading, Rating } from "../components/Index";
+import { Loading, Rating, RatingBar } from "../components/Index";
 
 @observer
 class Publication extends React.Component {
@@ -129,7 +129,7 @@ class Publication extends React.Component {
               x={10}
               y={15}
               style={styles.title}
-              text={`Newspaper Circulation ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
+              text={`${name} Newspaper Circulations ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
             />
 
             <g>
@@ -206,6 +206,9 @@ class Publication extends React.Component {
                 <th>
                   Article
                 </th>
+                <th>
+                  Score
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -220,6 +223,11 @@ class Publication extends React.Component {
                   </td>
                   <td>
                     {article.title}
+                  </td>
+                  <td>
+                    <RatingBar
+                      rating={article.sentimentScore.title.score.score}
+                    />
                   </td>
                 </tr>
               )}

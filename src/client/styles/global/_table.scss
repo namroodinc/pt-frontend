@@ -21,9 +21,6 @@ table {
   tbody {
     tr {
       border-bottom: 1px solid $tableTdBorder;
-      &:last-child {
-        border-bottom-width: 0;
-      }
       td {
         border-left: 1px solid $tableTdBorder;
         padding: $padding;
