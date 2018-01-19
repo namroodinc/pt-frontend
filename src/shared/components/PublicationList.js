@@ -6,6 +6,8 @@ import PlayArrow from 'material-ui-icons/PlayArrow';
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
+import { Rating } from "./Index";
+
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
@@ -37,9 +39,9 @@ export default class PublicationList extends React.Component {
                 </Link>
               </h2>
 
-              <h5>
-                {publication.fields.disambiguation}
-              </h5>
+              <Rating
+                rating={publication.fields.overallRating}
+              />
 
               {ReactHtmlParser(Marked(publication.fields.description))}
 

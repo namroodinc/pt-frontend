@@ -10,7 +10,7 @@ import Marked from "marked";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Loading } from "../components/Index";
+import { Loading, Rating } from "../components/Index";
 
 @observer
 class Publication extends React.Component {
@@ -21,7 +21,7 @@ class Publication extends React.Component {
   render() {
     if (Store.isLoading()) return <Loading />;
 
-    const { articles, circulationHistroy, description, disambiguation, name } = Store.retrieveEntry();
+    const { articles, circulationHistroy, description, disambiguation, overallRating, name } = Store.retrieveEntry();
     const publicationDescription = description || '';
 
     const circulationHistroyMapped = circulationHistroy.map(data => {
@@ -101,12 +101,15 @@ class Publication extends React.Component {
           >
             <Card>
               <CardContent>
-                <h2>
-                  {name}
-                </h2>
                 <h5>
                   {disambiguation}
                 </h5>
+                <h2>
+                  {name}
+                </h2>
+                <Rating
+                  rating={overallRating}
+                />
                 {ReactHtmlParser(Marked(publicationDescription))}
               </CardContent>
             </Card>
