@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
+import PlayArrow from 'material-ui-icons/PlayArrow';
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
@@ -25,7 +26,9 @@ export default class PublicationList extends React.Component {
           <Card
             key={i}
           >
+
             <CardContent>
+
               <h2>
                 <Link
                   to={`/publication/${publication.sys.id}`}
@@ -33,18 +36,30 @@ export default class PublicationList extends React.Component {
                   {publication.fields.name}
                 </Link>
               </h2>
+
               <h5>
                 {publication.fields.disambiguation}
               </h5>
+
               {ReactHtmlParser(Marked(publication.fields.description))}
+
             </CardContent>
+
             <CardActions>
+
               <Link
                 to={`/publication/${publication.sys.id}`}
               >
                 Read more
+                <PlayArrow
+                  style={{
+                    float: 'right'
+                  }}
+                />
               </Link>
+
             </CardActions>
+
           </Card>
         )}
       </div>

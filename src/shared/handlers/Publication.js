@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import PropTypes from "prop-types";
 import Card, { CardContent } from "material-ui/Card";
 import moment from "moment";
-import { VictoryAxis, VictoryChart, VictoryLabel, VictoryLine } from "victory";
+import { VictoryAxis, VictoryLabel, VictoryLine } from "victory";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
@@ -35,12 +35,24 @@ class Publication extends React.Component {
     const lastYear = circulationHistroyMapped[circulationHistroyMapped.length - 1].x;
 
     const maxValue = circulationHistroyMapped.reduce((max, p) => p.y > max ? p.y : max, circulationHistroyMapped[0].y);
+    const yAxisDomain = {
+      y: [
+        0,
+        maxValue
+      ]
+    };
 
     const styles = {
       axis: {
         axis: {
           stroke: '#000000',
           strokeWidth: 1
+        },
+        axisLabel: {
+          fontFamily: 'inherit',
+          fontSize: 11,
+          fontWeight: 700,
+          letterSpacing: '0.002em'
         },
         grid: {
           stroke: '#CACACA',
@@ -55,9 +67,21 @@ class Publication extends React.Component {
         tickLabels: {
           fill: '#000000',
           fontFamily: "'Inconsolata', monospace",
-          fontSize: 8,
+          fontSize: 7,
           letterSpacing: '0.002em'
         }
+      },
+      padding: {
+        bottom: 50,
+        top: 50,
+        right: 20,
+        left: 70
+      },
+      parent: {
+        boxSizing: "border-box",
+        display: "inline",
+        padding: 0,
+        height: "auto"
       },
       title: {
         fontFamily: 'inherit',
@@ -65,7 +89,7 @@ class Publication extends React.Component {
         fontWeight: 700,
         letterSpacing: '0.002em'
       }
-    }
+    };
 
     return (
       <div>
@@ -93,63 +117,77 @@ class Publication extends React.Component {
           className="container"
         >
 
-          <VictoryChart
-            domainPadding={{
-              y: 15
-            }}
-            height={300}
-            width={450}
+          <svg
+            style={styles.parent}
+            viewBox="0 0 450 300"
           >
 
             <VictoryLabel
-              x={0}
-              y={25}
+              x={10}
+              y={15}
               style={styles.title}
               text={`Newspaper Circulation ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
             />
 
-            <VictoryAxis
-              scale="time"
-              standalone={false}
-              style={styles.axis}
-              tickLabelComponent={<VictoryLabel
-                dy={-5}
-              />}
-            />
+            <g>
 
-            <VictoryAxis
-              dependentAxis
-              orientation="left"
-              standalone={false}
-              style={styles.axis}
-              tickLabelComponent={<VictoryLabel
-                dx={5}
-              />}
-            />
+              <VictoryAxis
+                axisLabelComponent={<VictoryLabel
+                  dy={-25}
+                />}
+                dependentAxis
+                domain={yAxisDomain}
+                domainPadding={{
+                  y: 15
+                }}
+                label="Circulations"
+                orientation="left"
+                padding={styles.padding}
+                standalone={false}
+                style={styles.axis}
+                tickLabelComponent={<VictoryLabel
+                  dx={5}
+                />}
+              />
 
-            <VictoryLine
-              domain={{
-                x: [
-                  firstYear,
-                  lastYear
-                ],
-                y: [
-                  0,
-                  maxValue
-                ]
-              }}
-              interpolation="natural"
-              style={{
-                data: {
-                  stroke: '#c43a31'
-                },
-                parent: {
-                  border: '1px solid #ccc'
-                }
-              }}
-              data={circulationHistroyMapped}
-            />
-          </VictoryChart>
+              <VictoryAxis
+                domain={{
+                  x: [
+                    firstYear,
+                    lastYear
+                  ]
+                }}
+                label="Year"
+                padding={styles.padding}
+                scale="time"
+                standalone={false}
+                style={styles.axis}
+                tickLabelComponent={<VictoryLabel
+                  dy={-5}
+                />}
+              />
+
+              <VictoryLine
+                data={circulationHistroyMapped}
+                domain={yAxisDomain}
+                domainPadding={{
+                  y: 15
+                }}
+                interpolation="natural"
+                padding={styles.padding}
+                style={{
+                  data: {
+                    stroke: '#c43a31'
+                  },
+                  parent: {
+                    border: '1px solid #ccc'
+                  }
+                }}
+                standalone={false}
+              />
+            </g>
+
+          </svg>
 
         </div>
 
