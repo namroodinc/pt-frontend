@@ -55,8 +55,6 @@ class Line extends React.Component {
       }
     };
 
-    console.log(data);
-
     return (
       <div
         className="container"
