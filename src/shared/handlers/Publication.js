@@ -3,13 +3,13 @@ import { observer } from 'mobx-react';
 import PropTypes from "prop-types";
 import Card, { CardContent } from "material-ui/Card";
 import moment from "moment";
-import { VictoryAxis, VictoryLabel, VictoryLine } from "victory";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
+import { Line } from "../components/Charts/Index";
 import { Loading, Rating, RatingBar } from "../components/Index";
 
 @observer
@@ -26,13 +26,19 @@ class Publication extends React.Component {
 
     const circulationHistroyMapped = circulationHistroy.map(data => {
       return {
-        x: new Date(data.year, 0, 1),
+        x: new Date(data.year, 0, 31),
         y: data.value
       }
     }).sort((a, b) => a.x - b.x);
 
     const firstYear = circulationHistroyMapped[0].x;
     const lastYear = circulationHistroyMapped[circulationHistroyMapped.length - 1].x;
+    const xAxisDomain = {
+      x: [
+        firstYear,
+        lastYear
+      ]
+    };
 
     const maxValue = circulationHistroyMapped.reduce((max, p) => p.y > max ? p.y : max, circulationHistroyMapped[0].y);
     const yAxisDomain = {
@@ -40,55 +46,6 @@ class Publication extends React.Component {
         0,
         maxValue
       ]
-    };
-
-    const styles = {
-      axis: {
-        axis: {
-          stroke: '#000000',
-          strokeWidth: 1
-        },
-        axisLabel: {
-          fontFamily: 'inherit',
-          fontSize: 11,
-          fontWeight: 700,
-          letterSpacing: '0.002em'
-        },
-        grid: {
-          stroke: '#CACACA',
-          strokeDasharray: '2, 7',
-          strokeWidth: 0.5
-        },
-        ticks: {
-          size: 4,
-          stroke: '#000000',
-          strokeWidth: 1
-        },
-        tickLabels: {
-          fill: '#000000',
-          fontFamily: "'Inconsolata', monospace",
-          fontSize: 7,
-          letterSpacing: '0.002em'
-        }
-      },
-      padding: {
-        bottom: 50,
-        top: 50,
-        right: 20,
-        left: 70
-      },
-      parent: {
-        boxSizing: "border-box",
-        display: "inline",
-        padding: 0,
-        height: "auto"
-      },
-      title: {
-        fontFamily: 'inherit',
-        fontSize: 15,
-        fontWeight: 700,
-        letterSpacing: '0.002em'
-      }
     };
 
     return (
@@ -116,83 +73,12 @@ class Publication extends React.Component {
           </div>
         </div>
 
-        <div
-          className="container"
-        >
-
-          <svg
-            style={styles.parent}
-            viewBox="0 0 450 300"
-          >
-
-            <VictoryLabel
-              x={10}
-              y={15}
-              style={styles.title}
-              text={`${name} Newspaper Circulations ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
-            />
-
-            <g>
-
-              <VictoryAxis
-                axisLabelComponent={<VictoryLabel
-                  dy={-25}
-                />}
-                dependentAxis
-                domain={yAxisDomain}
-                domainPadding={{
-                  y: 15
-                }}
-                label="Circulations"
-                orientation="left"
-                padding={styles.padding}
-                standalone={false}
-                style={styles.axis}
-                tickLabelComponent={<VictoryLabel
-                  dx={5}
-                />}
-              />
-
-              <VictoryAxis
-                domain={{
-                  x: [
-                    firstYear,
-                    lastYear
-                  ]
-                }}
-                label="Year"
-                padding={styles.padding}
-                scale="time"
-                standalone={false}
-                style={styles.axis}
-                tickLabelComponent={<VictoryLabel
-                  dy={-5}
-                />}
-              />
-
-              <VictoryLine
-                data={circulationHistroyMapped}
-                domain={yAxisDomain}
-                domainPadding={{
-                  y: 15
-                }}
-                interpolation="natural"
-                padding={styles.padding}
-                style={{
-                  data: {
-                    stroke: '#c43a31'
-                  },
-                  parent: {
-                    border: '1px solid #ccc'
-                  }
-                }}
-                standalone={false}
-              />
-            </g>
-
-          </svg>
-
-        </div>
+        <Line
+          data={circulationHistroyMapped}
+          title={`Newspaper Circulations ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
+          xAxisDomain={xAxisDomain}
+          yAxisDomain={yAxisDomain}
+        />
 
         <div
           className="container"

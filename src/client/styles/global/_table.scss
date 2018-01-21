@@ -7,6 +7,12 @@ table {
   text-align: left;
   width: 100%;
 
+  &.table {
+    &--half-width {
+      max-width: $fullContainerWidth / 2;
+    }
+  }
+
   thead {
     tr {
       border-bottom: 1px solid $tableThBorder;
