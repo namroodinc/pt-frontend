@@ -8,18 +8,19 @@ class Rating extends React.Component {
   render() {
     const { rating } = this.props;
 
-    const filterRatings = rating.filter(r => r.ratings.total !== null);
-    const moreThanOneRating = filterRatings.length > 0;
+    const filtered = rating.filter(r => r.ratings.total !== null);
 
-    const currentRating = moreThanOneRating ? filterRatings[filterRatings.length - 1].ratings.total.toFixed(2) : 0;
-    let previousRating = moreThanOneRating ? filterRatings[filterRatings.length - 2].ratings.total.toFixed(2) : 0;
+    const currentRating = filtered.length > 0 ? filtered[filtered.length - 1].ratings.total.toFixed(2) : 0;
+    let previousRating = 0;
+    if (filtered.length > 1) previousRating = filtered[filtered.length - 2].ratings.total.toFixed(2);
+
     const calculatedRating = (currentRating - previousRating).toFixed(2);
 
     return (
       <span
         className="rating"
       >
-        Rating:
+        Rated
         <span
           className="rating__metric"
           style={{
@@ -28,7 +29,7 @@ class Rating extends React.Component {
         >
           {currentRating}%
         </span>
-        {moreThanOneRating &&
+        {filtered.length > 0 &&
           <span
             className="rating__metric rating__metric--difference"
             style={{

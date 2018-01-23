@@ -24,15 +24,17 @@ class Publication extends React.Component {
     const { articles, circulationHistroy, description, disambiguation, overallRating, name } = Store.retrieveEntry();
     const publicationDescription = description || '';
 
-    const circulationHistroyMapped = circulationHistroy.map(data => {
+    const historyLength = circulationHistroy.length > 0;
+
+    const historyMapped = circulationHistroy.map(data => {
       return {
         x: new Date(data.year, 0, 31),
         y: data.value
       }
     }).sort((a, b) => a.x - b.x);
 
-    const firstYear = circulationHistroyMapped[0].x;
-    const lastYear = circulationHistroyMapped[circulationHistroyMapped.length - 1].x;
+    const firstYear = historyLength ? historyMapped[0].x : 0;
+    const lastYear = historyLength ? historyMapped[historyMapped.length - 1].x : 0;
     const xAxisDomain = {
       x: [
         firstYear,
@@ -40,7 +42,7 @@ class Publication extends React.Component {
       ]
     };
 
-    const maxValue = circulationHistroyMapped.reduce((max, p) => p.y > max ? p.y : max, circulationHistroyMapped[0].y);
+    const maxValue = historyLength ? historyMapped.reduce((max, p) => p.y > max ? p.y : max, historyMapped[0].y) : 0;
     const yAxisDomain = {
       y: [
         0,
@@ -73,12 +75,14 @@ class Publication extends React.Component {
           </div>
         </div>
 
-        <Line
-          data={circulationHistroyMapped}
-          title={`Newspaper Circulations ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
-          xAxisDomain={xAxisDomain}
-          yAxisDomain={yAxisDomain}
-        />
+        { historyMapped.length > 0 &&
+          <Line
+            data={historyMapped}
+            title={`Newspaper Circulations ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
+            xAxisDomain={xAxisDomain}
+            yAxisDomain={yAxisDomain}
+          />
+        }
 
         <div
           className="container"
