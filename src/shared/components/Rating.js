@@ -8,10 +8,11 @@ class Rating extends React.Component {
   render() {
     const { rating } = this.props;
 
-    const moreThanOneRating = rating.length > 0;
+    const filterRatings = rating.filter(r => r.ratings.total !== null);
+    const moreThanOneRating = filterRatings.length > 0;
 
-    const currentRating = rating[rating.length - 1].ratings.total.toFixed(2);
-    let previousRating = moreThanOneRating ? rating[rating.length - 2].ratings.total.toFixed(2) : 0;
+    const currentRating = moreThanOneRating ? filterRatings[filterRatings.length - 1].ratings.total.toFixed(2) : 0;
+    let previousRating = moreThanOneRating ? filterRatings[filterRatings.length - 2].ratings.total.toFixed(2) : 0;
     const calculatedRating = (currentRating - previousRating).toFixed(2);
 
     return (
