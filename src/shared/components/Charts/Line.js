@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { VictoryAxis, VictoryLabel, VictoryLine } from "victory";
+import moment from "moment";
+
+import { Table } from "../Data/Index";
 
 class Line extends React.Component {
   render() {
@@ -54,6 +57,40 @@ class Line extends React.Component {
         letterSpacing: '0.002em'
       }
     };
+
+    const dataColumns = [
+      {
+        label: 'Year',
+        value: 'year'
+      },
+      {
+        label: 'Circulations',
+        value: 'circulations'
+      }
+    ];
+    const dataRows = data.map(row => {
+      const { x, y } = row;
+      return {
+        year: {
+          label: (
+            <time>
+              {moment(x).format('YYYY')}
+            </time>
+          ),
+          value: x,
+          type: 'date'
+        },
+        circulations: {
+          label: (
+            <time>
+              {y}
+            </time>
+          ),
+          value: y,
+          type: 'number'
+        }
+      }
+    });
 
     return (
       <div
@@ -125,6 +162,19 @@ class Line extends React.Component {
           </g>
 
         </svg>
+
+        <div
+          className="publication"
+        >
+
+          <Table
+            columns={dataColumns}
+            rows={dataRows}
+            sortBy="year"
+          />
+
+        </div>
+
       </div>
     );
   }

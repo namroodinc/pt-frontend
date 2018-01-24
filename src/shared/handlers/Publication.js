@@ -10,7 +10,9 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 import { Line } from "../components/Charts/Index";
-import { Loading, Rating, RatingBar } from "../components/Index";
+import { Table } from "../components/Data/Index";
+import { New } from "../components/Icons/Index";
+import { Loading, Rating } from "../components/Index";
 
 @observer
 class Publication extends React.Component {
@@ -22,17 +24,49 @@ class Publication extends React.Component {
     if (Store.isLoading()) return <Loading />;
 
     const { articles, circulationHistroy, description, disambiguation, overallRating, name } = Store.retrieveEntry();
+
+    const articleColumns = [
+      {
+        label: '',
+        value: 'date'
+      },
+      {
+        label: 'Article',
+        value: 'article'
+      }
+    ];
+    const articleRows = articles.map(article => {
+      const { publishedAt, title } = article;
+
+      const date = moment(publishedAt).format('MM/DD/YYYY');
+      const dateToday = moment().format('MM/DD/YYYY');
+
+      return {
+        date: {
+          label: (
+            <time>
+              {date === dateToday &&
+                <New />
+              }
+              {moment(publishedAt).format('MMM. DD')}
+            </time>
+          ),
+          value: publishedAt,
+          type: 'date'
+        },
+        article: title
+      }
+    });
+
     const publicationDescription = description || '';
 
     const historyLength = circulationHistroy.length > 0;
-
     const historyMapped = circulationHistroy.map(data => {
       return {
         x: new Date(data.year, 0, 31),
         y: data.value
       }
     }).sort((a, b) => a.x - b.x);
-
     const firstYear = historyLength ? historyMapped[0].x : 0;
     const lastYear = historyLength ? historyMapped[historyMapped.length - 1].x : 0;
     const xAxisDomain = {
@@ -41,7 +75,6 @@ class Publication extends React.Component {
         lastYear
       ]
     };
-
     const maxValue = historyLength ? historyMapped.reduce((max, p) => p.y > max ? p.y : max, historyMapped[0].y) : 0;
     const yAxisDomain = {
       y: [
@@ -84,46 +117,12 @@ class Publication extends React.Component {
           />
         }
 
-        <div
-          className="container"
-        >
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  &nbsp;
-                </th>
-                <th>
-                  Article
-                </th>
-                <th>
-                  Score
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {articles.map((article, i) =>
-                <tr
-                  key={i}
-                >
-                  <td>
-                    <time>
-                      {moment(article.publishedAt).format('MMM. DD')}
-                    </time>
-                  </td>
-                  <td>
-                    {article.title}
-                  </td>
-                  <td>
-                    <RatingBar
-                      rating={article.sentimentScore.title.score.score}
-                    />
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+        <Table
+          columns={articleColumns}
+          rows={articleRows}
+          sortBy="date"
+        />
+
       </div>
     )
   }
