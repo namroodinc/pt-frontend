@@ -18,7 +18,7 @@ table {
       border-bottom: 1px solid $tableThBorder;
       th {
         font-size: 16px;
-        font-weight: 400;
+        font-weight: 600;
         padding: $padding;
       }
     }
@@ -40,5 +40,13 @@ table {
   time {
     display: block;
     text-align: center;
+  }
+}
+
+.table {
+  &__controls {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
   }
 }

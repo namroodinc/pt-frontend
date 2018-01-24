@@ -17,7 +17,7 @@ import { Loading, Rating } from "../components/Index";
 @observer
 class Publication extends React.Component {
   componentWillMount() {
-    Actions.updateEntry(this.props.match.params.entryId);
+    Actions.getEntry(this.props.match.params.entryId);
   }
 
   render() {
@@ -114,6 +114,7 @@ class Publication extends React.Component {
             title={`Newspaper Circulations ${firstYear.getFullYear()}-${lastYear.getFullYear()}`}
             xAxisDomain={xAxisDomain}
             yAxisDomain={yAxisDomain}
+            tableRowLimit={10}
           />
         }
 
@@ -121,6 +122,7 @@ class Publication extends React.Component {
           columns={articleColumns}
           rows={articleRows}
           sortBy="date"
+          rowLimit={20}
         />
 
       </div>

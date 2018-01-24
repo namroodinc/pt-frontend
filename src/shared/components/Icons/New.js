@@ -5,7 +5,7 @@ class New extends React.Component {
   render() {
     const { color, width } = this.props;
 
-    const setColor = color || '#000';
+    const setColor = color || '#026FC9';
     const setWidth = width || 10;
     const setHeight = setWidth;
 

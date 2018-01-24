@@ -7,7 +7,7 @@ import { Table } from "../Data/Index";
 
 class Line extends React.Component {
   render() {
-    const { data, title, xAxisDomain, yAxisDomain } = this.props;
+    const { data, title, xAxisDomain, yAxisDomain, tableRowLimit } = this.props;
 
     const styles = {
       axis: {
@@ -72,20 +72,12 @@ class Line extends React.Component {
       const { x, y } = row;
       return {
         year: {
-          label: (
-            <time>
-              {moment(x).format('YYYY')}
-            </time>
-          ),
+          label: moment(x).format('YYYY'),
           value: x,
           type: 'date'
         },
         circulations: {
-          label: (
-            <time>
-              {y}
-            </time>
-          ),
+          label: y,
           value: y,
           type: 'number'
         }
@@ -171,6 +163,7 @@ class Line extends React.Component {
             columns={dataColumns}
             rows={dataRows}
             sortBy="year"
+            rowLimit={tableRowLimit}
           />
 
         </div>
@@ -184,7 +177,8 @@ Line.propTypes = {
   data: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired,
   xAxisDomain: PropTypes.object.isRequired,
-  yAxisDomain: PropTypes.object.isRequired
+  yAxisDomain: PropTypes.object.isRequired,
+  tableRowLimit: PropTypes.number
 };
 
 export default Line;
