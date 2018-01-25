@@ -6,6 +6,10 @@ import moment from "moment";
 import { Table } from "../Data/Index";
 
 class Line extends React.Component {
+  handleOnSelectElement = (event) => {
+    console.log(event.clientX);
+  }
+
   render() {
     const { data, title, xAxisDomain, yAxisDomain, tableRowLimit } = this.props;
 
@@ -98,6 +102,9 @@ class Line extends React.Component {
             y={15}
             style={styles.title}
             text={title}
+            events={{
+              onMouseDown: this.handleOnSelectElement
+            }}
           />
 
           <g>

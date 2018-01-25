@@ -12,8 +12,8 @@ class Table extends React.Component {
 
   handleOnLoadMore = () => {
     this.setState({
-      expandedLimit: true
-    })
+      expandedLimit: !this.state.expandedLimit
+    });
   }
 
   render() {
@@ -25,15 +25,11 @@ class Table extends React.Component {
       }
       return b[sortBy].value - a[sortBy].value;
     });
-
     const rowsMapped = rowsIsSorted.map(row => {
       return columns.map(column => typeof row[column.value] === 'object' ? row[column.value].label : row[column.value]);
     });
 
-    console.log(this.state.expandedLimit);
-    console.log(rowsMapped);
-
-    const numberOfRows = !rowLimit && !this.state.expandedLimit ? rowsMapped : rowsMapped.slice(0, rowLimit);
+    const numberOfRows = this.state.expandedLimit ? rowsMapped : rowsMapped.slice(0, rowLimit);
 
     return (
       <div
@@ -73,17 +69,25 @@ class Table extends React.Component {
             </tbody>
           </table>
 
-          <div
-            className="table__controls"
-          >
-            <Button
-              color="primary"
-              onClick={this.handleOnLoadMore}
-              raised
+          {rowLimit <= rowsMapped.length &&
+            <div
+              className="table__controls"
             >
-              Load More
-            </Button>
-          </div>
+              <Button
+                color="primary"
+                onClick={this.handleOnLoadMore}
+                raised
+              >
+                {this.state.expandedLimit ?
+                  <span>
+                    Hide More
+                  </span> : <span>
+                    Show More
+                  </span>
+                }
+              </Button>
+            </div>
+          }
 
         </div>
 

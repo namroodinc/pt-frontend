@@ -1,5 +1,8 @@
 .publication {
+  background-color: $white;
+  box-sizing: border-box;
   margin: auto;
+  padding: 20px;
   width: 100%;
   max-width: $fullContainerWidth / 2;
 }
