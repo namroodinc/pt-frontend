@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { VictoryAxis, VictoryLabel, VictoryLine } from "victory";
 import moment from "moment";
+import Draggable, { DraggableCore } from "react-draggable";
 
 import { Table } from "../Data/Index";
 import { LineTheme } from "../../constants/Index";
@@ -10,6 +11,11 @@ class Line extends React.Component {
   handleOnSelectElement = (event) => {
     console.log(event.clientX);
   }
+
+  eventLogger = (e: MouseEvent, data: Object) => {
+    console.log('Event: ', e);
+    console.log('Data: ', data);
+  };
 
   render() {
     const { data, title, xAxisDomain, yAxisDomain, tableRowLimit } = this.props;
@@ -112,8 +118,31 @@ class Line extends React.Component {
               }}
               standalone={false}
             />
+
           </g>
 
+        </svg>
+
+        <svg
+          style={styles.parent}
+          viewBox="0 0 450 300"
+          height="300"
+          width="450"
+        >
+          <Draggable
+            handle="rect"
+            defaultPosition={{
+              x: 1,
+              y: 1
+            }}
+            position={null}
+            grid={[5, 5]}
+            onStart={this.eventLogger}
+            onDrag={this.eventLogger}
+            onStop={this.eventLogger}
+          >
+            <rect x="10" y="10" width="100" height="100"/>
+          </Draggable>
         </svg>
 
         <div

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Article, PressComplaints } from "./Index";
+import { Article, GlobalRank, PressComplaints } from "./Index";
 
 class TimelineStory extends React.Component {
   render() {
@@ -14,9 +14,10 @@ class TimelineStory extends React.Component {
         {story.data !== undefined &&
           <div>
             {story.data.globalRank !== undefined ?
-              <div>
-                Global Rank
-              </div> : <PressComplaints
+              <GlobalRank
+                backgroundColor={backgroundColor}
+                data={story}
+              /> : <PressComplaints
                 backgroundColor={backgroundColor}
                 data={story}
                 ipsoList={ipsoList}

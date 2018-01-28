@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import { Header } from "../components/Index";
-import { Page, Publication } from "../handlers/Index";
+import { Circulations, Page, Publication } from "../handlers/Index";
 
 export default class AppController extends React.Component {
   render() {
@@ -21,6 +21,11 @@ export default class AppController extends React.Component {
             exact
             path="/publication"
             component={Page}
+          />
+          <Route
+            exact
+            path="/circulations/:entryId"
+            component={Circulations}
           />
           <Route
             exact

@@ -1,4 +1,5 @@
 import Article from "./Article";
+import GlobalRank from "./GlobalRank";
 import PressComplaints from "./PressComplaints";
 import Sentiment from "./Sentiment";
 import Table from "./Table";
@@ -8,6 +9,7 @@ import TimelineStory from "./TimelineStory";
 
 export {
   Article,
+  GlobalRank,
   PressComplaints,
   Sentiment,
   Table,
