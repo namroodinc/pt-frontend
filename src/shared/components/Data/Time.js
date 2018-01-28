@@ -35,7 +35,10 @@ class Time extends React.Component {
 }
 
 Time.propTypes = {
-  dateTime: PropTypes.string.isRequired,
+  dateTime: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired
+  ]),
   dateTimeFormat: PropTypes.string,
   tooltipFormat: PropTypes.string
 };

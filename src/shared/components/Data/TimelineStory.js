@@ -5,7 +5,7 @@ import { Article, PressComplaints } from "./Index";
 
 class TimelineStory extends React.Component {
   render() {
-    const { backgroundColor, story } = this.props;
+    const { backgroundColor, ipsoList, story } = this.props;
 
     return (
       <div
@@ -19,6 +19,7 @@ class TimelineStory extends React.Component {
               </div> : <PressComplaints
                 backgroundColor={backgroundColor}
                 data={story}
+                ipsoList={ipsoList}
               />
             }
           </div>
@@ -47,6 +48,7 @@ TimelineStory.defaultProps = {
 
 TimelineStory.propTypes = {
   backgroundColor: PropTypes.string,
+  ipsoList: PropTypes.string,
   story: PropTypes.object.isRequired
 };
 

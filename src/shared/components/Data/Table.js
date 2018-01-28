@@ -17,7 +17,7 @@ class Table extends React.Component {
   }
 
   render() {
-    const { columns, rows, rowLimit, sortBy } = this.props;
+    const { backgroundColor, columns, notes, rows, rowLimit, sortBy } = this.props;
 
     const rowsIsSorted = !sortBy ? rows : rows.sort((a, b) => {
       if (a[sortBy].type === 'date' && b[sortBy].type === 'date') {
@@ -34,6 +34,9 @@ class Table extends React.Component {
     return (
       <div
         className="container"
+        style={{
+          backgroundColor
+        }}
       >
 
         <div
@@ -89,6 +92,21 @@ class Table extends React.Component {
             </div>
           }
 
+          {notes.length > 0 &&
+            <div
+              className="table__notes"
+            >
+              {notes.map((note, i) =>
+                <div
+                  className="table__notes__note"
+                  key={i}
+                >
+                  {note}
+                </div>
+              )}
+            </div>
+          }
+
         </div>
 
       </div>
@@ -96,8 +114,15 @@ class Table extends React.Component {
   }
 }
 
+Table.defaultProps = {
+  backgroundColor: 'FFFFFF',
+  notes: []
+};
+
 Table.propTypes = {
+  backgroundColor: PropTypes.string,
   columns: PropTypes.array.isRequired,
+  notes: PropTypes.array,
   rows: PropTypes.array.isRequired,
   rowLimit: PropTypes.number,
   sortBy: PropTypes.string

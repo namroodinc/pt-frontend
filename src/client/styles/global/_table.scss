@@ -45,8 +45,21 @@ table {
 
 .table {
   &__controls {
+    box-sizing: border-box;
     padding: 10px;
     text-align: center;
     width: 100%;
+  }
+  &__notes {
+    box-sizing: border-box;
+    padding: 10px 0 0 0;
+    width: 100%;
+
+    &__note {
+      p {
+        font-size: 16px;
+        margin: 0;
+      }
+    }
   }
 }

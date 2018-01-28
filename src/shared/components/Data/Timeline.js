@@ -19,7 +19,7 @@ class Timeline extends React.Component {
   }
 
   render() {
-    const { backgroundColor, data, title, itemLimit } = this.props;
+    const { backgroundColor, data, title, itemLimit, ipsoList } = this.props;
 
     const timeline = data.sort((a, b) => {
       return new Date(b.publishedAt || b.timestamp) - new Date(a.publishedAt || a.timestamp);
@@ -39,6 +39,7 @@ class Timeline extends React.Component {
         {numberOfItems.map((story, i) =>
           <TimelineStory
             backgroundColor={backgroundColor}
+            ipsoList={ipsoList}
             story={story}
             key={i}
           />
@@ -79,7 +80,8 @@ Timeline.propTypes = {
   backgroundColor: PropTypes.string,
   title: PropTypes.string,
   data: PropTypes.array.isRequired,
-  itemLimit: PropTypes.number
+  itemLimit: PropTypes.number,
+  ipsoList: PropTypes.string
 };
 
 export default Timeline;

@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import { observer } from 'mobx-react';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
-import PlayArrow from 'material-ui-icons/PlayArrow';
+import { Link } from "react-router-dom";
+import { observer } from "mobx-react";
+import Card, { CardActions, CardContent } from "material-ui/Card";
+import PlayArrow from "material-ui-icons/PlayArrow";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 

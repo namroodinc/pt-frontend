@@ -25,14 +25,16 @@ class Publication extends React.Component {
       description,
       disambiguation,
       independentPressStandardsOrganisation,
+      ipsoList,
       overallRating,
       name,
       siteRankings,
       twitterAccounts
     } = Store.retrieveEntry();
 
-    const publicationDescription = description || '';
     const backgroundColor = twitterAccounts[0].backgroundColor;
+    const publicationDescription = description || '';
+    const ipsoListJoin = ipsoList.map(item => item.id).join(',');
 
     const timeline = [
       ...articles,
@@ -79,6 +81,7 @@ class Publication extends React.Component {
                 <Timeline
                   backgroundColor={backgroundColor}
                   data={timeline}
+                  ipsoList={ipsoListJoin}
                   title="Latest"
                 />
 
