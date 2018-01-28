@@ -23,6 +23,17 @@ a {
   text-decoration: none;
 }
 
+figure {
+  margin: 0;
+
+  figcaption {
+    display: block;
+    font-size: 11px;
+    padding-top: 5px;
+    text-align: left;
+  }
+}
+
 p {
   color: $textColor;
   font-family: $bodyFont;

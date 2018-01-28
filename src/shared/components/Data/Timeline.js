@@ -1,15 +1,31 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "material-ui/Button";
 
 import { TimelineStory } from "./Index";
 
 class Timeline extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expandedLimit: false
+    }
+  }
+
+  handleOnLoadMore = () => {
+    this.setState({
+      expandedLimit: !this.state.expandedLimit
+    });
+  }
+
   render() {
-    const { data, title } = this.props;
+    const { backgroundColor, data, title, itemLimit } = this.props;
 
     const timeline = data.sort((a, b) => {
       return new Date(b.publishedAt || b.timestamp) - new Date(a.publishedAt || a.timestamp);
     });
+
+    const numberOfItems = this.state.expandedLimit ? timeline : timeline.slice(0, itemLimit);
 
     return (
       <div
@@ -20,12 +36,33 @@ class Timeline extends React.Component {
           {title}
         </h3>
 
-        {timeline.map((story, i) =>
+        {numberOfItems.map((story, i) =>
           <TimelineStory
+            backgroundColor={backgroundColor}
             story={story}
             key={i}
           />
         )}
+
+        {itemLimit <= timeline.length &&
+          <div
+            className="timeline__controls"
+          >
+            <Button
+              color="primary"
+              onClick={this.handleOnLoadMore}
+              raised
+            >
+              {this.state.expandedLimit ?
+                <span>
+                  Hide More
+                </span> : <span>
+                  Show More
+                </span>
+              }
+            </Button>
+          </div>
+        }
 
       </div>
     )
@@ -33,12 +70,16 @@ class Timeline extends React.Component {
 }
 
 Timeline.defaultProps = {
-  title: 'Timeline'
+  backgroundColor: '026FC9',
+  title: 'Timeline',
+  itemLimit: 40
 };
 
 Timeline.propTypes = {
+  backgroundColor: PropTypes.string,
   title: PropTypes.string,
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  itemLimit: PropTypes.number
 };
 
 export default Timeline;

@@ -2,11 +2,17 @@
   &__story {
     a {
       display: block;
-      
+
       img {
         width: 100%;
-        max-width: 350px;
+        max-width: 200px;
       }
     }
+  }
+
+  &__controls {
+    padding: 10px;
+    text-align: center;
+    width: 100%;
   }
 }

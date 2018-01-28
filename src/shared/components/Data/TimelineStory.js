@@ -1,27 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
-import Card, { CardContent } from "material-ui/Card";
-import Typography from "material-ui/Typography";
 
-import { Time } from "./Index";
-
-const styles = theme => ({
-  card: {
-    display: 'flex'
-  },
-  media: {
-    flexGrow: 1,
-    marginRight: 10
-  },
-  description: {
-    flexGrow: 3
-  }
-});
+import { Article, PressComplaints } from "./Index";
 
 class TimelineStory extends React.Component {
   render() {
-    const { classes, story } = this.props;
+    const { backgroundColor, story } = this.props;
 
     return (
       <div
@@ -32,9 +16,10 @@ class TimelineStory extends React.Component {
             {story.data.globalRank !== undefined ?
               <div>
                 Global Rank
-              </div> : <div>
-                IPSO
-              </div>
+              </div> : <PressComplaints
+                backgroundColor={backgroundColor}
+                data={story}
+              />
             }
           </div>
         }
@@ -46,47 +31,23 @@ class TimelineStory extends React.Component {
           </div>
         }
         {story.title !== undefined &&
-          <Card
-            className={classes.card}
-          >
-            {story.urlToImage !== undefined &&
-              <CardContent
-                className={classes.media}
-              >
-                <a
-                  href={story.url}
-                  target="_blank"
-                >
-                  <img
-                    src={story.urlToImage}
-                  />
-                </a>
-              </CardContent>
-            }
-            <div
-              className={classes.description}
-            >
-              <CardContent>
-                <Time
-                  dateTime={story.publishedAt}
-                />
-                <Typography
-                  type="headline"
-                >
-                  {story.title}
-                </Typography>
-              </CardContent>
-            </div>
-          </Card>
+          <Article
+            backgroundColor={backgroundColor}
+            data={story}
+          />
         }
       </div>
     )
   }
 }
 
+TimelineStory.defaultProps = {
+  backgroundColor: '026FC9'
+};
+
 TimelineStory.propTypes = {
-  classes: PropTypes.object.isRequired,
+  backgroundColor: PropTypes.string,
   story: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(TimelineStory);
+export default TimelineStory;

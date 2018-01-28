@@ -27,10 +27,12 @@ class Publication extends React.Component {
       independentPressStandardsOrganisation,
       overallRating,
       name,
-      siteRankings
+      siteRankings,
+      twitterAccounts
     } = Store.retrieveEntry();
 
     const publicationDescription = description || '';
+    const backgroundColor = twitterAccounts[0].backgroundColor;
 
     const timeline = [
       ...articles,
@@ -75,6 +77,7 @@ class Publication extends React.Component {
               <Paper>
 
                 <Timeline
+                  backgroundColor={backgroundColor}
                   data={timeline}
                   title="Latest"
                 />
