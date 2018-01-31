@@ -19,7 +19,7 @@ const styles = theme => ({
 
 class GlobalRank extends React.Component {
   render() {
-    const { backgroundColor, classes, data, title } = this.props;
+    const { backgroundColor, classes, title } = this.props; // , data
     const bgColor = Color(`#${backgroundColor}`);
     const color = bgColor.isDark() ? '#FFF' : '#000';
 

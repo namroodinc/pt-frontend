@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Card, { CardContent } from "material-ui/Card";
 import Typography from "material-ui/Typography";
 import { withStyles } from "material-ui/styles";
-import parseDomain from "parse-domain";
 
 import { Sentiment, Time } from "./Index";
 
@@ -20,33 +19,12 @@ const styles = theme => ({
 class Article extends React.Component {
   render() {
     const { classes, data } = this.props;
-    const { publishedAt, sentimentScore, title, url, urlToImage } = data;
-
-    const imageCaption = parseDomain(url);
+    const { publishedAt, sentimentScore, title } = data;
 
     return (
       <Card
         className={classes.card}
       >
-        {urlToImage !== undefined &&
-          <CardContent
-            className={classes.media}
-          >
-            <figure>
-              <a
-                href={url}
-                target="_blank"
-              >
-                <img
-                  src={urlToImage}
-                />
-                <figcaption>
-                  Photo via {imageCaption.domain}.{imageCaption.tld}
-                </figcaption>
-              </a>
-            </figure>
-          </CardContent>
-        }
         <div
           className={classes.description}
         >

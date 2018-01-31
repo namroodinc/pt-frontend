@@ -1,12 +1,11 @@
 import React from "react";
 import { observer } from 'mobx-react';
 import PropTypes from "prop-types";
-import Card, { CardContent } from "material-ui/Card";
 import { Grid, Paper } from "material-ui";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
-import { Loading, Rating } from "../components/Index";
+import { Loading } from "../components/Index";
 import { Line } from "../components/Charts/Index";
 
 @observer
