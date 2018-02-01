@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import PropTypes from "prop-types";
 import Card, { CardContent } from "material-ui/Card";
 import { Grid, Paper } from "material-ui";
+import Tabs, { Tab } from "material-ui/Tabs";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
@@ -10,12 +11,26 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 import { Loading, Rating } from "../components/Index";
 import { Timeline } from "../components/Data/Index";
+import { Latest, News } from "../components/Icons/Index";
 
 @observer
 class Publication extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0
+    }
+  }
+
   componentWillMount() {
     Actions.getEntry(this.props.match.params.entryId);
   }
+
+  handleChange = (event, value) => {
+    this.setState({
+      value
+    });
+  };
 
   render() {
     if (Store.isLoading()) return <Loading />;
@@ -76,16 +91,33 @@ class Publication extends React.Component {
               item
               xs={7}
             >
-              <Paper>
 
+              <Paper>
+                <Tabs
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+                >
+                  <Tab
+                    label={<Latest />}
+                  />
+                  <Tab
+                    label={<News />}
+                  />
+                </Tabs>
+              </Paper>
+
+              <Paper>
                 <Timeline
                   backgroundColor={backgroundColor}
                   data={timeline}
                   ipsoList={ipsoListJoin}
                   title="Latest"
                 />
-
               </Paper>
+
             </Grid>
 
           </Grid>
