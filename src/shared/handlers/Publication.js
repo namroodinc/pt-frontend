@@ -65,6 +65,29 @@ class Publication extends React.Component {
           className="container"
         >
 
+          <Paper>
+            <Tabs
+              value={this.state.value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              centered
+            >
+              <Tab
+                icon={<span>
+                  <Latest />
+                </span>}
+                label="Latest"
+              />
+              <Tab
+                icon={<span>
+                  <News />
+                </span>}
+                label="About"
+              />
+            </Tabs>
+          </Paper>
+
           <Grid
             container
             spacing={24}
@@ -91,23 +114,6 @@ class Publication extends React.Component {
               item
               xs={7}
             >
-
-              <Paper>
-                <Tabs
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  indicatorColor="primary"
-                  textColor="primary"
-                  centered
-                >
-                  <Tab
-                    label={<Latest />}
-                  />
-                  <Tab
-                    label={<News />}
-                  />
-                </Tabs>
-              </Paper>
 
               <Paper>
                 <Timeline

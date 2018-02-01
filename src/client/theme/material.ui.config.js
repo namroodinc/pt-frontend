@@ -4,7 +4,7 @@
 import grey from "material-ui/colors/grey";
 
 import Styles from "../styles/app.scss";
-const { bodyFont, primaryColor, borderColor, letterSpacing, white } = Styles;
+const { bodyFont, primaryColor, borderColor, letterSpacing, textColor, white } = Styles;
 
 export default {
   palette: {
@@ -57,6 +57,35 @@ export default {
       },
       shadow2: {
         boxShadow: `0 0 0 transparent`
+      }
+    },
+    MuiTab: {
+      rootPrimary: {
+        backgroundColor: textColor,
+        color: white
+      },
+      rootPrimarySelected: {
+        backgroundColor: white,
+        color: textColor,
+        paddingLeft: 15,
+        paddingRight: 15
+      },
+      label: {
+        fontSize: '18px !important',
+        textTransform: 'none'
+      },
+      labelContainer: {
+        paddingLeft: '10px !important',
+        paddingRight: '0 !important'
+      },
+      wrapper: {
+        flexDirection: 'inherit'
+      }
+    },
+    MuiTabIndicator: {
+      colorPrimary: {
+        backgroundColor: textColor,
+        height: 4
       }
     }
   }
