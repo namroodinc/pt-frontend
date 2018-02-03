@@ -28,6 +28,7 @@ class Actions {
         if (err || !res.ok) {
           console.log('error');
         } else {
+          Store.assetsList = res.body.includes.Asset;
           Store.publicationList = res.body.items;
         }
       });

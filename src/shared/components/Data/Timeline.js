@@ -19,7 +19,7 @@ class Timeline extends React.Component {
   }
 
   render() {
-    const { backgroundColor, data, title, itemLimit, ipsoList } = this.props;
+    const { backgroundColor, data, itemLimit, ipsoList } = this.props;
 
     const timeline = data.sort((a, b) => {
       return new Date(b.publishedAt || b.timestamp) - new Date(a.publishedAt || a.timestamp);
@@ -31,10 +31,6 @@ class Timeline extends React.Component {
       <div
         className="timeline"
       >
-
-        <h3>
-          {title}
-        </h3>
 
         {numberOfItems.map((story, i) =>
           <TimelineStory

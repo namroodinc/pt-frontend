@@ -8,7 +8,8 @@ import { Sentiment, Time } from "./Index";
 
 const styles = theme => ({
   card: {
-    display: 'flex'
+    display: 'flex',
+    padding: 0
   },
   media: {
     marginRight: 20,
@@ -33,7 +34,7 @@ class Article extends React.Component {
               dateTime={publishedAt}
             />
             <Typography
-              type="headline"
+              type="title"
             >
               {title}
             </Typography>

@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 class Asset extends React.Component {
   render() {
-    const { assetUrl, entryId, title } = this.props;
+    const { asset, id, title } = this.props;
 
     return (
       <div
@@ -12,21 +13,21 @@ class Asset extends React.Component {
         <div
           className="asset__media"
         >
-          {entryId &&
-            <a
-              href={`/portfolio/${entryId}`}
+          {id &&
+            <Link
+              to={`/publication/${id}`}
             >
               <img
                 className="asset__media__image"
-                src={assetUrl}
+                src={asset}
                 title={title}
               />
-            </a>
+            </Link>
           }
-          {!entryId &&
+          {!id &&
             <img
               className="asset__media__image"
-              src={assetUrl}
+              src={asset}
               title={title}
             />
           }
@@ -37,8 +38,8 @@ class Asset extends React.Component {
 }
 
 Asset.propTypes = {
-  assetUrl: PropTypes.string,
-  entryId: PropTypes.string,
+  asset: PropTypes.string,
+  id: PropTypes.string,
   title: PropTypes.string
 };
 
