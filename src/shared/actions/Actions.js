@@ -14,7 +14,7 @@ class Actions {
         if (err || !res.ok) {
           console.log('error');
         } else {
-          Store.entry = res.body.fields;
+          Store.entry = res.body;
           Store.loading = false;
         }
       });

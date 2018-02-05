@@ -49,7 +49,7 @@ export default {
     },
     MuiPaper: {
       root: {
-        borderBottom: `0px solid ${borderColor}`,
+        borderBottom: `1px solid ${borderColor}`,
         padding: 10
       },
       rounded: {

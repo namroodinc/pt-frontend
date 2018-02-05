@@ -8,8 +8,8 @@ import Marked from "marked";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
-import { Asset, Loading, Rating } from "../components/Index";
-import { Timeline } from "../components/Data/Index";
+import { Loading, Rating } from "../components/Index";
+import { Time, Timeline } from "../components/Data/Index";
 import { Latest, News } from "../components/Icons/Index";
 
 @observer
@@ -35,20 +35,29 @@ class Publication extends React.Component {
     if (Store.isLoading()) return <Loading />;
 
     const {
+      fields,
+      sys
+    } = Store.retrieveEntry();
+
+    console.log(fields);
+
+    const {
       articles,
-      avatar,
       description,
-      disambiguation,
       independentPressStandardsOrganisation,
       ipsoList,
       overallRating,
       name,
       siteRankings,
       twitterAccounts
-    } = Store.retrieveEntry();
+    } = fields;
 
-    const assets = Store.retrieveAssetsList();
-    const asset = assets.find(asset => asset.sys.id === avatar.sys.id);
+    const {
+      updatedAt
+    } = sys;
+
+    // const assets = Store.retrieveAssetsList();
+    // const asset = assets.find(asset => asset.sys.id === avatar.sys.id);
     const backgroundColor = twitterAccounts[0].backgroundColor;
     const publicationDescription = description || '';
     const ipsoListJoin = ipsoList.map(item => item.id).join(',');
@@ -75,26 +84,43 @@ class Publication extends React.Component {
             <Grid
               item
               xs={12}
+              md={6}
             >
               <Paper>
-                <Asset
-                  asset={asset.fields.file.url}
-                  title={name}
+                <Time
+                  dateTime={updatedAt}
+                  dateTimeFormat="[Last updated] MMM. DD, HH:mm"
                 />
 
                 <h2>
                   {name}
                 </h2>
 
-                <h5>
-                  {disambiguation}
-                </h5>
-
-                {ReactHtmlParser(Marked(publicationDescription))}
-
                 <Rating
                   rating={overallRating}
                 />
+
+                {ReactHtmlParser(Marked(publicationDescription))}
+              </Paper>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              md={4}
+            >
+              <Paper>
+                asd
+              </Paper>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              md={2}
+            >
+              <Paper>
+                asd
               </Paper>
             </Grid>
 
@@ -110,28 +136,26 @@ class Publication extends React.Component {
               xs={12}
             >
 
-              <Paper>
-                <Tabs
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  indicatorColor="primary"
-                  textColor="primary"
-                  centered
-                >
-                  <Tab
-                    icon={<span>
-                      <Latest />
-                    </span>}
-                    label="Latest"
-                  />
-                  <Tab
-                    icon={<span>
-                      <News />
-                    </span>}
-                    label="About"
-                  />
-                </Tabs>
-              </Paper>
+              <Tabs
+                value={this.state.value}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                centered
+              >
+                <Tab
+                  icon={<span>
+                    <Latest />
+                  </span>}
+                  label="Latest"
+                />
+                <Tab
+                  icon={<span>
+                    <News />
+                  </span>}
+                  label="About"
+                />
+              </Tabs>
 
               <Paper>
                 <Timeline

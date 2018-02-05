@@ -62,7 +62,6 @@ module.exports = {
       "CONTENT_DELIVERY_ACCESS_TOKEN",
       "CONTENT_PREVIEW_ACCESS_TOKEN",
       "CONTENTFUL_BASE_URL",
-      "CONTENTFUL_IMAGE_URL",
       "SPACE_ID"
     ])
   ]
