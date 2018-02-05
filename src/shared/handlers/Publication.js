@@ -8,7 +8,9 @@ import Marked from "marked";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
+
 import { Loading, Rating } from "../components/Index";
+import { Line } from "../components/Charts/Index";
 import { Time, Timeline } from "../components/Data/Index";
 import { Latest, News } from "../components/Icons/Index";
 
@@ -89,7 +91,7 @@ class Publication extends React.Component {
               <Paper>
                 <Time
                   dateTime={updatedAt}
-                  dateTimeFormat="[Last updated] MMM. DD, HH:mm"
+                  dateTimeFormat="[Last updated:] MMM. DD, HH:mm"
                 />
 
                 <h2>
@@ -109,9 +111,7 @@ class Publication extends React.Component {
               xs={12}
               md={4}
             >
-              <Paper>
-                asd
-              </Paper>
+              <Line />
             </Grid>
 
             <Grid

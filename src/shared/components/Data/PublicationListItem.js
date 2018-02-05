@@ -19,7 +19,7 @@ export default class PublicationListItem extends React.Component {
 
           <Time
             dateTime={updatedAt}
-            dateTimeFormat="[Last updated] MMM. DD, HH:mm"
+            dateTimeFormat="[Last updated:] MMM. DD, HH:mm"
           />
 
         </CardContent>

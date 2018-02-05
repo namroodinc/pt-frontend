@@ -16,7 +16,7 @@ class Rating extends React.Component {
 
     const calculatedRating = (currentRating - previousRating).toFixed(2);
 
-    return (
+    return currentRating !== 0 ? (
       <span
         className="rating"
       >
@@ -42,6 +42,12 @@ class Rating extends React.Component {
             {calculatedRating}%
           </span>
         }
+      </span>
+    ) : (
+      <span
+        className="rating"
+      >
+        Not rated yet.
       </span>
     );
   }
