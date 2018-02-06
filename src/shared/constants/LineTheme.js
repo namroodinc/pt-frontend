@@ -32,6 +32,16 @@ export default {
         }
       }
     }
+  ),
+  chart: assign(
+    {
+      padding: {
+        bottom: 30,
+        left: 30,
+        right: 80,
+        top: 70
+      }
+    }
   )//,
   // line: assign(
   //   {

@@ -1,0 +1,9 @@
+.myChart {
+  height: auto !important;
+  width: 100% !important;
+
+  & > svg {
+    height: auto !important;
+    width: 100% !important;
+  }
+}
