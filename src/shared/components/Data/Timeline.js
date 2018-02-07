@@ -48,7 +48,7 @@ class Timeline extends React.Component {
             <Button
               color="primary"
               onClick={this.handleOnLoadMore}
-              raised="true"
+              raised
             >
               {this.state.expandedLimit ?
                 <span>

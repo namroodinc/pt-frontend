@@ -10,8 +10,8 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 import { Loading, Rating } from "../components/Index";
-import { Line } from "../components/Charts/Index";
-import { Time, Timeline } from "../components/Data/Index";
+// import { Line } from "../components/Charts/Index";
+import { PaperCard, Time, Timeline } from "../components/Data/Index";
 import { Latest, News } from "../components/Icons/Index";
 
 @observer
@@ -46,12 +46,20 @@ class Publication extends React.Component {
     const {
       articles,
       description,
+      format,
+      founded,
+      geocodeAddress,
       independentPressStandardsOrganisation,
       ipsoList,
       overallRating,
+      ownership,
+      politicalAlignment,
+      publicationPrice,
+      publisher,
       name,
       siteRankings,
-      twitterAccounts
+      twitterAccounts,
+      website
     } = fields;
 
     const {
@@ -63,6 +71,17 @@ class Publication extends React.Component {
     const backgroundColor = twitterAccounts[0].backgroundColor;
     const publicationDescription = description || '';
     const ipsoListJoin = ipsoList.map(item => item.id).join(',');
+
+    const address = geocodeAddress.address_components.map(address => address.long_name);
+    const alexa = siteRankings[siteRankings.length - 1];
+    const alexaRank = alexa.data.globalRank;
+    const alexaLastUpdated = alexa.timestamp;
+    const alignment = politicalAlignment.join(', ');
+    const formats = format.join(', ');
+    const foundedDate = founded.split(';')[0];
+    const price = publicationPrice[publicationPrice.length - 1];
+    const prices = price.data.map(price => `${price.name}, ${price.price}`).join('; ');
+    const priceLastUpdated = price.timestamp;
 
     const timeline = [
       ...articles,
@@ -88,6 +107,7 @@ class Publication extends React.Component {
               xs={12}
               md={6}
             >
+
               <Paper>
                 <Time
                   dateTime={updatedAt}
@@ -104,24 +124,78 @@ class Publication extends React.Component {
 
                 {ReactHtmlParser(Marked(publicationDescription))}
               </Paper>
+
+              <PaperCard
+                title="Website"
+                text={website}
+              />
+
             </Grid>
 
             <Grid
               item
               xs={12}
-              md={4}
+              md={3}
             >
-              <Line />
+
+              <PaperCard
+                title="Publication Price(s)"
+                text={prices}
+              >
+                <Time
+                  dateTime={priceLastUpdated}
+                  dateTimeFormat="[Updated:] MMM. DD, HH:mm"
+                />
+              </PaperCard>
+
+              <PaperCard
+                title="Political Alignment"
+                text={alignment}
+              />
+
+              <PaperCard
+                title="Owned By"
+                text={ownership}
+              />
+
+              <PaperCard
+                title="Publisher"
+                text={publisher}
+              />
+
+              <PaperCard
+                title="Format"
+                text={formats}
+              />
+
+              <PaperCard
+                title="Founded"
+                text={foundedDate}
+              />
+
+              <PaperCard
+                title="Alexa Global Rank"
+                text={alexaRank}
+              >
+                <Time
+                  dateTime={alexaLastUpdated}
+                  dateTimeFormat="[Updated:] MMM. DD, HH:mm"
+                />
+              </PaperCard>
+
             </Grid>
 
             <Grid
               item
               xs={12}
-              md={2}
+              md={3}
             >
-              <Paper>
-                asd
-              </Paper>
+
+              <PaperCard
+                title="Address"
+                list={address}
+              />
+
             </Grid>
 
           </Grid>
