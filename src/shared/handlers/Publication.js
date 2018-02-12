@@ -11,7 +11,7 @@ import Store from "../stores/Store";
 
 import { Loading, Rating } from "../components/Index";
 // import { Line } from "../components/Charts/Index";
-import { PaperCard, Time, Timeline } from "../components/Data/Index";
+import { PaperCard, Time, Timeline } from "../components/Data/Index"; //Table,
 import { Latest, News } from "../components/Icons/Index";
 
 @observer
@@ -41,8 +41,6 @@ class Publication extends React.Component {
       sys
     } = Store.retrieveEntry();
 
-    console.log(fields);
-
     const {
       articles,
       description,
@@ -54,6 +52,7 @@ class Publication extends React.Component {
       overallRating,
       ownership,
       politicalAlignment,
+      // pressComplaints,
       publicationPrice,
       publisher,
       name,
@@ -65,6 +64,12 @@ class Publication extends React.Component {
     const {
       updatedAt
     } = sys;
+
+    const currencySymbol = {
+      AUD: '$',
+      GBP: '£',
+      USD: '$'
+    }
 
     // const assets = Store.retrieveAssetsList();
     // const asset = assets.find(asset => asset.sys.id === avatar.sys.id);
@@ -80,8 +85,17 @@ class Publication extends React.Component {
     const formats = format.join(', ');
     const foundedDate = founded.split(';')[0];
     const price = publicationPrice[publicationPrice.length - 1];
-    const prices = price.data.map(price => `${price.name}, ${price.price}`).join('; ');
+    const { currency } = price;
+    const prices = price.data.map(price => {
+      const actualPrice = price.price === 0 ? 'Free' : `${currencySymbol[currency]}${price.price.toFixed(2)}`;
+      return `${price.name}, ${actualPrice}`;
+    });
     const priceLastUpdated = price.timestamp;
+
+    // const complaints = [
+    //   ...pressComplaints,
+    //   ...independentPressStandardsOrganisation
+    // ];
 
     const timeline = [
       ...articles,
@@ -127,20 +141,19 @@ class Publication extends React.Component {
 
               <PaperCard
                 title="Website"
-                text={website}
+                text={
+                  <a
+                    href={`${website}`}
+                    target="_blank"
+                  >
+                    {website}
+                  </a>
+                }
               />
 
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              md={3}
-            >
-
               <PaperCard
-                title="Publication Price(s)"
-                text={prices}
+                title={`Publication Price(s) in ${currency}`}
+                list={prices}
               >
                 <Time
                   dateTime={priceLastUpdated}
@@ -148,53 +161,84 @@ class Publication extends React.Component {
                 />
               </PaperCard>
 
-              <PaperCard
-                title="Political Alignment"
-                text={alignment}
-              />
-
-              <PaperCard
-                title="Owned By"
-                text={ownership}
-              />
-
-              <PaperCard
-                title="Publisher"
-                text={publisher}
-              />
-
-              <PaperCard
-                title="Format"
-                text={formats}
-              />
-
-              <PaperCard
-                title="Founded"
-                text={foundedDate}
-              />
-
-              <PaperCard
-                title="Alexa Global Rank"
-                text={alexaRank}
-              >
-                <Time
-                  dateTime={alexaLastUpdated}
-                  dateTimeFormat="[Updated:] MMM. DD, HH:mm"
-                />
-              </PaperCard>
-
             </Grid>
 
             <Grid
+              container
               item
               xs={12}
-              md={3}
+              md={6}
+              spacing={24}
             >
 
-              <PaperCard
-                title="Address"
-                list={address}
-              />
+              <Grid
+                item
+                xs={12}
+                md={6}
+              >
+
+                <PaperCard
+                  title="Political alignment and opinion"
+                  text={alignment}
+                />
+
+                <PaperCard
+                  title="Format"
+                  text={formats}
+                />
+
+                <PaperCard
+                  title="Founded"
+                  text={foundedDate}
+                />
+
+                <PaperCard
+                  title="Alexa Global Rank"
+                  text={alexaRank}
+                >
+                  <Time
+                    dateTime={alexaLastUpdated}
+                    dateTimeFormat="[Updated:] MMM. DD, HH:mm"
+                  />
+                </PaperCard>
+
+              </Grid>
+
+              <Grid
+                item
+                xs={12}
+                md={6}
+              >
+
+                <PaperCard
+                  title="Address"
+                  list={address}
+                />
+
+                <PaperCard
+                  title="Owned By"
+                  text={ownership}
+                />
+
+                <PaperCard
+                  title="Publisher"
+                  text={publisher}
+                />
+
+              </Grid>
+
+              <Grid
+                item
+                xs={12}
+                md={12}
+              >
+
+                <PaperCard
+                  title="Address"
+                  text="Example text"
+                />
+
+              </Grid>
 
             </Grid>
 

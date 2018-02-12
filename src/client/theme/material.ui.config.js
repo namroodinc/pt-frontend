@@ -50,7 +50,7 @@ export default {
     MuiPaper: {
       root: {
         borderBottom: `1px solid ${borderColor}`,
-        padding: 10
+        padding: `15px 10px`
       },
       rounded: {
         borderRadius: 0

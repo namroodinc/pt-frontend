@@ -13,7 +13,9 @@ class PaperCard extends React.Component {
   render() {
     const { classes, list, text, title } = this.props;
 
-    return (
+    const listLength = list !== undefined ? list.length : 0;
+
+    return (listLength !== 0 || text !== undefined) ? (
       <Paper>
 
         <h4>
@@ -42,16 +44,18 @@ class PaperCard extends React.Component {
         {this.props.children}
 
       </Paper>
-    )
+    ) : null;
   }
 }
 
 PaperCard.propTypes = {
   classes: PropTypes.object.isRequired,
+  children: PropTypes.object,
   list: PropTypes.array,
   text: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
+    PropTypes.node,
+    PropTypes.number,
+    PropTypes.string
   ]),
   title: PropTypes.string
 };
