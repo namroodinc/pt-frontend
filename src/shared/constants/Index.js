@@ -1,5 +1,5 @@
-import LineTheme from "./LineTheme";
+import GlobalTheme from "./GlobalTheme";
 
 export {
-  LineTheme
+  GlobalTheme
 }

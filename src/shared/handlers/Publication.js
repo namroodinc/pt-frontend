@@ -2,7 +2,6 @@ import React from "react";
 import { observer } from 'mobx-react';
 import PropTypes from "prop-types";
 import { Grid, Paper } from "material-ui";
-import Tabs, { Tab } from "material-ui/Tabs";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
@@ -10,9 +9,7 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 import { Loading, Rating } from "../components/Index";
-// import { Line } from "../components/Charts/Index";
-import { PaperCard, Time, Timeline } from "../components/Data/Index"; //Table,
-import { Latest, News } from "../components/Icons/Index";
+import { PaperCard, PressComplaint, Time } from "../components/Data/Index"; //Table, Timeline
 
 @observer
 class Publication extends React.Component {
@@ -42,22 +39,19 @@ class Publication extends React.Component {
     } = Store.retrieveEntry();
 
     const {
-      articles,
       description,
       format,
       founded,
       geocodeAddress,
       independentPressStandardsOrganisation,
-      ipsoList,
       overallRating,
       ownership,
       politicalAlignment,
-      // pressComplaints,
+      pressComplaints,
       publicationPrice,
       publisher,
       name,
       siteRankings,
-      twitterAccounts,
       website
     } = fields;
 
@@ -69,13 +63,7 @@ class Publication extends React.Component {
       AUD: '$',
       GBP: '£',
       USD: '$'
-    }
-
-    // const assets = Store.retrieveAssetsList();
-    // const asset = assets.find(asset => asset.sys.id === avatar.sys.id);
-    const backgroundColor = twitterAccounts[0].backgroundColor;
-    const publicationDescription = description || '';
-    const ipsoListJoin = ipsoList.map(item => item.id).join(',');
+    };
 
     const address = geocodeAddress.address_components.map(address => address.long_name);
     const alexa = siteRankings[siteRankings.length - 1];
@@ -91,18 +79,15 @@ class Publication extends React.Component {
       return `${price.name}, ${actualPrice}`;
     });
     const priceLastUpdated = price.timestamp;
+    const publicationDescription = description || '';
 
-    // const complaints = [
-    //   ...pressComplaints,
-    //   ...independentPressStandardsOrganisation
-    // ];
-
-    const timeline = [
-      ...articles,
-      ...[independentPressStandardsOrganisation],
-      ...overallRating,
-      ...siteRankings
-    ];
+    const complaints = [];
+    if (pressComplaints.data !== undefined) {
+      complaints.push(pressComplaints.data);
+    }
+    if (independentPressStandardsOrganisation.data !== undefined) {
+      complaints.push(independentPressStandardsOrganisation.data);
+    }
 
     return (
       <div>
@@ -227,66 +212,20 @@ class Publication extends React.Component {
 
               </Grid>
 
-              <Grid
-                item
-                xs={12}
-                md={12}
-              >
-
-                <PaperCard
-                  title="Address"
-                  text="Example text"
-                />
-
-              </Grid>
-
             </Grid>
 
           </Grid>
 
-          <Grid
-            container
-            spacing={24}
-          >
-
-            <Grid
-              item
-              xs={12}
+          {complaints.length > 0 &&
+            <PaperCard
+              title="Address"
+              text="Example text"
             >
-
-              <Tabs
-                value={this.state.value}
-                onChange={this.handleChange}
-                indicatorColor="primary"
-                textColor="primary"
-                centered
-              >
-                <Tab
-                  icon={<span>
-                    <Latest />
-                  </span>}
-                  label="Latest"
-                />
-                <Tab
-                  icon={<span>
-                    <News />
-                  </span>}
-                  label="About"
-                />
-              </Tabs>
-
-              <Paper>
-                <Timeline
-                  backgroundColor={backgroundColor}
-                  data={timeline}
-                  ipsoList={ipsoListJoin}
-                  title="Latest"
-                />
-              </Paper>
-
-            </Grid>
-
-          </Grid>
+              <PressComplaint
+                data={complaints}
+              />
+            </PaperCard>
+          }
 
         </div>
 

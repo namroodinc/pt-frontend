@@ -1,9 +1,9 @@
 import React from "react";
-import { VictoryGroup, VictoryLine } from "victory";
+import { VictoryBar, VictoryGroup } from "victory";
 
 import { ChartWrapper } from "./Index";
 
-export default class LineChart extends React.Component {
+export default class BarChart extends React.Component {
   render() {
     // const { data, title, xAxisDomain, yAxisDomain } = this.props;
     const { columns, data } = this.props;
@@ -15,16 +15,16 @@ export default class LineChart extends React.Component {
         >
           <VictoryGroup
             colorScale={[
-              '#026fc9',
-              '#5b9dfd',
-              '#004598'
+              '#D1D3D4',
+              '#F0F0F0',
+              '#3C3B3B'
             ]}
+            offset={25}
           >
             {data.map((row, i) =>
-              <VictoryLine
+              <VictoryBar
                 data={row}
                 key={i}
-                interpolation="natural"
                 standalone={false}
               />
             )}

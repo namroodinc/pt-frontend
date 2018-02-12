@@ -17,7 +17,7 @@ class Table extends React.Component {
   }
 
   render() {
-    const { backgroundColor, columns, notes, rows, rowLimit, sortBy } = this.props;
+    const { columns, notes, rows, rowLimit, sortBy } = this.props;
 
     const rowsIsSorted = !sortBy ? rows : rows.sort((a, b) => {
       if (a[sortBy].type === 'date' && b[sortBy].type === 'date') {
@@ -25,89 +25,85 @@ class Table extends React.Component {
       }
       return b[sortBy].value - a[sortBy].value;
     });
+
+    console.log(rowsIsSorted);
+
     const rowsMapped = rowsIsSorted.map(row => {
-      return columns.map(column => typeof row[column.value] === 'object' ? row[column.value].label : row[column.value]);
+      return columns.map(column => typeof row[column.value] === 'object' ? row[column.value].value : row[column.value]);
     });
+
+    console.log(rowsMapped);
 
     const numberOfRows = this.state.expandedLimit ? rowsMapped : rowsMapped.slice(0, rowLimit);
 
     return (
       <div
-        className="container"
-        style={{
-          backgroundColor
-        }}
+        className="table"
       >
 
-        <div
-          className="table"
-        >
-
-          <table>
-            <thead>
-              <tr>
-                {columns.map((column, i) =>
-                  <th
+        <table>
+          <thead>
+            <tr>
+              {columns.map((column, i) =>
+                <th
+                  key={i}
+                >
+                  {column.label}
+                </th>
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {numberOfRows.map((row, i) =>
+              <tr
+                key={i}
+              >
+                {row.map((cell, i) =>
+                  <td
                     key={i}
                   >
-                    {column.label}
-                  </th>
+                    {cell}
+                  </td>
                 )}
               </tr>
-            </thead>
-            <tbody>
-              {numberOfRows.map((row, i) =>
-                <tr
-                  key={i}
-                >
-                  {row.map((cell, i) =>
-                    <td
-                      key={i}
-                    >
-                      {cell}
-                    </td>
-                  )}
-                </tr>
-              )}
-            </tbody>
-          </table>
+            )}
+          </tbody>
+        </table>
 
-          {rowLimit <= rowsMapped.length &&
-            <div
-              className="table__controls"
+        {rowLimit <= rowsMapped.length &&
+          <div
+            className="table__controls"
+          >
+            <Button
+              color="primary"
+              onClick={this.handleOnLoadMore}
+              raised
             >
-              <Button
-                color="primary"
-                onClick={this.handleOnLoadMore}
-                raised
+              {this.state.expandedLimit ?
+                <span>
+                  Hide More
+                </span> : <span>
+                  Show More
+                </span>
+              }
+            </Button>
+          </div>
+        }
+
+        {notes.length > 0 &&
+          <div
+            className="table__notes"
+          >
+            {notes.map((note, i) =>
+              <div
+                className="table__notes__note"
+                key={i}
               >
-                {this.state.expandedLimit ?
-                  <span>
-                    Hide More
-                  </span> : <span>
-                    Show More
-                  </span>
-                }
-              </Button>
-            </div>
-          }
-
-          {notes.length > 0 &&
-            <div
-              className="table__notes"
-            >
-              {notes.map((note, i) =>
-                <div
-                  className="table__notes__note"
-                  key={i}
-                >
-                  {note}
-                </div>
-              )}
-            </div>
-          }
-
-        </div>
+                {note}
+              </div>
+            )}
+          </div>
+        }
 
       </div>
     );
@@ -115,12 +111,10 @@ class Table extends React.Component {
 }
 
 Table.defaultProps = {
-  backgroundColor: 'FFFFFF',
   notes: []
 };
 
 Table.propTypes = {
-  backgroundColor: PropTypes.string,
   columns: PropTypes.array.isRequired,
   notes: PropTypes.array,
   rows: PropTypes.array.isRequired,
