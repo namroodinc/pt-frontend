@@ -29,7 +29,7 @@ export default {
         style: {
           axis: {
             stroke: '#FFFFFF',
-            strokeWidth: 2
+            strokeWidth: 4
           },
           axisLabel: {
             fontFamily: 'inherit',
@@ -39,13 +39,12 @@ export default {
           },
           grid: {
             stroke: '#CACACA',
-            strokeDasharray: '2, 7',
             strokeWidth: 0.5
           },
           ticks: {
-            size: 4,
+            size: 3,
             stroke: '#FFFFFF',
-            strokeWidth: 2
+            strokeWidth: 4
           },
           tickLabels: {
             fill: '#FFFFFF',

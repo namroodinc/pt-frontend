@@ -217,14 +217,11 @@ class Publication extends React.Component {
           </Grid>
 
           {complaints.length > 0 &&
-            <PaperCard
-              title="Address"
-              text="Example text"
-            >
+            <Paper>
               <PressComplaint
                 data={complaints}
               />
-            </PaperCard>
+            </Paper>
           }
 
         </div>

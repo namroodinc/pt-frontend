@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { VictoryGroup, VictoryLine } from "victory";
 
 import { ChartWrapper } from "./Index";
 
-export default class LineChart extends React.Component {
+class LineChart extends React.Component {
   render() {
     // const { data, title, xAxisDomain, yAxisDomain } = this.props;
     const { columns, data } = this.props;
@@ -34,3 +35,10 @@ export default class LineChart extends React.Component {
     );
   }
 }
+
+LineChart.propTypes = {
+  columns: PropTypes.array,
+  data: PropTypes.array
+};
+
+export default LineChart;

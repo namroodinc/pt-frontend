@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { assign } from "lodash";
 import wrap from "word-wrap";
 import { VictoryAxis, VictoryChart, VictoryContainer, VictoryLabel } from "victory";
@@ -40,7 +41,7 @@ class ChartWrapper extends React.Component {
     });
 
     const headingDescription = wrap('Example description goes here', {
-      width: 60
+      width: 55
     });
 
     return (
@@ -69,7 +70,7 @@ class ChartWrapper extends React.Component {
           >
             <VictoryLabel
               x={30}
-              y={30}
+              y={20}
               style={styles.headings.main}
               text={headingMain}
               verticalAnchor="start"
@@ -88,17 +89,23 @@ class ChartWrapper extends React.Component {
             />
           </Group>
 
-          {this.props.children}
-
           <VictoryAxis
             crossAxis={false}
             dependentAxis
             orientation="left"
             standalone={false}
           />
+
+          {this.props.children}
+
           <VictoryAxis
             standalone={false}
             tickFormat={(i) => columns[i - 1].label}
+            style={{
+              grid: {
+                stroke: 0
+              }
+            }}
           />
 
         </VictoryChart>
@@ -106,5 +113,10 @@ class ChartWrapper extends React.Component {
     );
   }
 }
+
+ChartWrapper.propTypes = {
+  children: PropTypes.node,
+  columns: PropTypes.array
+};
 
 export default ChartWrapper;

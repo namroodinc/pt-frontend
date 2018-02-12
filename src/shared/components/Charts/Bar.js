@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { VictoryBar, VictoryGroup } from "victory";
 
 import { ChartWrapper } from "./Index";
 
-export default class BarChart extends React.Component {
+class BarChart extends React.Component {
   render() {
     // const { data, title, xAxisDomain, yAxisDomain } = this.props;
     const { columns, data } = this.props;
@@ -34,3 +35,10 @@ export default class BarChart extends React.Component {
     );
   }
 }
+
+BarChart.propTypes = {
+  columns: PropTypes.array,
+  data: PropTypes.array
+};
+
+export default BarChart;
