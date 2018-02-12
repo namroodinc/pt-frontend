@@ -35,11 +35,11 @@ class ChartWrapper extends React.Component {
     const { columns } = this.props;
     const styles = GlobalTheme;
 
-    const headingMain = wrap('An outlook An outlook An outlook An outlook An outlook outlook An outlook An outlook', {
+    const headingMain = wrap('Example heading goes here', {
       width: 32
     });
 
-    const headingDescription = wrap('An outlook An outlook An outlook An outlook An outlook outlook An outlook An outlook', {
+    const headingDescription = wrap('Example description goes here', {
       width: 60
     });
 
