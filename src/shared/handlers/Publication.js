@@ -43,12 +43,9 @@ class Publication extends React.Component {
       format,
       founded,
       geocodeAddress,
-      independentPressStandardsOrganisation,
       overallRating,
       ownership,
       politicalAlignment,
-      pressComplaints,
-      publicationPrice,
       publisher,
       name,
       siteRankings,
@@ -59,11 +56,12 @@ class Publication extends React.Component {
       updatedAt
     } = sys;
 
-    const currencySymbol = {
-      AUD: '$',
-      GBP: '£',
-      USD: '$'
-    };
+    const {
+      prices,
+      priceLastUpdated
+    } = Store.getEntryPrices;
+
+    const complaints = Store.getEntryComplaints;
 
     const address = geocodeAddress.address_components.map(address => address.long_name);
     const alexa = siteRankings[siteRankings.length - 1];
@@ -72,22 +70,7 @@ class Publication extends React.Component {
     const alignment = politicalAlignment.join(', ');
     const formats = format.join(', ');
     const foundedDate = founded.split(';')[0];
-    const price = publicationPrice[publicationPrice.length - 1];
-    const { currency } = price;
-    const prices = price.data.map(price => {
-      const actualPrice = price.price === 0 ? 'Free' : `${currencySymbol[currency]}${price.price.toFixed(2)}`;
-      return `${price.name}, ${actualPrice}`;
-    });
-    const priceLastUpdated = price.timestamp;
     const publicationDescription = description || '';
-
-    const complaints = [];
-    if (pressComplaints.data !== undefined) {
-      complaints.push(pressComplaints.data);
-    }
-    if (independentPressStandardsOrganisation.data !== undefined) {
-      complaints.push(independentPressStandardsOrganisation.data);
-    }
 
     return (
       <div>
@@ -137,7 +120,7 @@ class Publication extends React.Component {
               />
 
               <PaperCard
-                title={`Publication Price(s) in ${currency}`}
+                title="Publication Price(s)"
                 list={prices}
               >
                 <Time

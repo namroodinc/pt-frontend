@@ -24,7 +24,7 @@ export default class AppController extends React.Component {
           />
           <Route
             exact
-            path="/circulations/:entryId"
+            path="/circulations"
             component={Circulations}
           />
           <Route

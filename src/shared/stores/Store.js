@@ -1,4 +1,4 @@
-import { observable, autorun } from "mobx";
+import { autorun, computed, observable } from "mobx";
 
 class Store {
   @observable entry = {};
@@ -18,8 +18,82 @@ class Store {
     return this.assetsList;
   }
 
-  retrievePublicationList() {
-    return this.publicationList;
+  @computed get retrievePublicationList() {
+    return this.publicationList.map((publication, i) => {
+      const { avatar, title } = publication.fields;
+      const { updatedAt } = publication.sys;
+      const { id } = publication.sys;
+      const { name, overallRating } = publication.fields;
+      const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+
+      return {
+        assetUrl: assetIdIndex.fields.file.url,
+        id,
+        name,
+        overallRating,
+        title,
+        updatedAt
+      }
+    }).sort((a, b) => {
+      const aOverallRating = a.overallRating[a.overallRating.length - 1].ratings.total;
+      const bOverallRating = b.overallRating[b.overallRating.length - 1].ratings.total;
+      return bOverallRating - aOverallRating;
+    });
+  }
+
+  // Ratings for today, or n number of days
+  // Ratings for the Last 7 days
+
+  // All Circulations
+
+  // Circulations for a single entryId
+
+  // All alexa rankings by country
+
+  // All prices by country
+
+  // All complaints by country (currently only UK)
+
+  @computed get getEntryComplaints() {
+    const {
+      independentPressStandardsOrganisation,
+      pressComplaints
+    } = this.entry.fields;
+
+    const complaints = [];
+    if (pressComplaints.data !== undefined) {
+      complaints.push(pressComplaints.data);
+    }
+    if (independentPressStandardsOrganisation.data !== undefined) {
+      complaints.push(independentPressStandardsOrganisation.data);
+    }
+
+    return complaints;
+  }
+
+  @computed get getEntryPrices() {
+    const {
+      publicationPrice
+    } = this.entry.fields;
+
+    const currencySymbol = {
+      AUD: '$',
+      GBP: '£',
+      USD: '$'
+    };
+
+    const price = publicationPrice[publicationPrice.length - 1];
+    const { currency, data } = price;
+    const prices = data.map(price => {
+      const actualPrice = price.price === 0 ? 'Free' : `${currencySymbol[currency]}${price.price.toFixed(2)}`;
+      return `${price.name}, ${actualPrice}`;
+    });
+    const priceLastUpdated = price.timestamp;
+
+    return {
+      prices,
+      priceLastUpdated
+    }
   }
 }
 

@@ -50,16 +50,12 @@ class ChartWrapper extends React.Component {
           containerComponent={
             <VictoryContainer
               className="myChart"
-              height={300}
-              width={400}
             />
           }
           padding={this.state.chartPadding}
           style={{
-            height: 'auto',
-            width: '100%',
             parent: {
-              backgroundColor: '#026fc9'
+              backgroundColor: '#F0F0F0'
             }
           }}
           theme={styles.theme}

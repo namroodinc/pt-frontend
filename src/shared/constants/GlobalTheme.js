@@ -3,7 +3,7 @@ import { assign } from "lodash";
 const fontFamily = '-apple-system, BlinkMacSystemFont, Helvetica, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Open Sans", sans-serif';
 
 const typicalText = {
-  fill: '#FFFFFF',
+  fill: '#000000',
   fontFamily,
   fontSize: 20,
   fontWeight: 700
@@ -13,6 +13,7 @@ export default {
   headings: {
     main: assign({}, typicalText, {}),
     description: assign({}, typicalText, {
+      color: '#CDCDCD',
       fontSize: 12,
       fontWeight: 400
     })
@@ -20,7 +21,7 @@ export default {
   chartPadding: {
     bottom: 30,
     left: 30,
-    right: 80,
+    right: 30,
     top: 70
   },
   theme: {
@@ -28,8 +29,8 @@ export default {
       {
         style: {
           axis: {
-            stroke: '#FFFFFF',
-            strokeWidth: 4
+            stroke: '#000000',
+            strokeWidth: 3
           },
           axisLabel: {
             fontFamily: 'inherit',
@@ -38,16 +39,16 @@ export default {
             letterSpacing: '0.002em'
           },
           grid: {
-            stroke: '#CACACA',
+            stroke: '#000000',
             strokeWidth: 0.5
           },
           ticks: {
             size: 3,
-            stroke: '#FFFFFF',
+            stroke: '#000000',
             strokeWidth: 4
           },
           tickLabels: {
-            fill: '#FFFFFF',
+            fill: '#000000',
             fontFamily: "'Inconsolata', monospace",
             fontSize: 7,
             letterSpacing: '0.002em'

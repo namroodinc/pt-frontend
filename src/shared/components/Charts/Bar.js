@@ -15,11 +15,6 @@ class BarChart extends React.Component {
           columns={columns}
         >
           <VictoryGroup
-            colorScale={[
-              '#D1D3D4',
-              '#F0F0F0',
-              '#3C3B3B'
-            ]}
             offset={25}
           >
             {data.map((row, i) =>
