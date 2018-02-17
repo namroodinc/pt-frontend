@@ -34,9 +34,9 @@ export default class Header extends React.Component {
               Publications
             </Link>
             <Link
-              to="/about"
+              to="/circulations"
             >
-              About
+              Circulations
             </Link>
           </div>
 

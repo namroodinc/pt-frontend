@@ -13,35 +13,39 @@ class ChartWrapper extends React.Component {
 
     this.state = {
       chartPadding: GlobalTheme.chartPadding,
-      descriptionY: 0
+      descriptionY: 0,
+      legendY: 0
     }
   }
 
   componentDidMount() {
     const mainBounds = this.headingMain.getBBox();
     const descriptionY = (mainBounds.y + mainBounds.height) + 5;
-
     const descriptionBounds = this.headingDescription.getBBox();
-    const chartPaddingTop = (descriptionY + descriptionBounds.height) + 5;
+    const legendY = (descriptionY + descriptionBounds.height) + 5;
+    const legendBounds = this.legend.getBBox();
+    const chartPaddingTop = (legendY + legendBounds.height) + 10;
 
     this.setState({
       chartPadding: assign({}, this.state.chartPadding, {
         top: chartPaddingTop
       }),
-      descriptionY
-    })
+      descriptionY,
+      legendY
+    });
   }
 
   render() {
-    const { columns } = this.props;
+    const { columns, description, domain, heading, legend } = this.props;
     const styles = GlobalTheme;
 
-    const headingMain = wrap('Example heading goes here', {
-      width: 32
-    });
+    console.log(domain);
 
-    const headingDescription = wrap('Example description goes here', {
-      width: 55
+    const headingMain = wrap(heading, {
+      width: 48
+    });
+    const headingDescription = wrap(description, {
+      width: 70
     });
 
     return (
@@ -50,14 +54,15 @@ class ChartWrapper extends React.Component {
           containerComponent={
             <VictoryContainer
               className="myChart"
+              style={{
+                parent: {
+                  backgroundColor: '#FCFCFC'
+                }
+              }}
             />
           }
+          domainPadding={{ x: 25 }}
           padding={this.state.chartPadding}
-          style={{
-            parent: {
-              backgroundColor: '#F0F0F0'
-            }
-          }}
           theme={styles.theme}
         >
 
@@ -65,8 +70,8 @@ class ChartWrapper extends React.Component {
             inputRef={(headingMain) => this.headingMain = headingMain}
           >
             <VictoryLabel
-              x={30}
-              y={20}
+              x={0}
+              y={10}
               style={styles.headings.main}
               text={headingMain}
               verticalAnchor="start"
@@ -77,7 +82,7 @@ class ChartWrapper extends React.Component {
             inputRef={(headingDescription) => this.headingDescription = headingDescription}
           >
             <VictoryLabel
-              x={30}
+              x={0}
               y={this.state.descriptionY}
               style={styles.headings.description}
               text={headingDescription}
@@ -85,22 +90,62 @@ class ChartWrapper extends React.Component {
             />
           </Group>
 
+          <Group
+            inputRef={(legend) => this.legend = legend}
+          >
+            {legend.map((icon, i) =>
+              <rect
+                fill={icon.labels.fill}
+                height={6}
+                key={i}
+                width={6}
+                x={0}
+                y={`${this.state.legendY + (i * 10) - 5}`}
+              />
+            )}
+            {legend.map((text, i) =>
+              <text
+                fill={text.labels.fill}
+                key={i}
+                style={styles.legend}
+                x={0}
+                y={`${this.state.legendY + (i * 10)}`}
+              >
+                <tspan
+                  x={10}
+                  dy={0}
+                  textAnchor="start"
+                >
+                  {text.name}
+                </tspan>
+              </text>
+            )}
+          </Group>
+
           <VictoryAxis
             crossAxis={false}
             dependentAxis
+            domain={domain}
             orientation="left"
             standalone={false}
+            style={{
+              axis: {
+                stroke: 0
+              }
+            }}
           />
 
           {this.props.children}
 
           <VictoryAxis
             standalone={false}
-            tickFormat={(i) => columns[i - 1].label}
             style={{
               grid: {
                 stroke: 0
               }
+            }}
+            tickFormat={(i) => {
+              return columns[i - 1].labelAdjusted || columns[i - 1].label;
             }}
           />
 
@@ -110,9 +155,18 @@ class ChartWrapper extends React.Component {
   }
 }
 
+ChartWrapper.defaultProps = {
+  description: 'Example description goes here',
+  heading: 'Example heading goes here'
+};
+
 ChartWrapper.propTypes = {
   children: PropTypes.node,
-  columns: PropTypes.array
+  columns: PropTypes.array,
+  description: PropTypes.string,
+  domain: PropTypes.array,
+  heading: PropTypes.string,
+  legend: PropTypes.array
 };
 
 export default ChartWrapper;

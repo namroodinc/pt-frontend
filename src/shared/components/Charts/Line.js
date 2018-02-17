@@ -6,21 +6,18 @@ import { ChartWrapper } from "./Index";
 
 class LineChart extends React.Component {
   render() {
-    // const { data, title, xAxisDomain, yAxisDomain } = this.props;
-    const { columns, data } = this.props;
+    const { columns, data, description, domain, heading, legend } = this.props;
 
     return (
       <div>
         <ChartWrapper
           columns={columns}
+          description={description}
+          domain={domain}
+          heading={heading}
+          legend={legend}
         >
-          <VictoryGroup
-            colorScale={[
-              '#026fc9',
-              '#5b9dfd',
-              '#004598'
-            ]}
-          >
+          <VictoryGroup>
             {data.map((row, i) =>
               <VictoryLine
                 data={row}
@@ -36,9 +33,18 @@ class LineChart extends React.Component {
   }
 }
 
+LineChart.defaultProps = {
+  domain: null,
+  legend: null
+}
+
 LineChart.propTypes = {
   columns: PropTypes.array,
-  data: PropTypes.array
+  data: PropTypes.array,
+  description: PropTypes.string,
+  domain: PropTypes.array,
+  heading: PropTypes.string,
+  legend: PropTypes.array
 };
 
 export default LineChart;

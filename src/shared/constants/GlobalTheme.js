@@ -2,35 +2,52 @@ import { assign } from "lodash";
 
 const fontFamily = '-apple-system, BlinkMacSystemFont, Helvetica, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Open Sans", sans-serif';
 
+const colorScale = [
+  '#026fc9',
+  '#5b9dfd',
+  '#004598'
+];
+
+const baseProps = {
+  width: 450,
+  height: 300,
+  padding: 60,
+  colorScale
+};
+
 const typicalText = {
-  fill: '#000000',
+  fill: '#026FC9',
   fontFamily,
-  fontSize: 20,
+  fontSize: 18,
   fontWeight: 700
 };
 
 export default {
-  headings: {
-    main: assign({}, typicalText, {}),
-    description: assign({}, typicalText, {
-      color: '#CDCDCD',
-      fontSize: 12,
-      fontWeight: 400
-    })
-  },
   chartPadding: {
     bottom: 30,
     left: 30,
     right: 30,
     top: 70
   },
+  headings: {
+    main: assign({}, typicalText, {}),
+    description: assign({}, typicalText, {
+      fill: '#999999',
+      fontSize: 12,
+      fontWeight: 400
+    })
+  },
+  legend: {
+    fontSize: 6,
+    fontWeight: 700
+  },
   theme: {
     axis: assign(
       {
         style: {
           axis: {
-            stroke: '#000000',
-            strokeWidth: 3
+            stroke: '#f0f0f0',
+            strokeWidth: 0.5
           },
           axisLabel: {
             fontFamily: 'inherit',
@@ -39,13 +56,13 @@ export default {
             letterSpacing: '0.002em'
           },
           grid: {
-            stroke: '#000000',
-            strokeWidth: 0.5
+            stroke: '#f0f0f0',
+            strokeWidth: 1
           },
           ticks: {
             size: 3,
-            stroke: '#000000',
-            strokeWidth: 4
+            stroke: '#f0f0f0',
+            strokeWidth: 1
           },
           tickLabels: {
             fill: '#000000',
@@ -55,6 +72,23 @@ export default {
           }
         }
       }
+    ),
+    bar: assign(
+      {
+        style: {
+          data: {
+            strokeWidth: 0
+          }
+        }
+      },
+      baseProps
+    ),
+    chart: baseProps,
+    stack: assign(
+      {
+        colorScale
+      },
+      baseProps
     )
   }
 }

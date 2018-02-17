@@ -54,6 +54,31 @@ class Store {
 
   // All complaints by country (currently only UK)
 
+  @computed get getBrandColor() {
+    // const {
+    //   independentPressStandardsOrganisation,
+    //   pressComplaints
+    // } = this.entry.fields;
+    //
+    // const complaints = [];
+    // if (pressComplaints.data !== undefined) {
+    //   complaints.push(pressComplaints.data);
+    // }
+    // if (independentPressStandardsOrganisation.data !== undefined) {
+    //   complaints.push(independentPressStandardsOrganisation.data);
+    // }
+    //
+    // return complaints;
+  }
+
+  @computed get getPublicationName() {
+    const {
+      name
+    } = this.entry.fields;
+
+    return name;
+  }
+
   @computed get getEntryComplaints() {
     const {
       independentPressStandardsOrganisation,
@@ -62,10 +87,16 @@ class Store {
 
     const complaints = [];
     if (pressComplaints.data !== undefined) {
-      complaints.push(pressComplaints.data);
+      complaints.push({
+        data: pressComplaints.data,
+        source: 'pcc'
+      });
     }
     if (independentPressStandardsOrganisation.data !== undefined) {
-      complaints.push(independentPressStandardsOrganisation.data);
+      complaints.push({
+        data: independentPressStandardsOrganisation.data,
+        source: 'ipso'
+      });
     }
 
     return complaints;
