@@ -20,10 +20,13 @@ class Store {
 
   @computed get retrievePublicationList() {
     return this.publicationList.map((publication, i) => {
-      const { avatar, title } = publication.fields;
-      const { updatedAt } = publication.sys;
-      const { id } = publication.sys;
-      const { name, overallRating } = publication.fields;
+      const {
+        fields,
+        sys
+      } = publication;
+
+      const { avatar, name, overallRating } = fields;
+      const { id, updatedAt } = sys;
       const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
 
       return {
@@ -31,7 +34,6 @@ class Store {
         id,
         name,
         overallRating,
-        title,
         updatedAt
       }
     }).sort((a, b) => {
@@ -45,6 +47,33 @@ class Store {
   // Ratings for the Last 7 days
 
   // All Circulations
+  @computed get getAllCirculations() {
+    return this.publicationList.map((publication, i) => {
+      const {
+        fields,
+        sys
+      } = publication;
+
+      const { circulationHistroy, name, twitterAccounts } = fields;
+      const { id } = sys;
+
+      const circulations = circulationHistroy.map(item => {
+        return {
+          x: new Date(item.year),
+          y: item.value,
+          fill: `#${twitterAccounts[0].backgroundColor}`
+        }
+      });
+
+      return {
+        circulations,
+        id,
+        name
+      }
+    })
+      .filter(publication => publication.circulations.length > 0)
+      .sort((a, b) => b.circulations.length - a.circulations.length);
+  }
 
   // Circulations for a single entryId
 

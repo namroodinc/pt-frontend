@@ -36,10 +36,8 @@ class ChartWrapper extends React.Component {
   }
 
   render() {
-    const { columns, description, domain, heading, legend } = this.props;
+    const { description, domain, heading, legend } = this.props; // columns,
     const styles = GlobalTheme;
-
-    console.log(domain);
 
     const headingMain = wrap(heading, {
       width: 48
@@ -93,33 +91,37 @@ class ChartWrapper extends React.Component {
           <Group
             inputRef={(legend) => this.legend = legend}
           >
-            {legend.map((icon, i) =>
-              <rect
-                fill={icon.labels.fill}
-                height={6}
-                key={i}
-                width={6}
-                x={0}
-                y={`${this.state.legendY + (i * 10) - 5}`}
-              />
-            )}
-            {legend.map((text, i) =>
-              <text
-                fill={text.labels.fill}
-                key={i}
-                style={styles.legend}
-                x={0}
-                y={`${this.state.legendY + (i * 10)}`}
-              >
-                <tspan
-                  x={10}
-                  dy={0}
-                  textAnchor="start"
-                >
-                  {text.name}
-                </tspan>
-              </text>
-            )}
+            {legend !== null &&
+              <g>
+                {legend.map((icon, i) =>
+                  <rect
+                    fill={icon.labels.fill}
+                    height={6}
+                    key={i}
+                    width={6}
+                    x={0}
+                    y={`${this.state.legendY + (i * 10) - 5}`}
+                  />
+                )}
+                {legend.map((text, i) =>
+                  <text
+                    fill={text.labels.fill}
+                    key={i}
+                    style={styles.legend}
+                    x={0}
+                    y={`${this.state.legendY + (i * 10)}`}
+                  >
+                    <tspan
+                      x={10}
+                      dy={0}
+                      textAnchor="start"
+                    >
+                      {text.name}
+                    </tspan>
+                  </text>
+                )}
+              </g>
+            }
           </Group>
 
           <VictoryAxis
@@ -144,9 +146,6 @@ class ChartWrapper extends React.Component {
                 stroke: 0
               }
             }}
-            tickFormat={(i) => {
-              return columns[i - 1].labelAdjusted || columns[i - 1].label;
-            }}
           />
 
         </VictoryChart>
@@ -154,6 +153,10 @@ class ChartWrapper extends React.Component {
     );
   }
 }
+
+// tickFormat={columns !== undefined ? (i) => {
+//   return columns[i - 1].labelAdjusted || columns[i - 1].label;
+// } : null}
 
 ChartWrapper.defaultProps = {
   description: 'Example description goes here',

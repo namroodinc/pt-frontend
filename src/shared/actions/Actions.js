@@ -21,6 +21,7 @@ class Actions {
   }
 
   @action updatePublicationList() {
+    Store.loading = true;
     request
       .get(`${CONTENTFUL_BASE_URL}/spaces/${SPACE_ID}/entries`)
       .query(`access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}&content_type=publication`)
@@ -30,6 +31,7 @@ class Actions {
         } else {
           Store.assetsList = res.body.includes.Asset;
           Store.publicationList = res.body.items;
+          Store.loading = false;
         }
       });
   }

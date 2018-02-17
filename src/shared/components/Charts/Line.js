@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { VictoryGroup, VictoryLine } from "victory";
+import { VictoryLine } from "victory";
 
 import { ChartWrapper } from "./Index";
 
@@ -17,16 +17,14 @@ class LineChart extends React.Component {
           heading={heading}
           legend={legend}
         >
-          <VictoryGroup>
-            {data.map((row, i) =>
-              <VictoryLine
-                data={row}
-                key={i}
-                interpolation="natural"
-                standalone={false}
-              />
-            )}
-          </VictoryGroup>
+          {data.map((row, i) =>
+            <VictoryLine
+              data={row}
+              key={i}
+              interpolation="natural"
+              standalone={false}
+            />
+          )}
         </ChartWrapper>
       </div>
     );
@@ -34,6 +32,7 @@ class LineChart extends React.Component {
 }
 
 LineChart.defaultProps = {
+  columns: null,
   domain: null,
   legend: null
 }
