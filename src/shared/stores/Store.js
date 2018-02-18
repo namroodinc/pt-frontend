@@ -5,6 +5,7 @@ class Store {
   @observable assetsList = [];
   @observable loading = true;
   @observable publicationList = [];
+  @observable year = '2016';
 
   isLoading() {
     return this.loading;
@@ -48,6 +49,8 @@ class Store {
 
   // All Circulations
   @computed get getAllCirculations() {
+    const year = this.year;
+
     return this.publicationList.map((publication, i) => {
       const {
         fields,
@@ -57,22 +60,24 @@ class Store {
       const { circulationHistroy, name, twitterAccounts } = fields;
       const { id } = sys;
 
-      const circulations = circulationHistroy.map(item => {
-        return {
-          x: new Date(item.year),
-          y: item.value,
-          fill: `#${twitterAccounts[0].backgroundColor}`
-        }
-      });
+      const circulations = circulationHistroy
+        .filter(item => item.year === year)
+        .map(item => {
+          return {
+            date: new Date(item.year, 0, 31),
+            value: item.value
+          }
+        });
 
       return {
-        circulations,
+        circulations: circulations,
         id,
-        name
+        name,
+        fill: `#${twitterAccounts[0].backgroundColor}`
       }
     })
       .filter(publication => publication.circulations.length > 0)
-      .sort((a, b) => b.circulations.length - a.circulations.length);
+      .sort((a, b) => b.circulations[0].value - a.circulations[0].value);
   }
 
   // Circulations for a single entryId

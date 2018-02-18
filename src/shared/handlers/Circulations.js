@@ -1,11 +1,20 @@
 import React from "react";
 import { observer } from "mobx-react";
+import PropTypes from "prop-types";
+import { withStyles } from "material-ui/styles";
+import { Link } from "react-router-dom";
+import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Line } from "../components/Charts/Index";
 import { Loading } from "../components/Index";
+
+const styles = theme => ({
+  table: {
+    // minWidth: 700
+  }
+});
 
 @observer
 class Publication extends React.Component {
@@ -14,10 +23,10 @@ class Publication extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     if (Store.isLoading()) return <Loading />;
 
-    const allCirculations = Store.getAllCirculations;
-    const data = allCirculations.map(data => data.circulations);
+    const data = Store.getAllCirculations;
 
     return (
       <div>
@@ -26,9 +35,51 @@ class Publication extends React.Component {
           className="container"
         >
 
-          <Line
-            data={data}
-          />
+          <Table
+            className={classes.table}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  Publication
+                </TableCell>
+                <TableCell>
+                  Year
+                </TableCell>
+                <TableCell
+                  numeric
+                >
+                  Circulation
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.map((c, i) =>
+                <TableRow
+                  key={i}
+                >
+                  <TableCell>
+                    <Link
+                      style={{
+                        color: c.fill
+                      }}
+                      to={`/publication/${c.id}`}
+                    >
+                      {c.name}
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    {c.circulations[0].date.getFullYear()}
+                  </TableCell>
+                  <TableCell
+                    numeric
+                  >
+                    {c.circulations[0].value.toLocaleString()}
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
 
         </div>
 
@@ -37,4 +88,8 @@ class Publication extends React.Component {
   }
 }
 
-export default Publication;
+Publication.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Publication);
