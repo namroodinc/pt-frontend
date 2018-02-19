@@ -47,6 +47,12 @@ export default {
         padding: `10px 0 10px 0`
       }
     },
+    MuiList: {
+      padding: {
+        paddingBottom: 0,
+        paddingTop: 0
+      }
+    },
     MuiPaper: {
       root: {
         borderBottom: `1px solid ${borderColor}`,
@@ -57,6 +63,16 @@ export default {
       },
       shadow2: {
         boxShadow: `0 0 0 transparent`
+      }
+    },
+    MuiPopover: {
+      paper: {
+        padding: 0
+      }
+    },
+    MuiSelect: {
+      select: {
+        paddingLeft: 10
       }
     },
     MuiTab: {
@@ -86,6 +102,19 @@ export default {
       colorPrimary: {
         backgroundColor: textColor,
         height: 4
+      }
+    },
+    MuiTableCell: {
+      paddingDefault: {
+        '&:last-child': {
+          paddingRight: 0
+        }
+      },
+      typeHead: {
+        color: primaryColor,
+        fontSize: 16,
+        fontWeight: 700,
+        padding: 10
       }
     }
   }

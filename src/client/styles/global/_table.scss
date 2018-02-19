@@ -7,18 +7,13 @@ table {
   text-align: left;
   width: 100%;
 
-  &.table {
-    &--half-width {
-      max-width: $fullContainerWidth / 2;
-    }
-  }
-
   thead {
     tr {
       border-bottom: 1px solid $tableThBorder;
       th {
+        color: $primaryColor;
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 700;
         padding: $padding;
       }
     }
@@ -33,6 +28,18 @@ table {
         &:first-child {
           border-left-width: 0;
         }
+      }
+    }
+  }
+
+  tr {
+    td,
+    th {
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
       }
     }
   }

@@ -5,7 +5,7 @@ class Store {
   @observable assetsList = [];
   @observable loading = true;
   @observable publicationList = [];
-  @observable year = '2016';
+  @observable circulationYear = '2018';
 
   isLoading() {
     return this.loading;
@@ -17,6 +17,10 @@ class Store {
 
   retrieveAssetsList() {
     return this.assetsList;
+  }
+
+  retrieveCirculationYear() {
+    return this.circulationYear;
   }
 
   @computed get retrievePublicationList() {
@@ -47,9 +51,43 @@ class Store {
   // Ratings for today, or n number of days
   // Ratings for the Last 7 days
 
-  // All Circulations
+  @computed get getAllCirculationYears() {
+    const circulations = this.publicationList.map((publication, i) => {
+      const {
+        fields
+      } = publication;
+      const { circulationHistroy } = fields;
+      return circulationHistroy.map(item => item.year);
+    });
+
+    const flattenedArray = [].concat(...circulations);
+
+    return Array.from(new Set(flattenedArray));
+  }
+
+  @computed get getPreviousCirculationYear() {
+    const currentYear = this.circulationYear;
+    const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
+    return this.getAllCirculationYears[findIndexYear - 1];
+  }
+
+  @computed get getNextCirculationYear() {
+    const currentYear = this.circulationYear;
+    const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
+    return this.getAllCirculationYears[findIndexYear + 1];
+  }
+
+  @computed get checkIfYearExistsBeforeOrAfter() {
+    const currentYear = this.circulationYear;
+    const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
+    return {
+      disableFirst: findIndexYear === 0,
+      disableLast: findIndexYear === this.getAllCirculationYears.length - 1
+    }
+  }
+
   @computed get getAllCirculations() {
-    const year = this.year;
+    const year = this.circulationYear;
 
     return this.publicationList.map((publication, i) => {
       const {

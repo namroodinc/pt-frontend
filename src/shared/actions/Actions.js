@@ -35,6 +35,10 @@ class Actions {
         }
       });
   }
+
+  @action updateCirculationYear(year) {
+    Store.circulationYear = year;
+  }
 }
 
 export default new Actions();

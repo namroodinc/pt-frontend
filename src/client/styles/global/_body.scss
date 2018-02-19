@@ -16,6 +16,12 @@ body {
   padding: 20px;
   width: 100%;
   max-width: $fullContainerWidth;
+
+  &__narrow {
+    margin: auto;
+    width: 100%;
+    max-width: $fullContainerWidth / 2;
+  }
 }
 
 a {
