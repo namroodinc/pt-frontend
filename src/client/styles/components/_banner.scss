@@ -1,23 +1,12 @@
 .banner {
-  background-color: $primaryColor;
   box-sizing: border-box;
   display: block;
-  padding: 20px;
+  padding: 0 0 20px 0;
   width: 100%;
 
   &__content {
     margin: auto;
     width: 100%;
     max-width: $fullContainerWidth/2;
-
-    p {
-      font-size: 18px;
-      line-height: 24px;
-
-      a {
-        color: $secondaryColor;
-        font-weight: bold;
-      }
-    }
   }
 }

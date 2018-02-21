@@ -2,6 +2,7 @@ import { autorun, computed, observable } from "mobx";
 
 class Store {
   @observable entry = {};
+  @observable page = {};
   @observable assetsList = [];
   @observable loading = true;
   @observable publicationList = [];
@@ -13,6 +14,10 @@ class Store {
 
   retrieveEntry() {
     return this.entry;
+  }
+
+  retrievePage() {
+    return this.page;
   }
 
   retrieveAssetsList() {
@@ -95,8 +100,9 @@ class Store {
         sys
       } = publication;
 
-      const { circulationHistroy, name, twitterAccounts } = fields;
+      const { circulationHistroy, avatar, name, twitterAccounts } = fields;
       const { id } = sys;
+      const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
 
       const circulations = circulationHistroy
         .filter(item => item.year === year)
@@ -108,6 +114,7 @@ class Store {
         });
 
       return {
+        assetUrl: assetIdIndex.fields.file.url,
         circulations: circulations,
         id,
         name,

@@ -20,6 +20,21 @@ class Actions {
       });
   }
 
+  @action getPage(ENTRY_ID) {
+    Store.loading = true;
+    request
+      .get(`${CONTENTFUL_BASE_URL}/spaces/${SPACE_ID}/entries/${ENTRY_ID}`)
+      .query(`access_token=${CONTENT_DELIVERY_ACCESS_TOKEN}&content_type=publication`)
+      .end(function(err, res) {
+        if (err || !res.ok) {
+          console.log('error');
+        } else {
+          Store.page = res.body;
+          Store.loading = false;
+        }
+      });
+  }
+
   @action updatePublicationList() {
     Store.loading = true;
     request

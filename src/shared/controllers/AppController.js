@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import { Header } from "../components/Index";
 import { Circulations, Page, Publication } from "../handlers/Index";
+import { CIRCULATIONS_ENTRY_ID } from "../utils/config";
 
 export default class AppController extends React.Component {
   render() {
@@ -25,7 +26,7 @@ export default class AppController extends React.Component {
           <Route
             exact
             path="/circulations"
-            component={Circulations}
+            component={() => <Circulations pageId={CIRCULATIONS_ENTRY_ID} />}
           />
           <Route
             exact

@@ -112,9 +112,13 @@ export default {
       },
       typeHead: {
         color: primaryColor,
-        fontSize: 16,
+        fontFamily: bodyFont,
+        fontSize: 20,
         fontWeight: 700,
         padding: 10
+      },
+      typeBody: {
+        fontSize: 18
       }
     }
   }

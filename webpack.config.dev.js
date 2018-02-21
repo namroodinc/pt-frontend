@@ -60,6 +60,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.EnvironmentPlugin([
       "NODE_ENV",
+      "CIRCULATIONS_ENTRY_ID",
       "CONTENT_DELIVERY_ACCESS_TOKEN",
       "CONTENT_PREVIEW_ACCESS_TOKEN",
       "CONTENTFUL_BASE_URL",
