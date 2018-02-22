@@ -1,5 +1,6 @@
 import Article from "./Article";
 import GlobalRank from "./GlobalRank";
+import LinkCard from "./LinkCard";
 import PaperCard from "./PaperCard";
 import PressComplaint from "./PressComplaint";
 import PressComplaints from "./PressComplaints";
@@ -13,6 +14,7 @@ import TimelineStory from "./TimelineStory";
 export {
   Article,
   GlobalRank,
+  LinkCard,
   PaperCard,
   PressComplaint,
   PressComplaints,
