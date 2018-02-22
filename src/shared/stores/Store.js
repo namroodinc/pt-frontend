@@ -29,28 +29,30 @@ class Store {
   }
 
   @computed get retrievePublicationList() {
-    return this.publicationList.map((publication, i) => {
-      const {
-        fields,
-        sys
-      } = publication;
+    return this.publicationList
+      .filter(publication => publication.fields.overallRating.length > 0)
+      .map((publication, i) => {
+        const {
+          fields,
+          sys
+        } = publication;
 
-      const { avatar, name, overallRating } = fields;
-      const { id, updatedAt } = sys;
-      const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+        const { avatar, name, overallRating } = fields;
+        const { id, updatedAt } = sys;
+        const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
 
-      return {
-        assetUrl: assetIdIndex.fields.file.url,
-        id,
-        name,
-        overallRating,
-        updatedAt
-      }
-    }).sort((a, b) => {
-      const aOverallRating = a.overallRating[a.overallRating.length - 1].ratings.total;
-      const bOverallRating = b.overallRating[b.overallRating.length - 1].ratings.total;
-      return bOverallRating - aOverallRating;
-    });
+        return {
+          assetUrl: assetIdIndex.fields.file.url,
+          id,
+          name,
+          overallRating,
+          updatedAt
+        }
+      }).sort((a, b) => {
+        const aOverallRating = a.overallRating[a.overallRating.length - 1].ratings.total;
+        const bOverallRating = b.overallRating[b.overallRating.length - 1].ratings.total;
+        return bOverallRating - aOverallRating;
+      });
   }
 
   // Ratings for today, or n number of days
