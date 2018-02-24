@@ -64,12 +64,13 @@ class Store {
         fields
       } = publication;
       const { circulationHistroy } = fields;
-      return circulationHistroy.map(item => item.year);
+      return circulationHistroy
+        .map(item => item.year);
     });
 
     const flattenedArray = [].concat(...circulations);
 
-    return Array.from(new Set(flattenedArray));
+    return Array.from(new Set(flattenedArray)).sort((a, b) => b - a);
   }
 
   @computed get getPreviousCirculationYear() {
