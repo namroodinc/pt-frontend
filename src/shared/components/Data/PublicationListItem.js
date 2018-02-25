@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import Avatar from "material-ui/Avatar";
 import Card, { CardActions, CardContent } from "material-ui/Card";
 import PlayArrow from "material-ui-icons/PlayArrow";
+import PropTypes from "prop-types";
 
 import { Time } from "./Index";
 import { Rating } from "../Index";
 
-export default class PublicationListItem extends React.Component {
+class PublicationListItem extends React.Component {
   render() {
     const { publication } = this.props;
     const { assetUrl, id, name, overallRating, updatedAt } = publication;
@@ -70,3 +71,9 @@ export default class PublicationListItem extends React.Component {
     )
   }
 }
+
+PublicationListItem.propTypes = {
+  publication: PropTypes.object.isRequired
+}
+
+export default PublicationListItem;

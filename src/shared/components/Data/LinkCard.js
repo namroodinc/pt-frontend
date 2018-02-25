@@ -1,62 +1,75 @@
 import React from "react";
-import { Paper } from "material-ui";
+import { Button, Paper } from "material-ui";
+import PlayArrow from "material-ui-icons/PlayArrow";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
+import Color from "color";
 
 const styles = theme => ({
-  list: {
-    display: 'block'
+  button: {
+    boxShadow: `0 0 0 transparent`,
+    float: 'right'
+  },
+  icon: {
+    marginRight: -5
+  },
+  paperCard: {
+    borderBottomWidth: 0,
+    marginBottom: 20,
+    padding: 20
   }
 });
 
 class PaperCard extends React.Component {
   render() {
-    const { classes, list, text, title } = this.props;
+    const { backgroundColor, classes, linkHref, linkText, title } = this.props;
+    const color = Color(backgroundColor).isLight() ? '#000' : '#FFF';
 
-    const listLength = list !== undefined ? list.length : 0;
+    return (
+      <Paper
+        className={classes.paperCard}
+        style={{
+          backgroundColor,
+          color
+        }}
+      >
 
-    return (listLength !== 0 || text !== undefined) ? (
-      <Paper>
-
-        <h4>
+        <h3>
           {title}
-        </h4>
-
-        {text !== undefined &&
-          <span>
-            {text}
-          </span>
-        }
-
-        {list !== undefined &&
-          <span>
-            {list.map((item, i) =>
-              <span
-                className={classes.list}
-                key={i}
-              >
-                {item}
-              </span>
-            )}
-          </span>
-        }
+        </h3>
 
         {this.props.children}
 
+        <div>
+          <Button
+            className={classes.button}
+            color="primary"
+            href={linkHref}
+          >
+            {linkText}
+            <PlayArrow
+              className={classes.icon}
+            />
+          </Button>
+        </div>
+
       </Paper>
-    ) : null;
+    );
   }
 }
 
+PaperCard.defaultProps = {
+  backgroundColor: '#026FC9',
+  linkHref: '/',
+  linkText: 'Read More'
+};
+
 PaperCard.propTypes = {
+  backgroundColor: PropTypes.string,
   classes: PropTypes.object.isRequired,
   children: PropTypes.object,
-  list: PropTypes.array,
-  text: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.number,
-    PropTypes.string
-  ]),
+  linkHref: PropTypes.string,
+  linkText: PropTypes.string,
   title: PropTypes.string
 };
 
