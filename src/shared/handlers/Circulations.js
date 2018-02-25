@@ -78,7 +78,7 @@ class Circulations extends React.Component {
     if (Store.isLoading()) return <Loading />;
 
     const allYears = Store.getAllCirculationYears;
-    const data = Store.getAllCirculations;
+    const data = Store.getAllCirculationsForGivenYear;
     const year = Store.retrieveCirculationYear();
     const yearCheck = Store.checkIfYearExistsBeforeOrAfter;
     const { disableFirst, disableLast } = yearCheck;

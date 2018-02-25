@@ -9,7 +9,7 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 import { Loading, Rating } from "../components/Index";
-import { PaperCard, PressComplaint, Time } from "../components/Data/Index"; //Table, Timeline
+import { PaperCard, PressComplaint, Time } from "../components/Data/Index";
 
 @observer
 class Publication extends React.Component {
@@ -132,11 +132,9 @@ class Publication extends React.Component {
             </Grid>
 
             <Grid
-              container
               item
               xs={12}
               md={6}
-              spacing={24}
             >
 
               <Grid

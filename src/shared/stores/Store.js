@@ -1,4 +1,5 @@
 import { autorun, computed, observable } from "mobx";
+import { assign } from "lodash";
 
 class Store {
   @observable entry = {};
@@ -95,37 +96,80 @@ class Store {
   }
 
   @computed get getAllCirculations() {
-    const year = this.circulationYear;
+    return this.publicationList
+      .map((publication, i) => {
+        const {
+          fields,
+          sys
+        } = publication;
 
-    return this.publicationList.map((publication, i) => {
-      const {
-        fields,
-        sys
-      } = publication;
+        const { circulationHistroy, avatar, name, twitterAccounts } = fields;
+        const { id } = sys;
+        const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
 
-      const { circulationHistroy, avatar, name, twitterAccounts } = fields;
-      const { id } = sys;
-      const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+        const circulations = circulationHistroy
+          .sort((a, b) => {
+            return new Date(b.year, 0, 31) - new Date(a.year, 0, 31)
+          })
+          .map(item => {
+            return {
+              date: new Date(item.year, 0, 31),
+              value: item.value
+            }
+          });
 
-      const circulations = circulationHistroy
-        .filter(item => item.year === year)
-        .map(item => {
-          return {
-            date: new Date(item.year, 0, 31),
-            value: item.value
-          }
-        });
-
-      return {
-        assetUrl: assetIdIndex.fields.file.url,
-        circulations: circulations,
-        id,
-        name,
-        fill: `#${twitterAccounts[0].backgroundColor}`
-      }
-    })
+        return {
+          assetUrl: assetIdIndex.fields.file.url,
+          circulations,
+          id,
+          name,
+          fill: `#${twitterAccounts[0].backgroundColor}`
+        }
+      })
       .filter(publication => publication.circulations.length > 0)
       .sort((a, b) => b.circulations[0].value - a.circulations[0].value);
+  }
+
+  @computed get getAllCirculationsForGivenYear() {
+    const year = this.circulationYear;
+
+    return this.getAllCirculations
+      .map(publication => {
+        const circulations = publication.circulations
+          .filter(item => item.date.getFullYear().toString() === year);
+        return assign({}, publication, {
+          circulations
+        });
+      })
+      .filter(publication => publication.circulations.length > 0)
+      .sort((a, b) => b.circulations[0].value - a.circulations[0].value);
+  }
+
+  @computed get getLast5Circulations() {
+    const initialData = this.getAllCirculations
+      .splice(0, 5);
+
+    const colorScale = initialData
+      .map(publication => publication.fill);
+
+    const data = initialData
+      .map(publication => {
+        return publication.circulations
+          .splice(0, 5)
+          .map(circulation => {
+            const { date, value } = circulation;
+            return {
+              x: date,
+              y: value,
+              label: value
+            }
+          });
+      });
+
+    return {
+      colorScale,
+      data
+    }
   }
 
   // Circulations for a single entryId
@@ -154,11 +198,7 @@ class Store {
   }
 
   @computed get getPublicationName() {
-    const {
-      name
-    } = this.entry.fields;
-
-    return name;
+    return this.entry.fields.name;
   }
 
   @computed get getEntryComplaints() {
@@ -191,6 +231,7 @@ class Store {
 
     const currencySymbol = {
       AUD: '$',
+      EUR: '€',
       GBP: '£',
       USD: '$'
     };

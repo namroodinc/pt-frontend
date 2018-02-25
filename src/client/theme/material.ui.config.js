@@ -24,11 +24,19 @@ export default {
     MuiButton: {
       root: {
         fontWeight: 600,
-        letterSpacing: letterSpacing
+        letterSpacing: letterSpacing,
+        textTransform: 'none'
       },
-      raisedPrimary: {
+      flatPrimary: {
         borderRadius: 0,
-        boxShadow: `0 0 0 transparent`
+        border: `1px solid ${white}`,
+        boxShadow: `0 0 0 0 transparent`,
+        color: white,
+        fontSize: 18,
+        '&:hover': {
+          backgroundColor: white,
+          color: primaryColor
+        }
       }
     },
     MuiCardActions: {
@@ -44,7 +52,7 @@ export default {
     },
     MuiCardContent: {
       root: {
-        padding: `10px 0 10px 0`
+        padding: `0 0 10px 0`
       }
     },
     MuiList: {
@@ -56,7 +64,8 @@ export default {
     MuiPaper: {
       root: {
         borderBottom: `1px solid ${borderColor}`,
-        padding: `15px 10px`
+        padding: `15px 10px`,
+        overflow: 'hidden'
       },
       rounded: {
         borderRadius: 0

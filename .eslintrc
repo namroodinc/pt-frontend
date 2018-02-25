@@ -9,6 +9,10 @@
         0,
         "double"
       ],
+      "quote-props": [
+        0,
+        "always"
+      ],
       "semi": 0,
       "no-return-assign": 0,
       "indent": [
