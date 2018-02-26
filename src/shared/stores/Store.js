@@ -5,12 +5,17 @@ class Store {
   @observable entry = {};
   @observable page = {};
   @observable assetsList = [];
-  @observable loading = true;
+  @observable loadingEntry = true;
+  @observable loadingPage = true;
   @observable publicationList = [];
   @observable circulationYear = '2018';
 
-  isLoading() {
-    return this.loading;
+  isLoadingEntry() {
+    return this.loadingEntry;
+  }
+
+  isLoadingPage() {
+    return this.loadingPage;
   }
 
   retrieveEntry() {
@@ -154,14 +159,15 @@ class Store {
 
     const data = initialData
       .map(publication => {
-        return publication.circulations
+        const { name, circulations } = publication;
+        return circulations
           .splice(0, 5)
-          .map(circulation => {
+          .map((circulation, i) => {
             const { date, value } = circulation;
             return {
               x: date,
               y: value,
-              label: value
+              label: i === 0 ? name : ''
             }
           });
       });

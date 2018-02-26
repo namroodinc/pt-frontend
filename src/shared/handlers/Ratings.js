@@ -61,7 +61,7 @@ class Circulations extends React.Component {
 
   render() {
     const { classes } = this.props;
-    if (Store.isLoading()) return <Loading />;
+    if (Store.isLoadingEntry()) return <Loading />;
 
     const pageContent = Store.retrievePage();
     const { bodyCopy, title } = pageContent.fields;

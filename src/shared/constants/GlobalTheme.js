@@ -41,33 +41,37 @@ export default {
     fontSize: 6,
     fontWeight: 700
   },
+  groupLabels: {
+    fill: '#f0f0f0',
+    fontSize: 12,
+    fontFamily: "'Inconsolata', monospace",
+    letterSpacing: '0.002em'
+  },
   theme: {
     axis: assign(
       {
         style: {
           axis: {
-            stroke: '#f0f0f0',
-            strokeWidth: 0.5
+            stroke: 'transparent',
+            strokeWidth: 0
           },
           axisLabel: {
             fontFamily: 'inherit',
-            fontSize: 11,
             fontWeight: 700,
             letterSpacing: '0.002em'
           },
           grid: {
             stroke: '#f0f0f0',
-            strokeWidth: 1
+            strokeWidth: 0.5
           },
           ticks: {
-            size: 3,
-            stroke: '#f0f0f0',
-            strokeWidth: 1
+            size: 5,
+            stroke: 'transparent',
+            strokeWidth: 0
           },
           tickLabels: {
-            fill: '#000000',
+            fill: '#f0f0f0',
             fontFamily: "'Inconsolata', monospace",
-            fontSize: 7,
             letterSpacing: '0.002em'
           }
         }

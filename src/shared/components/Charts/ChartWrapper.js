@@ -140,6 +140,7 @@ class ChartWrapper extends React.Component {
           {this.props.children}
 
           <VictoryAxis
+            orientation="top"
             standalone={false}
             style={{
               grid: {

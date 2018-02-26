@@ -75,7 +75,7 @@ class Circulations extends React.Component {
 
   render() {
     const { classes } = this.props;
-    if (Store.isLoading()) return <Loading />;
+    if (Store.isLoadingEntry() && Store.isLoadingPage()) return <Loading />;
 
     const allYears = Store.getAllCirculationYears;
     const data = Store.getAllCirculationsForGivenYear;
