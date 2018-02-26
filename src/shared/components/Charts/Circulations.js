@@ -43,6 +43,7 @@ class CirculationsChart extends React.Component {
           />
           <VictoryAxis
             offsetY={40}
+            orientation="top"
             scale={{
               x: 'time'
             }}
@@ -56,7 +57,7 @@ class CirculationsChart extends React.Component {
           <VictoryGroup
             colorScale={colorScale}
             labelComponent={<VictoryLabel
-              angle={-5}
+              dx={5}
               style={groupLabels}
               textAnchor="start"
               verticalAnchor="middle"

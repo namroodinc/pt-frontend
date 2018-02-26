@@ -46,6 +46,7 @@ class Page extends React.Component {
 
             <LinkCard
               linkHref="/circulations"
+              linkText="Full Stats"
               title="List of Newspapers in the United Kingdom by circulation"
             >
               <Circulations
