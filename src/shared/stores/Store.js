@@ -43,16 +43,31 @@ class Store {
           sys
         } = publication;
 
-        const { avatar, name, overallRating } = fields;
+        const { avatar, name, overallRating, twitterAccounts } = fields;
         const { id, updatedAt } = sys;
         const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+
+        const filteredRatings = overallRating.filter(r => r.ratings.total !== null);
+        let currentRating = 0;
+        if (filteredRatings.length > 0) {
+          currentRating = filteredRatings[filteredRatings.length - 1].ratings.total.toFixed(2);
+        }
+        let previousRating = 0;
+        if (filteredRatings.length > 1) {
+          previousRating = filteredRatings[filteredRatings.length - 2].ratings.total.toFixed(2);
+        }
+        const ratingDiff = (currentRating - previousRating).toFixed(2);
 
         return {
           assetUrl: assetIdIndex.fields.file.url,
           id,
           name,
           overallRating,
-          updatedAt
+          updatedAt,
+          fill: `#${twitterAccounts[0].backgroundColor}`,
+          currentRating,
+          previousRating,
+          ratingDiff
         }
       }).sort((a, b) => {
         const aOverallRating = a.overallRating[a.overallRating.length - 1].ratings.total;

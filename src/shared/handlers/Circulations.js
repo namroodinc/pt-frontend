@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
-import Avatar from 'material-ui/Avatar';
+import Avatar from "material-ui/Avatar";
 import { MenuItem } from "material-ui/Menu";
 import { FormControl } from "material-ui/Form";
 import { InputLabel } from 'material-ui/Input';

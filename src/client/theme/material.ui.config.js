@@ -115,6 +115,7 @@ export default {
     },
     MuiTableCell: {
       paddingDefault: {
+        padding: '10px 10px 10px 0',
         '&:last-child': {
           paddingRight: 0
         }
