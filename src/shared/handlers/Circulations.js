@@ -56,9 +56,7 @@ const styles = theme => ({
 class Circulations extends React.Component {
   componentWillMount() {
     const { pageId } = this.props;
-
-    Actions.getPage(pageId);
-    Actions.updatePublicationList();
+    Actions.getPageWithPublicationList(pageId);
   }
 
   handleChange = (event) => {
@@ -74,16 +72,15 @@ class Circulations extends React.Component {
   };
 
   render() {
+    if (Store.isLoading()) return <Loading />;
     const { classes } = this.props;
-    if (Store.isLoadingEntry() && Store.isLoadingPage()) return <Loading />;
 
     const allYears = Store.getAllCirculationYears;
     const data = Store.getAllCirculationsForGivenYear;
     const year = Store.retrieveCirculationYear();
-    const yearCheck = Store.checkIfYearExistsBeforeOrAfter;
-    const { disableFirst, disableLast } = yearCheck;
-    const pageContent = Store.retrievePage();
-    const { bodyCopy, title } = pageContent.fields;
+
+    const { disableFirst, disableLast } = Store.checkIfYearExistsBeforeOrAfter;
+    const { bodyCopy, title } = Store.retrievePage();
 
     return (
       <div

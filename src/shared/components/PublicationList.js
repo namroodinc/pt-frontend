@@ -28,7 +28,7 @@ const styles = (theme) => ({
 @observer
 class PublicationList extends React.Component {
   render() {
-    if (Store.isLoadingEntry()) return <Loading />;
+    if (Store.isLoading()) return <Loading />;
     const { classes } = this.props;
 
     const publicationList = Store.retrievePublicationList;

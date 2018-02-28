@@ -31,7 +31,7 @@ class Publication extends React.Component {
   };
 
   render() {
-    if (Store.isLoadingEntry()) return <Loading />;
+    if (Store.isLoading()) return <Loading />;
 
     const {
       fields,

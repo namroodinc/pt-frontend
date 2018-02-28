@@ -3,8 +3,20 @@
       "standard",
       "react"
     ],
-
     "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "no-return-assign": 0,
+      "prefer-reflect": [
+        0,
+        "always"
+      ],
+      "prefer-spread": [
+        0,
+        "always"
+      ],
       "quotes": [
         0,
         "double"
@@ -14,17 +26,11 @@
         "always"
       ],
       "semi": 0,
-      "no-return-assign": 0,
-      "indent": [
-        "error",
-        2
-      ],
       "space-before-function-paren": [
         0,
         0,
         0
       ],
-
       "react/jsx-wrap-multilines": 0
     }
 }

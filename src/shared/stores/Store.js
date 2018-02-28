@@ -1,21 +1,17 @@
 import { autorun, computed, observable } from "mobx";
 import { assign } from "lodash";
+import moment from "moment";
 
 class Store {
   @observable entry = {};
   @observable page = {};
   @observable assetsList = [];
-  @observable loadingEntry = true;
-  @observable loadingPage = true;
+  @observable loading = true;
   @observable publicationList = [];
   @observable circulationYear = '2018';
 
-  isLoadingEntry() {
-    return this.loadingEntry;
-  }
-
-  isLoadingPage() {
-    return this.loadingPage;
+  isLoading() {
+    return this.loading;
   }
 
   retrieveEntry() {
@@ -23,7 +19,7 @@ class Store {
   }
 
   retrievePage() {
-    return this.page;
+    return this.page.fields;
   }
 
   retrieveAssetsList() {
@@ -60,14 +56,14 @@ class Store {
 
         return {
           assetUrl: assetIdIndex.fields.file.url,
+          currentRating,
+          fill: `#${twitterAccounts[0].backgroundColor}`,
           id,
           name,
           overallRating,
-          updatedAt,
-          fill: `#${twitterAccounts[0].backgroundColor}`,
-          currentRating,
           previousRating,
-          ratingDiff
+          ratingDiff,
+          updatedAt
         }
       }).sort((a, b) => {
         const aOverallRating = a.overallRating[a.overallRating.length - 1].ratings.total;
@@ -75,9 +71,6 @@ class Store {
         return bOverallRating - aOverallRating;
       });
   }
-
-  // Ratings for today, or n number of days
-  // Ratings for the Last 7 days
 
   @computed get getAllCirculationYears() {
     const circulations = this.publicationList.map((publication, i) => {
@@ -141,9 +134,9 @@ class Store {
         return {
           assetUrl: assetIdIndex.fields.file.url,
           circulations,
+          fill: `#${twitterAccounts[0].backgroundColor}`,
           id,
-          name,
-          fill: `#${twitterAccounts[0].backgroundColor}`
+          name
         }
       })
       .filter(publication => publication.circulations.length > 0)
@@ -193,6 +186,65 @@ class Store {
     }
   }
 
+  @computed get getAllRatings() {
+    return this.publicationList
+      .map((publication, i) => {
+        const {
+          fields,
+          sys
+        } = publication;
+
+        const { avatar, name, overallRating, twitterAccounts } = fields;
+        const { id } = sys;
+        const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+
+        const ratings = overallRating
+          .sort((a, b) => {
+            return new Date(b.timestamp) - new Date(a.timestamp)
+          })
+          .map(item => {
+            return {
+              date: new Date(item.timestamp),
+              value: item.ratings.total
+            }
+          });
+
+        return {
+          assetUrl: assetIdIndex.fields.file.url,
+          fill: `#${twitterAccounts[0].backgroundColor}`,
+          id,
+          name,
+          ratings
+        }
+      })
+      .filter(publication => publication.ratings.length > 0)
+      .sort((a, b) => b.ratings[0].value - a.ratings[0].value);
+  }
+
+  @computed get getRatingsForLast7Days() {
+    return this.getAllRatings
+      .map(publication => {
+        const { ratings } = publication;
+
+        const splicedRatings = ratings
+          .splice(0, 6);
+
+        return assign({}, publication, {
+          ratings: splicedRatings
+        })
+      });
+  }
+
+  @computed get getLast7PossibleDays() {
+    return Array.from(new Set([]
+      .concat
+      .apply([], this.getRatingsForLast7Days
+        .map(publication => publication.ratings
+          .map(rating => moment(rating.date).format('MMM DD'))
+        )
+      )))
+      .sort((a, b) => new Date(b) - new Date(a));
+  }
   // Circulations for a single entryId
 
   // All alexa rankings by country

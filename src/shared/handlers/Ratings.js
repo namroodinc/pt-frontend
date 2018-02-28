@@ -53,18 +53,20 @@ const styles = theme => ({
 });
 
 @observer
-class Circulations extends React.Component {
+class Ratings extends React.Component {
   componentWillMount() {
     const { pageId } = this.props;
-    Actions.getPage(pageId);
+    Actions.getPageWithPublicationList(pageId);
   }
 
   render() {
+    if (Store.isLoading()) return <Loading />;
     const { classes } = this.props;
-    if (Store.isLoadingEntry()) return <Loading />;
 
-    const pageContent = Store.retrievePage();
-    const { bodyCopy, title } = pageContent.fields;
+    const { bodyCopy, title } = Store.retrievePage();
+
+    // const getRatingsForLast7Days = Store.getRatingsForLast7Days;
+    const getLast7PossibleDays = Store.getLast7PossibleDays;
 
     return (
       <div
@@ -90,16 +92,14 @@ class Circulations extends React.Component {
                 <TableCell>
                   Publication
                 </TableCell>
-                <TableCell
-                  className={classes.centerAlign}
-                >
-                  text
-                </TableCell>
-                <TableCell
-                  numeric
-                >
-                  Circulation
-                </TableCell>
+                {getLast7PossibleDays.map((day, i) =>
+                  <TableCell
+                    className={classes.centerAlign}
+                    key={i}
+                  >
+                    {day}
+                  </TableCell>
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -107,16 +107,14 @@ class Circulations extends React.Component {
                 <TableCell>
                   Publication
                 </TableCell>
-                <TableCell
-                  className={classes.centerAlign}
-                >
-                  Circulation
-                </TableCell>
-                <TableCell
-                  numeric
-                >
-                  Circulation
-                </TableCell>
+                {getLast7PossibleDays.map((day, i) =>
+                  <TableCell
+                    className={classes.centerAlign}
+                    key={i}
+                  >
+                    {day}
+                  </TableCell>
+                )}
               </TableRow>
             </TableBody>
           </Table>
@@ -128,9 +126,9 @@ class Circulations extends React.Component {
   }
 }
 
-Circulations.propTypes = {
+Ratings.propTypes = {
   classes: PropTypes.object.isRequired,
   pageId: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(Circulations);
+export default withStyles(styles)(Ratings);
