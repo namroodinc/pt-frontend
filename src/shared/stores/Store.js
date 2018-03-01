@@ -205,7 +205,7 @@ class Store {
           .map(item => {
             return {
               date: new Date(item.timestamp),
-              value: item.ratings.total
+              value: item.ratings.total.toFixed(2)
             }
           });
 
@@ -221,37 +221,54 @@ class Store {
       .sort((a, b) => b.ratings[0].value - a.ratings[0].value);
   }
 
-  @computed get getRatingsForLast7Days() {
-    return this.getAllRatings
+  @computed get getLast7PossibleDays() {
+    const getRatingsForLast7Days = this.getAllRatings
       .map(publication => {
         const { ratings } = publication;
 
         const splicedRatings = ratings
-          .splice(0, 6);
+          .slice(0, 6);
 
         return assign({}, publication, {
           ratings: splicedRatings
         })
       });
-  }
 
-  @computed get getLast7PossibleDays() {
     return Array.from(new Set([]
       .concat
-      .apply([], this.getRatingsForLast7Days
+      .apply([], getRatingsForLast7Days
         .map(publication => publication.ratings
-          .map(rating => moment(rating.date).format('MMM DD'))
+          .map(rating => moment(rating.date).format('MMM DD YYYY'))
         )
       )))
       .sort((a, b) => new Date(b) - new Date(a));
+  }
+
+  @computed get getRatingsForLast7Days() {
+    return this.getAllRatings
+      .map(publication => {
+        const { ratings } = publication;
+
+        const last7Days = this.getLast7PossibleDays
+          .map(day => ratings
+            .find(rating => moment(rating.date).format('MMM DD YYYY') === day));
+
+        return assign({}, publication, {
+          ratings: last7Days
+        })
+      });
   }
   // Circulations for a single entryId
 
   // All alexa rankings by country
 
   // All prices by country
+  @computed get getAllPricesByCountry() {
+  }
 
   // All complaints by country (currently only UK)
+  @computed get getAllComplaintsByCountry() {
+  }
 
   @computed get getBrandColor() {
     // const {

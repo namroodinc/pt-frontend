@@ -2,8 +2,8 @@ import React from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-// import { Link } from "react-router-dom";
-// import Avatar from 'material-ui/Avatar';
+import { Link } from "react-router-dom";
+import Avatar from 'material-ui/Avatar';
 // import { MenuItem } from "material-ui/Menu";
 // import { FormControl } from "material-ui/Form";
 // import { InputLabel } from 'material-ui/Input';
@@ -65,8 +65,8 @@ class Ratings extends React.Component {
 
     const { bodyCopy, title } = Store.retrievePage();
 
-    // const getRatingsForLast7Days = Store.getRatingsForLast7Days;
     const getLast7PossibleDays = Store.getLast7PossibleDays;
+    const getRatingsForLast7Days = Store.getRatingsForLast7Days;
 
     return (
       <div
@@ -103,19 +103,41 @@ class Ratings extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow>
-                <TableCell>
-                  Publication
-                </TableCell>
-                {getLast7PossibleDays.map((day, i) =>
-                  <TableCell
-                    className={classes.centerAlign}
-                    key={i}
-                  >
-                    {day}
+              {getRatingsForLast7Days.map((publication, i) =>
+                <TableRow>
+                  <TableCell>
+                    <Link
+                      style={{
+                        color: publication.fill,
+                        display: 'block',
+                        overflow: 'hidden'
+                      }}
+                      to={`/publication/${publication.id}`}
+                    >
+                      <Avatar
+                        alt={publication.name}
+                        className={classes.avatar}
+                        src={publication.assetUrl}
+                      />
+                      {publication.name}
+                    </Link>
                   </TableCell>
-                )}
-              </TableRow>
+                  {publication.ratings.map((day, i) =>
+                    <TableCell
+                      className={classes.centerAlign}
+                      key={i}
+                    >
+                      {day !== undefined ?
+                        <span>
+                          {day.value}
+                        </span> : <span>
+                          N/A
+                        </span>
+                      }
+                    </TableCell>
+                  )}
+                </TableRow>
+              )}
             </TableBody>
           </Table>
 
