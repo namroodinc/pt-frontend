@@ -104,7 +104,9 @@ class Ratings extends React.Component {
             </TableHead>
             <TableBody>
               {getRatingsForLast7Days.map((publication, i) =>
-                <TableRow>
+                <TableRow
+                  key={i}
+                >
                   <TableCell>
                     <Link
                       style={{
