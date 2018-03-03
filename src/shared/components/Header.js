@@ -29,6 +29,11 @@ export default class Header extends React.Component {
               Home
             </Link>
             <Link
+              to="/prices"
+            >
+              Prices
+            </Link>
+            <Link
               to="/ratings"
             >
               Ratings

@@ -16,6 +16,17 @@ body {
   width: 100%;
   max-width: $fullContainerWidth;
 
+  &--full-width {
+    width: 100%;
+  }
+
+  &__tabs {
+    border-bottom: 1px solid $primaryColor;
+    border-top: 1px solid $primaryColor;
+    margin: auto;
+    width: 100%;
+  }
+
   &__narrow {
     margin: auto;
     width: 100%;
@@ -55,7 +66,6 @@ time {
   cursor: default;
   display: block;
   font-family: $primaryFont;
-  font-size: 0.8em;
-  line-height: normal;
+  font-size: 0.9em;
   text-transform: uppercase;
 }

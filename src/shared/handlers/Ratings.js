@@ -131,8 +131,12 @@ class Ratings extends React.Component {
                     >
                       {day !== undefined ?
                         <span>
-                          {day.value}
-                        </span> : <span>
+                          {day.value}%
+                        </span> : <span
+                          style={{
+                            color: '#F0F0F0'
+                          }}
+                        >
                           N/A
                         </span>
                       }

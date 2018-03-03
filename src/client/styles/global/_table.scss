@@ -23,7 +23,6 @@ table {
     tr {
       border-bottom: 1px solid $tableTdBorder;
       td {
-        border-left: 1px solid $tableTdBorder;
         padding: $padding;
         &:first-child {
           border-left-width: 0;
@@ -46,6 +45,5 @@ table {
 
   time {
     display: block;
-    padding-top: 5px;
   }
 }

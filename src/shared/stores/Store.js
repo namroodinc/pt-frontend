@@ -2,6 +2,8 @@ import { autorun, computed, observable } from "mobx";
 import { assign } from "lodash";
 import moment from "moment";
 
+import { currencySymbol } from "../constants/Index";
+
 class Store {
   @observable entry = {};
   @observable page = {};
@@ -72,15 +74,28 @@ class Store {
       });
   }
 
+  @computed get getAllCountries() {
+    const countries = this.publicationList
+      .map(publication => {
+        const {
+          fields
+        } = publication;
+        return fields.country;
+      });
+
+    return Array.from(new Set(countries)).sort((a, b) => b - a);
+  }
+
   @computed get getAllCirculationYears() {
-    const circulations = this.publicationList.map((publication, i) => {
-      const {
-        fields
-      } = publication;
-      const { circulationHistroy } = fields;
-      return circulationHistroy
-        .map(item => item.year);
-    });
+    const circulations = this.publicationList
+      .map((publication, i) => {
+        const {
+          fields
+        } = publication;
+        const { circulationHistroy } = fields;
+        return circulationHistroy
+          .map(item => item.year);
+      });
 
     const flattenedArray = [].concat(...circulations);
 
@@ -258,12 +273,51 @@ class Store {
         })
       });
   }
+
   // Circulations for a single entryId
 
   // All alexa rankings by country
 
   // All prices by country
   @computed get getAllPricesByCountry() {
+    const getAllRatings = this.getAllCountries
+      .map(country => {
+        const publicationList = this.publicationList
+          .filter(publication => publication.fields.country === country)
+          .map(publication => {
+            const { fields, sys } = publication;
+            const { avatar, name, publicationPrice, twitterAccounts } = fields;
+            const { id } = sys;
+            const { currency, data, timestamp } = publicationPrice[publicationPrice.length - 1];
+            const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+
+            return data
+              .map(price => assign({}, price, {
+                assetUrl: assetIdIndex.fields.file.url,
+                currency,
+                fill: `#${twitterAccounts[0].backgroundColor}`,
+                id,
+                price: price.price === 0 ? 0 : price.price.toFixed(2),
+                publication: name,
+                symbol: currencySymbol[currency],
+                timestamp
+              }))
+          })
+          .filter(priceList => priceList.length > 0);
+
+        const pricesArray = Array
+          .from(new Set([]
+            .concat
+            .apply([], publicationList)))
+          .sort((a, b) => b.price - a.price);
+
+        return {
+          country,
+          pricesArray
+        }
+      });
+
+    return getAllRatings;
   }
 
   // All complaints by country (currently only UK)
@@ -271,20 +325,6 @@ class Store {
   }
 
   @computed get getBrandColor() {
-    // const {
-    //   independentPressStandardsOrganisation,
-    //   pressComplaints
-    // } = this.entry.fields;
-    //
-    // const complaints = [];
-    // if (pressComplaints.data !== undefined) {
-    //   complaints.push(pressComplaints.data);
-    // }
-    // if (independentPressStandardsOrganisation.data !== undefined) {
-    //   complaints.push(independentPressStandardsOrganisation.data);
-    // }
-    //
-    // return complaints;
   }
 
   @computed get getPublicationName() {
@@ -318,13 +358,6 @@ class Store {
     const {
       publicationPrice
     } = this.entry.fields;
-
-    const currencySymbol = {
-      AUD: '$',
-      EUR: '€',
-      GBP: '£',
-      USD: '$'
-    };
 
     const price = publicationPrice[publicationPrice.length - 1];
     const { currency, data } = price;
