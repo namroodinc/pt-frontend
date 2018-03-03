@@ -9,7 +9,6 @@ table {
 
   thead {
     tr {
-      border-bottom: 1px solid $tableThBorder;
       th {
         color: $primaryColor;
         font-size: 16px;
@@ -22,6 +21,7 @@ table {
   tbody {
     tr {
       border-bottom: 1px solid $tableTdBorder;
+
       td {
         padding: $padding;
         &:first-child {

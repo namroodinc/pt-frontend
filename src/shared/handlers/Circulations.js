@@ -108,9 +108,12 @@ class Circulations extends React.Component {
               Filter circulations by year
             </InputLabel>
             <Select
-              value={year}
-              onChange={this.handleChange}
+              inputProps={{
+                color: 'primary'
+              }}
               name="Year"
+              onChange={this.handleChange}
+              value={year}
             >
               {allYears.map((year, i) =>
                 <MenuItem

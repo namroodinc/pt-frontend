@@ -113,7 +113,7 @@ class Prices extends React.Component {
                           Newspaper/Magazine
                         </TableCell>
                         <TableCell>
-                          Last updated
+                          Price last updated
                         </TableCell>
                         <TableCell>
                           Publication
@@ -172,7 +172,7 @@ class Prices extends React.Component {
                                 className={classes.avatar}
                                 src={paper.assetUrl}
                               />
-                              {paper.name}
+                              {paper.publication}
                             </Link>
                           </TableCell>
                         </TableRow>

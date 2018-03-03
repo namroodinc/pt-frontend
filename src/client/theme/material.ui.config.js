@@ -55,6 +55,16 @@ export default {
         padding: `0 0 10px 0`
       }
     },
+    MuiInput: {
+      underline: {
+        '&:after': {
+          backgroundColor: primaryColor
+        },
+        '&:before': {
+          backgroundColor: primaryColor
+        }
+      }
+    },
     MuiList: {
       padding: {
         paddingBottom: 0,
@@ -88,7 +98,8 @@ export default {
       rootPrimary: {
         backgroundColor: tabUnselected,
         color: primaryColor,
-        minWidth: 40
+        minWidth: 40,
+        maxWidth: 'initial'
       },
       rootPrimarySelected: {
         backgroundColor: primaryColor,
@@ -115,9 +126,10 @@ export default {
         }
       },
       typeHead: {
+        borderColor: primaryColor,
         color: primaryColor,
         fontFamily: bodyFont,
-        fontSize: 18,
+        fontSize: 20,
         fontWeight: 700,
         padding: 10
       },

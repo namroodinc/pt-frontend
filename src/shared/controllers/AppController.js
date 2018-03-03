@@ -2,8 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import { Header } from "../components/Index";
-import { Circulations, Home, Page, Prices, Publication, Ratings } from "../handlers/Index";
-import { CIRCULATIONS_ENTRY_ID, PRICES_ENTRY_ID, RATINGS_ENTRY_ID } from "../utils/config";
+import { Circulations, Complaints, Home, Page, Prices, Publication, Ratings } from "../handlers/Index";
+import { CIRCULATIONS_ENTRY_ID, PRESS_COMPLAINTS_ID, PRICES_ENTRY_ID, RATINGS_ENTRY_ID } from "../utils/config";
 
 export default class AppController extends React.Component {
   render() {
@@ -27,6 +27,11 @@ export default class AppController extends React.Component {
             exact
             path="/ratings"
             component={() => <Ratings pageId={RATINGS_ENTRY_ID} />}
+          />
+          <Route
+            exact
+            path="/complaints"
+            component={() => <Complaints pageId={PRESS_COMPLAINTS_ID} />}
           />
           <Route
             exact

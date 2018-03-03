@@ -26,7 +26,6 @@ const styles = theme => ({
     width: 20
   },
   centerAlign: {
-    padding: '0 20px',
     textAlign: 'center'
   },
   formControl: {
