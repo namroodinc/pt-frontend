@@ -79,10 +79,10 @@ export default {
       },
       rounded: {
         borderRadius: 0
-      },
-      shadow2: {
-        boxShadow: `0 0 0 transparent`
-      }
+      }// ,
+      // shadow2: {
+      //   boxShadow: `0 0 0 transparent`
+      // }
     },
     MuiPopover: {
       paper: {
@@ -95,13 +95,13 @@ export default {
       }
     },
     MuiTab: {
-      rootPrimary: {
+      textColorPrimary: {
         backgroundColor: tabUnselected,
         color: primaryColor,
         minWidth: 40,
         maxWidth: 'initial'
       },
-      rootPrimarySelected: {
+      textColorPrimarySelected: {
         backgroundColor: primaryColor,
         color: white
       },
@@ -119,13 +119,13 @@ export default {
       }
     },
     MuiTableCell: {
-      paddingDefault: {
-        padding: '10px 10px 10px 0',
-        '&:last-child': {
-          paddingRight: 0
-        }
-      },
-      typeHead: {
+      // paddingDefault: {
+      //   padding: '10px 10px 10px 0',
+      //   '&:last-child': {
+      //     paddingRight: 0
+      //   }
+      // },
+      head: {
         borderColor: primaryColor,
         color: primaryColor,
         fontFamily: bodyFont,
@@ -133,7 +133,7 @@ export default {
         fontWeight: 700,
         padding: 10
       },
-      typeBody: {
+      body: {
         fontSize: 16
       }
     }
