@@ -27,7 +27,7 @@ class Prices extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'Independent Press Standards Organisation'
+      value: 'all'
     }
   }
 
@@ -78,12 +78,16 @@ class Prices extends React.Component {
               centered
             >
               <Tab
+                label="All Regulators"
+                value="all"
+              />
+              <Tab
                 label="Independent Press Standards Organisation"
-                value="Independent Press Standards Organisation"
+                value="ipso"
               />
               <Tab
                 label="Press Complaints Commission"
-                value="Press Complaints Commission"
+                value="pcc"
               />
             </Tabs>
           </div>
