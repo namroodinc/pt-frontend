@@ -1,5 +1,5 @@
 header {
-  background-color: $white;
+  background-color: $black;
   box-sizing: border-box;
   box-shadow: 0 0 10px -5px $boxShadowColor;
   display: block;
@@ -21,7 +21,7 @@ header {
       padding-right: 20px;
       text-transform: uppercase;
       & > a {
-        color: $black;
+        color: $white;
       }
     }
 
@@ -30,7 +30,7 @@ header {
       padding-left: 20px;
       text-align: right;
       & > a {
-        color: $black;
+        color: $white;
         font-size: 16px;
         padding-right: 20px;
         &:last-child {

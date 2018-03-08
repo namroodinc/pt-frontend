@@ -1,5 +1,7 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
+import { Logo } from "./Icons/Index";
 
 export default class Header extends React.Component {
   render() {
@@ -16,7 +18,9 @@ export default class Header extends React.Component {
             <Link
               to="/"
             >
-              PRESS TORCH
+              <Logo
+                color="#FFFFFF"
+              />
             </Link>
           </div>
 
