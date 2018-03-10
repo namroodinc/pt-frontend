@@ -18,9 +18,7 @@ export default class Header extends React.Component {
             <Link
               to="/"
             >
-              <Logo
-                color="#FFFFFF"
-              />
+              <Logo />
             </Link>
           </div>
 

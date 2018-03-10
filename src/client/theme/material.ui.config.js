@@ -55,6 +55,12 @@ export default {
         padding: `0 0 10px 0`
       }
     },
+    MuiGrid: {
+      typeContainer: {
+        paddingBottom: 20,
+        paddingTop: 20
+      }
+    },
     MuiInput: {
       underline: {
         '&:after': {
@@ -120,11 +126,16 @@ export default {
         borderColor: primaryColor,
         color: primaryColor,
         fontFamily: bodyFont,
-        fontSize: 20,
-        fontWeight: 700
+        fontSize: '1em',
+        fontWeight: 700,
+        padding: 10
       },
       body: {
-        fontSize: 16
+        fontSize: '1em',
+        padding: 10
+      },
+      numeric: {
+        textAlign: 'center'
       }
     }
   }

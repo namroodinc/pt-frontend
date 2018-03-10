@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class Logo extends React.Component {
   render() {
-    const { color, height, width } = this.props;
+    const { color, width } = this.props;
 
     return (
       <svg
@@ -58,7 +58,7 @@ class Logo extends React.Component {
 }
 
 Logo.defaultProps = {
-  color: '#000000',
+  color: '#FFFFFF',
   width: '100%'
 }
 

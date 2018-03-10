@@ -2,10 +2,10 @@ import React from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import Tabs, { Tab } from "material-ui/Tabs";
-// import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
-// import { Link } from "react-router-dom";
-// import Avatar from 'material-ui/Avatar';
+import Grid from "material-ui/Grid";
+import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
+import { Link } from "react-router-dom";
+import Avatar from 'material-ui/Avatar';
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -24,80 +24,199 @@ const styles = theme => ({
 
 @observer
 class Prices extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 'all'
-    }
-  }
-
   componentWillMount() {
     const { pageId } = this.props;
     Actions.getPageWithPublicationList(pageId);
   }
 
-  handleChange = (event, value) => {
-    console.log(value)
-    this.setState({
-      value
-    });
-  };
-
   render() {
     if (Store.isLoading()) return <Loading />;
-    // const { classes } = this.props;
+    const { classes } = this.props;
 
-    const { bodyCopy, title } = Store.retrievePage();
-    // const getAllCountries = Store.getAllCountries;
+    const {
+      bodyCopy,
+      title
+    } = Store.retrievePage();
+
+    const getAllComplaints = Store.getAllComplaints;
+    console.log(getAllComplaints);
 
     return (
       <div
         className="container"
       >
 
-        <div
-          className="container__narrow"
+        <Grid
+          container
+          spacing={24}
         >
-          <Banner
-            title={title}
-            description={bodyCopy}
-          />
-        </div>
 
-        <div
-          className="container--full-width"
-        >
-          <div
-            className="container__tabs"
+          <Grid
+            item
+            md={8}
+            xs={12}
           >
-            <Tabs
-              value={this.state.value}
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab
-                label="All Regulators"
-                value="all"
-              />
-              <Tab
-                label="Independent Press Standards Organisation"
-                value="ipso"
-              />
-              <Tab
-                label="Press Complaints Commission"
-                value="pcc"
-              />
-            </Tabs>
-          </div>
-        </div>
 
-        <div
-          className="container"
-        >
-          Table goes here
-        </div>
+            <Banner
+              title={title}
+              description={bodyCopy}
+            />
+
+            <div
+              className="table-wrapper"
+            >
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      Publication
+                    </TableCell>
+                    <TableCell
+                      numeric
+                    >
+                      Total
+                    </TableCell>
+                    <TableCell
+                      numeric
+                    >
+                      Resolved
+                    </TableCell>
+                    <TableCell
+                      numeric
+                    >
+                      Upheld
+                    </TableCell>
+                    <TableCell
+                      numeric
+                    >
+                      Sufficient<br/>
+                      Remedial Action
+                    </TableCell>
+                    <TableCell
+                      numeric
+                    >
+                      No Finding
+                    </TableCell>
+                    <TableCell
+                      numeric
+                    >
+                      Not Upheld
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {getAllComplaints.map((paper, i) =>
+                    <TableRow
+                      key={i}
+                    >
+                      <TableCell>
+                        <Link
+                          style={{
+                            color: paper.fill,
+                            display: 'block',
+                            lineHeight: '1.5em',
+                            overflow: 'hidden'
+                          }}
+                          to={`/publication/${paper.id}`}
+                        >
+                          <Avatar
+                            alt={paper.name}
+                            className={classes.avatar}
+                            src={paper.assetUrl}
+                          />
+                          {paper.name}
+                        </Link>
+                      </TableCell>
+                      <TableCell
+                        numeric
+                      >
+                        <span
+                          style={{
+                            color: paper.fill,
+                            display: 'block',
+                            fontWeight: 700
+                          }}
+                        >
+                          {paper.complaints.Total}
+                        </span>
+                      </TableCell>
+                      <TableCell
+                        numeric
+                      >
+                        <span
+                          style={{
+                            color: paper.fill,
+                            display: 'block'
+                          }}
+                        >
+                          {paper.complaints.Resolved}
+                        </span>
+                      </TableCell>
+                      <TableCell
+                        numeric
+                      >
+                        <span
+                          style={{
+                            color: paper.fill,
+                            display: 'block'
+                          }}
+                        >
+                          {paper.complaints.Upheld}
+                        </span>
+                      </TableCell>
+                      <TableCell
+                        numeric
+                      >
+                        <span
+                          style={{
+                            color: paper.fill,
+                            display: 'block'
+                          }}
+                        >
+                          {paper.complaints['Sufficient Remedial Action']}
+                        </span>
+                      </TableCell>
+                      <TableCell
+                        numeric
+                      >
+                        <span
+                          style={{
+                            color: paper.fill,
+                            display: 'block'
+                          }}
+                        >
+                          {paper.complaints['No finding']}
+                        </span>
+                      </TableCell>
+                      <TableCell
+                        numeric
+                      >
+                        <span
+                          style={{
+                            color: paper.fill,
+                            display: 'block'
+                          }}
+                        >
+                          {paper.complaints['Not Upheld']}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
+
+          </Grid>
+
+          <Grid
+            item
+            md={4}
+            xs={12}
+          >
+            Sidebar component to go here
+          </Grid>
+
+        </Grid>
 
       </div>
     )

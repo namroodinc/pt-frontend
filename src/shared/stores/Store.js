@@ -1,5 +1,5 @@
 import { autorun, computed, observable } from "mobx";
-import { assign } from "lodash";
+import _, { assign } from "lodash";
 import moment from "moment";
 
 import { currencySymbol } from "../constants/Index";
@@ -321,7 +321,60 @@ class Store {
   }
 
   // All complaints by country (currently only UK)
-  @computed get getAllComplaintsByCountry() {
+  @computed get getAllComplaints() {
+    return this.publicationList
+      .filter(publication => {
+        const {
+          independentPressStandardsOrganisation,
+          pressComplaints
+        } = publication.fields;
+
+        return !_.isEmpty(independentPressStandardsOrganisation) || !_.isEmpty(pressComplaints)
+      })
+      .map((publication, i) => {
+        const {
+          fields,
+          sys
+        } = publication;
+
+        const {
+          avatar,
+          name,
+          independentPressStandardsOrganisation,
+          pressComplaints,
+          twitterAccounts
+        } = fields;
+        const { id } = sys;
+        const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+
+        let allComplaints = [];
+        if (!_.isEmpty(independentPressStandardsOrganisation)) {
+          allComplaints.push(independentPressStandardsOrganisation.data);
+        }
+        if (!_.isEmpty(pressComplaints)) {
+          allComplaints.push(pressComplaints.data);
+        }
+
+        const complaintsKeys = Object.keys(allComplaints[0]);
+        const complaints = _.fromPairs(complaintsKeys.map(complaint => {
+          const complaintTypeTotal = allComplaints
+            .reduce((count, object) => count + object[complaint], 0);
+          return [
+            `${complaint}`,
+            complaintTypeTotal
+          ];
+        }));
+
+        return {
+          assetUrl: assetIdIndex.fields.file.url,
+          fill: `#${twitterAccounts[0].backgroundColor}`,
+          id,
+          name,
+          complaints
+        }
+      })
+      .filter(publication => publication.complaints.Total > 0)
+      .sort((a, b) => b.complaints.Total - a.complaints.Total);
   }
 
   @computed get getBrandColor() {
