@@ -2,8 +2,6 @@ import React from "react";
 import { observer } from "mobx-react";
 import { Grid } from "material-ui";
 
-import { PublicationList } from "../components/Index";
-
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
@@ -28,13 +26,7 @@ class Page extends React.Component {
           spacing={24}
         >
 
-          <Grid
-            item
-            xs={12}
-            md={7}
-          >
-            <PublicationList />
-          </Grid>
+          asd
 
         </Grid>
 

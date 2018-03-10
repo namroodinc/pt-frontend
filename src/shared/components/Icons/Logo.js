@@ -7,9 +7,8 @@ class Logo extends React.Component {
 
     return (
       <svg
-        height={height}
         width={width}
-        viewBox={`0 0 85 15`}
+        viewBox={`0 0 85 14`}
       >
         <g>
           <path
@@ -60,8 +59,7 @@ class Logo extends React.Component {
 
 Logo.defaultProps = {
   color: '#000000',
-  height: 50,
-  width: 300
+  width: '100%'
 }
 
 Logo.propTypes = {

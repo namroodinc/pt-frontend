@@ -79,10 +79,7 @@ export default {
       },
       rounded: {
         borderRadius: 0
-      }// ,
-      // shadow2: {
-      //   boxShadow: `0 0 0 transparent`
-      // }
+      }
     },
     MuiPopover: {
       paper: {
@@ -119,19 +116,12 @@ export default {
       }
     },
     MuiTableCell: {
-      // paddingDefault: {
-      //   padding: '10px 10px 10px 0',
-      //   '&:last-child': {
-      //     paddingRight: 0
-      //   }
-      // },
       head: {
         borderColor: primaryColor,
         color: primaryColor,
         fontFamily: bodyFont,
         fontSize: 20,
-        fontWeight: 700,
-        padding: 10
+        fontWeight: 700
       },
       body: {
         fontSize: 16

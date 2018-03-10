@@ -13,7 +13,6 @@ table {
         color: $primaryColor;
         font-size: 16px;
         font-weight: 700;
-        padding: $padding;
       }
     }
   }
@@ -21,13 +20,6 @@ table {
   tbody {
     tr {
       border-bottom: 1px solid $tableTdBorder;
-
-      td {
-        padding: $padding;
-        &:first-child {
-          border-left-width: 0;
-        }
-      }
     }
   }
 
