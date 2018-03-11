@@ -1,3 +1,4 @@
+import Analytics from "./Analytics";
 import Circulations from "./Circulations";
 import Complaints from "./Complaints";
 import Home from "./Home";
@@ -7,6 +8,7 @@ import Publication from "./Publication";
 import Ratings from "./Ratings";
 
 export {
+  Analytics,
   Circulations,
   Complaints,
   Home,

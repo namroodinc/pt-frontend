@@ -44,17 +44,6 @@ a {
   text-decoration: none;
 }
 
-figure {
-  margin: 0;
-
-  figcaption {
-    display: block;
-    font-size: 11px;
-    padding-top: 5px;
-    text-align: left;
-  }
-}
-
 p {
   font-family: $bodyFont;
   font-size: 1em;
@@ -70,6 +59,6 @@ time {
   cursor: default;
   display: block;
   font-family: $primaryFont;
-  font-size: 0.9em;
+  font-size: 1em;
   text-transform: uppercase;
 }

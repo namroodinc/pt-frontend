@@ -59,6 +59,7 @@ module.exports = {
     extractSass,
     new webpack.EnvironmentPlugin([
       "NODE_ENV",
+      "ALEXA_ENTRY_ID",
       "CIRCULATIONS_ENTRY_ID",
       "CONTENT_DELIVERY_ACCESS_TOKEN",
       "CONTENT_PREVIEW_ACCESS_TOKEN",

@@ -6,6 +6,9 @@
     "NODE_ENV": {
       "required": true
     },
+    "ALEXA_ENTRY_ID": {
+      "required": true
+    },
     "CIRCULATIONS_ENTRY_ID": {
       "required": true
     },

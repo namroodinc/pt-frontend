@@ -64,7 +64,7 @@ Logo.defaultProps = {
 
 Logo.propTypes = {
   color: PropTypes.string,
-  size: PropTypes.number
+  width: PropTypes.number
 };
 
 export default Logo;

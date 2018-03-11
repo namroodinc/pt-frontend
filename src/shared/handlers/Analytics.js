@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 
 @observer
-class Complaints extends React.Component {
+class Analytics extends React.Component {
   componentWillMount() {
     const { pageId } = this.props;
     Actions.getPageWithPublicationList(pageId);
@@ -223,9 +223,9 @@ class Complaints extends React.Component {
   }
 }
 
-Complaints.propTypes = {
+Analytics.propTypes = {
   classes: PropTypes.object.isRequired,
   pageId: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(Complaints);
+export default withStyles(styles)(Analytics);

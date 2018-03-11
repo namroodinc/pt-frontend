@@ -8,7 +8,6 @@ $padding: 10px;
 table {
   border-collapse: collapse;
   font-family: $bodyFont;
-  font-size: 14px;
   text-align: left;
   width: 100%;
 
@@ -16,7 +15,6 @@ table {
     tr {
       th {
         color: $primaryColor;
-        font-size: 16px;
         font-weight: 700;
       }
     }
