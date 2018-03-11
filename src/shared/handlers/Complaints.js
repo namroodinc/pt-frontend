@@ -2,7 +2,6 @@ import React from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import Grid from "material-ui/Grid";
 import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
 import { Link } from "react-router-dom";
 import Avatar from 'material-ui/Avatar';
@@ -11,14 +10,11 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 import { Banner, Loading } from "../components/Index";
-// import { Time } from "../components/Data/Index";
 
 const styles = theme => ({
   avatar: {
-    float: 'left',
-    height: 20,
-    marginRight: 10,
-    width: 20
+    height: 40,
+    width: 40
   }
 });
 
@@ -39,28 +35,87 @@ class Complaints extends React.Component {
     } = Store.retrievePage();
 
     const getAllComplaints = Store.getAllComplaints;
-    console.log(getAllComplaints);
 
     return (
       <div
         className="container"
       >
 
-        <Grid
-          container
-          spacing={24}
+        <div
+          className="content"
         >
 
-          <Grid
-            item
-            md={8}
-            xs={12}
+          <div
+            className="content__wrapper"
           >
-
             <Banner
               title={title}
               description={bodyCopy}
             />
+          </div>
+
+          <div
+            className="content__wrapper content__wrapper--no-padding-left-right"
+          >
+
+            <div
+              className="metric-list"
+            >
+              {getAllComplaints.map((paper, i) =>
+                <div
+                  className="metric-list__item"
+                  key={i}
+                >
+                  <div
+                    className="metric-list__item__left"
+                  >
+                    <div
+                      className="metric-list__item__left__avatar"
+                    >
+                      <Link
+                        to={`/publication/${paper.id}`}
+                      >
+                        <Avatar
+                          alt={paper.name}
+                          className={classes.avatar}
+                          src={paper.assetUrl}
+                        />
+                      </Link>
+                    </div>
+                    <div
+                      className="metric-list__item__left__name"
+                    >
+                      <Link
+                        style={{
+                          color: paper.fill
+                        }}
+                        to={`/publication/${paper.id}`}
+                      >
+                        {paper.name}
+                      </Link>
+                      <a
+                        className="website"
+                        href={paper.websiteUrl}
+                        target="_blank"
+                      >
+                        {paper.websiteText}
+                      </a>
+                    </div>
+                  </div>
+                  <div
+                    className="metric-list__item__right"
+                  >
+                    asd
+                  </div>
+                </div>
+              )}
+            </div>
+
+          </div>
+
+          <div
+            className="content__wrapper content__wrapper--no-padding-left-right"
+          >
 
             <div
               className="table-wrapper"
@@ -206,17 +261,9 @@ class Complaints extends React.Component {
               </Table>
             </div>
 
-          </Grid>
+          </div>
 
-          <Grid
-            item
-            md={4}
-            xs={12}
-          >
-            Sidebar component to go here
-          </Grid>
-
-        </Grid>
+        </div>
 
       </div>
     )

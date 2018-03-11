@@ -20,24 +20,6 @@ table {
     }
   }
 
-  tbody {
-    tr {
-      border-bottom: 1px solid $tableTdBorder;
-    }
-  }
-
-  tr {
-    td,
-    th {
-      &:first-child {
-        padding-left: 0;
-      }
-      &:last-child {
-        padding-right: 0;
-      }
-    }
-  }
-
   time {
     display: block;
   }

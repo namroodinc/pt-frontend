@@ -16,9 +16,9 @@ class Banner extends React.Component {
         <div
           className="banner__content"
         >
-          <h1>
+          <h2>
             {bannerTitle}
-          </h1>
+          </h2>
         </div>
         <div
           className="banner__content"

@@ -1,6 +1,7 @@
 import { autorun, computed, observable } from "mobx";
 import _, { assign } from "lodash";
 import moment from "moment";
+import parseDomain from "parse-domain";
 
 import { currencySymbol } from "../constants/Index";
 
@@ -320,7 +321,6 @@ class Store {
     return getAllRatings;
   }
 
-  // All complaints by country (currently only UK)
   @computed get getAllComplaints() {
     return this.publicationList
       .filter(publication => {
@@ -342,7 +342,8 @@ class Store {
           name,
           independentPressStandardsOrganisation,
           pressComplaints,
-          twitterAccounts
+          twitterAccounts,
+          website
         } = fields;
         const { id } = sys;
         const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
@@ -365,12 +366,17 @@ class Store {
           ];
         }));
 
+        const websiteText = parseDomain(website);
+        const websiteUrl = website;
+
         return {
           assetUrl: assetIdIndex.fields.file.url,
+          complaints,
           fill: `#${twitterAccounts[0].backgroundColor}`,
           id,
           name,
-          complaints
+          websiteText: `${websiteText.domain}.${websiteText.tld}`,
+          websiteUrl
         }
       })
       .filter(publication => publication.complaints.Total > 0)
@@ -380,50 +386,14 @@ class Store {
   @computed get getBrandColor() {
   }
 
-  @computed get getPublicationName() {
-    return this.entry.fields.name;
-  }
-
   @computed get getEntryComplaints() {
-    const {
-      independentPressStandardsOrganisation,
-      pressComplaints
-    } = this.entry.fields;
-
-    const complaints = [];
-    if (pressComplaints.data !== undefined) {
-      complaints.push({
-        data: pressComplaints.data,
-        source: 'pcc'
-      });
-    }
-    if (independentPressStandardsOrganisation.data !== undefined) {
-      complaints.push({
-        data: independentPressStandardsOrganisation.data,
-        source: 'ipso'
-      });
-    }
-
-    return complaints;
   }
 
   @computed get getEntryPrices() {
-    const {
-      publicationPrice
-    } = this.entry.fields;
+  }
 
-    const price = publicationPrice[publicationPrice.length - 1];
-    const { currency, data } = price;
-    const prices = data.map(price => {
-      const actualPrice = price.price === 0 ? 'Free' : `${currencySymbol[currency]}${price.price.toFixed(2)}`;
-      return `${price.name}, ${actualPrice}`;
-    });
-    const priceLastUpdated = price.timestamp;
-
-    return {
-      prices,
-      priceLastUpdated
-    }
+  @computed get getPublicationName() {
+    return this.entry.fields.name;
   }
 }
 

@@ -1,0 +1,72 @@
+.metric-list {
+
+  &__item {
+    &:before {
+      background-color: $secondaryBackgroundColor;
+      top: 0;
+      content: "";
+      height: 2px;
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+    display: block;
+    overflow: hidden;
+    padding: 17px 0 15px;
+    position: relative;
+
+    &__left {
+      &:before {
+        background-color: $primaryColor;
+        top: -16px;
+        content: "";
+        height: 1px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+      }
+
+      align-items: center;
+      float: left;
+      display: flex;
+      justify-content: center;
+      padding-left: 20px;
+      position: relative;
+
+      &__avatar {
+        margin-right: 20px;
+
+        a {
+          img {
+            transition: all 0.3s ease-in-out;
+          }
+
+          &:hover {
+            img {
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+
+      &__name {
+        font-size: 0.8em;
+        font-weight: 700;
+
+        a {
+          &.website {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &__right {
+      align-items: center;
+      float: right;
+      display: flex;
+      justify-content: center;
+      padding-right: 20px;
+    }
+  }
+}

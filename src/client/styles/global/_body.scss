@@ -10,7 +10,7 @@ body {
 }
 
 .wrapper {
-  background-color: $white;
+  background-color: $secondaryBackgroundColor;
 }
 
 .container {
@@ -42,6 +42,11 @@ a {
   color: $linkColor;
   font-weight: 600;
   text-decoration: none;
+
+  &.website {
+    color: $secondaryLinkColor;
+    font-weight: 500;
+  }
 }
 
 p {

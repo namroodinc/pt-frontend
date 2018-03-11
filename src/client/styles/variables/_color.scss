@@ -1,10 +1,13 @@
 $backgroundColor: #262626;
+$secondaryBackgroundColor: #F4F7F6;
 $primaryColor: #026FC9;
 $secondaryColor: #000000;
-$borderColor: #D1D3D4;
+$contentBackgroundColor: #FCFCFC;
+$borderColor: #E6EAEA;
 $headingColor: #0F0F0F;
 $boxShadowColor: #0F0F0F;
 $linkColor: #026FC9;
+$secondaryLinkColor: #49C5B6;
 $textColor: #333333;
 $textLinkColor: #3C3B3B;
 $subTextColor: #999999;
@@ -17,12 +20,15 @@ $white: #FFFFFF;
 
 :export {
   backgroundColor: $backgroundColor;
+  secondaryBackgroundColor: $secondaryBackgroundColor;
   primaryColor: $primaryColor;
   secondaryColor: $secondaryColor;
+  contentBackgroundColor: $contentBackgroundColor;
   borderColor: $borderColor;
   headingColor: $headingColor;
   boxShadowColor: $boxShadowColor;
   linkColor: $linkColor;
+  secondaryLinkColor: $secondaryLinkColor;
   textColor: $textColor;
   textLinkColor: $textLinkColor;
   subTextColor: $subTextColor;

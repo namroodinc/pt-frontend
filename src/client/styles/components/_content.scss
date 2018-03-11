@@ -1,0 +1,20 @@
+$contentWidth: ($fullContainerWidth / 2) * 1.5;
+
+.content {
+  box-sizing: border-box;
+  display: block;
+  margin: auto;
+  width: 100%;
+  max-width: $contentWidth;
+
+  &__wrapper {
+    background-color: $contentBackgroundColor;
+    margin-bottom: 2px;
+    padding: 30px;
+
+    &--no-padding-left-right {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

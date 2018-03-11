@@ -4,7 +4,15 @@
 import grey from "material-ui/colors/grey";
 
 import Styles from "../styles/app.scss";
-const { bodyFont, primaryColor, borderColor, letterSpacing, tabUnselected, white } = Styles;
+const {
+  bodyFont,
+  primaryColor,
+  borderColor,
+  letterSpacing,
+  secondaryBackgroundColor,
+  tabUnselected,
+  white
+} = Styles;
 
 export default {
   palette: {
@@ -136,6 +144,10 @@ export default {
       },
       numeric: {
         textAlign: 'center'
+      },
+      root: {
+        borderBottomColor: secondaryBackgroundColor,
+        borderBottomWidth: 2
       }
     }
   }

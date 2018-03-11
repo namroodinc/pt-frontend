@@ -58,13 +58,13 @@ class Logo extends React.Component {
 }
 
 Logo.defaultProps = {
-  color: '#FFFFFF',
+  color: '#026FC9',
   width: '100%'
 }
 
 Logo.propTypes = {
   color: PropTypes.string,
-  width: PropTypes.number
+  width: PropTypes.string
 };
 
 export default Logo;
