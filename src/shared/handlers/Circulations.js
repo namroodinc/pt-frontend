@@ -1,15 +1,13 @@
 import React from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
-import Avatar from "material-ui/Avatar";
-import { MenuItem } from "material-ui/Menu";
+import { withStyles } from "material-ui/styles";
+import { Avatar, Grid, IconButton, Select } from "material-ui";
 import { FormControl } from "material-ui/Form";
 import { InputLabel } from 'material-ui/Input';
-import Select from "material-ui/Select";
+import { MenuItem } from "material-ui/Menu";
 import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
-import IconButton from "material-ui/IconButton";
 import PlayArrow from "material-ui-icons/PlayArrow";
 import classNames from "classnames";
 
@@ -87,14 +85,108 @@ class Circulations extends React.Component {
         className="container"
       >
 
-        <div
-          className="container__narrow"
+        <Grid
+          container
+          spacing={24}
         >
-          <Banner
-            title={title}
-            description={bodyCopy}
-          />
-        </div>
+
+          <Grid
+            item
+            md={8}
+            xs={12}
+          >
+            <Banner
+              title={title}
+              description={bodyCopy}
+            />
+
+            <div
+              className="table-wrapper"
+            >
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      Publication
+                    </TableCell>
+                    <TableCell
+                      className={classes.centerAlign}
+                    >
+                      <IconButton
+                        aria-label="Previous Year"
+                        className={classNames(classes.iconButton)}
+                        disabled={disableFirst}
+                        onClick={this.handleGetPreviousYear}
+                      >
+                        <PlayArrow
+                          className={classNames(classes.iconButtonRotate, classes.iconButtonIcon)}
+                        />
+                      </IconButton>
+                      Year
+                      <IconButton
+                        aria-label="Next Year"
+                        className={classNames(classes.iconButton)}
+                        disabled={disableLast}
+                        onClick={this.handleGetNextYear}
+                      >
+                        <PlayArrow
+                          className={classNames(classes.iconButtonIcon)}
+                        />
+                      </IconButton>
+                    </TableCell>
+                    <TableCell
+                      numeric
+                    >
+                      Circulation
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map((c, i) =>
+                    <TableRow
+                      key={i}
+                    >
+                      <TableCell>
+                        <Link
+                          style={{
+                            color: c.fill
+                          }}
+                          to={`/publication/${c.id}`}
+                        >
+                          <Avatar
+                            alt={c.name}
+                            className={classes.avatar}
+                            src={c.assetUrl}
+                          />
+                          {c.name}
+                        </Link>
+                      </TableCell>
+                      <TableCell
+                        className={classes.centerAlign}
+                      >
+                        {c.circulations[0].date.getFullYear()}
+                      </TableCell>
+                      <TableCell
+                        numeric
+                      >
+                        {c.circulations[0].value.toLocaleString()}
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </TableBody>
+              </Table>
+            </div>
+          </Grid>
+
+          <Grid
+            item
+            md={4}
+            xs={12}
+          >
+            Sidebar component to go here
+          </Grid>
+
+        </Grid>
 
         <div
           className="container__narrow"
@@ -125,85 +217,6 @@ class Circulations extends React.Component {
               )}
             </Select>
           </FormControl>
-        </div>
-
-        <div
-          className="container__narrow"
-        >
-
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>
-                  Publication
-                </TableCell>
-                <TableCell
-                  className={classes.centerAlign}
-                >
-                  <IconButton
-                    aria-label="Previous Year"
-                    className={classNames(classes.iconButton)}
-                    disabled={disableFirst}
-                    onClick={this.handleGetPreviousYear}
-                  >
-                    <PlayArrow
-                      className={classNames(classes.iconButtonRotate, classes.iconButtonIcon)}
-                    />
-                  </IconButton>
-                  Year
-                  <IconButton
-                    aria-label="Next Year"
-                    className={classNames(classes.iconButton)}
-                    disabled={disableLast}
-                    onClick={this.handleGetNextYear}
-                  >
-                    <PlayArrow
-                      className={classNames(classes.iconButtonIcon)}
-                    />
-                  </IconButton>
-                </TableCell>
-                <TableCell
-                  numeric
-                >
-                  Circulation
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((c, i) =>
-                <TableRow
-                  key={i}
-                >
-                  <TableCell>
-                    <Link
-                      style={{
-                        color: c.fill
-                      }}
-                      to={`/publication/${c.id}`}
-                    >
-                      <Avatar
-                        alt={c.name}
-                        className={classes.avatar}
-                        src={c.assetUrl}
-                      />
-                      {c.name}
-                    </Link>
-                  </TableCell>
-                  <TableCell
-                    className={classes.centerAlign}
-                  >
-                    {c.circulations[0].date.getFullYear()}
-                  </TableCell>
-                  <TableCell
-                    numeric
-                  >
-                    {c.circulations[0].value.toLocaleString()}
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-
         </div>
 
       </div>
