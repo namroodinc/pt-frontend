@@ -1,0 +1,23 @@
+.publication-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  &__item {
+    margin: 15px;
+    width: 200px;
+
+    &__banner {
+
+      a {
+        display: block;
+        width: 100%;
+
+        img {
+          height: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -46,26 +46,13 @@ class Store {
         const { id, updatedAt } = sys;
         const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
 
-        const filteredRatings = overallRating.filter(r => r.ratings.total !== null);
-        let currentRating = 0;
-        if (filteredRatings.length > 0) {
-          currentRating = filteredRatings[filteredRatings.length - 1].ratings.total.toFixed(2);
-        }
-        let previousRating = 0;
-        if (filteredRatings.length > 1) {
-          previousRating = filteredRatings[filteredRatings.length - 2].ratings.total.toFixed(2);
-        }
-        const ratingDiff = (currentRating - previousRating).toFixed(2);
-
         return {
           assetUrl: assetIdIndex.fields.file.url,
-          currentRating,
+          // currentRating,
           fill: `#${twitterAccounts[0].backgroundColor}`,
           id,
           name,
           overallRating,
-          previousRating,
-          ratingDiff,
           updatedAt
         }
       }).sort((a, b) => {
