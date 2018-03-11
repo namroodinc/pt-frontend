@@ -1,9 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
-import { Link } from "react-router-dom";
 import Avatar from 'material-ui/Avatar';
 
 import Actions from "../actions/Actions";
@@ -58,6 +57,10 @@ class Complaints extends React.Component {
             className="content__wrapper content__wrapper--no-padding-left-right"
           >
 
+            <h4>
+              Publications
+            </h4>
+
             <div
               className="metric-list"
             >
@@ -105,160 +108,49 @@ class Complaints extends React.Component {
                   <div
                     className="metric-list__item__right"
                   >
-                    asd
+                    <div
+                      className="metric-list__item__right__grid"
+                    >
+                      <div
+                        className="metric-list__item__right__grid__item"
+                        data-label="Resolved"
+                      >
+                        {paper.complaints.Resolved}
+                      </div>
+                      <div
+                        className="metric-list__item__right__grid__item"
+                        data-label="Upheld"
+                      >
+                        {paper.complaints.Upheld}
+                      </div>
+                      <div
+                        className="metric-list__item__right__grid__item"
+                        data-label="Settlement"
+                      >
+                        {paper.complaints['Sufficient Remedial Action']}
+                      </div>
+                      <div
+                        className="metric-list__item__right__grid__item"
+                        data-label="No finding"
+                      >
+                        {paper.complaints['No finding']}
+                      </div>
+                      <div
+                        className="metric-list__item__right__grid__item"
+                        data-label="Not Upheld"
+                      >
+                        {paper.complaints['Not Upheld']}
+                      </div>
+                      <div
+                        className="metric-list__item__right__grid__item"
+                        data-label="Total"
+                      >
+                        {paper.complaints.Total}
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}
-            </div>
-
-          </div>
-
-          <div
-            className="content__wrapper content__wrapper--no-padding-left-right"
-          >
-
-            <div
-              className="table-wrapper"
-            >
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      Publication
-                    </TableCell>
-                    <TableCell
-                      numeric
-                    >
-                      Total
-                    </TableCell>
-                    <TableCell
-                      numeric
-                    >
-                      Resolved
-                    </TableCell>
-                    <TableCell
-                      numeric
-                    >
-                      Upheld
-                    </TableCell>
-                    <TableCell
-                      numeric
-                    >
-                      Sufficient<br/>
-                      Remedial Action
-                    </TableCell>
-                    <TableCell
-                      numeric
-                    >
-                      No Finding
-                    </TableCell>
-                    <TableCell
-                      numeric
-                    >
-                      Not Upheld
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {getAllComplaints.map((paper, i) =>
-                    <TableRow
-                      key={i}
-                    >
-                      <TableCell>
-                        <Link
-                          style={{
-                            color: paper.fill,
-                            display: 'block',
-                            lineHeight: '1.5em',
-                            overflow: 'hidden'
-                          }}
-                          to={`/publication/${paper.id}`}
-                        >
-                          <Avatar
-                            alt={paper.name}
-                            className={classes.avatar}
-                            src={paper.assetUrl}
-                          />
-                          {paper.name}
-                        </Link>
-                      </TableCell>
-                      <TableCell
-                        numeric
-                      >
-                        <span
-                          style={{
-                            color: paper.fill,
-                            display: 'block',
-                            fontWeight: 700
-                          }}
-                        >
-                          {paper.complaints.Total}
-                        </span>
-                      </TableCell>
-                      <TableCell
-                        numeric
-                      >
-                        <span
-                          style={{
-                            color: paper.fill,
-                            display: 'block'
-                          }}
-                        >
-                          {paper.complaints.Resolved}
-                        </span>
-                      </TableCell>
-                      <TableCell
-                        numeric
-                      >
-                        <span
-                          style={{
-                            color: paper.fill,
-                            display: 'block'
-                          }}
-                        >
-                          {paper.complaints.Upheld}
-                        </span>
-                      </TableCell>
-                      <TableCell
-                        numeric
-                      >
-                        <span
-                          style={{
-                            color: paper.fill,
-                            display: 'block'
-                          }}
-                        >
-                          {paper.complaints['Sufficient Remedial Action']}
-                        </span>
-                      </TableCell>
-                      <TableCell
-                        numeric
-                      >
-                        <span
-                          style={{
-                            color: paper.fill,
-                            display: 'block'
-                          }}
-                        >
-                          {paper.complaints['No finding']}
-                        </span>
-                      </TableCell>
-                      <TableCell
-                        numeric
-                      >
-                        <span
-                          style={{
-                            color: paper.fill,
-                            display: 'block'
-                          }}
-                        >
-                          {paper.complaints['Not Upheld']}
-                        </span>
-                      </TableCell>
-                    </TableRow>
-                  )}
-                </TableBody>
-              </Table>
             </div>
 
           </div>
