@@ -1,7 +1,11 @@
 $fullContainerWidth: 1200px;
+$tablet: ($fullContainerWidth / 2) * 1.5;
+$mobile: ($fullContainerWidth / 2);
 $gutterWidth: 15px;
 
 :export {
   fullContainerWidth: $fullContainerWidth;
+  tablet: $tablet;
+  mobile: $mobile;
   gutterWidth: $gutterWidth;
 }

@@ -18,6 +18,10 @@
     padding: 17px 0 15px;
     position: relative;
 
+    @media (max-width: $tablet) {
+      display: block;
+    }
+
     &__left {
       align-items: center;
       display: flex;
@@ -52,6 +56,10 @@
           }
         }
       }
+
+      @media (max-width: $tablet) {
+        padding-bottom: 20px;
+      }
     }
 
     &__right {
@@ -62,18 +70,38 @@
       &__grid {
         display: flex;
 
+        @media (max-width: $mobile) {
+          display: block;
+        }
+
         &__item {
           &:before {
             color: $subTextColor;
             content: attr(data-label);
             display: block;
             font-size: 0.6em;
-            padding-bottom: 3px;
             text-transform: uppercase;
           }
 
           flex-grow: 1;
+          font-size: 1em;
           text-align: center;
+
+          @media (max-width: $mobile) {
+            &:before {
+              display: inline-block;
+              font-size: 0.8em;
+              width: 50%;
+            }
+
+            border-bottom: 1px solid $secondaryBackgroundColor;
+            font-size: 0.8em;
+            text-align: left;
+
+            &:last-child {
+              border-bottom-width: 0;
+            }
+          }
         }
       }
     }
