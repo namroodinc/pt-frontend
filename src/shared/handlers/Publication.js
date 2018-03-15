@@ -9,7 +9,7 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 import { Loading, Rating } from "../components/Index";
-import { PaperCard, PressComplaint, Time } from "../components/Data/Index";
+import { PaperCard, Time } from "../components/Data/Index";
 
 @observer
 class Publication extends React.Component {
@@ -55,13 +55,6 @@ class Publication extends React.Component {
     const {
       updatedAt
     } = sys;
-
-    const {
-      prices,
-      priceLastUpdated
-    } = Store.getEntryPrices;
-
-    const complaints = Store.getEntryComplaints;
 
     const address = geocodeAddress.address_components.map(address => address.long_name);
     const alexa = siteRankings[siteRankings.length - 1];
@@ -118,16 +111,6 @@ class Publication extends React.Component {
                   </a>
                 }
               />
-
-              <PaperCard
-                title="Publication Price(s)"
-                list={prices}
-              >
-                <Time
-                  dateTime={priceLastUpdated}
-                  dateTimeFormat="[Updated:] MMM. DD, HH:mm"
-                />
-              </PaperCard>
 
             </Grid>
 
@@ -196,14 +179,6 @@ class Publication extends React.Component {
             </Grid>
 
           </Grid>
-
-          {complaints.length > 0 &&
-            <Paper>
-              <PressComplaint
-                data={complaints}
-              />
-            </Paper>
-          }
 
         </div>
 

@@ -42,13 +42,13 @@ class Store {
           sys
         } = publication;
 
-        const { avatar, name, overallRating, twitterAccounts } = fields;
+        const { avatar, name, featured, overallRating, twitterAccounts } = fields;
         const { id, updatedAt } = sys;
         const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
 
         return {
           assetUrl: assetIdIndex.fields.file.url,
-          // currentRating,
+          featured,
           fill: `#${twitterAccounts[0].backgroundColor}`,
           id,
           name,
@@ -60,6 +60,11 @@ class Store {
         const bOverallRating = b.overallRating[b.overallRating.length - 1].ratings.total;
         return bOverallRating - aOverallRating;
       });
+  }
+
+  @computed get retrieveFeaturedPublications() {
+    return this.retrievePublicationList
+      .filter(publication => publication.featured || publication.featured !== undefined);
   }
 
   @computed get getAllCountries() {

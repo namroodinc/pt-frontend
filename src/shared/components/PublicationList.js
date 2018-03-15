@@ -10,7 +10,7 @@ class PublicationList extends React.Component {
   render() {
     if (Store.isLoading()) return <Loading />;
 
-    const publicationList = Store.retrievePublicationList;
+    const publicationList = Store.retrieveFeaturedPublications;
 
     return (
       <div
