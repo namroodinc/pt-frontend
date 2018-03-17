@@ -81,8 +81,18 @@ export default {
     },
     MuiList: {
       padding: {
-        paddingBottom: 0,
+        backgroundColor: white,
+        paddingBottom: 15,
         paddingTop: 0
+      },
+      subheader: {
+        paddingTop: 5
+      }
+    },
+    MuiListItem: {
+      gutters: {
+        paddingBottom: 3,
+        paddingTop: 3
       }
     },
     MuiPaper: {

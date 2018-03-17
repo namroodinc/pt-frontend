@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { Grid } from "material-ui";
 
 import { Loading } from "../components/Index";
 import { PublicationListItem } from "../components/Data/Index";
@@ -16,12 +17,24 @@ class PublicationList extends React.Component {
       <div
         className="publication-list"
       >
-        {publicationList.map((publication, i) =>
-          <PublicationListItem
-            key={i}
-            data={publication}
-          />
-        )}
+        <Grid
+          container
+          spacing={24}
+        >
+          {publicationList.map((publication, i) =>
+            <Grid
+              key={i}
+              item
+              md={4}
+              sm={6}
+              xs={12}
+            >
+              <PublicationListItem
+                data={publication}
+              />
+            </Grid>
+          )}
+        </Grid>
       </div>
     );
   }

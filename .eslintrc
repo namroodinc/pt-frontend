@@ -9,6 +9,10 @@
         2
       ],
       "no-return-assign": 0,
+      "eqeqeq": [
+        0,
+        "always"
+      ],
       "prefer-reflect": [
         0,
         "always"

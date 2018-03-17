@@ -35,7 +35,7 @@ class Store {
 
   @computed get retrievePublicationList() {
     return this.publicationList
-      .filter(publication => publication.fields.overallRating.length > 0)
+      .filter(publication => publication.fields.overallRating.length > 1)
       .map((publication, i) => {
         const {
           fields,
@@ -46,25 +46,25 @@ class Store {
         const { id, updatedAt } = sys;
         const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
 
+        const currentRating = overallRating[0].ratings.total.toFixed(2);
+        const previousRating = overallRating[1].ratings.total.toFixed(2);
+
         return {
           assetUrl: assetIdIndex.fields.file.url,
+          currentRating,
           featured,
           fill: `#${twitterAccounts[0].backgroundColor}`,
           id,
           name,
-          overallRating,
+          previousRating,
           updatedAt
         }
-      }).sort((a, b) => {
-        const aOverallRating = a.overallRating[a.overallRating.length - 1].ratings.total;
-        const bOverallRating = b.overallRating[b.overallRating.length - 1].ratings.total;
-        return bOverallRating - aOverallRating;
-      });
+      }).sort((a, b) => b.currentRating - a.currentRating);
   }
 
   @computed get retrieveFeaturedPublications() {
     return this.retrievePublicationList
-      .filter(publication => publication.featured || publication.featured !== undefined);
+      .filter(publication => publication.featured && publication.featured !== undefined);
   }
 
   @computed get getAllCountries() {
@@ -265,6 +265,28 @@ class Store {
           ratings: last7Days
         })
       });
+  }
+
+  @computed get getTrendingTopicsNoPrej() {
+    let mergeTrends = [];
+    this.publicationList
+      .map(publication => {
+        const { articlesTags } = publication.fields;
+        const trends = articlesTags[articlesTags.length - 1].trends;
+
+        trends.map(t => {
+          const trendExists = mergeTrends.findIndex(trend => trend.trend == t.trend);
+          if (trendExists > 0) {
+            const currentCount = mergeTrends[trendExists].count;
+            mergeTrends[trendExists].count = currentCount + t.count
+          } else {
+            mergeTrends.push(t);
+          }
+        });
+      });
+    return mergeTrends
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 15);
   }
 
   // Circulations for a single entryId
