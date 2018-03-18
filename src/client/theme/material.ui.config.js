@@ -89,6 +89,12 @@ export default {
         paddingTop: 5
       }
     },
+    MuiListSubheader: {
+      root: {
+        alignItems: 'center',
+        display: 'flex'
+      }
+    },
     MuiListItem: {
       gutters: {
         paddingBottom: 3,

@@ -275,7 +275,7 @@ class Store {
         const trends = articlesTags[articlesTags.length - 1].trends;
 
         trends.map(t => {
-          const trendExists = mergeTrends.findIndex(trend => trend.trend == t.trend);
+          const trendExists = mergeTrends.findIndex(trend => trend.trend === t.trend);
           if (trendExists > 0) {
             const currentCount = mergeTrends[trendExists].count;
             mergeTrends[trendExists].count = currentCount + t.count
@@ -285,8 +285,7 @@ class Store {
         });
       });
     return mergeTrends
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 15);
+      .sort((a, b) => b.count - a.count);
   }
 
   // Circulations for a single entryId

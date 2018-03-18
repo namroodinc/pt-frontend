@@ -3,22 +3,18 @@ import PropTypes from "prop-types";
 
 class New extends React.Component {
   render() {
-    const { color, style, width } = this.props;
-
-    const setColor = color || '#026FC9';
-    const setWidth = width || 10;
-    const setHeight = setWidth;
+    const { color, height, style, width } = this.props;
 
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
-        height={setHeight}
+        height={height}
         style={style}
-        width={setWidth}
+        width={width}
       >
         <circle
-          fill={setColor}
+          fill={color}
           cx="50"
           cy="50"
           r="38.16"
@@ -28,8 +24,15 @@ class New extends React.Component {
   }
 }
 
+New.defaultProps = {
+  color: '#026FC9',
+  height: 10,
+  width: 10
+}
+
 New.propTypes = {
   color: PropTypes.string,
+  height: PropTypes.number,
   style: PropTypes.object,
   width: PropTypes.number
 };
