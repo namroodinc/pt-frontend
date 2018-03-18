@@ -235,7 +235,7 @@ class Store {
         const { ratings } = publication;
 
         const splicedRatings = ratings
-          .slice(0, 6);
+          .slice(0, 7);
 
         return assign({}, publication, {
           ratings: splicedRatings
@@ -267,6 +267,18 @@ class Store {
       });
   }
 
+  @computed get getTop10Ratings() {
+    return this.getRatingsForLast7Days
+      .filter(publication => publication.ratings.length > 1)
+      .map(publication => {
+        const { ratings } = publication;
+        return assign({}, publication, {
+          ratings: ratings.slice(0, 2)
+        })
+      })
+      .slice(0, 10);
+  }
+
   @computed get getTrendingTopicsNoPrej() {
     let mergeTrends = [];
     this.publicationList
@@ -276,11 +288,11 @@ class Store {
 
         trends.map(t => {
           const trendExists = mergeTrends.findIndex(trend => trend.trend === t.trend);
-          if (trendExists > 0) {
-            const currentCount = mergeTrends[trendExists].count;
-            mergeTrends[trendExists].count = currentCount + t.count
-          } else {
+          if (trendExists < 0) {
             mergeTrends.push(t);
+          } else {
+            const currentCount = mergeTrends[trendExists].count;
+            mergeTrends[trendExists].count = currentCount + t.count;
           }
         });
       });

@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import { Grid } from "material-ui";
 
-import { PublicationList, TrendingTopics } from "../components/Index";
+import { Ratings, PublicationList, TrendingTopics } from "../components/Index";
 
 import Actions from "../actions/Actions";
 
@@ -36,6 +36,7 @@ class Home extends React.Component {
             md={4}
             xs={12}
           >
+            <Ratings />
             <TrendingTopics />
           </Grid>
 

@@ -4,6 +4,7 @@ import Header from "./Header";
 import Loading from "./Loading";
 import PublicationList from "./PublicationList";
 import Rating from "./Rating";
+import Ratings from "./Ratings";
 import TrendingTopics from "./TrendingTopics";
 
 export {
@@ -13,5 +14,6 @@ export {
   Loading,
   PublicationList,
   Rating,
+  Ratings,
   TrendingTopics
 }

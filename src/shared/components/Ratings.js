@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
+import Avatar from 'material-ui/Avatar';
 import ListSubheader from "material-ui/List/ListSubheader";
 import List, { ListItem, ListItemIcon, ListItemText } from "material-ui/List";
-import { TrendingUp } from "material-ui-icons";
+import { Star } from "material-ui-icons";
 
-import { Flame } from "./Icons/Index";
 import Store from "../stores/Store";
 
 const styles = theme => ({
@@ -19,7 +20,7 @@ const styles = theme => ({
 class TrendingTopics extends React.Component {
   render() {
     const { classes } = this.props;
-    const trendsTop15 = Store.getTrendingTopicsNoPrej.slice(0, 15);
+    const top10Ratings = Store.getTop10Ratings;
 
     return (
       <List
@@ -29,26 +30,33 @@ class TrendingTopics extends React.Component {
           component="div"
         >
           <ListItemIcon>
-            <TrendingUp />
+            <Star />
           </ListItemIcon>
-          Trending topics
+          Latest Ratings
         </ListSubheader>}
       >
-        {trendsTop15.map((trend, i) =>
+        {top10Ratings.map((publication, i) =>
           <ListItem
             key={i}
           >
-            <ListItemText
-              primary={trend.trend}
+            <Avatar
+              alt={publication.name}
+              src={publication.assetUrl}
             />
-            {trend.count >= 40 &&
-              <ListItemIcon>
-                <Flame
-                  height={20}
-                  width={20}
-                />
-              </ListItemIcon>
-            }
+            <ListItemText
+              primary={<Link
+                to={`/publication/${publication.id}`}
+              >
+                {publication.name}
+              </Link>}
+              secondary={<span>
+                Rated <Link
+                  to={`/ratings`}
+                >
+                  {publication.ratings[0].value}%
+                </Link>
+              </span>}
+            />
           </ListItem>
         )}
       </List>
