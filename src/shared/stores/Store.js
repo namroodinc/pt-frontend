@@ -3,7 +3,7 @@ import _, { assign } from "lodash";
 import moment from "moment";
 import parseDomain from "parse-domain";
 
-import { currencySymbol } from "../constants/Index";
+import { currencySymbol, trendReplace } from "../constants/Index";
 
 class Store {
   @observable entry = {};
@@ -287,9 +287,19 @@ class Store {
         const trends = articlesTags[articlesTags.length - 1].trends;
 
         trends.map(t => {
-          const trendExists = mergeTrends.findIndex(trend => trend.trend === t.trend);
+          const trendReplaced = trendReplace[t.trend];
+          const trendString = trendReplaced ? trendReplaced : t.trend;
+          const trendExists = mergeTrends.findIndex(trend => trend.trend === trendString);
+
           if (trendExists < 0) {
-            mergeTrends.push(t);
+            if (trendReplaced) {
+              mergeTrends.push({
+                trend: trendString,
+                count: t.count
+              });
+            } else {
+              mergeTrends.push(t);
+            }
           } else {
             const currentCount = mergeTrends[trendExists].count;
             mergeTrends[trendExists].count = currentCount + t.count;

@@ -14,7 +14,7 @@ import classNames from "classnames";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Banner, Loading } from "../components/Index";
+import { Banner, Loading, Ratings, TrendingTopics } from "../components/Index";
 
 const styles = theme => ({
   avatar: {
@@ -95,87 +95,124 @@ class Circulations extends React.Component {
             md={8}
             xs={12}
           >
-            <Banner
-              title={title}
-              description={bodyCopy}
-            />
 
             <div
-              className="table-wrapper"
+              className="content"
             >
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      Publication
-                    </TableCell>
-                    <TableCell
-                      className={classes.centerAlign}
-                    >
-                      <IconButton
-                        aria-label="Previous Year"
-                        className={classNames(classes.iconButton)}
-                        disabled={disableFirst}
-                        onClick={this.handleGetPreviousYear}
+
+              <div
+                className="content__wrapper"
+              >
+
+                <Banner
+                  title={title}
+                  description={bodyCopy}
+                />
+
+                <FormControl
+                  className={classes.formControl}
+                >
+                  <InputLabel
+                    className={classes.inputLabel}
+                  >
+                    Filter circulations by year
+                  </InputLabel>
+                  <Select
+                    inputProps={{
+                      color: 'primary'
+                    }}
+                    name="Year"
+                    onChange={this.handleChange}
+                    value={year}
+                  >
+                    {allYears.map((year, i) =>
+                      <MenuItem
+                        key={i}
+                        value={year}
                       >
-                        <PlayArrow
-                          className={classNames(classes.iconButtonRotate, classes.iconButtonIcon)}
-                        />
-                      </IconButton>
-                      Year
-                      <IconButton
-                        aria-label="Next Year"
-                        className={classNames(classes.iconButton)}
-                        disabled={disableLast}
-                        onClick={this.handleGetNextYear}
-                      >
-                        <PlayArrow
-                          className={classNames(classes.iconButtonIcon)}
-                        />
-                      </IconButton>
-                    </TableCell>
-                    <TableCell
-                      numeric
-                    >
-                      Circulation
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data.map((c, i) =>
-                    <TableRow
-                      key={i}
-                    >
+                        {year}
+                      </MenuItem>
+                    )}
+                  </Select>
+                </FormControl>
+
+                <Table>
+                  <TableHead>
+                    <TableRow>
                       <TableCell>
-                        <Link
-                          style={{
-                            color: c.fill
-                          }}
-                          to={`/publication/${c.id}`}
-                        >
-                          <Avatar
-                            alt={c.name}
-                            className={classes.avatar}
-                            src={c.assetUrl}
-                          />
-                          {c.name}
-                        </Link>
+                        Publication
                       </TableCell>
                       <TableCell
                         className={classes.centerAlign}
                       >
-                        {c.circulations[0].date.getFullYear()}
+                        <IconButton
+                          aria-label="Previous Year"
+                          className={classNames(classes.iconButton)}
+                          disabled={disableFirst}
+                          onClick={this.handleGetPreviousYear}
+                        >
+                          <PlayArrow
+                            className={classNames(classes.iconButtonRotate, classes.iconButtonIcon)}
+                          />
+                        </IconButton>
+                        Year
+                        <IconButton
+                          aria-label="Next Year"
+                          className={classNames(classes.iconButton)}
+                          disabled={disableLast}
+                          onClick={this.handleGetNextYear}
+                        >
+                          <PlayArrow
+                            className={classNames(classes.iconButtonIcon)}
+                          />
+                        </IconButton>
                       </TableCell>
                       <TableCell
                         numeric
                       >
-                        {c.circulations[0].value.toLocaleString()}
+                        Circulation
                       </TableCell>
                     </TableRow>
-                  )}
-                </TableBody>
-              </Table>
+                  </TableHead>
+                  <TableBody>
+                    {data.map((c, i) =>
+                      <TableRow
+                        key={i}
+                      >
+                        <TableCell>
+                          <Link
+                            style={{
+                              color: c.fill
+                            }}
+                            to={`/publication/${c.id}`}
+                          >
+                            <Avatar
+                              alt={c.name}
+                              className={classes.avatar}
+                              src={c.assetUrl}
+                            />
+                            {c.name}
+                          </Link>
+                        </TableCell>
+                        <TableCell
+                          className={classes.centerAlign}
+                        >
+                          {c.circulations[0].date.getFullYear()}
+                        </TableCell>
+                        <TableCell
+                          numeric
+                        >
+                          {c.circulations[0].value.toLocaleString()}
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </TableBody>
+                </Table>
+
+              </div>
+
             </div>
+
           </Grid>
 
           <Grid
@@ -183,41 +220,11 @@ class Circulations extends React.Component {
             md={4}
             xs={12}
           >
-            Sidebar component to go here
+            <Ratings />
+            <TrendingTopics />
           </Grid>
 
         </Grid>
-
-        <div
-          className="container__narrow"
-        >
-          <FormControl
-            className={classes.formControl}
-          >
-            <InputLabel
-              className={classes.inputLabel}
-            >
-              Filter circulations by year
-            </InputLabel>
-            <Select
-              inputProps={{
-                color: 'primary'
-              }}
-              name="Year"
-              onChange={this.handleChange}
-              value={year}
-            >
-              {allYears.map((year, i) =>
-                <MenuItem
-                  key={i}
-                  value={year}
-                >
-                  {year}
-                </MenuItem>
-              )}
-            </Select>
-          </FormControl>
-        </div>
 
       </div>
     )
