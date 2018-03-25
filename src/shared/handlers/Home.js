@@ -1,10 +1,10 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { Grid } from "material-ui";
 
-import { Ratings, PublicationList, TrendingTopics } from "../components/Index";
+import { ContentWithSidebar, Loading, PublicationList } from "../components/Index";
 
 import Actions from "../actions/Actions";
+import Store from "../stores/Store";
 
 @observer
 class Home extends React.Component {
@@ -13,36 +13,12 @@ class Home extends React.Component {
   }
 
   render() {
+    if (Store.isLoading()) return <Loading />;
+
     return (
-      <div
-        className="container"
-      >
-
-        <Grid
-          container
-          spacing={24}
-        >
-
-          <Grid
-            item
-            md={8}
-            xs={12}
-          >
-            <PublicationList />
-          </Grid>
-
-          <Grid
-            item
-            md={4}
-            xs={12}
-          >
-            <Ratings />
-            <TrendingTopics />
-          </Grid>
-
-        </Grid>
-
-      </div>
+      <ContentWithSidebar>
+        <PublicationList />
+      </ContentWithSidebar>
     )
   }
 }

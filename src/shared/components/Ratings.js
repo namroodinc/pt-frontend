@@ -17,7 +17,7 @@ const styles = theme => ({
 });
 
 @observer
-class TrendingTopics extends React.Component {
+class Ratings extends React.Component {
   render() {
     const { classes } = this.props;
     const top10Ratings = Store.getTop10Ratings;
@@ -64,8 +64,8 @@ class TrendingTopics extends React.Component {
   }
 }
 
-TrendingTopics.propTypes = {
+Ratings.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TrendingTopics);
+export default withStyles(styles)(Ratings);
