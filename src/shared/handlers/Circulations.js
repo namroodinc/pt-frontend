@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
 import { Avatar, IconButton, Select } from "material-ui";
-import { FormControl } from "material-ui/Form";
-import { InputLabel } from 'material-ui/Input';
+import { FormControl, FormLabel } from "material-ui/Form";
 import { MenuItem } from "material-ui/Menu";
 import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
 import PlayArrow from "material-ui-icons/PlayArrow";
@@ -30,6 +29,10 @@ const styles = theme => ({
   formControl: {
     marginBottom: 15
   },
+  formLabel: {
+    fontSize: 14,
+    whiteSpace: 'nowrap'
+  },
   iconButton: {
     color: '#026FC9',
     height: 20,
@@ -47,6 +50,9 @@ const styles = theme => ({
   },
   inputLabel: {
     whiteSpace: 'nowrap'
+  },
+  select: {
+    marginTop: '0 !important'
   }
 });
 
@@ -90,12 +96,13 @@ class Circulations extends React.Component {
         <FormControl
           className={classes.formControl}
         >
-          <InputLabel
-            className={classes.inputLabel}
+          <FormLabel
+            className={classes.formLabel}
           >
             Filter circulations by year
-          </InputLabel>
+          </FormLabel>
           <Select
+            className={classes.select}
             inputProps={{
               color: 'primary'
             }}

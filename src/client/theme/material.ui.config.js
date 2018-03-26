@@ -63,6 +63,18 @@ export default {
         padding: `0 0 10px 0`
       }
     },
+    MuiFormControl: {
+      root: {
+        margin: '10px 0'
+      }
+    },
+    MuiFormLabel: {
+      root: {
+        display: 'block',
+        fontSize: '1em',
+        paddingBottom: 5
+      }
+    },
     MuiGrid: {
       typeContainer: {
         paddingBottom: 20,

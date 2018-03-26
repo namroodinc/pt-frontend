@@ -8,22 +8,8 @@ $contentWidth: ($fullContainerWidth / 2) * 1.5;
   max-width: $contentWidth;
 
   &__wrapper {
-    background-color: $contentBackgroundColor;
+    background-color: $white;
     margin-bottom: 2px;
     padding: 30px;
-
-    &--no-padding-left-right {
-      padding-left: 0;
-      padding-right: 0;
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5 {
-        margin-left: 30px;
-        margin-right: 30px;
-      }
-    }
   }
 }

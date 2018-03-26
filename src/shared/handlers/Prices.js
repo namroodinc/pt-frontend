@@ -1,17 +1,17 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import Tabs, { Tab } from "material-ui/Tabs";
 import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
-import { Link } from "react-router-dom";
-import Avatar from 'material-ui/Avatar';
+import { Avatar, Select } from "material-ui";
+import { FormControl, FormLabel } from "material-ui/Form";
+import { MenuItem } from "material-ui/Menu";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Banner, Loading } from "../components/Index";
-import { Time } from "../components/Data/Index";
+import { Banner, ContentWithSidebar, Loading } from "../components/Index";
 
 const styles = theme => ({
   avatar: {
@@ -19,6 +19,24 @@ const styles = theme => ({
     height: 20,
     marginRight: 10,
     width: 20
+  },
+  formControl: {
+    marginBottom: 15
+  },
+  formLabel: {
+    fontSize: 14,
+    whiteSpace: 'nowrap'
+  },
+  iconButton: {
+    color: '#026FC9',
+    height: 20,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: -3,
+    width: 20
+  },
+  select: {
+    marginTop: '0 !important'
   }
 });
 
@@ -36,10 +54,9 @@ class Prices extends React.Component {
     Actions.getPageWithPublicationList(pageId);
   }
 
-  handleChange = (event, value) => {
-    console.log(value)
+  handleChange = (event) => {
     this.setState({
-      value
+      value: event.target.value
     });
   };
 
@@ -52,140 +69,120 @@ class Prices extends React.Component {
     const getAllPricesByCountry = Store.getAllPricesByCountry;
 
     return (
-      <div
-        className="container"
-      >
+      <ContentWithSidebar>
 
-        <div
-          className="container__narrow"
-        >
-          <Banner
-            title={title}
-            description={bodyCopy}
-          />
-        </div>
+        <Banner
+          title={title}
+          description={bodyCopy}
+        />
 
-        <div
-          className="container--full-width"
+        <FormControl
+          className={classes.formControl}
         >
-          <div
-            className="container__tabs"
+          <FormLabel
+            className={classes.formLabel}
           >
-            <Tabs
-              value={this.state.value}
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-              fullWidth
-            >
-              {getAllCountries.map((country, i) =>
-                <Tab
-                  key={i}
-                  label={country}
-                  value={country}
-                />
-              )}
-            </Tabs>
-          </div>
-        </div>
+            Filter circulations by year
+          </FormLabel>
+          <Select
+            className={classes.select}
+            inputProps={{
+              color: 'primary'
+            }}
+            name="Year"
+            onChange={this.handleChange}
+            value={this.state.value}
+          >
+            {getAllCountries.map((country, i) =>
+              <MenuItem
+                key={i}
+                value={country}
+              >
+                {country}
+              </MenuItem>
+            )}
+          </Select>
+        </FormControl>
 
-        <div
-          className="container"
-        >
+        <div>
           {getAllPricesByCountry.map((prices, i) =>
             <div
               key={i}
             >
               {this.state.value === prices.country &&
-                <div>
-                  <h3>
-                    {prices.country} publication prices
-                  </h3>
-
-                  <Table>
-                    <TableHead>
-                      <TableRow>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>
+                        Newspaper/Magazine
+                      </TableCell>
+                      <TableCell>
+                        Price
+                      </TableCell>
+                      <TableCell>
+                        Publication
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {prices.pricesArray.map((paper, i) =>
+                      <TableRow
+                        key={i}
+                      >
                         <TableCell>
-                          Price
+                          <span
+                            style={{
+                              color: paper.fill,
+                              display: 'block'
+                            }}
+                          >
+                            {paper.name}
+                          </span>
                         </TableCell>
                         <TableCell>
-                          Newspaper/Magazine
+                          <span
+                            style={{
+                              color: paper.fill,
+                              display: 'block'
+                            }}
+                          >
+                            {paper.price === 0 ?
+                              <span>
+                                Free
+                              </span> : <span>
+                                {paper.symbol}
+                                {paper.price}
+                              </span>
+                            }
+                          </span>
                         </TableCell>
                         <TableCell>
-                          Price last updated
-                        </TableCell>
-                        <TableCell>
-                          Publication
+                          <Link
+                            style={{
+                              color: paper.fill,
+                              display: 'block',
+                              overflow: 'hidden'
+                            }}
+                            to={`/publication/${paper.id}`}
+                          >
+                            <Avatar
+                              alt={paper.name}
+                              className={classes.avatar}
+                              src={paper.assetUrl}
+                            />
+                            {paper.publication}
+                          </Link>
                         </TableCell>
                       </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {prices.pricesArray.map((paper, i) =>
-                        <TableRow
-                          key={i}
-                        >
-                          <TableCell>
-                            <span
-                              style={{
-                                color: paper.fill,
-                                display: 'block'
-                              }}
-                            >
-                              {paper.price === 0 ?
-                                <span>
-                                  Free
-                                </span> : <span>
-                                  {paper.symbol}
-                                  {paper.price} ({paper.currency})
-                                </span>
-                              }
-                            </span>
-                          </TableCell>
-                          <TableCell>
-                            <span
-                              style={{
-                                color: paper.fill,
-                                display: 'block'
-                              }}
-                            >
-                              {paper.name}
-                            </span>
-                          </TableCell>
-                          <TableCell>
-                            <Time
-                              dateTime={paper.timestamp}
-                              dateTimeFormat="[Last updated:] MMM. DD"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Link
-                              style={{
-                                color: paper.fill,
-                                display: 'block',
-                                overflow: 'hidden'
-                              }}
-                              to={`/publication/${paper.id}`}
-                            >
-                              <Avatar
-                                alt={paper.name}
-                                className={classes.avatar}
-                                src={paper.assetUrl}
-                              />
-                              {paper.publication}
-                            </Link>
-                          </TableCell>
-                        </TableRow>
-                      )}
-                    </TableBody>
-                  </Table>
-                </div>
+                    )}
+                  </TableBody>
+                </Table>
               }
             </div>
           )}
         </div>
 
-      </div>
+      </ContentWithSidebar>
     )
   }
 }

@@ -1,4 +1,5 @@
 .metric-list {
+  padding: 20px 0 0;
 
   &__item {
     &:before {
@@ -26,7 +27,6 @@
       align-items: center;
       display: flex;
       flex-grow: 1;
-      padding-left: 20px;
       width: 100%;
       max-width: 300px;
 
@@ -65,7 +65,7 @@
     &__right {
       box-sizing: border-box;
       flex-grow: 3;
-      padding: 0 20px;
+      padding: 0;
 
       &__grid {
         display: flex;
