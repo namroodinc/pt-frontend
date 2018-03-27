@@ -35,6 +35,10 @@ const styles = theme => ({
     marginTop: -3,
     width: 20
   },
+  numeric: {
+    fontFamily: '"Inconsolata", monospace',
+    fontSize: '1.1em'
+  },
   select: {
     marginTop: '0 !important'
   }
@@ -114,10 +118,10 @@ class Prices extends React.Component {
                   <TableHead>
                     <TableRow>
                       <TableCell>
-                        Newspaper/Magazine
+                        Price
                       </TableCell>
                       <TableCell>
-                        Price
+                        Newspaper/Magazine
                       </TableCell>
                       <TableCell>
                         Publication
@@ -129,17 +133,10 @@ class Prices extends React.Component {
                       <TableRow
                         key={i}
                       >
-                        <TableCell>
-                          <span
-                            style={{
-                              color: paper.fill,
-                              display: 'block'
-                            }}
-                          >
-                            {paper.name}
-                          </span>
-                        </TableCell>
-                        <TableCell>
+                        <TableCell
+                          className={classes.numeric}
+                          numeric
+                        >
                           <span
                             style={{
                               color: paper.fill,
@@ -154,6 +151,16 @@ class Prices extends React.Component {
                                 {paper.price}
                               </span>
                             }
+                          </span>
+                        </TableCell>
+                        <TableCell>
+                          <span
+                            style={{
+                              color: paper.fill,
+                              display: 'block'
+                            }}
+                          >
+                            {paper.name}
                           </span>
                         </TableCell>
                         <TableCell>

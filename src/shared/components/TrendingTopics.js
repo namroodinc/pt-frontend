@@ -31,7 +31,7 @@ class TrendingTopics extends React.Component {
           <ListItemIcon>
             <TrendingUp />
           </ListItemIcon>
-          Trending topics
+          Trending Topics
         </ListSubheader>}
       >
         {trendsTop15.map((trend, i) =>

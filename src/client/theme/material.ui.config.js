@@ -5,6 +5,7 @@ import grey from "material-ui/colors/grey";
 
 import Styles from "../styles/app.scss";
 const {
+  black,
   bodyFont,
   primaryColor,
   borderColor,
@@ -101,10 +102,19 @@ export default {
         paddingTop: 5
       }
     },
+    MuiListItemIcon: {
+      root: {
+        color: 'inherit'
+      }
+    },
     MuiListSubheader: {
       root: {
         alignItems: 'center',
-        display: 'flex'
+        color: black,
+        display: 'flex',
+        lineHeight: '20px',
+        padding: '10px 24px',
+        wordSpacing: '9999px'
       }
     },
     MuiListItem: {

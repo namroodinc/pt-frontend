@@ -22,10 +22,6 @@ const styles = theme => ({
     marginRight: 10,
     width: 20
   },
-  centerAlign: {
-    padding: '0 20px',
-    textAlign: 'center'
-  },
   formControl: {
     marginBottom: 15
   },
@@ -50,6 +46,10 @@ const styles = theme => ({
   },
   inputLabel: {
     whiteSpace: 'nowrap'
+  },
+  numeric: {
+    fontFamily: '"Inconsolata", monospace',
+    fontSize: '1.1em'
   },
   select: {
     marginTop: '0 !important'
@@ -128,7 +128,7 @@ class Circulations extends React.Component {
                 Publication
               </TableCell>
               <TableCell
-                className={classes.centerAlign}
+                numeric
               >
                 <IconButton
                   aria-label="Previous Year"
@@ -180,11 +180,13 @@ class Circulations extends React.Component {
                   </Link>
                 </TableCell>
                 <TableCell
-                  className={classes.centerAlign}
+                  className={classes.numeric}
+                  numeric
                 >
                   {c.circulations[0].date.getFullYear()}
                 </TableCell>
                 <TableCell
+                  className={classes.numeric}
                   numeric
                 >
                   {c.circulations[0].value.toLocaleString()}
