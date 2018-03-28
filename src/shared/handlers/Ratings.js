@@ -1,6 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
+import moment from "moment";
 import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
 import Avatar from 'material-ui/Avatar';
@@ -96,7 +97,7 @@ class Ratings extends React.Component {
                     className={classes.centerAlign}
                     key={i}
                   >
-                    {day}
+                    {moment(day).format('DD')} {moment(day).format('MMMM')}
                   </TableCell>
                 )}
               </TableRow>

@@ -47,10 +47,6 @@ const styles = theme => ({
   inputLabel: {
     whiteSpace: 'nowrap'
   },
-  numeric: {
-    fontFamily: '"Inconsolata", monospace',
-    fontSize: '1.1em'
-  },
   select: {
     marginTop: '0 !important'
   }
@@ -180,13 +176,11 @@ class Circulations extends React.Component {
                   </Link>
                 </TableCell>
                 <TableCell
-                  className={classes.numeric}
                   numeric
                 >
                   {c.circulations[0].date.getFullYear()}
                 </TableCell>
                 <TableCell
-                  className={classes.numeric}
                   numeric
                 >
                   {c.circulations[0].value.toLocaleString()}

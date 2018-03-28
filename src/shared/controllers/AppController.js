@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 
 import { Header } from "../components/Index";
 import {
+  AlexaRanking,
   Analytics,
   Circulations,
   Complaints,
@@ -39,6 +40,11 @@ export default class AppController extends React.Component {
               exact
               path="/publication"
               component={Page}
+            />
+            <Route
+              exact
+              path="/alexa"
+              component={AlexaRanking}
             />
             <Route
               exact

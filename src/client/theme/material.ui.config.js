@@ -10,6 +10,7 @@ const {
   primaryColor,
   borderColor,
   letterSpacing,
+  primaryFont,
   secondaryBackgroundColor,
   tabUnselected,
   white
@@ -181,6 +182,7 @@ export default {
         padding: 10
       },
       numeric: {
+        fontFamily: primaryFont,
         textAlign: 'center'
       },
       root: {

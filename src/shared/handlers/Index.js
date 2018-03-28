@@ -1,3 +1,4 @@
+import AlexaRanking from "./AlexaRanking";
 import Analytics from "./Analytics";
 import Circulations from "./Circulations";
 import Complaints from "./Complaints";
@@ -8,6 +9,7 @@ import Publication from "./Publication";
 import Ratings from "./Ratings";
 
 export {
+  AlexaRanking,
   Analytics,
   Circulations,
   Complaints,

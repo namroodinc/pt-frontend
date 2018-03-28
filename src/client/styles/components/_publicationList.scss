@@ -81,11 +81,12 @@
 
       span {
         color: $textColor;
+        font-family: $primaryFont;
         font-size: 0.7em;
         font-weight: 400;
 
         a {
-          font-weight: 500;
+          font-weight: 700;
         }
       }
     }

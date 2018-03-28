@@ -35,10 +35,6 @@ const styles = theme => ({
     marginTop: -3,
     width: 20
   },
-  numeric: {
-    fontFamily: '"Inconsolata", monospace',
-    fontSize: '1.1em'
-  },
   select: {
     marginTop: '0 !important'
   }
@@ -134,7 +130,6 @@ class Prices extends React.Component {
                         key={i}
                       >
                         <TableCell
-                          className={classes.numeric}
                           numeric
                         >
                           <span

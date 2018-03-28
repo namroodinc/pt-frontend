@@ -288,7 +288,7 @@ class Store {
 
         trends.map(t => {
           const trendReplaced = trendReplace[t.trend];
-          const trendString = trendReplaced ? trendReplaced : t.trend;
+          const trendString = trendReplaced || t.trend;
           const trendExists = mergeTrends.findIndex(trend => trend.trend === trendString);
 
           if (trendExists < 0) {
@@ -310,11 +310,77 @@ class Store {
       .sort((a, b) => b.count - a.count);
   }
 
-  // Circulations for a single entryId
+  @computed get getAllAlexaRankings() {
+    return this.publicationList
+      .map((publication, i) => {
+        const {
+          fields,
+          sys
+        } = publication;
 
-  // All alexa rankings by country
+        const { avatar, name, siteRankings, twitterAccounts } = fields;
+        const { id } = sys;
+        const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
 
-  // All prices by country
+        const rankings = siteRankings
+          .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+          .map(ranking => {
+            return {
+              date: new Date(ranking.timestamp),
+              value: ranking.data.globalRank
+            }
+          });
+
+        return {
+          assetUrl: assetIdIndex.fields.file.url,
+          fill: `#${twitterAccounts[0].backgroundColor}`,
+          id,
+          name,
+          rankings
+        }
+      })
+      .filter(publication => publication.rankings.length > 0)
+      .sort((a, b) => a.rankings[0].value - b.rankings[0].value);
+  }
+
+  @computed get getLast7PossibleDaysAlexa() {
+    const getRankingsForLast7Days = this.getAllAlexaRankings
+      .map(publication => {
+        const { rankings } = publication;
+
+        const splicedRankings = rankings
+          .slice(0, 7);
+
+        return assign({}, publication, {
+          rankings: splicedRankings
+        })
+      });
+
+    return Array.from(new Set([]
+      .concat
+      .apply([], getRankingsForLast7Days
+        .map(publication => publication.rankings
+          .map(ranking => moment(ranking.date).format('MMM DD YYYY'))
+        )
+      )))
+      .sort((a, b) => new Date(b) - new Date(a));
+  }
+
+  @computed get getAlexaRankingsForLast7Days() {
+    return this.getAllAlexaRankings
+      .map(publication => {
+        const { rankings } = publication;
+
+        const last7Days = this.getLast7PossibleDaysAlexa
+          .map(day => rankings
+            .find(ranking => moment(ranking.date).format('MMM DD YYYY') === day));
+
+        return assign({}, publication, {
+          rankings: last7Days
+        });
+      });
+  }
+
   @computed get getAllPricesByCountry() {
     const getAllRatings = this.getAllCountries
       .map(country => {
