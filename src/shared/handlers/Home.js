@@ -16,7 +16,9 @@ class Home extends React.Component {
     if (Store.isLoading()) return <Loading />;
 
     return (
-      <ContentWithSidebar>
+      <ContentWithSidebar
+        contentClass="home-grid"
+      >
         <PublicationList />
       </ContentWithSidebar>
     )

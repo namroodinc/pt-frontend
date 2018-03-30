@@ -11,6 +11,7 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 import { Loading } from "../components/Index";
+import { DownloadJsonToCsv } from "../components/Controls/Index";
 
 const styles = theme => ({
   avatar: {
@@ -38,6 +39,24 @@ class AlexaRanking extends React.Component {
       <div
         className="container"
       >
+
+        <div>
+          <DownloadJsonToCsv
+            fields={['Publication', ...getLast7PossibleDaysAlexa.map((day, i) => moment(day).format('DD MMMM'))]}
+            data={getAlexaRankingsForLast7Days.map((publication, i) => {
+              const flattenArray = publication.rankings.map((day, i) => {
+                return {
+                  [moment(getLast7PossibleDaysAlexa[i]).format('DD MMMM')]: day ? day.value.toLocaleString() : 'N/A'
+                }
+              });
+
+              return {
+                'Publication': publication.name,
+                ...Object.assign({}, ...flattenArray)
+              }
+            })}
+          />
+        </div>
 
         <Table>
           <TableHead>

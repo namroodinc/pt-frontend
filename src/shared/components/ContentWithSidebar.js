@@ -6,7 +6,7 @@ import { Ratings, TrendingTopics } from "./Index";
 
 class ContentWithSidebar extends React.Component {
   render() {
-    const { showRatings, showTrending } = this.props;
+    const { contentClass, showRatings, showTrending } = this.props;
 
     return (
       <div
@@ -25,11 +25,11 @@ class ContentWithSidebar extends React.Component {
           >
 
             <div
-              className="content"
+              className={contentClass}
             >
 
               <div
-                className="content__wrapper"
+                className={`${contentClass}__wrapper`}
               >
                 {this.props.children}
               </div>
@@ -59,12 +59,14 @@ class ContentWithSidebar extends React.Component {
 }
 
 ContentWithSidebar.defaultProps = {
+  contentClass: 'content',
   showRatings: true,
   showTrending: true
 }
 
 ContentWithSidebar.propTypes = {
   children: PropTypes.node.isRequired,
+  contentClass: PropTypes.string,
   showRatings: PropTypes.bool,
   showTrending: PropTypes.bool
 }
