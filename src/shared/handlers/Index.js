@@ -7,6 +7,7 @@ import Page from "./Page";
 import Prices from "./Prices";
 import Publication from "./Publication";
 import Ratings from "./Ratings";
+import Trending from "./Trending";
 
 export {
   AlexaRanking,
@@ -17,5 +18,6 @@ export {
   Page,
   Prices,
   Publication,
-  Ratings
+  Ratings,
+  Trending
 }

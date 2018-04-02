@@ -279,12 +279,69 @@ class Store {
       .slice(0, 10);
   }
 
+  @computed get getTrendingTopicsPerPublication() {
+    return this.publicationList
+      .map((publication, i) => {
+        const {
+          fields,
+          sys
+        } = publication;
+
+        const { articlesTags, avatar, name, twitterAccounts } = fields;
+        const { id } = sys;
+        const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+
+        const articleTrends = articlesTags
+          // .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+          .map(tags => {
+            const { timestamp, trends } = tags;
+            let mergeTrends = [];
+
+            const trendReplaced = trendReplace[trends.trend];
+            const trendString = trendReplaced || trends.trend;
+            const trendExists = mergeTrends.findIndex(trend => trend.trend === trendString);
+
+            trends
+              .map(t => {
+                if (trendExists < 0) {
+                  if (trendReplaced) {
+                    mergeTrends.push({
+                      trend: trendString,
+                      count: t.count
+                    });
+                  } else {
+                    mergeTrends.push(t);
+                  }
+                } else {
+                  const currentCount = mergeTrends[trendExists].count;
+                  mergeTrends[trendExists].count = currentCount + t.count;
+                }
+              });
+
+            return {
+              timestamp,
+              trends: mergeTrends
+            };
+          });
+
+        return {
+          assetUrl: assetIdIndex.fields.file.url,
+          fill: `#${twitterAccounts[0].backgroundColor}`,
+          id,
+          name,
+          tags: articleTrends
+        }
+      })
+      .filter(publication => publication.tags.length > 0)
+      .sort((a, b) => b.name - a.name);
+  }
+
   @computed get getTrendingTopicsNoPrej() {
     let mergeTrends = [];
-    this.publicationList
+    this.getTrendingTopicsPerPublication
       .map(publication => {
-        const { articlesTags } = publication.fields;
-        const trends = articlesTags[articlesTags.length - 1].trends;
+        const { tags } = publication;
+        const trends = tags[tags.length - 1].trends;
 
         trends.map(t => {
           const trendReplaced = trendReplace[t.trend];

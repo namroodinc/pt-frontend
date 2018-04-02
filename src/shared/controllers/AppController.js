@@ -11,7 +11,8 @@ import {
   Page,
   Prices,
   Publication,
-  Ratings
+  Ratings,
+  Trending
 } from "../handlers/Index";
 import {
   ALEXA_ENTRY_ID,
@@ -38,23 +39,8 @@ export default class AppController extends React.Component {
             />
             <Route
               exact
-              path="/publication"
-              component={Page}
-            />
-            <Route
-              exact
               path="/alexa"
               component={AlexaRanking}
-            />
-            <Route
-              exact
-              path="/ratings"
-              component={() => <Ratings pageId={RATINGS_ENTRY_ID} />}
-            />
-            <Route
-              exact
-              path="/complaints"
-              component={() => <Complaints pageId={PRESS_COMPLAINTS_ID} />}
             />
             <Route
               exact
@@ -63,18 +49,38 @@ export default class AppController extends React.Component {
             />
             <Route
               exact
-              path="/prices"
-              component={() => <Prices pageId={PRICES_ENTRY_ID} />}
-            />
-            <Route
-              exact
               path="/circulations"
               component={() => <Circulations pageId={CIRCULATIONS_ENTRY_ID} />}
             />
             <Route
               exact
+              path="/complaints"
+              component={() => <Complaints pageId={PRESS_COMPLAINTS_ID} />}
+            />
+            <Route
+              exact
+              path="/prices"
+              component={() => <Prices pageId={PRICES_ENTRY_ID} />}
+            />
+            <Route
+              exact
+              path="/publication"
+              component={Page}
+            />
+            <Route
+              exact
               path="/publication/:entryId"
               component={Publication}
+            />
+            <Route
+              exact
+              path="/ratings"
+              component={() => <Ratings pageId={RATINGS_ENTRY_ID} />}
+            />
+            <Route
+              exact
+              path="/trending"
+              component={Trending}
             />
           </Switch>
         </div>
