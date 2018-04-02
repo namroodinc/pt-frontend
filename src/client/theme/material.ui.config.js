@@ -38,15 +38,7 @@ export default {
         textTransform: 'none'
       },
       flatPrimary: {
-        borderRadius: 0,
-        border: `1px solid ${white}`,
-        boxShadow: `0 0 0 0 transparent`,
-        color: white,
-        fontSize: 18,
-        '&:hover': {
-          backgroundColor: white,
-          color: primaryColor
-        }
+        color: primaryColor
       }
     },
     MuiCardActions: {
@@ -96,7 +88,6 @@ export default {
     MuiList: {
       padding: {
         backgroundColor: white,
-        paddingBottom: 15,
         paddingTop: 0
       },
       subheader: {
@@ -113,9 +104,9 @@ export default {
         alignItems: 'center',
         color: black,
         display: 'flex',
+        fontWeight: 600,
         lineHeight: '20px',
-        padding: '10px 24px',
-        wordSpacing: '9999px'
+        padding: '10px 24px'
       }
     },
     MuiListItem: {

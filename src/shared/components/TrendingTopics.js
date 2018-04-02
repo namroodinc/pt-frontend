@@ -11,7 +11,8 @@ import Store from "../stores/Store";
 
 const styles = theme => ({
   list: {
-    marginBottom: 24
+    marginBottom: 24,
+    paddingBottom: 15
   }
 });
 

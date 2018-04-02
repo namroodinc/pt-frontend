@@ -7,6 +7,9 @@ class Logo extends React.Component {
 
     return (
       <svg
+        style={{
+          shapeRendering: 'geometricPrecision'
+        }}
         width={width}
         viewBox={`0 0 85 14`}
       >

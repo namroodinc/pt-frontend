@@ -46,7 +46,7 @@ class AlexaRanking extends React.Component {
             data={getAlexaRankingsForLast7Days.map((publication, i) => {
               const flattenArray = publication.rankings.map((day, i) => {
                 return {
-                  [moment(getLast7PossibleDaysAlexa[i]).format('DD MMMM')]: day ? day.value.toLocaleString() : 'N/A'
+                  [moment(getLast7PossibleDaysAlexa[i]).format('DD MMMM')]: day ? day.value : 'N/A'
                 }
               });
 
