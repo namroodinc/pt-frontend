@@ -3,16 +3,13 @@ import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Button from "material-ui/Button";
 import { FileDownload } from "material-ui-icons";
-import { Parser } from "json2csv";
+import Papa from "papaparse";
 
 import DownloadCsv from "../../utils/downloadCsv";
 
 const styles = theme => ({
   leftIcon: {
     marginRight: 10
-  },
-  rightIcon: {
-    marginLeft: 10
   }
 });
 
@@ -24,11 +21,10 @@ class DownloadJsonToCsv extends React.Component {
   render() {
     const { classes, data, fields } = this.props;
 
-    const opts = {
-      fields
-    };
-    const parser = new Parser(opts);
-    const csv = parser.parse(data);
+    const csv = Papa.unparse({
+      fields,
+      data
+    });
 
     return (
       <div>
