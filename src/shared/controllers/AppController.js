@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import { Header } from "../components/Index";
 import {
   AlexaRanking,
+  AlexaRankingChart,
   Analytics,
   Circulations,
   Complaints,
@@ -41,6 +42,11 @@ export default class AppController extends React.Component {
               exact
               path="/alexa"
               component={AlexaRanking}
+            />
+            <Route
+              exact
+              path="/alexa/charts"
+              component={AlexaRankingChart}
             />
             <Route
               exact

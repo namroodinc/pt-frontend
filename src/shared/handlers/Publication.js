@@ -1,6 +1,7 @@
 import React from "react";
-import { observer } from 'mobx-react';
+import { observer } from "mobx-react";
 import PropTypes from "prop-types";
+import { withStyles } from "material-ui/styles";
 import { Grid, Paper } from "material-ui";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
@@ -8,8 +9,11 @@ import Marked from "marked";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Loading, Rating } from "../components/Index";
+import { Loading } from "../components/Index";
 import { PaperCard, Time } from "../components/Data/Index";
+
+const styles = theme => ({
+});
 
 @observer
 class Publication extends React.Component {
@@ -43,7 +47,6 @@ class Publication extends React.Component {
       format,
       founded,
       geocodeAddress,
-      overallRating,
       ownership,
       politicalAlignment,
       publisher,
@@ -65,16 +68,78 @@ class Publication extends React.Component {
     const foundedDate = founded.split(';')[0];
     const publicationDescription = description || '';
 
+    console.log();
+
     return (
-      <div>
+      <div
+        className="publication"
+      >
 
         <div
-          className="container"
+          className="publication__banner"
+          style={Store.getBrandColors}
+        >
+
+          <div
+            className="publication__banner__content"
+          >
+
+            <div
+              className="publication__banner__content__heading"
+            >
+              <h1>
+                {name}
+              </h1>
+            </div>
+
+            <div
+              className="publication__banner__content__blurb"
+            >
+              {ReactHtmlParser(Marked(publicationDescription))}
+            </div>
+
+            <hr />
+
+          </div>
+
+        </div>
+
+        <Grid
+          container
+          spacing={24}
         >
 
           <Grid
-            container
-            spacing={24}
+            item
+            xs={12}
+            md={6}
+          >
+
+            <Paper>
+              <Time
+                dateTime={updatedAt}
+                dateTimeFormat="[Last updated:] MMM. DD, HH:mm"
+              />
+            </Paper>
+
+            <PaperCard
+              title="Website"
+              text={
+                <a
+                  href={`${website}`}
+                  target="_blank"
+                >
+                  {website}
+                </a>
+              }
+            />
+
+          </Grid>
+
+          <Grid
+            item
+            xs={12}
+            md={6}
           >
 
             <Grid
@@ -83,34 +148,30 @@ class Publication extends React.Component {
               md={6}
             >
 
-              <Paper>
-                <Time
-                  dateTime={updatedAt}
-                  dateTimeFormat="[Last updated:] MMM. DD, HH:mm"
-                />
-
-                <h2>
-                  {name}
-                </h2>
-
-                <Rating
-                  rating={overallRating}
-                />
-
-                {ReactHtmlParser(Marked(publicationDescription))}
-              </Paper>
+              <PaperCard
+                title="Political alignment and opinion"
+                text={alignment}
+              />
 
               <PaperCard
-                title="Website"
-                text={
-                  <a
-                    href={`${website}`}
-                    target="_blank"
-                  >
-                    {website}
-                  </a>
-                }
+                title="Format"
+                text={formats}
               />
+
+              <PaperCard
+                title="Founded"
+                text={foundedDate}
+              />
+
+              <PaperCard
+                title="Alexa Global Rank"
+                text={alexaRank}
+              >
+                <Time
+                  dateTime={alexaLastUpdated}
+                  dateTimeFormat="[Updated:] MMM. DD, HH:mm"
+                />
+              </PaperCard>
 
             </Grid>
 
@@ -120,67 +181,26 @@ class Publication extends React.Component {
               md={6}
             >
 
-              <Grid
-                item
-                xs={12}
-                md={6}
-              >
+              <PaperCard
+                title="Address"
+                list={address}
+              />
 
-                <PaperCard
-                  title="Political alignment and opinion"
-                  text={alignment}
-                />
+              <PaperCard
+                title="Owned By"
+                text={ownership}
+              />
 
-                <PaperCard
-                  title="Format"
-                  text={formats}
-                />
-
-                <PaperCard
-                  title="Founded"
-                  text={foundedDate}
-                />
-
-                <PaperCard
-                  title="Alexa Global Rank"
-                  text={alexaRank}
-                >
-                  <Time
-                    dateTime={alexaLastUpdated}
-                    dateTimeFormat="[Updated:] MMM. DD, HH:mm"
-                  />
-                </PaperCard>
-
-              </Grid>
-
-              <Grid
-                item
-                xs={12}
-                md={6}
-              >
-
-                <PaperCard
-                  title="Address"
-                  list={address}
-                />
-
-                <PaperCard
-                  title="Owned By"
-                  text={ownership}
-                />
-
-                <PaperCard
-                  title="Publisher"
-                  text={publisher}
-                />
-
-              </Grid>
+              <PaperCard
+                title="Publisher"
+                text={publisher}
+              />
 
             </Grid>
 
           </Grid>
 
-        </div>
+        </Grid>
 
       </div>
     )
@@ -188,7 +208,8 @@ class Publication extends React.Component {
 }
 
 Publication.propTypes = {
+  classes: PropTypes.object.isRequired,
   match: PropTypes.object
 };
 
-export default Publication;
+export default withStyles(styles)(Publication);

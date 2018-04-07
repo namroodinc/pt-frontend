@@ -1,3 +1,4 @@
+import AlexaRankingChart from "./AlexaRankingChart";
 import AlexaRanking from "./AlexaRanking";
 import Analytics from "./Analytics";
 import Circulations from "./Circulations";
@@ -10,6 +11,7 @@ import Ratings from "./Ratings";
 import Trending from "./Trending";
 
 export {
+  AlexaRankingChart,
   AlexaRanking,
   Analytics,
   Circulations,

@@ -1,0 +1,64 @@
+.publication {
+  &__banner {
+    padding: 20px;
+
+    &__content {
+      margin: auto;
+      max-width: $fullContainerWidth;
+
+      &__heading {
+        margin-left: 8.33333%;
+        padding: 40px 0 20px;
+
+        h1 {
+          animation: fadein 3s ease both;
+          animation-delay: .5s;
+          letter-spacing: .175em;
+          text-transform: uppercase;
+          visibility: visible;
+          will-change: opacity;
+          word-spacing: 9999px;
+        }
+      }
+
+      &__blurb {
+        p {
+          max-width: $tablet;
+        }
+      }
+
+      &__controls {
+        p {
+          max-width: $tablet;
+        }
+      }
+
+      hr {
+        width: 100%;
+        animation: sepWidth 2s 1s cubic-bezier(.77, 0, .175, 1) both;
+        margin: 40px 0;
+        max-width: $tablet;
+        will-change: width;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sepWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

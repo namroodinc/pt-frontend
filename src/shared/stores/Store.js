@@ -1,5 +1,6 @@
 import { autorun, computed, observable } from "mobx";
 import _, { assign } from "lodash";
+import color from "color";
 import moment from "moment";
 import parseDomain from "parse-domain";
 
@@ -541,7 +542,17 @@ class Store {
       .sort((a, b) => b.complaints.Total - a.complaints.Total);
   }
 
-  @computed get getBrandColor() {
+  @computed get getBrandColors() {
+    const {
+      twitterAccounts
+    } = this.entry.fields;
+
+    const brandColor = `#${twitterAccounts[0].backgroundColor}`;
+
+    return {
+      backgroundColor: brandColor,
+      color: color(brandColor).isLight() ? '#000' : '#FFF'
+    };
   }
 
   @computed get getEntryComplaints() {

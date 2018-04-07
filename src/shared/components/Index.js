@@ -5,7 +5,6 @@ import Header from "./Header";
 import LinkCard from "./LinkCard";
 import Loading from "./Loading";
 import PublicationList from "./PublicationList";
-import Rating from "./Rating";
 import Ratings from "./Ratings";
 import TrendingTopics from "./TrendingTopics";
 
@@ -17,7 +16,6 @@ export {
   LinkCard,
   Loading,
   PublicationList,
-  Rating,
   Ratings,
   TrendingTopics
 }
