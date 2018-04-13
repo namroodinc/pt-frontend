@@ -1,8 +1,9 @@
 import React from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
 import { Grid, Paper } from "material-ui";
+import { withStyles } from "material-ui/styles";
+import { ArrowDownward } from "material-ui-icons";
 import ReactHtmlParser from "react-html-parser";
 import Marked from "marked";
 
@@ -68,8 +69,6 @@ class Publication extends React.Component {
     const foundedDate = founded.split(';')[0];
     const publicationDescription = description || '';
 
-    console.log();
-
     return (
       <div
         className="publication"
@@ -99,6 +98,18 @@ class Publication extends React.Component {
             </div>
 
             <hr />
+
+            <div
+              className="publication__banner__content__controls"
+            >
+              <a
+                className="publication__banner__content__controls__read-more"
+                href="#more"
+              >
+                <ArrowDownward />
+                Read more
+              </a>
+            </div>
 
           </div>
 

@@ -1,6 +1,8 @@
 import { assign } from "lodash";
 
-const fontFamily = '-apple-system, BlinkMacSystemFont, Helvetica, "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Open Sans", sans-serif';
+const fontFamily = `-apple-system, BlinkMacSystemFont, Helvetica,
+                    "Segoe UI", Roboto, Arial, sans-serif, "Apple Color Emoji",
+                    "Segoe UI Emoji", "Segoe UI Symbol", "Open Sans", sans-serif`;
 
 const colorScale = [
   '#026fc9',
@@ -70,8 +72,9 @@ export default {
             strokeWidth: 0
           },
           tickLabels: {
-            fill: '#f0f0f0',
+            fill: '#000',
             fontFamily: "'Inconsolata', monospace",
+            fontSize: 8,
             letterSpacing: '0.002em'
           }
         }

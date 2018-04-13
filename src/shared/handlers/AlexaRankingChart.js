@@ -6,7 +6,7 @@ import { withStyles } from "material-ui/styles";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Loading } from "../components/Index";
+import { ContentWithSidebar, Loading } from "../components/Index";
 import { Alexa } from "../components/Charts/Index";
 
 const styles = theme => ({
@@ -31,18 +31,17 @@ class AlexaRankingChart extends React.Component {
     const getAllAlexaRankings = Store.getAllAlexaRankings;
 
     return (
-      <div
-        className="container"
-      >
+      <ContentWithSidebar>
 
         {getAllAlexaRankings.map((publication, i) =>
           <Alexa
+            key={i}
             name={publication.name}
             rankings={publication.rankings}
           />
         )}
 
-      </div>
+      </ContentWithSidebar>
     )
   }
 }
