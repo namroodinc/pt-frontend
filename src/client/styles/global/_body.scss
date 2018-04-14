@@ -49,14 +49,6 @@ a {
   }
 }
 
-hr {
-  width: 100%;
-  animation: sepWidth 2s 1s cubic-bezier(.77, 0, .175, 1) both;
-  margin: 40px 0;
-  will-change: width;
-  visibility: visible;
-}
-
 p {
   font-family: $bodyFont;
   font-size: 1em;
@@ -74,13 +66,4 @@ time {
   font-family: $primaryFont;
   font-size: 1em;
   text-transform: uppercase;
-}
-
-@keyframes sepWidth {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
 }

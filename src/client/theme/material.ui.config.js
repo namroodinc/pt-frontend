@@ -31,6 +31,11 @@ export default {
     fontFamily: bodyFont
   },
   overrides: {
+    MuiAvatar: {
+      root: {
+        border: `1px solid ${borderColor}`
+      }
+    },
     MuiButton: {
       root: {
         fontWeight: 600,
@@ -55,6 +60,13 @@ export default {
     MuiCardContent: {
       root: {
         padding: `0 0 10px 0`
+      }
+    },
+    MuiCardHeader: {
+      root: {
+        padding: 10,
+        paddingLeft: 10,
+        paddingRight: 10
       }
     },
     MuiFormControl: {
@@ -117,9 +129,12 @@ export default {
     },
     MuiPaper: {
       root: {
-        borderBottom: `1px solid ${borderColor}`,
-        padding: `15px 10px`,
+        marginBottom: 20,
+        padding: 15,
         overflow: 'hidden'
+      },
+      elevation2: {
+        boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.1)'
       },
       rounded: {
         borderRadius: 0

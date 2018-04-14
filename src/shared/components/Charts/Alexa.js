@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
+import { Avatar } from "material-ui";
+import Card, { CardHeader } from "material-ui/Card";
 import {
   VictoryAxis,
   VictoryChart,
@@ -14,21 +16,34 @@ import {
 } from "../../constants/Index";
 
 const styles = theme => ({
+  cardHeader: {
+    paddingLeft: 10,
+    paddingRight: 10
+  }
 });
 
 class Alexa extends React.Component {
   render() {
-    const { name, rankings } = this.props;
+    const { assetUrl, classes, fill, name, rankings } = this.props;
     const { theme } = GlobalTheme;
 
     // console.log(rankings);
 
     return (
       <div>
-        <h2>
-          {name}
-        </h2>
-        <div>
+        <Card>
+          <CardHeader
+            avatar={
+              <Avatar
+                aria-label={name}
+                alt={name}
+                src={assetUrl}
+              />
+            }
+            className={classes.cardHeader}
+            title={name}
+            subheader="September 14, 2016"
+          />
           <VictoryChart
             containerComponent={
               <VictoryContainer
@@ -85,24 +100,31 @@ class Alexa extends React.Component {
             <VictoryLine
               data={rankings}
               interpolation="natural"
+              style={{
+                data: {
+                  stroke: fill
+                }
+              }}
               x="date"
               y={(d) => d.value}
             />
           </VictoryChart>
-        </div>
-        <hr />
+        </Card>
       </div>
     );
   }
 }
 
 Alexa.defaultProps = {
+  fill: '#000',
   name: 'Publication name missing',
   rankings: []
 };
 
 Alexa.propTypes = {
+  assetUrl: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
+  fill: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   rankings: PropTypes.array.isRequired
 };

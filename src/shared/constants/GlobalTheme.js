@@ -91,6 +91,17 @@ export default {
       baseProps
     ),
     chart: baseProps,
+    line: assign(
+      {
+        style: {
+          data: {
+            strokeLinecap: 'round',
+            strokeWidth: 3
+          }
+        }
+      },
+      baseProps
+    ),
     stack: assign(
       {
         colorScale

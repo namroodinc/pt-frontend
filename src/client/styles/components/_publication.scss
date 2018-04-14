@@ -7,7 +7,8 @@
       max-width: $fullContainerWidth;
 
       &__heading {
-        margin-left: 8.33333%;
+        margin: auto;
+        max-width: $tablet;
         padding: 40px 0 20px;
 
         h1 {
@@ -28,18 +29,31 @@
       }
 
       &__controls {
+        max-width: $tablet;
+
         a {
           color: $white;
 
           svg {
-            animation: arrowBounce 3s infinite cubic-bezier(.77,0,.175,1) both;
+            animation: arrowBounce 3s 3s cubic-bezier(.77,0,.175,1) both;
             float: left;
             margin-right: 5px;
+          }
+
+          &:hover {
+            svg {
+              animation: arrowBounce 3s infinite cubic-bezier(.77,0,.175,1) both;
+            }
           }
         }
       }
 
       hr {
+        width: 100%;
+        animation: sepWidth 2s 1s cubic-bezier(.77, 0, .175, 1) both;
+        margin: 40px 0;
+        will-change: width;
+        visibility: visible;
         max-width: $tablet;
       }
     }
@@ -85,5 +99,14 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes sepWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
   }
 }

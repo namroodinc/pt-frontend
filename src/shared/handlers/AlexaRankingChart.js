@@ -35,6 +35,8 @@ class AlexaRankingChart extends React.Component {
 
         {getAllAlexaRankings.map((publication, i) =>
           <Alexa
+            assetUrl={publication.assetUrl}
+            fill={publication.fill}
             key={i}
             name={publication.name}
             rankings={publication.rankings}
