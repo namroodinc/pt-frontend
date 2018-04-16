@@ -11,8 +11,10 @@ class Trending extends React.Component {
   }
 
   render() {
-    const trends = Store.getTrendingTopicsPerPublication;
+    const trendsDays = Store.getLast7PossibleDaysTrending;
+    const trends = Store.getTrendingTopicsNoPrej;
 
+    console.log(trendsDays);
     console.log(trends);
 
     return (

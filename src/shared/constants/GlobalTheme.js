@@ -54,8 +54,8 @@ export default {
       {
         style: {
           axis: {
-            stroke: 'transparent',
-            strokeWidth: 0
+            stroke: '#f0f0f0',
+            strokeWidth: 0.5
           },
           axisLabel: {
             fontFamily: 'inherit',
@@ -68,8 +68,8 @@ export default {
           },
           ticks: {
             size: 5,
-            stroke: 'transparent',
-            strokeWidth: 0
+            stroke: '#f0f0f0',
+            strokeWidth: 0.5
           },
           tickLabels: {
             fill: '#000',
@@ -95,8 +95,7 @@ export default {
       {
         style: {
           data: {
-            strokeLinecap: 'round',
-            strokeWidth: 3
+            strokeWidth: 2
           }
         }
       },

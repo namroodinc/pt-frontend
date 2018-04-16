@@ -337,6 +337,34 @@ class Store {
       .sort((a, b) => b.name - a.name);
   }
 
+  @computed get getLast7PossibleDaysTrending() {
+    const getTrendsForLast7Days = this.getTrendingTopicsPerPublication
+      .map(publication => {
+        const { tags } = publication;
+
+        const splicedTags = tags
+          .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+          .slice(0, 7);
+
+        return assign({}, publication, {
+          tags: splicedTags
+        })
+      });
+
+    return Array.from(new Set([]
+      .concat
+      .apply([], getTrendsForLast7Days
+        .map(publication => publication.tags
+          .map(tag => moment(tag.timestamp).format('MMM DD YYYY'))
+        )
+      )))
+      .sort((a, b) => new Date(b) - new Date(a));
+  }
+
+  // Get last 7 days
+  // map publications
+  // filter trends for the day
+
   @computed get getTrendingTopicsNoPrej() {
     let mergeTrends = [];
     this.getTrendingTopicsPerPublication

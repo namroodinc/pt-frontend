@@ -68,12 +68,6 @@ class Alexa extends React.Component {
                 x: 'time'
               }}
               standalone={false}
-              style={{
-                grid: {
-                  stroke: 'transparent',
-                  strokeWidth: 0
-                }
-              }}
             />
             <VictoryAxis
               dependentAxis
@@ -99,7 +93,6 @@ class Alexa extends React.Component {
             />
             <VictoryLine
               data={rankings}
-              interpolation="natural"
               style={{
                 data: {
                   stroke: fill
