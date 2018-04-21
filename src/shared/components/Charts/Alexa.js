@@ -4,16 +4,12 @@ import { withStyles } from "material-ui/styles";
 import { Avatar } from "material-ui";
 import Card, { CardHeader } from "material-ui/Card";
 import {
-  VictoryAxis,
-  VictoryChart,
-  VictoryContainer,
-  VictoryLabel,
   VictoryLine
 } from "victory";
 
 import {
-  GlobalTheme
-} from "../../constants/Index";
+  ChartWrapper
+} from "./Index";
 
 const styles = theme => ({
   cardHeader: {
@@ -24,10 +20,13 @@ const styles = theme => ({
 
 class Alexa extends React.Component {
   render() {
-    const { assetUrl, classes, fill, name, rankings } = this.props;
-    const { theme } = GlobalTheme;
-
-    // console.log(rankings);
+    const {
+      assetUrl,
+      classes,
+      fill,
+      name,
+      rankings
+    } = this.props;
 
     return (
       <div>
@@ -44,53 +43,9 @@ class Alexa extends React.Component {
             title={name}
             subheader="September 14, 2016"
           />
-          <VictoryChart
-            containerComponent={
-              <VictoryContainer
-                className="myChart"
-              />
-            }
-            domainPadding={{
-              x: 5,
-              y: 20
-            }}
-            height={200}
-            padding={{
-              bottom: 20,
-              left: 50,
-              right: 50,
-              top: 5
-            }}
-            theme={theme}
+          <ChartWrapper
+            invertAxis
           >
-            <VictoryAxis
-              scale={{
-                x: 'time'
-              }}
-              standalone={false}
-            />
-            <VictoryAxis
-              dependentAxis
-              invertAxis
-              standalone={false}
-              tickCount={3}
-              tickFormat={(t) => `${Math.round(t).toLocaleString()}`}
-              tickLabelComponent={
-                <VictoryLabel />
-              }
-            />
-            <VictoryAxis
-              dependentAxis
-              invertAxis
-              offsetX={50}
-              orientation="right"
-              standalone={false}
-              tickCount={3}
-              tickFormat={(t) => `${Math.round(t).toLocaleString()}`}
-              tickLabelComponent={
-                <VictoryLabel />
-              }
-            />
             <VictoryLine
               data={rankings}
               style={{
@@ -101,7 +56,7 @@ class Alexa extends React.Component {
               x="date"
               y={(d) => d.value}
             />
-          </VictoryChart>
+          </ChartWrapper>
         </Card>
       </div>
     );

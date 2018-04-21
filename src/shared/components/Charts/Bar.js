@@ -6,17 +6,11 @@ import { ChartWrapper } from "./Index";
 
 class BarChart extends React.Component {
   render() {
-    const { columns, data, description, domain, heading, isStacked, legend } = this.props;
+    const { data, isStacked } = this.props;
 
     return (
       <div>
-        <ChartWrapper
-          columns={columns}
-          description={description}
-          domain={domain}
-          heading={heading}
-          legend={legend}
-        >
+        <ChartWrapper>
           {isStacked ?
             <VictoryStack
               containerComponent={
@@ -28,18 +22,18 @@ class BarChart extends React.Component {
             >
               {data.map((row, i) =>
                 <VictoryBar
-                  data={row}
+                  data={data}
                   key={i}
                   standalone={false}
                 />
               )}
             </VictoryStack> : <VictoryGroup
-              offset={20}
+              offset={30}
               standalone={false}
             >
               {data.map((row, i) =>
                 <VictoryBar
-                  data={row}
+                  data={data}
                   key={i}
                   standalone={false}
                 />

@@ -167,6 +167,17 @@ class Store {
       .sort((a, b) => b.circulations[0].value - a.circulations[0].value);
   }
 
+  @computed get getAllCirculationsForGivenYearBarChart() {
+    return this.getAllCirculationsForGivenYear
+      .map(publication => {
+        return {
+          fill: publication.fill,
+          x: publication.circulations[0].date,
+          y: publication.circulations[0].value
+        }
+      })
+  }
+
   @computed get getLast5Circulations() {
     const initialData = this.getAllCirculations
       .splice(0, 5);

@@ -2,6 +2,7 @@ import AlexaRankingChart from "./AlexaRankingChart";
 import AlexaRanking from "./AlexaRanking";
 import Analytics from "./Analytics";
 import Circulations from "./Circulations";
+import CirculationsChart from "./CirculationsChart";
 import Complaints from "./Complaints";
 import Home from "./Home";
 import Page from "./Page";
@@ -15,6 +16,7 @@ export {
   AlexaRanking,
   Analytics,
   Circulations,
+  CirculationsChart,
   Complaints,
   Home,
   Page,

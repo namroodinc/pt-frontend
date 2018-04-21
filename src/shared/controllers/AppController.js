@@ -7,6 +7,7 @@ import {
   AlexaRankingChart,
   Analytics,
   Circulations,
+  CirculationsChart,
   Complaints,
   Home,
   Page,
@@ -57,6 +58,11 @@ export default class AppController extends React.Component {
               exact
               path="/circulations"
               component={() => <Circulations pageId={CIRCULATIONS_ENTRY_ID} />}
+            />
+            <Route
+              exact
+              path="/circulations/chart"
+              component={CirculationsChart}
             />
             <Route
               exact

@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
@@ -8,12 +9,19 @@ import { FormControl, FormLabel } from "material-ui/Form";
 import { MenuItem } from "material-ui/Menu";
 import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
 import PlayArrow from "material-ui-icons/PlayArrow";
-import classNames from "classnames";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Banner, ContentWithSidebar, Loading } from "../components/Index";
+import {
+  Banner,
+  ContentWithSidebar,
+  Loading
+} from "../components/Index";
+
+import {
+  Bar
+} from "../components/Charts/Index";
 
 const styles = theme => ({
   avatar: {
@@ -54,7 +62,7 @@ const styles = theme => ({
 
 @observer
 class Circulations extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     const { pageId } = this.props;
     Actions.getPageWithPublicationList(pageId);
   }
@@ -77,6 +85,7 @@ class Circulations extends React.Component {
 
     const allYears = Store.getAllCirculationYears;
     const data = Store.getAllCirculationsForGivenYear;
+    const chartData = Store.getAllCirculationsForGivenYearBarChart;
     const year = Store.retrieveCirculationYear();
 
     const { disableFirst, disableLast } = Store.checkIfYearExistsBeforeOrAfter;
@@ -116,6 +125,10 @@ class Circulations extends React.Component {
             )}
           </Select>
         </FormControl>
+
+        <Bar
+          data={chartData}
+        />
 
         <Table>
           <TableHead>
