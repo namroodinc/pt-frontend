@@ -100,7 +100,8 @@ ChartWrapper.defaultProps = {
   height: 200,
   invertAxis: false,
   scale: 'linear',
-  tickCount: 3
+  tickCount: 3,
+  tickLabels: []
 };
 
 ChartWrapper.propTypes = {
@@ -111,7 +112,8 @@ ChartWrapper.propTypes = {
   height: PropTypes.number,
   invertAxis: PropTypes.bool,
   scale: PropTypes.string,
-  tickCount: PropTypes.number
+  tickCount: PropTypes.number,
+  tickLabels: PropTypes.array
 };
 
 export default ChartWrapper;

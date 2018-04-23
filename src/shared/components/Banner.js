@@ -3,6 +3,8 @@ import ReactHtmlParser from "react-html-parser";
 import PropTypes from "prop-types";
 import Marked from "marked";
 
+import { ShareButtons } from "./Index";
+
 class Banner extends React.Component {
   render() {
     const { description, title } = this.props;
@@ -19,6 +21,11 @@ class Banner extends React.Component {
           <h2>
             {bannerTitle}
           </h2>
+        </div>
+        <div
+          className="banner__content"
+        >
+          <ShareButtons />
         </div>
         <div
           className="banner__content"

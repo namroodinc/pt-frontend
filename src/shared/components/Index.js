@@ -6,6 +6,7 @@ import LinkCard from "./LinkCard";
 import Loading from "./Loading";
 import PublicationList from "./PublicationList";
 import Ratings from "./Ratings";
+import ShareButtons from "./ShareButtons";
 import TrendingTopics from "./TrendingTopics";
 
 export {
@@ -17,5 +18,6 @@ export {
   Loading,
   PublicationList,
   Ratings,
+  ShareButtons,
   TrendingTopics
 }
