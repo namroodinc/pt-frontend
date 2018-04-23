@@ -45,6 +45,7 @@ class Alexa extends React.Component {
           />
           <ChartWrapper
             invertAxis
+            scale="time"
           >
             <VictoryLine
               data={rankings}

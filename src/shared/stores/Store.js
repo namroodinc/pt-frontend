@@ -172,7 +172,8 @@ class Store {
       .map(publication => {
         return {
           fill: publication.fill,
-          x: publication.circulations[0].date,
+          label: publication.circulations[0].value.toLocaleString(),
+          x: publication.name,
           y: publication.circulations[0].value
         }
       })

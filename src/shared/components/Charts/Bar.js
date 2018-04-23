@@ -1,16 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { VictoryBar, VictoryGroup, VictoryStack } from "victory";
+import { VictoryBar, VictoryGroup, VictoryLabel, VictoryStack } from "victory";
 
 import { ChartWrapper } from "./Index";
 
 class BarChart extends React.Component {
   render() {
-    const { data, isStacked } = this.props;
+    const { axes, data, height, horizontal, invertAxis, isStacked } = this.props;
+    const tickLabels = data.map(d => d.x);
 
     return (
       <div>
-        <ChartWrapper>
+        <ChartWrapper
+          axes={axes}
+          domainPaddingX={30}
+          height={height}
+          invertAxis={invertAxis}
+          tickCount={horizontal ? data.length : 3}
+          tickLabels={tickLabels}
+        >
           {isStacked ?
             <VictoryStack
               containerComponent={
@@ -20,24 +28,24 @@ class BarChart extends React.Component {
               }
               standalone={false}
             >
-              {data.map((row, i) =>
-                <VictoryBar
-                  data={data}
-                  key={i}
-                  standalone={false}
-                />
-              )}
+              <VictoryBar
+                data={data}
+                horizontal={horizontal}
+                standalone={false}
+              />
             </VictoryStack> : <VictoryGroup
-              offset={30}
               standalone={false}
             >
-              {data.map((row, i) =>
-                <VictoryBar
-                  data={data}
-                  key={i}
-                  standalone={false}
-                />
-              )}
+              <VictoryBar
+                data={data}
+                horizontal={horizontal}
+                labelComponent={<VictoryLabel
+                  dx={horizontal ? 5 : 0}
+                  dy={horizontal ? 0 : 5}
+                  textAnchor="start"
+                />}
+                standalone={false}
+              />
             </VictoryGroup>
           }
         </ChartWrapper>
@@ -47,19 +55,21 @@ class BarChart extends React.Component {
 }
 
 BarChart.defaultProps = {
-  domain: null,
-  isStacked: false,
-  legend: null
+  axes: 'both',
+  data: [],
+  height: 200,
+  horizontal: false,
+  invertAxis: false,
+  isStacked: false
 }
 
 BarChart.propTypes = {
-  columns: PropTypes.array,
+  axes: PropTypes.string,
   data: PropTypes.array,
-  description: PropTypes.string,
-  domain: PropTypes.array,
-  heading: PropTypes.string,
-  isStacked: PropTypes.bool,
-  legend: PropTypes.array
+  height: PropTypes.number,
+  horizontal: PropTypes.bool,
+  invertAxis: PropTypes.bool,
+  isStacked: PropTypes.bool
 };
 
 export default BarChart;

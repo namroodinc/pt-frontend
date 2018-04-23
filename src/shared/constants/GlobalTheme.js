@@ -85,6 +85,11 @@ export default {
         style: {
           data: {
             strokeWidth: 0
+          },
+          labels: {
+            fontFamily: "'Inconsolata', monospace",
+            fontSize: 8,
+            letterSpacing: '0.002em'
           }
         }
       },
