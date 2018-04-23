@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { assign } from "lodash";
 // import wrap from "word-wrap";
+
 import {
   VictoryAxis,
   VictoryChart,
@@ -15,17 +17,33 @@ import {
 
 class ChartWrapper extends React.Component {
   render() {
-    const { axes, domainPaddingX, domainPaddingY, height, invertAxis, scale, tickCount, tickLabels } = this.props;
-    const { theme } = GlobalTheme;
+    const {
+      axes,
+      domainPaddingX,
+      domainPaddingY,
+      height,
+      invertAxis,
+      padding,
+      scale,
+      tickCount,
+      tickLabels
+    } = this.props;
 
-    const formatTicks = (tick, index) => {
-      console.log(tick, ' ', index + 1);
-      if (scale === 'time') {
-        return `${Math.round(tick).toLocaleString()}`;
-      } else {
-        return tickLabels[tickLabels.length - index];
-      }
-    }
+    const {
+      theme
+    } = GlobalTheme;
+
+    // const formatTicks = (tick, index) => {
+    //   if (scale === 'time') return `${Math.round(tick).toLocaleString()}`;
+    //   return tickLabels[tickLabels.length - index];
+    // }
+
+    const chartPadding = assign({}, {
+      bottom: 20,
+      left: 50,
+      right: 50,
+      top: 5
+    }, padding);
 
     return (
       <div>
@@ -40,12 +58,7 @@ class ChartWrapper extends React.Component {
             y: domainPaddingY
           }}
           height={height}
-          padding={{
-            bottom: 20,
-            left: 50,
-            right: 50,
-            top: 5
-          }}
+          padding={chartPadding}
           theme={theme}
         >
           <VictoryAxis
@@ -63,7 +76,7 @@ class ChartWrapper extends React.Component {
               invertAxis={invertAxis}
               standalone={false}
               tickCount={tickCount}
-              tickFormat={(t, i) => formatTicks(t, i)}
+              tickValues={tickLabels}
               tickLabelComponent={
                 <VictoryLabel />
               }
@@ -78,7 +91,7 @@ class ChartWrapper extends React.Component {
               orientation="right"
               standalone={false}
               tickCount={tickCount}
-              tickFormat={(t, i) => formatTicks(t, i)}
+              tickValues={tickLabels}
               tickLabelComponent={
                 <VictoryLabel />
               }
@@ -99,6 +112,7 @@ ChartWrapper.defaultProps = {
   domainPaddingY: 20,
   height: 200,
   invertAxis: false,
+  padding: {},
   scale: 'linear',
   tickCount: 3,
   tickLabels: []
@@ -111,6 +125,7 @@ ChartWrapper.propTypes = {
   domainPaddingY: PropTypes.number,
   height: PropTypes.number,
   invertAxis: PropTypes.bool,
+  padding: PropTypes.object,
   scale: PropTypes.string,
   tickCount: PropTypes.number,
   tickLabels: PropTypes.array

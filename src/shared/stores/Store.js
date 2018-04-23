@@ -520,6 +520,24 @@ class Store {
     return getAllRatings;
   }
 
+  @computed get getAllPricesByCountryBarChart() {
+    console.log(this.getAllPricesByCountry);
+    return this.getAllPricesByCountry
+      .map(country => {
+        const pricesArray = country.pricesArray.map(publication => {
+          return {
+            fill: publication.fill,
+            label: publication.price === 0 ? 'Free!' : `${publication.symbol}${publication.price}`,
+            x: publication.name,
+            y: parseFloat(publication.price)
+          }
+        });
+        return {
+          country: country.country,
+          pricesArray
+        }
+      })
+  }
   @computed get getAllComplaints() {
     return this.publicationList
       .filter(publication => {

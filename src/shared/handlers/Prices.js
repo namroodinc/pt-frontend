@@ -13,6 +13,10 @@ import Store from "../stores/Store";
 
 import { Banner, ContentWithSidebar, Loading } from "../components/Index";
 
+import {
+  Bar
+} from "../components/Charts/Index";
+
 const styles = theme => ({
   avatar: {
     float: 'left',
@@ -67,6 +71,7 @@ class Prices extends React.Component {
     const { bodyCopy, title } = Store.retrievePage();
     const getAllCountries = Store.getAllCountries;
     const getAllPricesByCountry = Store.getAllPricesByCountry;
+    const chartData = Store.getAllPricesByCountryBarChart;
 
     return (
       <ContentWithSidebar>
@@ -103,6 +108,28 @@ class Prices extends React.Component {
             )}
           </Select>
         </FormControl>
+        <div>
+          {chartData.map((prices, i) =>
+            <div
+              key={i}
+            >
+              {this.state.value === prices.country &&
+                <Bar
+                  axes="left"
+                  data={prices.pricesArray}
+                  domainPaddingX={50}
+                  horizontal
+                  height={350}
+                  invertAxis
+                  padding={{
+                    left: 150,
+                    right: 5
+                  }}
+                />
+              }
+            </div>
+          )}
+        </div>
 
         <div>
           {getAllPricesByCountry.map((prices, i) =>

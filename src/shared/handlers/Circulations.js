@@ -91,8 +91,6 @@ class Circulations extends React.Component {
     const { disableFirst, disableLast } = Store.checkIfYearExistsBeforeOrAfter;
     const { bodyCopy, title } = Store.retrievePage();
 
-    console.log(data);
-
     return (
       <ContentWithSidebar>
         <Banner
@@ -131,9 +129,14 @@ class Circulations extends React.Component {
         <Bar
           axes="left"
           data={chartData}
+          domainPaddingX={50}
           horizontal
           height={300}
           invertAxis
+          padding={{
+            left: 110,
+            right: 5
+          }}
         />
 
         <Table>
