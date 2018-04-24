@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Logo } from "./Icons/Index";
-
 export default class Header extends React.Component {
   render() {
     return (
@@ -18,7 +16,7 @@ export default class Header extends React.Component {
             <Link
               to="/"
             >
-              <Logo />
+              Press Torch
             </Link>
           </div>
 
