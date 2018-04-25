@@ -10,7 +10,7 @@ import Marked from "marked";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { Loading } from "../components/Index";
+import { ContentWithSidebar, Loading } from "../components/Index";
 import { PaperCard, Time } from "../components/Data/Index";
 
 const styles = theme => ({
@@ -70,87 +70,55 @@ class Publication extends React.Component {
     const publicationDescription = description || '';
 
     return (
-      <div
-        className="publication"
-      >
-
+      <ContentWithSidebar>
         <div
-          className="publication__banner"
-          style={Store.getBrandColors}
+          className="publication"
         >
 
           <div
-            className="publication__banner__content"
+            className="publication__banner"
+            style={Store.getBrandColors}
           >
 
             <div
-              className="publication__banner__content__heading"
+              className="publication__banner__content"
             >
-              <h1>
-                {name}
-              </h1>
-            </div>
 
-            <div
-              className="publication__banner__content__blurb"
-            >
-              {ReactHtmlParser(Marked(publicationDescription))}
-            </div>
-
-            <hr />
-
-            <div
-              className="publication__banner__content__controls"
-            >
-              <a
-                className="publication__banner__content__controls__read-more"
-                href="#more"
+              <div
+                className="publication__banner__content__heading"
               >
-                <ArrowDownward />
-                Read more
-              </a>
+                <h1>
+                  {name}
+                </h1>
+              </div>
+
+              <div
+                className="publication__banner__content__blurb"
+              >
+                {ReactHtmlParser(Marked(publicationDescription))}
+              </div>
+
+              <hr />
+
+              <div
+                className="publication__banner__content__controls"
+              >
+                <a
+                  className="publication__banner__content__controls__read-more"
+                  href="#more"
+                >
+                  <ArrowDownward />
+                  Read more
+                </a>
+              </div>
+
             </div>
 
           </div>
 
-        </div>
-
-        <Grid
-          container
-          spacing={24}
-        >
-
           <Grid
-            item
-            xs={12}
-            md={6}
-          >
-
-            <Paper>
-              <Time
-                dateTime={updatedAt}
-                dateTimeFormat="[Last updated:] MMM. DD, HH:mm"
-              />
-            </Paper>
-
-            <PaperCard
-              title="Website"
-              text={
-                <a
-                  href={`${website}`}
-                  target="_blank"
-                >
-                  {website}
-                </a>
-              }
-            />
-
-          </Grid>
-
-          <Grid
-            item
-            xs={12}
-            md={6}
+            container
+            spacing={24}
           >
 
             <Grid
@@ -159,30 +127,24 @@ class Publication extends React.Component {
               md={6}
             >
 
-              <PaperCard
-                title="Political alignment and opinion"
-                text={alignment}
-              />
-
-              <PaperCard
-                title="Format"
-                text={formats}
-              />
-
-              <PaperCard
-                title="Founded"
-                text={foundedDate}
-              />
-
-              <PaperCard
-                title="Alexa Global Rank"
-                text={alexaRank}
-              >
+              <Paper>
                 <Time
-                  dateTime={alexaLastUpdated}
-                  dateTimeFormat="[Updated:] MMM. DD, HH:mm"
+                  dateTime={updatedAt}
+                  dateTimeFormat="[Last updated:] MMM. DD, HH:mm"
                 />
-              </PaperCard>
+              </Paper>
+
+              <PaperCard
+                title="Website"
+                text={
+                  <a
+                    href={`${website}`}
+                    target="_blank"
+                  >
+                    {website}
+                  </a>
+                }
+              />
 
             </Grid>
 
@@ -192,28 +154,68 @@ class Publication extends React.Component {
               md={6}
             >
 
-              <PaperCard
-                title="Address"
-                list={address}
-              />
+              <Grid
+                item
+                xs={12}
+                md={6}
+              >
 
-              <PaperCard
-                title="Owned By"
-                text={ownership}
-              />
+                <PaperCard
+                  title="Political alignment and opinion"
+                  text={alignment}
+                />
 
-              <PaperCard
-                title="Publisher"
-                text={publisher}
-              />
+                <PaperCard
+                  title="Format"
+                  text={formats}
+                />
+
+                <PaperCard
+                  title="Founded"
+                  text={foundedDate}
+                />
+
+                <PaperCard
+                  title="Alexa Global Rank"
+                  text={alexaRank}
+                >
+                  <Time
+                    dateTime={alexaLastUpdated}
+                    dateTimeFormat="[Updated:] MMM. DD, HH:mm"
+                  />
+                </PaperCard>
+
+              </Grid>
+
+              <Grid
+                item
+                xs={12}
+                md={6}
+              >
+
+                <PaperCard
+                  title="Address"
+                  list={address}
+                />
+
+                <PaperCard
+                  title="Owned By"
+                  text={ownership}
+                />
+
+                <PaperCard
+                  title="Publisher"
+                  text={publisher}
+                />
+
+              </Grid>
 
             </Grid>
 
           </Grid>
 
-        </Grid>
-
-      </div>
+        </div>
+      </ContentWithSidebar>
     )
   }
 }

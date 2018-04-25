@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
 import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
-import { Avatar, Select } from "material-ui";
+import { Select } from "material-ui";
 import { FormControl, FormLabel } from "material-ui/Form";
 import { MenuItem } from "material-ui/Menu";
 
@@ -156,34 +156,18 @@ class Prices extends React.Component {
                       <TableRow
                         key={i}
                       >
-                        <TableCell
-                          numeric
-                        >
-                          <span
-                            style={{
-                              color: paper.fill,
-                              display: 'block'
-                            }}
-                          >
-                            {paper.price === 0 ?
-                              <span>
-                                Free
-                              </span> : <span>
-                                {paper.symbol}
-                                {paper.price}
-                              </span>
-                            }
-                          </span>
+                        <TableCell>
+                          {paper.price === 0 ?
+                            <span>
+                              Free
+                            </span> : <span>
+                              {paper.symbol}
+                              {paper.price}
+                            </span>
+                          }
                         </TableCell>
                         <TableCell>
-                          <span
-                            style={{
-                              color: paper.fill,
-                              display: 'block'
-                            }}
-                          >
-                            {paper.name}
-                          </span>
+                          {paper.name}
                         </TableCell>
                         <TableCell>
                           <Link
@@ -194,11 +178,6 @@ class Prices extends React.Component {
                             }}
                             to={`/publication/${paper.id}`}
                           >
-                            <Avatar
-                              alt={paper.name}
-                              className={classes.avatar}
-                              src={paper.assetUrl}
-                            />
                             {paper.publication}
                           </Link>
                         </TableCell>

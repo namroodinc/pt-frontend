@@ -3,6 +3,36 @@ import { Link } from "react-router-dom";
 
 export default class Header extends React.Component {
   render() {
+    const links = (
+      <div>
+        <Link
+          to="/"
+        >
+          Home
+        </Link>
+        <Link
+          to="/complaints"
+        >
+          Complaints
+        </Link>
+        <Link
+          to="/prices"
+        >
+          Prices
+        </Link>
+        <Link
+          to="/ratings"
+        >
+          Ratings
+        </Link>
+        <Link
+          to="/circulations"
+        >
+          Circulations
+        </Link>
+      </div>
+    );
+
     return (
       <header>
 
@@ -23,31 +53,7 @@ export default class Header extends React.Component {
           <div
             className="header__navigation"
           >
-            <Link
-              to="/"
-            >
-              Home
-            </Link>
-            <Link
-              to="/complaints"
-            >
-              Complaints
-            </Link>
-            <Link
-              to="/prices"
-            >
-              Prices
-            </Link>
-            <Link
-              to="/ratings"
-            >
-              Ratings
-            </Link>
-            <Link
-              to="/circulations"
-            >
-              Circulations
-            </Link>
+            {links}
           </div>
 
         </div>
@@ -58,31 +64,7 @@ export default class Header extends React.Component {
           <div
             className="sub-header__navigation"
           >
-            <Link
-              to="/"
-            >
-              Home
-            </Link>
-            <Link
-              to="/complaints"
-            >
-              Complaints
-            </Link>
-            <Link
-              to="/prices"
-            >
-              Prices
-            </Link>
-            <Link
-              to="/ratings"
-            >
-              Ratings
-            </Link>
-            <Link
-              to="/circulations"
-            >
-              Circulations
-            </Link>
+            {links}
           </div>
         </div>
       </header>

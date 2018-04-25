@@ -609,7 +609,7 @@ class Store {
 
     return {
       backgroundColor: brandColor,
-      color: color(brandColor).isLight() ? '#000' : '#FFF'
+      color: color(brandColor).isLight() ? '#FFF' : '#FFF'
     };
   }
 

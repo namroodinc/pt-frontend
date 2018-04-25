@@ -1,5 +1,4 @@
 header {
-  background-color: $black;
   // background-image:
   //   radial-gradient($borderColor 20%, transparent 0),
   //   radial-gradient($borderColor 20%, transparent 0);
@@ -26,8 +25,8 @@ header {
   }
 
   .header {
-    border-bottom: 1px solid $white;
-    padding: 10px 0 20px 0;
+    border-bottom: 2px solid $backgroundColor;
+    padding: 10px 0;
 
     &__logo {
       flex-grow: 1;
@@ -35,7 +34,7 @@ header {
       padding-top: 10px;
 
       & > a {
-        color: $white;
+        color: $black;
         display: inline-block;
         letter-spacing: -0.035em;
         font-size: 2em;
@@ -50,8 +49,8 @@ header {
       padding-left: 20px;
       text-align: right;
 
-      & > a {
-        color: $white;
+      a {
+        color: $black;
         font-size: 0.8em;
         margin-right: 20px;
         text-transform: uppercase;
@@ -70,8 +69,8 @@ header {
     &__navigation {
       align-items: flex-start;
 
-      & > a {
-        color: $white;
+      a {
+        color: $black;
         font-size: 0.8em;
         font-weight: 400;
         margin-right: 20px;

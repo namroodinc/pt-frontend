@@ -9,6 +9,7 @@ import {
   Circulations,
   CirculationsChart,
   Complaints,
+  Data,
   Home,
   Page,
   Prices,
@@ -68,6 +69,11 @@ export default class AppController extends React.Component {
               exact
               path="/complaints"
               component={() => <Complaints pageId={PRESS_COMPLAINTS_ID} />}
+            />
+            <Route
+              exact
+              path="/data"
+              component={Data}
             />
             <Route
               exact

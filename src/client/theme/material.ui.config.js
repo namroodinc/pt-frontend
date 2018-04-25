@@ -7,9 +7,10 @@ import Styles from "../styles/app.scss";
 const {
   black,
   bodyFont,
-  primaryColor,
   borderColor,
   letterSpacing,
+  primaryColor,
+  primaryFont,
   secondaryBackgroundColor,
   tabUnselected,
   white
@@ -173,25 +174,35 @@ export default {
         display: 'none'
       }
     },
+    MuiTable: {
+      root: {
+        fontFamily: primaryFont
+      }
+    },
     MuiTableCell: {
       head: {
+        borderBottomWidth: 2,
         borderColor: primaryColor,
         color: primaryColor,
-        fontFamily: bodyFont,
-        fontSize: '1em',
-        fontWeight: 700,
+        fontSize: '0.8em',
+        fontWeight: 500,
         padding: 10
       },
       body: {
-        fontSize: '1em',
-        padding: 10
-      },
-      numeric: {
-        textAlign: 'center'
+        fontSize: '0.8em',
+        padding: `6px 10px`
       },
       root: {
         borderBottomColor: secondaryBackgroundColor,
-        borderBottomWidth: 2
+        borderBottomWidth: 1
+      }
+    },
+    MuiTableRow: {
+      head: {
+        height: 'auto'
+      },
+      root: {
+        height: 'auto'
       }
     }
   }

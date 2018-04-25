@@ -1,5 +1,6 @@
 import Asset from "./Asset";
 import Banner from "./Banner";
+import ContentTitle from "./ContentTitle";
 import ContentWithSidebar from "./ContentWithSidebar";
 import Header from "./Header";
 import LinkCard from "./LinkCard";
@@ -12,6 +13,7 @@ import TrendingTopics from "./TrendingTopics";
 export {
   Asset,
   Banner,
+  ContentTitle,
   ContentWithSidebar,
   Header,
   LinkCard,

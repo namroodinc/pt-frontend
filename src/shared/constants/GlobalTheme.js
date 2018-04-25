@@ -46,7 +46,7 @@ export default {
   groupLabels: {
     fill: '#f0f0f0',
     fontSize: 12,
-    fontFamily: "'Inconsolata', monospace",
+    fontFamily: "'Roboto Mono', monospace",
     letterSpacing: '0.002em'
   },
   theme: {
@@ -73,7 +73,7 @@ export default {
           },
           tickLabels: {
             fill: '#000',
-            fontFamily: "'Inconsolata', monospace",
+            fontFamily: "'Roboto Mono', monospace",
             fontSize: 8,
             letterSpacing: '0.002em'
           }
@@ -87,7 +87,7 @@ export default {
             strokeWidth: 0
           },
           labels: {
-            fontFamily: "'Inconsolata', monospace",
+            fontFamily: "'Roboto Mono', monospace",
             fontSize: 8,
             letterSpacing: '0.002em'
           }

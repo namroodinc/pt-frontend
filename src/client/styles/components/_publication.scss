@@ -1,6 +1,6 @@
 .publication {
   &__banner {
-    padding: 20px;
+    padding: 30px;
 
     &__content {
       margin: auto;
@@ -9,7 +9,7 @@
       &__heading {
         margin: auto;
         max-width: $tablet;
-        padding: 40px 0 20px;
+        padding: 0 0 20px;
 
         h1 {
           animation: fadein 3s ease both;

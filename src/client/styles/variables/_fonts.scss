@@ -1,11 +1,9 @@
 $bodyFont: -apple-system, BlinkMacSystemFont, Helvetica, Roboto, "Segoe UI", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", 'Open Sans', sans-serif;
-$primaryFont: 'Lato', monospace;
-$secondaryFont: 'Inconsolata', monospace;
+$primaryFont: 'Roboto Mono', monospace;
 $letterSpacing: 0.002em;
 
 :export {
   bodyFont: $bodyFont;
   primaryFont: $primaryFont;
-  secondaryFont: $secondaryFont;
   letterSpacing: $letterSpacing;
 }

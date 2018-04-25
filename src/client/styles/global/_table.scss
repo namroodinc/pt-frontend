@@ -11,13 +11,8 @@ table {
   text-align: left;
   width: 100%;
 
-  thead {
-    tr {
-      th {
-        color: $primaryColor;
-        font-weight: 700;
-      }
-    }
+  a {
+    font-weight: 500;
   }
 
   time {
