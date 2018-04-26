@@ -1,14 +1,12 @@
 import React from "react";
 import { observer } from "mobx-react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "material-ui/styles";
-import { Avatar, IconButton, Select } from "material-ui";
+import { Select } from "material-ui";
 import { FormControl, FormLabel } from "material-ui/Form";
 import { MenuItem } from "material-ui/Menu";
 import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
-import PlayArrow from "material-ui-icons/PlayArrow";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -24,35 +22,11 @@ import {
 } from "../components/Charts/Index";
 
 const styles = theme => ({
-  avatar: {
-    float: 'left',
-    height: 20,
-    marginRight: 10,
-    width: 20
-  },
   formControl: {
     marginBottom: 15
   },
   formLabel: {
     fontSize: 14,
-    whiteSpace: 'nowrap'
-  },
-  iconButton: {
-    color: '#026FC9',
-    height: 20,
-    marginLeft: 5,
-    marginRight: 5,
-    marginTop: -3,
-    width: 20
-  },
-  iconButtonIcon: {
-    height: 20,
-    width: 20
-  },
-  iconButtonRotate: {
-    transform: 'rotate(180deg)'
-  },
-  inputLabel: {
     whiteSpace: 'nowrap'
   },
   select: {
@@ -71,14 +45,6 @@ class Circulations extends React.Component {
     Actions.updateCirculationYear(event.target.value);
   };
 
-  handleGetPreviousYear = () => {
-    Actions.updateCirculationYear(Store.getPreviousCirculationYear);
-  };
-
-  handleGetNextYear = () => {
-    Actions.updateCirculationYear(Store.getNextCirculationYear);
-  };
-
   render() {
     if (Store.isLoading()) return <Loading />;
     const { classes } = this.props;
@@ -88,7 +54,6 @@ class Circulations extends React.Component {
     const chartData = Store.getAllCirculationsForGivenYearBarChart;
     const year = Store.retrieveCirculationYear();
 
-    const { disableFirst, disableLast } = Store.checkIfYearExistsBeforeOrAfter;
     const { bodyCopy, title } = Store.retrievePage();
 
     return (
@@ -128,14 +93,15 @@ class Circulations extends React.Component {
 
         <Bar
           axes="left"
+          axisFormat={(t) => t.toLocaleString()}
           data={chartData}
           domainPaddingX={50}
           horizontal
           height={300}
           invertAxis
           padding={{
-            left: 110,
-            right: 5
+            left: 120,
+            right: 20
           }}
         />
 
@@ -148,27 +114,7 @@ class Circulations extends React.Component {
               <TableCell
                 numeric
               >
-                <IconButton
-                  aria-label="Previous Year"
-                  className={classNames(classes.iconButton)}
-                  disabled={disableFirst}
-                  onClick={this.handleGetPreviousYear}
-                >
-                  <PlayArrow
-                    className={classNames(classes.iconButtonRotate, classes.iconButtonIcon)}
-                  />
-                </IconButton>
                 Year
-                <IconButton
-                  aria-label="Next Year"
-                  className={classNames(classes.iconButton)}
-                  disabled={disableLast}
-                  onClick={this.handleGetNextYear}
-                >
-                  <PlayArrow
-                    className={classNames(classes.iconButtonIcon)}
-                  />
-                </IconButton>
               </TableCell>
               <TableCell
                 numeric
@@ -189,11 +135,6 @@ class Circulations extends React.Component {
                     }}
                     to={`/publication/${c.id}`}
                   >
-                    <Avatar
-                      alt={c.name}
-                      className={classes.avatar}
-                      src={c.assetUrl}
-                    />
                     {c.name}
                   </Link>
                 </TableCell>

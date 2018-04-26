@@ -6,15 +6,17 @@ import { ChartWrapper } from "./Index";
 
 class BarChart extends React.Component {
   render() {
-    const { axes, data, domainPaddingX, height, horizontal, invertAxis, isStacked, padding } = this.props;
+    const { axes, axisFormat, data, domainPaddingX, height, horizontal, invertAxis, isStacked, padding } = this.props;
     const tickLabels = data.map(d => d.x);
 
     return (
       <div>
         <ChartWrapper
           axes={axes}
+          axisFormat={axisFormat}
           domainPaddingX={domainPaddingX}
           height={height}
+          horizontal={horizontal}
           invertAxis={invertAxis}
           padding={padding}
           tickCount={horizontal ? data.length : 3}
@@ -57,6 +59,7 @@ class BarChart extends React.Component {
 
 BarChart.defaultProps = {
   axes: 'both',
+  axisFormat: (t) => t,
   data: [],
   domainPaddingX: 30,
   domainPaddingY: 20,
@@ -69,6 +72,7 @@ BarChart.defaultProps = {
 
 BarChart.propTypes = {
   axes: PropTypes.string,
+  axisFormat: PropTypes.func,
   data: PropTypes.array,
   domainPaddingX: PropTypes.number,
   domainPaddingY: PropTypes.number,

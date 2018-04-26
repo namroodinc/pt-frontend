@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import { withStyles } from "material-ui/styles";
 import { Link } from "react-router-dom";
-import Avatar from 'material-ui/Avatar';
 import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
 
 import Actions from "../actions/Actions";
@@ -14,12 +13,6 @@ import { Loading } from "../components/Index";
 import { DownloadJsonToCsv } from "../components/Controls/Index";
 
 const styles = theme => ({
-  avatar: {
-    float: 'left',
-    height: 20,
-    marginRight: 10,
-    width: 20
-  }
 });
 
 @observer
@@ -30,7 +23,6 @@ class AlexaRanking extends React.Component {
 
   render() {
     if (Store.isLoading()) return <Loading />;
-    const { classes } = this.props;
 
     const getLast7PossibleDaysAlexa = Store.getLast7PossibleDaysAlexa;
     const getAlexaRankingsForLast7Days = Store.getAlexaRankingsForLast7Days;
@@ -49,7 +41,6 @@ class AlexaRanking extends React.Component {
                   [moment(getLast7PossibleDaysAlexa[i]).format('DD MMMM')]: day ? day.value : 'N/A'
                 }
               });
-
               return {
                 'Publication': publication.name,
                 ...Object.assign({}, ...flattenArray)
@@ -62,11 +53,12 @@ class AlexaRanking extends React.Component {
           <TableHead>
             <TableRow>
               <TableCell>
-                Publication
+                Publication (ordered by Alexa Ranking)
               </TableCell>
               {getLast7PossibleDaysAlexa.map((day, i) =>
                 <TableCell
                   key={i}
+                  numeric
                 >
                   {moment(day).format('DD')} {moment(day).format('MMMM')}
                 </TableCell>
@@ -87,11 +79,6 @@ class AlexaRanking extends React.Component {
                     }}
                     to={`/publication/${publication.id}`}
                   >
-                    <Avatar
-                      alt={publication.name}
-                      className={classes.avatar}
-                      src={publication.assetUrl}
-                    />
                     {publication.name}
                   </Link>
                 </TableCell>

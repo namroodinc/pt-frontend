@@ -21,11 +21,6 @@ export default class Header extends React.Component {
           Prices
         </Link>
         <Link
-          to="/ratings"
-        >
-          Ratings
-        </Link>
-        <Link
           to="/circulations"
         >
           Circulations

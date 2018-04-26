@@ -11,6 +11,7 @@ import { MenuItem } from "material-ui/Menu";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
+import { currencySymbol } from "../constants/Index";
 import { Banner, ContentWithSidebar, Loading } from "../components/Index";
 
 import {
@@ -87,7 +88,7 @@ class Prices extends React.Component {
           <FormLabel
             className={classes.formLabel}
           >
-            Filter circulations by year
+            Filter prices by country
           </FormLabel>
           <Select
             className={classes.select}
@@ -116,6 +117,10 @@ class Prices extends React.Component {
               {this.state.value === prices.country &&
                 <Bar
                   axes="left"
+                  axisFormat={(t, i) => {
+                    if (i === 0) return 'Free';
+                    return `${currencySymbol[this.state.value]}${t}`
+                  }}
                   data={prices.pricesArray}
                   domainPaddingX={50}
                   horizontal
@@ -152,36 +157,49 @@ class Prices extends React.Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {prices.pricesArray.map((paper, i) =>
-                      <TableRow
-                        key={i}
-                      >
-                        <TableCell>
-                          {paper.price === 0 ?
-                            <span>
-                              Free
-                            </span> : <span>
-                              {paper.symbol}
-                              {paper.price}
+                    {prices.pricesArray.map((paper, i) => {
+                      const spanStyle = {
+                        color: paper.fill,
+                        display: 'block',
+                        overflow: 'hidden'
+                      };
+
+                      return (
+                        <TableRow
+                          key={i}
+                        >
+                          <TableCell>
+                            {paper.price === 0 ?
+                              <span
+                                style={spanStyle}
+                              >
+                                Free
+                              </span> : <span
+                                style={spanStyle}
+                              >
+                                {paper.symbol}
+                                {paper.price}
+                              </span>
+                            }
+                          </TableCell>
+                          <TableCell>
+                            <span
+                              style={spanStyle}
+                            >
+                              {paper.name}
                             </span>
-                          }
-                        </TableCell>
-                        <TableCell>
-                          {paper.name}
-                        </TableCell>
-                        <TableCell>
-                          <Link
-                            style={{
-                              color: paper.fill,
-                              display: 'block',
-                              overflow: 'hidden'
-                            }}
-                            to={`/publication/${paper.id}`}
-                          >
-                            {paper.publication}
-                          </Link>
-                        </TableCell>
-                      </TableRow>
+                          </TableCell>
+                          <TableCell>
+                            <Link
+                              style={spanStyle}
+                              to={`/publication/${paper.id}`}
+                            >
+                              {paper.publication}
+                            </Link>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    }
                     )}
                   </TableBody>
                 </Table>

@@ -186,15 +186,21 @@ export default {
         color: primaryColor,
         fontSize: '0.8em',
         fontWeight: 500,
-        padding: 10
+        padding: `10px 15px`
       },
       body: {
         fontSize: '0.8em',
-        padding: `6px 10px`
+        padding: `6px 15px`
       },
       root: {
         borderBottomColor: secondaryBackgroundColor,
-        borderBottomWidth: 1
+        borderBottomWidth: 1,
+        '&:first-child': {
+          paddingLeft: 0
+        },
+        '&:last-child': {
+          paddingRight: 0
+        }
       }
     },
     MuiTableRow: {

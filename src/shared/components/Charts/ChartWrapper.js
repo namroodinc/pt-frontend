@@ -19,6 +19,7 @@ class ChartWrapper extends React.Component {
   render() {
     const {
       axes,
+      axisFormat,
       domainPaddingX,
       domainPaddingY,
       height,
@@ -32,11 +33,6 @@ class ChartWrapper extends React.Component {
     const {
       theme
     } = GlobalTheme;
-
-    // const formatTicks = (tick, index) => {
-    //   if (scale === 'time') return `${Math.round(tick).toLocaleString()}`;
-    //   return tickLabels[tickLabels.length - index];
-    // }
 
     const chartPadding = assign({}, {
       bottom: 20,
@@ -68,6 +64,7 @@ class ChartWrapper extends React.Component {
               x: scale
             }}
             standalone={false}
+            tickFormat={axisFormat}
           />
           {(axes === 'both' || axes === 'left') &&
             <VictoryAxis
@@ -108,6 +105,7 @@ class ChartWrapper extends React.Component {
 
 ChartWrapper.defaultProps = {
   axes: 'both',
+  axisFormat: (t) => t,
   domainPaddingX: 5,
   domainPaddingY: 20,
   height: 200,
@@ -120,6 +118,7 @@ ChartWrapper.defaultProps = {
 
 ChartWrapper.propTypes = {
   axes: PropTypes.string,
+  axisFormat: PropTypes.func,
   children: PropTypes.node,
   domainPaddingX: PropTypes.number,
   domainPaddingY: PropTypes.number,

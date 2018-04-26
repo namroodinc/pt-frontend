@@ -96,26 +96,26 @@ class Store {
     return Array.from(new Set(flattenedArray)).sort((a, b) => b - a);
   }
 
-  @computed get getPreviousCirculationYear() {
-    const currentYear = this.circulationYear;
-    const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
-    return this.getAllCirculationYears[findIndexYear - 1];
-  }
-
-  @computed get getNextCirculationYear() {
-    const currentYear = this.circulationYear;
-    const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
-    return this.getAllCirculationYears[findIndexYear + 1];
-  }
-
-  @computed get checkIfYearExistsBeforeOrAfter() {
-    const currentYear = this.circulationYear;
-    const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
-    return {
-      disableFirst: findIndexYear === 0,
-      disableLast: findIndexYear === this.getAllCirculationYears.length - 1
-    }
-  }
+  // @computed get getPreviousCirculationYear() {
+  //   const currentYear = this.circulationYear;
+  //   const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
+  //   return this.getAllCirculationYears[findIndexYear - 1];
+  // }
+  //
+  // @computed get getNextCirculationYear() {
+  //   const currentYear = this.circulationYear;
+  //   const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
+  //   return this.getAllCirculationYears[findIndexYear + 1];
+  // }
+  //
+  // @computed get checkIfYearExistsBeforeOrAfter() {
+  //   const currentYear = this.circulationYear;
+  //   const findIndexYear = this.getAllCirculationYears.findIndex(year => year === currentYear);
+  //   return {
+  //     disableFirst: findIndexYear === 0,
+  //     disableLast: findIndexYear === this.getAllCirculationYears.length - 1
+  //   }
+  // }
 
   @computed get getAllCirculations() {
     return this.publicationList
@@ -521,13 +521,12 @@ class Store {
   }
 
   @computed get getAllPricesByCountryBarChart() {
-    console.log(this.getAllPricesByCountry);
     return this.getAllPricesByCountry
       .map(country => {
         const pricesArray = country.pricesArray.map(publication => {
           return {
             fill: publication.fill,
-            label: publication.price === 0 ? 'Free!' : `${publication.symbol}${publication.price}`,
+            label: publication.price === 0 ? 'Free' : `${publication.symbol}${publication.price}`,
             x: publication.name,
             y: parseFloat(publication.price)
           }

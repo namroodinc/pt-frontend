@@ -60,7 +60,7 @@ class ContentWithSidebar extends React.Component {
 
 ContentWithSidebar.defaultProps = {
   contentClass: 'content',
-  showRatings: true,
+  showRatings: false,
   showTrending: true
 }
 
