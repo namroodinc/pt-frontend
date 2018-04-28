@@ -382,7 +382,7 @@ class Store {
     this.getTrendingTopicsPerPublication
       .map(publication => {
         const { tags } = publication;
-        const trends = tags[tags.length - 1].trends;
+        const trends = tags[0].trends;
 
         trends.map(t => {
           const trendReplaced = trendReplace[t.trend];

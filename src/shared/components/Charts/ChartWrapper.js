@@ -120,8 +120,14 @@ ChartWrapper.propTypes = {
   axes: PropTypes.string,
   axisFormat: PropTypes.func,
   children: PropTypes.node,
-  domainPaddingX: PropTypes.number,
-  domainPaddingY: PropTypes.number,
+  domainPaddingX: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.number
+  ]),
+  domainPaddingY: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.number
+  ]),
   height: PropTypes.number,
   invertAxis: PropTypes.bool,
   padding: PropTypes.object,

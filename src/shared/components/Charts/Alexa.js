@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 import { withStyles } from "material-ui/styles";
 import { Avatar } from "material-ui";
 import Card, { CardHeader } from "material-ui/Card";
@@ -44,6 +45,11 @@ class Alexa extends React.Component {
             subheader="September 14, 2016"
           />
           <ChartWrapper
+            axisFormat={(t) => moment(t).format('MMM Do')}
+            domainPaddingX={[
+              5,
+              5
+            ]}
             invertAxis
             scale="time"
           >

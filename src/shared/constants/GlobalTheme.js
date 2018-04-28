@@ -44,7 +44,7 @@ export default {
     fontWeight: 700
   },
   groupLabels: {
-    fill: '#f0f0f0',
+    fill: '#E6EAEA',
     fontSize: 12,
     fontFamily: "'Roboto Mono', monospace",
     letterSpacing: '0.002em'
@@ -54,27 +54,28 @@ export default {
       {
         style: {
           axis: {
-            stroke: '#f0f0f0',
+            stroke: '#E6EAEA',
             strokeWidth: 0.5
           },
           axisLabel: {
             fontFamily: 'inherit',
-            fontWeight: 700,
+            fontWeight: 500,
             letterSpacing: '0.002em'
           },
           grid: {
-            stroke: '#f0f0f0',
+            stroke: '#E6EAEA',
             strokeWidth: 0.5
           },
           ticks: {
             size: 5,
-            stroke: '#f0f0f0',
+            stroke: '#E6EAEA',
             strokeWidth: 0.5
           },
           tickLabels: {
             fill: '#000',
             fontFamily: "'Roboto Mono', monospace",
             fontSize: 8,
+            fontWeight: 500,
             letterSpacing: '0.002em'
           }
         }
