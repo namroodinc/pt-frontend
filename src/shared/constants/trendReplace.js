@@ -4,6 +4,7 @@ export default {
   'United Kingdom withdrawal from the European Union': 'Brexit',
   'Production of Avengers: Infinity War': 'Avengers: Infinity War',
   'Avengers (comics)': 'Avengers: Infinity War',
+  'Infinity War': 'Avengers: Infinity War',
   'Macron Stadium': 'Emmanuel Macron',
   'Macron': 'Emmanuel Macron'
 }

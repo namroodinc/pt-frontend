@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import ReactHtmlParser from "react-html-parser";
+import Marked from "marked";
 import moment from "moment";
 import { withStyles } from "material-ui/styles";
 import { Avatar } from "material-ui";
@@ -26,8 +28,14 @@ class Alexa extends React.Component {
       classes,
       fill,
       name,
-      rankings
+      rankings,
+      website
     } = this.props;
+
+    const startDate = moment(rankings[rankings.length - 1].date).format('MMM Do');
+    const endDate = moment(rankings[0].date).format('MMM Do');
+
+    const description = Marked(`**${website}** Alexa rankings, _${startDate} - ${endDate}_`);
 
     return (
       <div>
@@ -41,8 +49,12 @@ class Alexa extends React.Component {
               />
             }
             className={classes.cardHeader}
-            title={name}
-            subheader="September 14, 2016"
+            title={
+              <h4>
+                {name}
+              </h4>
+            }
+            subheader={ReactHtmlParser(description)}
           />
           <ChartWrapper
             axisFormat={(t) => moment(t).format('MMM Do')}
@@ -81,7 +93,8 @@ Alexa.propTypes = {
   classes: PropTypes.object.isRequired,
   fill: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  rankings: PropTypes.array.isRequired
+  rankings: PropTypes.array.isRequired,
+  website: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(Alexa);

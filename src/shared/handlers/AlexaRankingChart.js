@@ -6,7 +6,11 @@ import { withStyles } from "material-ui/styles";
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
-import { ContentWithSidebar, Loading } from "../components/Index";
+import {
+  Banner,
+  ContentWithSidebar,
+  Loading
+} from "../components/Index";
 import { Alexa } from "../components/Charts/Index";
 
 const styles = theme => ({
@@ -30,18 +34,32 @@ class AlexaRankingChart extends React.Component {
 
     const getAllAlexaRankings = Store.getAllAlexaRankings;
 
+    const title = "Alexa Rankings";
+    const bodyCopy = "Blurb about Alexa chart rankings *goes here*";
+
     return (
       <ContentWithSidebar>
 
-        {getAllAlexaRankings.map((publication, i) =>
-          <Alexa
-            assetUrl={publication.assetUrl}
-            fill={publication.fill}
-            key={i}
-            name={publication.name}
-            rankings={publication.rankings}
-          />
-        )}
+        <Banner
+          title={title}
+          description={bodyCopy}
+        />
+
+        <div>
+          {getAllAlexaRankings.map((publication, i) => {
+            const { assetUrl, fill, name, rankings, websiteText } = publication;
+            return (
+              <Alexa
+                assetUrl={assetUrl}
+                fill={fill}
+                key={i}
+                name={name}
+                rankings={rankings}
+                website={websiteText}
+              />
+            )
+          })}
+        </div>
 
       </ContentWithSidebar>
     )

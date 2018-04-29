@@ -416,9 +416,11 @@ class Store {
           sys
         } = publication;
 
-        const { avatar, name, siteRankings, twitterAccounts } = fields;
+        const { avatar, name, siteRankings, twitterAccounts, website } = fields;
         const { id } = sys;
         const assetIdIndex = this.assetsList.find(asset => asset.sys.id === avatar.sys.id);
+
+        const websiteText = parseDomain(website);
 
         const rankings = siteRankings
           .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
@@ -434,7 +436,8 @@ class Store {
           fill: `#${twitterAccounts[0].backgroundColor}`,
           id,
           name,
-          rankings
+          rankings,
+          websiteText: `${websiteText.domain}.${websiteText.tld}`
         }
       })
       .filter(publication => publication.rankings.length > 0)
@@ -537,6 +540,7 @@ class Store {
         }
       })
   }
+
   @computed get getAllComplaints() {
     return this.publicationList
       .filter(publication => {

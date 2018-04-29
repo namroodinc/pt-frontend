@@ -134,7 +134,7 @@ export default {
         overflow: 'hidden'
       },
       elevation2: {
-        boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.1)'
+        boxShadow: '0 0 0 0 transparent'
       },
       rounded: {
         borderRadius: 0
