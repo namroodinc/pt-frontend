@@ -55,6 +55,7 @@ class Data extends React.Component {
                           <Button
                             className={classes.button}
                             color="primary"
+                            href={`/${link.urlSlug}`}
                             key={i}
                             size="medium"
                             variant="flat"

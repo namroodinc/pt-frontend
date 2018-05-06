@@ -4,11 +4,11 @@ export default [
     title: 'Alexa Charts',
     linkGroup: [
       {
-        urlSlug: 'data',
+        urlSlug: 'alexa',
         title: 'Data'
       },
       {
-        urlSlug: 'charts',
+        urlSlug: 'alexa/charts',
         title: 'Charts'
       }
     ]

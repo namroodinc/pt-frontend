@@ -3,18 +3,15 @@ import { Link } from "react-router-dom";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
 import { withStyles } from "material-ui/styles";
-import Avatar from 'material-ui/Avatar';
+import Table, { TableBody, TableCell, TableHead, TableRow } from "material-ui/Table";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 import { Banner, ContentWithSidebar, Loading } from "../components/Index";
+import { DownloadJsonToCsv } from "../components/Controls/Index";
 
 const styles = theme => ({
-  avatar: {
-    height: 40,
-    width: 40
-  }
 });
 
 @observer
@@ -26,7 +23,6 @@ class Complaints extends React.Component {
 
   render() {
     if (Store.isLoading()) return <Loading />;
-    const { classes } = this.props;
 
     const {
       bodyCopy,
@@ -44,97 +40,119 @@ class Complaints extends React.Component {
         />
 
         <div
-          className="metric-list"
+          className="container"
         >
-          {getAllComplaints.map((paper, i) =>
-            <div
-              className="metric-list__item"
-              key={i}
-            >
-              <div
-                className="metric-list__item__left"
-              >
-                <div
-                  className="metric-list__item__left__avatar"
+          <div>
+            <DownloadJsonToCsv
+              fields={[
+                'Publication',
+                'Resolved',
+                'Upheld',
+                'Settlement',
+                'No Finding',
+                'Not Upheld',
+                'Total'
+              ]}
+              data={getAllComplaints.map((paper, i) => {
+                return {
+                  'Publication': paper.name,
+                  'Resolved': paper.complaints.Resolved,
+                  'Upheld': paper.complaints.Upheld,
+                  'Settlement': paper.complaints['Sufficient Remedial Action'],
+                  'No Finding': paper.complaints['No finding'],
+                  'Not Upheld': paper.complaints['Not Upheld'],
+                  'Total': paper.complaints.Total
+                }
+              })}
+            />
+          </div>
+
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  Publication
+                </TableCell>
+                <TableCell
+                  numeric
                 >
-                  <Link
-                    to={`/publication/${paper.id}`}
-                  >
-                    <Avatar
-                      alt={paper.name}
-                      className={classes.avatar}
-                      src={paper.assetUrl}
-                    />
-                  </Link>
-                </div>
-                <div
-                  className="metric-list__item__left__name"
+                  Resolved
+                </TableCell>
+                <TableCell
+                  numeric
                 >
-                  <Link
-                    style={{
-                      color: paper.fill
-                    }}
-                    to={`/publication/${paper.id}`}
-                  >
-                    {paper.name}
-                  </Link>
-                  <a
-                    className="website"
-                    href={paper.websiteUrl}
-                    target="_blank"
-                  >
-                    {paper.websiteText}
-                  </a>
-                </div>
-              </div>
-              <div
-                className="metric-list__item__right"
-              >
-                <div
-                  className="metric-list__item__right__grid"
+                  Upheld
+                </TableCell>
+                <TableCell
+                  numeric
                 >
-                  <div
-                    className="metric-list__item__right__grid__item"
-                    data-label="Resolved"
+                  Settlement
+                </TableCell>
+                <TableCell
+                  numeric
+                >
+                  No Finding
+                </TableCell>
+                <TableCell
+                  numeric
+                >
+                  Not Upheld
+                </TableCell>
+                <TableCell
+                  numeric
+                >
+                  Total
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {getAllComplaints.map((paper, i) =>
+                <TableRow>
+                  <TableCell>
+                    <Link
+                      style={{
+                        color: paper.fill
+                      }}
+                      to={`/publication/${paper.id}`}
+                    >
+                      {paper.name}
+                    </Link>
+                  </TableCell>
+                  <TableCell
+                    numeric
                   >
                     {paper.complaints.Resolved}
-                  </div>
-                  <div
-                    className="metric-list__item__right__grid__item"
-                    data-label="Upheld"
+                  </TableCell>
+                  <TableCell
+                    numeric
                   >
                     {paper.complaints.Upheld}
-                  </div>
-                  <div
-                    className="metric-list__item__right__grid__item"
-                    data-label="Settlement"
+                  </TableCell>
+                  <TableCell
+                    numeric
                   >
                     {paper.complaints['Sufficient Remedial Action']}
-                  </div>
-                  <div
-                    className="metric-list__item__right__grid__item"
-                    data-label="No finding"
+                  </TableCell>
+                  <TableCell
+                    numeric
                   >
                     {paper.complaints['No finding']}
-                  </div>
-                  <div
-                    className="metric-list__item__right__grid__item"
-                    data-label="Not Upheld"
+                  </TableCell>
+                  <TableCell
+                    numeric
                   >
                     {paper.complaints['Not Upheld']}
-                  </div>
-                  <div
-                    className="metric-list__item__right__grid__item"
-                    data-label="Total"
+                  </TableCell>
+                  <TableCell
+                    numeric
                   >
                     {paper.complaints.Total}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+                  </TableCell>
+                </TableRow>
+              )}
+            </TableBody>
+          </Table>
         </div>
-
       </ContentWithSidebar>
     )
   }
