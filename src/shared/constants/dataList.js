@@ -32,5 +32,10 @@ export default [
     urlSlug: 'circulations',
     title: 'Circulations',
     linkGroup: []
+  },
+  {
+    urlSlug: 'trending',
+    title: 'Trending',
+    linkGroup: []
   }
 ]

@@ -1,9 +1,6 @@
 header {
-  // background-image:
-  //   radial-gradient($borderColor 20%, transparent 0),
-  //   radial-gradient($borderColor 20%, transparent 0);
-  // background-size: 10px 10px;
-  // background-position: 0 0, 5px 5px;
+  background-color: $white;
+  border-bottom: 1px solid $borderColor;
   box-sizing: border-box;
   display: block;
   font-family: $bodyFont;
@@ -25,7 +22,6 @@ header {
   }
 
   .header {
-    border-bottom: 2px solid $backgroundColor;
     padding: 10px 0;
 
     &__logo {

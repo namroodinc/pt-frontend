@@ -6,5 +6,19 @@ export default {
   'Avengers (comics)': 'Avengers: Infinity War',
   'Infinity War': 'Avengers: Infinity War',
   'Macron Stadium': 'Emmanuel Macron',
-  'Macron': 'Emmanuel Macron'
+  'Macron': 'Emmanuel Macron',
+  'Iran national football team': 'Iran',
+  'Santa Fe High School (California)': 'Santa Fe High School',
+  'Santa Fe High School (New Mexico)': 'Santa Fe High School',
+  'Markle, Indiana': 'Meghan Markle',
+  'Right to Censor': 'Meghan Markle',
+  'Good Morning Britain (2014 TV programme)': 'Good Morning Britain',
+  'Macron (sportswear)': 'Emmanuel Macron',
+  'H.O.T.S.': null,
+  'The T.O. Show': null,
+  'TBX21': null,
+  '1993 Ramada Hotel drownings': null,
+  'Freed.in': null,
+  'The Pack (Buffy the Vampire Slayer)': null,
+  "The Times They Are a-Changin' (song)": null
 }

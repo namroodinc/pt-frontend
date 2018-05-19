@@ -310,12 +310,13 @@ class Store {
             const { timestamp, trends } = tags;
             let mergeTrends = [];
 
-            const trendReplaced = trendReplace[trends.trend];
-            const trendString = trendReplaced || trends.trend;
-            const trendExists = mergeTrends.findIndex(trend => trend.trend === trendString);
-
             trends
               .map(t => {
+                const trendReplaced = trendReplace[t.trend];
+                if (trendReplaced === null) return null;
+                const trendString = trendReplaced || trends.trend;
+                const trendExists = mergeTrends.findIndex(trend => t.trend === trendString);
+
                 if (trendExists < 0) {
                   if (trendReplaced) {
                     mergeTrends.push({
@@ -373,9 +374,20 @@ class Store {
       .sort((a, b) => new Date(b) - new Date(a));
   }
 
-  // Get last 7 days
-  // map publications
-  // filter trends for the day
+  @computed get getTrendsForLast7Days() {
+    return this.getTrendingTopicsPerPublication
+      .map(publication => {
+        const { tags } = publication;
+
+        const last7Days = this.getLast7PossibleDaysTrending
+          .map(day => tags
+            .find(trends => moment(trends.timestamp).format('MMM DD YYYY') === day));
+
+        return assign({}, publication, {
+          tags: last7Days
+        })
+      });
+  }
 
   @computed get getTrendingTopicsNoPrej() {
     let mergeTrends = [];

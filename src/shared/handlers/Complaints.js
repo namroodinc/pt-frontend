@@ -152,6 +152,11 @@ class Complaints extends React.Component {
               )}
             </TableBody>
           </Table>
+          {getAllComplaints.map((paper, i) =>
+            <div>
+              complaint pie charts
+            </div>
+          )}
         </div>
       </ContentWithSidebar>
     )
