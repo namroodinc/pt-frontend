@@ -1,6 +1,5 @@
 import React from "react";
 import { observer } from "mobx-react";
-import moment from "moment";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -12,7 +11,7 @@ import {
 
 @observer
 class Trending extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     Actions.updatePublicationList();
   }
 
@@ -51,23 +50,17 @@ class Trending extends React.Component {
               <table>
                 <tbody>
                   <tr>
-                    {trend.tags.map((tag, i) =>
-                      <td
-                        key={i}
-                      >
-                        {moment(tag.timestamp).format('MMM DD YYYY')}
-
-                        <ul>
-                          {tag.trends.map((trend, i) =>
-                            <li
-                              key={i}
-                            >
-                              {trend.trend} ({trend.count})
-                            </li>
-                          )}
-                        </ul>
-                      </td>
-                    )}
+                    <td>
+                      <ul>
+                        {trend.tags.map((tag, i) =>
+                          <li
+                            key={i}
+                          >
+                            {tag.trend} ({tag.count})
+                          </li>
+                        )}
+                      </ul>
+                    </td>
                   </tr>
                 </tbody>
               </table>

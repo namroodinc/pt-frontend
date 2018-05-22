@@ -378,13 +378,30 @@ class Store {
     return this.getTrendingTopicsPerPublication
       .map(publication => {
         const { tags } = publication;
+        let mergeTrends = [];
 
         const last7Days = this.getLast7PossibleDaysTrending
           .map(day => tags
-            .find(trends => moment(trends.timestamp).format('MMM DD YYYY') === day));
+            .find(trends => moment(trends.timestamp).format('MMM DD YYYY') === day))
+          .map(trending => trending.trends)
+          .flatten();
+
+        last7Days
+          .map(t => {
+            const trendReplaced = trendReplace[t.trend];
+            const trendString = trendReplaced || t.trend;
+            const trendExists = mergeTrends.findIndex(trend => trend.trend === trendString);
+
+            if (trendExists < 0) {
+              mergeTrends.push(t);
+            } else {
+              const currentCount = mergeTrends[trendExists].count;
+              mergeTrends[trendExists].count = currentCount + t.count;
+            }
+          });
 
         return assign({}, publication, {
-          tags: last7Days
+          tags: mergeTrends.sort((a, b) => b.count - a.count)
         })
       });
   }
