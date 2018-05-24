@@ -401,7 +401,7 @@ class Store {
           });
 
         return assign({}, publication, {
-          tags: mergeTrends.sort((a, b) => b.count - a.count)
+          tags: mergeTrends.sort((a, b) => b.count - a.count).splice(0, 10)
         })
       });
   }
