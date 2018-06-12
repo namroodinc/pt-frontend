@@ -3,6 +3,7 @@ import Bar from "./Bar";
 import Group from "./Group";
 import ChartWrapper from "./ChartWrapper";
 import Line from "./Line";
+import LineBackground from "./LineBackground";
 import WordCloud from "./WordCloud";
 
 export {
@@ -11,5 +12,6 @@ export {
   Group,
   ChartWrapper,
   Line,
+  LineBackground,
   WordCloud
 }

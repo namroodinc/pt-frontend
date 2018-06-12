@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { ContentWithSidebar, Loading, PublicationList } from "../components/Index";
+import { ContentScroller, Loading } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -16,11 +16,9 @@ class Home extends React.Component {
     if (Store.isLoading()) return <Loading />;
 
     return (
-      <ContentWithSidebar
-        contentClass="home-grid"
-      >
-        <PublicationList />
-      </ContentWithSidebar>
+      <div>
+        <ContentScroller />
+      </div>
     )
   }
 }

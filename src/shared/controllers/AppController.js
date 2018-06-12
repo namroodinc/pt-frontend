@@ -1,7 +1,10 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import { Header } from "../components/Index";
+import {
+  HeaderStylish
+} from "../components/Index";
+
 import {
   AlexaRanking,
   AlexaRankingChart,
@@ -17,6 +20,7 @@ import {
   Ratings,
   Trending
 } from "../handlers/Index";
+
 import {
   ALEXA_ENTRY_ID,
   CIRCULATIONS_ENTRY_ID,
@@ -32,7 +36,7 @@ export default class AppController extends React.Component {
         <div
           className="wrapper"
         >
-          <Header />
+          <HeaderStylish />
 
           <Switch>
             <Route
