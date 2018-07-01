@@ -2,20 +2,8 @@
 @import "variables/fonts";
 @import "variables/sizes";
 
-@import "components/asset";
-@import "components/banner";
-@import "components/content";
-@import "components/dataList";
-@import "components/footer";
-@import "components/header";
-@import "components/linkCard";
-@import "components/line";
-@import "components/metricList";
-@import "components/publication";
-@import "components/publicationList";
-@import "components/rating";
-@import "components/timeline";
+@import "components/loading";
 @import "global/body";
 @import "global/headings";
 @import "global/table";
-@import "handlers/publication";
+@import "handlers/page";
