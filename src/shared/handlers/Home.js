@@ -1,9 +1,9 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { Loading } from "../components/Index";
+// import { Loading } from "../components/Index";
 
-import Store from "../stores/Store";
+// import Store from "../stores/Store";
 
 @observer
 class Home extends React.Component {
@@ -11,10 +11,12 @@ class Home extends React.Component {
   }
 
   render() {
-    if (Store.isLoading()) return <Loading />;
+    // if (Store.isLoading()) return <Loading />;
 
     return (
-      <div>
+      <div
+        className="container"
+      >
         Home
       </div>
     )

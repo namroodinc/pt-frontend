@@ -5,36 +5,6 @@
   "env": {
     "NODE_ENV": {
       "required": true
-    },
-    "ALEXA_ENTRY_ID": {
-      "required": true
-    },
-    "CIRCULATIONS_ENTRY_ID": {
-      "required": true
-    },
-    "CONTENTFUL_BASE_URL": {
-      "required": true
-    },
-    "CONTENTFUL_IMAGE_URL": {
-      "required": true
-    },
-    "CONTENT_DELIVERY_ACCESS_TOKEN": {
-      "required": true
-    },
-    "CONTENT_PREVIEW_ACCESS_TOKEN": {
-      "required": true
-    },
-    "PRESS_COMPLAINTS_ID": {
-      "required": true
-    },
-    "PRICES_ENTRY_ID": {
-      "required": true
-    },
-    "RATINGS_ENTRY_ID": {
-      "required": true
-    },
-    "SPACE_ID": {
-      "required": true
     }
   },
   "formation": {

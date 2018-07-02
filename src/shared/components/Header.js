@@ -11,24 +11,9 @@ export default class Header extends React.Component {
           Home
         </Link>
         <Link
-          to="/data"
+          to="/page"
         >
-          Data
-        </Link>
-        <Link
-          to="/complaints"
-        >
-          Complaints
-        </Link>
-        <Link
-          to="/prices"
-        >
-          Prices
-        </Link>
-        <Link
-          to="/circulations"
-        >
-          Circulations
+          Page
         </Link>
       </div>
     );
@@ -46,7 +31,7 @@ export default class Header extends React.Component {
             <Link
               to="/"
             >
-              Press Torch
+              PT
             </Link>
           </div>
 
