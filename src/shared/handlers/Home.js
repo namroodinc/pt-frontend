@@ -18,13 +18,18 @@ class Home extends React.Component {
       <div
         className="container"
       >
-        {mockNewsList.map((newsItem, i) =>
-          <NewsItem
-            key={i}
-            title={newsItem.title}
-            trends={newsItem.trends}
-          />
-        )}
+        {mockNewsList.map((newsItem, i) => {
+          const { title, time, trends } = newsItem;
+
+          return (
+            <NewsItem
+              key={i}
+              title={title}
+              time={time}
+              trends={trends}
+            />
+          )
+        })}
 
       </div>
     )

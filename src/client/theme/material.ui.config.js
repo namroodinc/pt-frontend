@@ -6,14 +6,14 @@
 import Styles from "../styles/app.scss";
 const {
   // black,
-  bodyFont//,
+  bodyFont,
   // borderColor,
   // letterSpacing,
-  // primaryColor,
+  primaryColor,
   // primaryFont,
   // secondaryBackgroundColor,
   // tabUnselected,
-  // white
+  white
 } = Styles;
 
 export default {
@@ -21,6 +21,13 @@ export default {
     fontFamily: bodyFont
   },
   overrides: {
-
+    MuiChip: {
+      root: {
+        backgroundColor: primaryColor,
+        borderRadius: 7,
+        color: white,
+        height: 28
+      }
+    }
   }
 }

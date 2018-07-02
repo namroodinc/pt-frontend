@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import moment from "moment";
 import { withStyles } from "@material-ui/core/styles";
 
 import Chip from "@material-ui/core/Chip";
@@ -7,12 +8,13 @@ import Chip from "@material-ui/core/Chip";
 const styles = theme => ({
   chip: {
     margin: '0 8px 8px 0'
-  },
+  }
 });
 
 class NewsItem extends React.Component {
   render() {
-    const { classes, title, trends } = this.props;
+    const { classes, title, time, trends } = this.props;
+    const momentTime = moment(time).fromNow();
 
     return (
       <div
@@ -21,18 +23,30 @@ class NewsItem extends React.Component {
         <h2>
           {title}
         </h2>
-        {trends.length > 0 &&
+        <div
+          className="news-item__footer"
+        >
           <div
-            className="news-item__trends"
+            className="news-item__footer__time"
           >
-            {trends.map((trend, i) =>
-              <Chip
-                className={classes.chip}
-                label={trend}
-              />
-            )}
+            <span>
+              {momentTime}
+            </span>
           </div>
-        }
+          {trends.length > 0 &&
+            <div
+              className="news-item__footer__trends"
+            >
+              {trends.map((trend, i) =>
+                <Chip
+                  className={classes.chip}
+                  key={i}
+                  label={trend}
+                />
+              )}
+            </div>
+          }
+        </div>
       </div>
     );
   }
@@ -40,6 +54,7 @@ class NewsItem extends React.Component {
 
 NewsItem.defaultProps = {
   title: 'News headline',
+  time: '2018-07-01T00:05:00Z',
   trends: [
     'United Kingdom',
     'Europe',
@@ -50,6 +65,7 @@ NewsItem.defaultProps = {
 NewsItem.propTypes = {
   classes: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
   trends: PropTypes.array.isRequired
 };
 

@@ -2,6 +2,14 @@
   border-bottom: 1px solid $primaryColor;
   padding: 20px;
 
-  &__trends {
+  &__footer {
+    display: flex;
+
+    &__time {
+      padding-right: 20px;
+    }
+
+    &__trends {
+    }
   }
 }
