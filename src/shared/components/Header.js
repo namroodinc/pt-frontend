@@ -42,16 +42,6 @@ export default class Header extends React.Component {
           </div>
 
         </div>
-
-        <div
-          className="sub-header"
-        >
-          <div
-            className="sub-header__navigation"
-          >
-            {links}
-          </div>
-        </div>
       </header>
     );
   }

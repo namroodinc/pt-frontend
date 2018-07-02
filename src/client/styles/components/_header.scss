@@ -1,0 +1,14 @@
+.header {
+  display: flex;
+  padding: 10px;
+
+  &__logo {
+    padding-right: 10px;
+  }
+
+  &__navigation {
+    a {
+      padding-left: 10px;
+    }
+  }
+}

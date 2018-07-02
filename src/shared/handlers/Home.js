@@ -1,7 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-// import { Loading } from "../components/Index";
+import { NewsItem } from "../components/Index";
+import { mockNewsList } from "../constants/Index";
 
 // import Store from "../stores/Store";
 
@@ -17,7 +18,14 @@ class Home extends React.Component {
       <div
         className="container"
       >
-        Home
+        {mockNewsList.map((newsItem, i) =>
+          <NewsItem
+            key={i}
+            title={newsItem.title}
+            trends={newsItem.trends}
+          />
+        )}
+
       </div>
     )
   }

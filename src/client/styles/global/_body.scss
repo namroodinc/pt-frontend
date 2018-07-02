@@ -1,10 +1,4 @@
 body {
-  background-attachment: fixed;
-  background-image:
-    radial-gradient($borderColor 20%, transparent 0),
-    radial-gradient($borderColor 20%, transparent 0);
-  background-size: 10px 10px;
-  background-position: 0 0, 5px 5px;
   color: $textColor;
   font-family: $bodyFont;
   font-size: 20px;
