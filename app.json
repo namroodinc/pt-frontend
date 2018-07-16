@@ -5,6 +5,12 @@
   "env": {
     "NODE_ENV": {
       "required": true
+    },
+    "API_BASE_URL": {
+      "required": true
+    },
+    "API_KEY": {
+      "required": true
     }
   },
   "formation": {

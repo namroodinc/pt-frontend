@@ -4,6 +4,8 @@ import ReactDOMServer from "react-dom/server";
 import exphbs from "express-handlebars";
 import express from "express";
 import { StaticRouter } from "react-router-dom";
+import superagent from "superagent";
+import bodyParser from "body-parser";
 import App from "../shared/controllers/AppController";
 require("dotenv").config();
 
@@ -20,6 +22,18 @@ app.engine("hbs", exphbs({
 }));
 app.set("view engine", "hbs");
 app.use(express.static("public"));
+
+app.set('trust proxy', 1); // trust first proxy
+
+app.use(bodyParser.json({ limit: '50mb' }));
+
+app.post('/api/search/articles', function (request, response) {
+  _doPost('search/articles', request, response);
+});
+
+app.all('/api/*', function (req, res) {
+  res.sendStatus(404)
+});
 
 app.get("*", function (req, res) {
   const context = {};
@@ -41,3 +55,17 @@ app.get("*", function (req, res) {
 app.listen(app.get("port"), function () {
   console.log("Node app is running on port", app.get("port"), process.env.NODE_ENV);
 });
+
+function _doPost(name, request, response, key) {
+  const { headers, body } = request;
+  superagent
+    .post(process.env['API_BASE_URL'] + '/api/' + name)
+    .set('X-CORS-TOKEN', headers['x-cors-token'])
+    .set('Content-Type', 'application/json')
+    .send(body)
+    .end(function (err, res) {
+      console.log(err);
+      console.log(res);
+      response.send(err || res[key || 'body'])
+    });
+}

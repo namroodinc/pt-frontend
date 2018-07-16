@@ -59,7 +59,9 @@ module.exports = {
     extractSass,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.EnvironmentPlugin([
-      "NODE_ENV"
+      "NODE_ENV",
+      "API_BASE_URL",
+      "API_KEY"
     ])
   ]
 };

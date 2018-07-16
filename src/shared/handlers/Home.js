@@ -1,18 +1,23 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { NewsItem } from "../components/Index";
+import { Loading, NewsItem } from "../components/Index";
 import { mockNewsList } from "../constants/Index";
 
-// import Store from "../stores/Store";
+import Actions from "../actions/Actions";
+import Store from "../stores/Store";
 
 @observer
 class Home extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
+    Store.reset();
+    Actions.getArticles();
   }
 
   render() {
-    // if (Store.isLoading()) return <Loading />;
+    if (Store.isLoading()) return <Loading />;
+
+    console.log(Store.retrieveArticles());
 
     return (
       <div

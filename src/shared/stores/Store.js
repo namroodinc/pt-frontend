@@ -1,15 +1,28 @@
-import { autorun, observable } from "mobx";
+import { action, autorun, extendObservable } from "mobx";
 
 class Store {
-  @observable loading = true;
-  @observable value = '2018';
+  constructor() {
+    this.reset();
+  }
+
+  @action reset() {
+    extendObservable(this, {
+      articles: [],
+      currentPageNumber: 0,
+      loading: false
+    });
+  }
 
   isLoading() {
     return this.loading;
   }
 
-  retrieveValue() {
-    return this.value;
+  retrieveArticles() {
+    return this.articles;
+  }
+
+  retrieveCurrentPageNumber() {
+    return this.currentPageNumber;
   }
 }
 
@@ -18,6 +31,6 @@ export default store;
 
 autorun(() => {
   // Uncomment below this to see how autorun in action: https://mobx.js.org/refguide/autorun.html
-  const { value } = store;
-  console.log(value);
+  // const { loading } = store;
+  // console.log(loading);
 });
