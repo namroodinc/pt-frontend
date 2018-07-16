@@ -64,8 +64,6 @@ function _doPost(name, request, response, key) {
     .set('Content-Type', 'application/json')
     .send(body)
     .end(function (err, res) {
-      console.log(err);
-      console.log(res);
       response.send(err || res[key || 'body'])
     });
 }

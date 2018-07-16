@@ -1,6 +1,11 @@
 .news-item {
   border-bottom: 1px solid $primaryColor;
-  padding: 20px;
+  padding: 15px 10px 5px;
+
+  &__description {
+    display: block;
+    padding-bottom: 10px;
+  }
 
   &__footer {
     display: flex;

@@ -2,7 +2,6 @@ import React from "react";
 import { observer } from "mobx-react";
 
 import { Loading, NewsItem } from "../components/Index";
-import { mockNewsList } from "../constants/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -17,20 +16,21 @@ class Home extends React.Component {
   render() {
     if (Store.isLoading()) return <Loading />;
 
-    console.log(Store.retrieveArticles());
+    const articles = Store.retrieveArticles();
 
     return (
       <div
         className="container"
       >
-        {mockNewsList.map((newsItem, i) => {
-          const { title, time, trends } = newsItem;
+        {articles.map((article, i) => {
+          const { authors, description, title, trends } = article;
 
           return (
             <NewsItem
+              authors={authors}
+              description={description}
               key={i}
               title={title}
-              time={time}
               trends={trends}
             />
           )

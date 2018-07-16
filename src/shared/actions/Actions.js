@@ -11,19 +11,14 @@ class Actions {
       .post(`/api/search/articles`)
       .set('X-CORS-TOKEN', process.env['API_KEY'])
       .set('Content-Type', 'application/json')
-      .send({
-        'searchTerm': 'donald'
-      })
-      .then(function (err, res) {
+      .send({})
+      .end(function (err, res) {
         Store.loading = false;
 
         if (err) {
-          console.log({
-            status: 500,
-            text: err.message
-          });
-        } else if (res.ok) {
-          console.log(res);
+          console.log(err);
+        } else if (res) {
+          Store.articles = res.body.results;
         }
       });
   }
