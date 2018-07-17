@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import { withStyles } from "@material-ui/core/styles";
 
-import Chip from "@material-ui/core/Chip";
+import Button from "@material-ui/core/Button";
 
 const styles = theme => ({
-  chip: {
-    margin: '0 8px 8px 0'
+  button: {
+    margin: '0 10px 10px 0'
   }
 });
 
@@ -33,11 +33,13 @@ class NewsItem extends React.Component {
             className="news-item__authors"
           >
             {authors.map((author, i) =>
-              <Chip
-                className={classes.chip}
+              <Button
+                className={classes.button}
                 key={i}
-                label={author}
-              />
+                variant="outlined"
+              >
+                {author}
+              </Button>
             )}
           </div>
         }
@@ -56,11 +58,14 @@ class NewsItem extends React.Component {
               className="news-item__footer__trends"
             >
               {trends.map((trend, i) =>
-                <Chip
-                  className={classes.chip}
+                <Button
+                  className={classes.button}
                   key={i}
-                  label={trend}
-                />
+                  size="small"
+                  variant="outlined"
+                >
+                  {trend}
+                </Button>
               )}
             </div>
           }
