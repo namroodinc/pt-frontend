@@ -38,7 +38,7 @@ class NewsItem extends React.Component {
                 key={i}
                 variant="outlined"
               >
-                {author}
+                {author.name}
               </Button>
             )}
           </div>
@@ -77,10 +77,18 @@ class NewsItem extends React.Component {
 
 NewsItem.defaultProps = {
   authors: [
-    'Leonardo',
-    'Donatello',
-    'Raphael',
-    'Michaelangelo'
+    {
+      'name': 'Leonardo'
+    },
+    {
+      'name': 'Donatello'
+    },
+    {
+      'name': 'Raphael'
+    },
+    {
+      'name': 'Michaelangelo'
+    }
   ],
   description: 'A description about the news article.',
   title: 'News headline',
@@ -93,12 +101,12 @@ NewsItem.defaultProps = {
 };
 
 NewsItem.propTypes = {
-  authors: PropTypes.array.isRequired,
+  authors: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
-  trends: PropTypes.array.isRequired
+  trends: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(NewsItem);
