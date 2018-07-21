@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Icon from '@material-ui/core/Icon';
 import PropTypes from "prop-types";
 
-import { Loading, NewsItem } from "../components/Index";
+import { Loading, NewsItem, Search } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -18,8 +18,11 @@ const styles = theme => ({
 @observer
 class Home extends React.Component {
   componentDidMount() {
-    Store.reset();
     Actions.getArticles();
+  }
+
+  componentWillUnmount() {
+    // Store.reset();
   }
 
   handleLoadMoreNewsItems = () => {
@@ -36,6 +39,8 @@ class Home extends React.Component {
       <div
         className="container"
       >
+        <Search />
+
         {articles.map((article, i) =>
           <NewsItem
             key={i}

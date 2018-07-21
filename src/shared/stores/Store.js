@@ -9,7 +9,8 @@ class Store {
     extendObservable(this, {
       articles: [],
       currentPageNumber: 0,
-      loading: false
+      loading: false,
+      searchTerm: ''
     });
   }
 
@@ -23,6 +24,10 @@ class Store {
 
   retrieveCurrentPageNumber() {
     return this.currentPageNumber;
+  }
+
+  retrieveSearchTerm() {
+    return this.searchTerm;
   }
 }
 
