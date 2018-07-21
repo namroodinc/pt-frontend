@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { withStyles } from "@material-ui/core/styles";
-
-import Button from "@material-ui/core/Button";
+import Icon from '@material-ui/core/Icon';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
   button: {
@@ -13,62 +14,71 @@ const styles = theme => ({
 
 class NewsItem extends React.Component {
   render() {
-    const { authors, classes, description, title, time, trends } = this.props;
-    const momentTime = moment(time).fromNow();
+    const { authors, datePublished, description, publication, title, trends } = this.props;
+
+    const authorsJoin = authors.map(author => author.name).join(', ');
+    const timeAgo = moment(datePublished).fromNow();
+    const trendsJoin = trends.join(', ');
 
     return (
       <div
         className="news-item"
       >
-        <h4>
+        <h4
+          className="news-item__heading"
+        >
           {title}
         </h4>
+
         <span
           className="news-item__description"
         >
           {description}
         </span>
-        {authors.length > 0 &&
-          <div
-            className="news-item__authors"
-          >
-            {authors.map((author, i) =>
-              <Button
-                className={classes.button}
-                key={i}
-                variant="outlined"
-              >
-                {author.name}
-              </Button>
-            )}
-          </div>
-        }
+
         <div
           className="news-item__footer"
         >
-          <div
+          <span
+            className="news-item__footer__publication"
+          >
+            <Link
+              to={`/publication/${publication._id}`}
+            >
+              {publication.name}
+            </Link>
+          </span>
+          <span
             className="news-item__footer__time"
           >
-            <span>
-              {momentTime}
-            </span>
-          </div>
-          {trends.length > 0 &&
-            <div
-              className="news-item__footer__trends"
+            {timeAgo}
+          </span>
+          <span
+            className="news-item__footer__information"
+          >
+            <span
+              className="news-item__footer__information__icon"
             >
-              {trends.map((trend, i) =>
-                <Button
-                  className={classes.button}
-                  key={i}
-                  size="small"
-                  variant="outlined"
-                >
-                  {trend}
-                </Button>
-              )}
-            </div>
-          }
+              <Tooltip
+                title={authorsJoin}
+              >
+                <Icon>
+                  {authors.length > 1 ? 'people' : 'person'}
+                </Icon>
+              </Tooltip>
+            </span>
+            <span
+              className="news-item__footer__information__icon"
+            >
+              <Tooltip
+                title={trendsJoin}
+              >
+                <Icon>
+                  local_offer
+                </Icon>
+              </Tooltip>
+            </span>
+          </span>
         </div>
       </div>
     );
@@ -90,9 +100,13 @@ NewsItem.defaultProps = {
       'name': 'Michaelangelo'
     }
   ],
+  datePublished: '2018-07-01T00:05:00Z',
   description: 'A description about the news article.',
+  publication: {
+    id: 'the-new-yorker',
+    name: 'The New Yorker'
+  },
   title: 'News headline',
-  time: '2018-07-01T00:05:00Z',
   trends: [
     'United Kingdom',
     'Europe',
@@ -103,9 +117,10 @@ NewsItem.defaultProps = {
 NewsItem.propTypes = {
   authors: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  datePublished: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  publication: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
   trends: PropTypes.object.isRequired
 };
 

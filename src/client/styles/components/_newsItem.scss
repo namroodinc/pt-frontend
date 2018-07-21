@@ -1,21 +1,40 @@
 .news-item {
-  background-color: $white;
-  margin-bottom: 1px;
-  padding: 20px 20px 10px;
+  border-bottom: 1px solid $borderColor;
+  color: $textColor;
+  padding: 20px 5px;
+
+  &:first-child {
+    border-top: 1px solid $borderColor;
+  }
+
+  &__heading {
+    padding: 0;
+  }
 
   &__description {
     display: block;
-    padding-bottom: 10px;
+    font-size: 0.9em;
   }
 
   &__footer {
+    align-items: center;
     display: flex;
+    font-size: 0.7em;
+    padding-top: 15px;
 
-    &__time {
-      padding-right: 20px;
+    &__publication {
+      padding-right: 10px;
     }
 
-    &__trends {
+    &__time {
+    }
+
+    &__information {
+      padding-left: 10px;
+
+      &__icon {
+        padding-left: 10px;
+      }
     }
   }
 }

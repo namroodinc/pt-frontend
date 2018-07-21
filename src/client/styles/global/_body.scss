@@ -14,52 +14,11 @@ body {
   margin: auto;
   padding: 20px 0;
   width: 100%;
-  max-width: $fullContainerWidth;
-
-  &--full-width {
-    width: 100%;
-  }
-
-  &__tabs {
-    border-bottom: 1px solid $primaryColor;
-    border-top: 1px solid $primaryColor;
-    margin: auto;
-    width: 100%;
-  }
-
-  &__narrow {
-    margin: auto;
-    width: 100%;
-    max-width: $fullContainerWidth / 2;
-  }
+  max-width: $fullContainerWidth / 2;
 }
 
 a {
   color: $linkColor;
   font-weight: 600;
   text-decoration: none;
-
-  &.website {
-    color: $secondaryLinkColor;
-    font-weight: 500;
-  }
-}
-
-p {
-  font-family: $bodyFont;
-  font-size: 1em;
-  font-weight: 400;
-  letter-spacing: 0.002em;
-  line-height: 1.6em;
-  margin-bottom: 10px;
-  margin-top: 0;
-}
-
-time {
-  color: $subTextColor;
-  cursor: default;
-  display: block;
-  font-family: $primaryFont;
-  font-size: 1em;
-  text-transform: uppercase;
 }

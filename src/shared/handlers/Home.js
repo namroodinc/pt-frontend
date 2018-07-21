@@ -1,10 +1,19 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { withStyles } from "@material-ui/core/styles";
+import Icon from '@material-ui/core/Icon';
+import PropTypes from "prop-types";
 
 import { Loading, NewsItem } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
+
+const styles = theme => ({
+  iconFontSize: {
+    fontSize: 'inherit'
+  }
+});
 
 @observer
 class Home extends React.Component {
@@ -13,8 +22,13 @@ class Home extends React.Component {
     Actions.getArticles();
   }
 
+  handleLoadMoreNewsItems = () => {
+    Actions.getArticles(false);
+  }
+
   render() {
     if (Store.isLoading()) return <Loading />;
+    const { classes } = this.props;
 
     const articles = Store.retrieveArticles();
 
@@ -22,23 +36,34 @@ class Home extends React.Component {
       <div
         className="container"
       >
-        {articles.map((article, i) => {
-          const { authors, description, title, trends } = article;
+        {articles.map((article, i) =>
+          <NewsItem
+            key={i}
+            {...article}
+          />
+        )}
 
-          return (
-            <NewsItem
-              authors={authors}
-              description={description}
-              key={i}
-              title={title}
-              trends={trends}
-            />
-          )
-        })}
-
+        <div
+          className="button-group button-group--loading-more"
+        >
+          <button
+            className="circle-button circle-button--large"
+            onClick={this.handleLoadMoreNewsItems}
+          >
+            <Icon
+              className={classes.iconFontSize}
+            >
+              more_horiz
+            </Icon>
+          </button>
+        </div>
       </div>
     )
   }
 }
 
-export default Home;
+Home.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(Home);

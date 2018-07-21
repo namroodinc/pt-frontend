@@ -1,41 +1,11 @@
-$backgroundColor: #F4F7F6;
-$secondaryBackgroundColor: #F4F7F6;
-$primaryColor: #0F0F0F;
-$secondaryColor: #000000;
-$contentBackgroundColor: #FCFCFC;
-$borderColor: #E6EAEA;
-$headingColor: #0F0F0F;
-$boxShadowColor: #0F0F0F;
-$linkColor: #0F0F0F;
-$secondaryLinkColor: #49C5B6;
-$textColor: #0F0F0F;
-$textLinkColor: #3C3B3B;
-$subTextColor: #49C5B6;
-$tabUnselected: #F0F0F0;
-$tableThBorder: #222222;
-$tableTdBorder: #CDCDCD;
-$ratingBarDefault: #F0F0F0;
-$black: #000000;
-$white: #FFFFFF;
+$backgroundColor: #880E4F;
+$linkColor: #F8BBD0;
+$textColor: #FFFFFF;
+$borderColor: #FF4081;
 
 :export {
   backgroundColor: $backgroundColor;
-  secondaryBackgroundColor: $secondaryBackgroundColor;
-  primaryColor: $primaryColor;
-  secondaryColor: $secondaryColor;
-  contentBackgroundColor: $contentBackgroundColor;
-  borderColor: $borderColor;
-  headingColor: $headingColor;
-  boxShadowColor: $boxShadowColor;
   linkColor: $linkColor;
-  secondaryLinkColor: $secondaryLinkColor;
   textColor: $textColor;
-  textLinkColor: $textLinkColor;
-  subTextColor: $subTextColor;
-  tabUnselected: $tabUnselected;
-  tableThBorder: $tableThBorder;
-  tableTdBorder: $tableTdBorder;
-  ratingBarDefault: $ratingBarDefault;
-  black: $black;
-  white: $white;
+  borderColor: $borderColor;
 }
