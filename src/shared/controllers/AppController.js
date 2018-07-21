@@ -7,7 +7,8 @@ import {
 
 import {
   Home,
-  Page
+  Page,
+  Publications
 } from "../handlers/Index";
 
 export default class AppController extends React.Component {
@@ -34,6 +35,11 @@ export default class AppController extends React.Component {
               exact
               path="/page/:pageId"
               component={Page}
+            />
+            <Route
+              exact
+              path="/publications"
+              component={Publications}
             />
           </Switch>
         </div>

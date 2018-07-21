@@ -31,6 +31,10 @@ app.post('/api/search/articles', function (request, response) {
   _doPost('search/articles', request, response);
 });
 
+app.post('/api/search/publications', function (request, response) {
+  _doPost('search/publications', request, response);
+});
+
 app.all('/api/*', function (req, res) {
   res.sendStatus(404)
 });

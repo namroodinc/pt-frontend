@@ -10,6 +10,7 @@ class Store {
       articles: [],
       currentPageNumber: 0,
       loading: false,
+      publications: [],
       searchTerm: ''
     });
   }
@@ -24,6 +25,10 @@ class Store {
 
   retrieveCurrentPageNumber() {
     return this.currentPageNumber;
+  }
+
+  retrievePublications() {
+    return this.publications;
   }
 
   retrieveSearchTerm() {

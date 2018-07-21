@@ -14,7 +14,11 @@ body {
   margin: auto;
   padding: 20px 0;
   width: 100%;
-  max-width: $fullContainerWidth / 2;
+  max-width: $fullContainerWidth;
+
+  &--news-items {
+    max-width: $fullContainerWidth / 2;
+  }
 }
 
 a {

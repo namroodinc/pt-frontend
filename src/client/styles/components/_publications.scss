@@ -1,0 +1,70 @@
+.publications-grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
+  &__item {
+    margin-bottom: 30px;
+    width: calc(25% - 30px);
+
+    a {
+      color: $textColor;
+      display: block;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+
+      img {
+        height: auto;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transform: scale(1);
+        transition: transform 0.3s ease-in-out;
+        width: 100%;
+      }
+
+      &:after {
+        background-color: $backgroundColor;
+        content: "";
+        display: block;
+        opacity: 0;
+        padding-top: 100%;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+
+        &:after {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    &__description {
+      box-sizing: border-box;
+      display: block;
+      height: 100%;
+      left: 0;
+      padding: 20px 40px 40px 20px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+
+      &__name {
+        display: block;
+        font-size: 1.2em;
+      }
+
+      &__url {
+        display: block;
+        font-size: 0.8em;
+        padding-top: 7px;
+      }
+    }
+  }
+}

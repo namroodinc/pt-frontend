@@ -34,6 +34,25 @@ class Actions {
   @action setSearchTerm(searchTerm) {
     Store.searchTerm = searchTerm;
   }
+
+  @action getPublications() {
+    Store.loading = true;
+
+    request
+      .post(`/api/search/publications`)
+      .set('X-CORS-TOKEN', process.env['API_KEY'])
+      .set('Content-Type', 'application/json')
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.publications = res.body.results;
+        }
+      });
+  }
 }
 
 export default new Actions();

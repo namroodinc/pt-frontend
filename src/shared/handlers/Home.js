@@ -37,7 +37,7 @@ class Home extends React.Component {
 
     return (
       <div
-        className="container"
+        className="container container--news-items"
       >
         <Search />
 

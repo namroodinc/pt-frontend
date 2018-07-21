@@ -11,9 +11,9 @@ export default class Header extends React.Component {
           Home
         </Link>
         <Link
-          to="/page"
+          to="/publications"
         >
-          Page
+          Publications
         </Link>
       </div>
     );
