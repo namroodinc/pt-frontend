@@ -6,6 +6,7 @@ import Store from "../stores/Store";
 class Actions {
   @action getArticles(loading = true, reset = false) {
     Store.loading = loading;
+
     if (reset) {
       Store.articles = [];
       Store.currentPageNumber = 0;
@@ -50,6 +51,25 @@ class Actions {
           console.log(err);
         } else if (res) {
           Store.publications = res.body.results;
+        }
+      });
+  }
+
+  @action getPublication(publicationId) {
+    Store.loading = true;
+
+    request
+      .post(`/api/retrieve/publication/${publicationId}`)
+      .set('X-CORS-TOKEN', process.env['API_KEY'])
+      .set('Content-Type', 'application/json')
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.publication = res.body;
         }
       });
   }

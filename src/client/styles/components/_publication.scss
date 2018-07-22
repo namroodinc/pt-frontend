@@ -1,0 +1,11 @@
+.publication {
+  display: flex;
+
+  &__avatar {
+    padding-right: 40px;
+  }
+
+  &__details {
+    flex-grow: 1;
+  }
+}

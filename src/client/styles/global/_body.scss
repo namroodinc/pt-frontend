@@ -9,6 +9,11 @@ body {
   padding: 0;
 }
 
+hr {
+  border-color: $borderColor;
+  margin: 0 0 20px 0;
+}
+
 .container {
   box-sizing: border-box;
   margin: auto;
@@ -18,6 +23,12 @@ body {
 
   &--news-items {
     max-width: $fullContainerWidth / 2;
+    padding: 20px 0;
+  }
+
+  &--publication {
+    max-width: $fullContainerWidth / 2;
+    padding: 0 0 20px 0;
   }
 }
 

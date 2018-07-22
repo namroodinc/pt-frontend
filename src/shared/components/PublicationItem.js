@@ -16,7 +16,7 @@ class PublicationItem extends React.Component {
         className="publications-grid__item"
       >
         <Link
-          to={`/publications/${_id}`}
+          to={`/publication/${_id}`}
           style={{
             backgroundColor
           }}

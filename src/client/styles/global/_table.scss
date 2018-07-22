@@ -2,15 +2,32 @@ $padding: 10px;
 
 table {
   border-collapse: collapse;
-  font-family: $bodyFont;
+  border-bottom: 1px solid $borderColor;
+  border-top: 1px solid $borderColor;
   text-align: left;
   width: 100%;
 
-  a {
-    font-weight: 500;
+  tr {
+    td,
+    th {
+      padding: 10px 40px 10px 0;
+      vertical-align: top;
+
+      &:last-child {
+        padding-right: 0;
+      }
+
+      span {
+        display: block;
+      }
+    }
   }
 
-  time {
-    display: block;
+  thead {
+    tr {
+      &:last-child {
+        border-bottom: 1px solid $borderColor;
+      }
+    }
   }
 }

@@ -31,6 +31,10 @@ app.post('/api/search/articles', function (request, response) {
   _doPost('search/articles', request, response);
 });
 
+app.post('/api/retrieve/publication/:publicationId', function (request, response) {
+  _doPost(`retrieve/publication/${request.params.publicationId}`, request, response);
+});
+
 app.post('/api/search/publications', function (request, response) {
   _doPost('search/publications', request, response);
 });
