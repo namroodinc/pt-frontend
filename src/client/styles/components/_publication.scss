@@ -1,11 +1,9 @@
 .publication {
-  display: flex;
 
   &__avatar {
-    padding-right: 40px;
+    padding-bottom: 20px;
   }
 
   &__details {
-    flex-grow: 1;
   }
 }

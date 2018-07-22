@@ -1,5 +1,8 @@
 import React from "react";
 import { observer } from "mobx-react";
+import Grid from '@material-ui/core/Grid';
+import Icon from '@material-ui/core/Icon';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { Loading } from "../components/Index";
 
@@ -26,86 +29,108 @@ class Publication extends React.Component {
       <div
         className="container"
       >
-        <div
-          className="container container--publication"
+
+        <Grid
+          container
+          spacing={24}
         >
-          <h1>
-            {name}
-          </h1>
-
-          <h5>
-            <a
-              href={`https://www.${url}`}
-              target="_blank"
-            >
-              {url}
-            </a>
-          </h5>
-
-          <hr />
-
-          <div
-            className="publication"
+          <Grid
+            item
+            xs={3}
           >
 
             <div
-              className="publication__avatar"
+              className="publication"
             >
+
               <div
-                className="circle-button circle-button--extra-large"
-                style={{
-                  backgroundColor
-                }}
+                className="publication__avatar"
               >
-                {avatarUrlToImage &&
-                  <img
-                    src={avatarUrlToImage}
-                  />
-                }
+                <div
+                  className="circle-button circle-button--extra-large"
+                  style={{
+                    backgroundColor
+                  }}
+                >
+                  {avatarUrlToImage &&
+                    <img
+                      src={avatarUrlToImage}
+                    />
+                  }
+                </div>
               </div>
-            </div>
 
-            <div
-              className="publication__details"
-            >
-              <table>
-                <tbody>
-                  <tr>
-                    <td>
-                      Country
-                    </td>
-                    <td>
-                      {country}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Headquarters
-                    </td>
-                    <td>
-                      {headquarters}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Twitter
-                    </td>
-                    <td>
-                      <a
-                        href={`http://twitter.com/${twitterScreenName}`}
-                        target="_blank"
+              <h3>
+                {name}
+              </h3>
+
+              <h5>
+                <a
+                  href={`https://www.${url}`}
+                  target="_blank"
+                >
+                  {url}
+                </a>
+              </h5>
+
+              <div
+                className="publication__details"
+              >
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <Tooltip
+                          title="Country"
+                        >
+                          <Icon>
+                            public
+                          </Icon>
+                        </Tooltip>
+                      </td>
+                      <td>
+                        {country}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <Tooltip
+                          title="Headquarters"
+                        >
+                          <Icon>
+                            domain
+                          </Icon>
+                        </Tooltip>
+                      </td>
+                      <td>
+                        {headquarters}
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        colSpan="2"
                       >
-                        @{twitterScreenName}
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                        <a
+                          href={`http://twitter.com/${twitterScreenName}`}
+                          target="_blank"
+                        >
+                          @{twitterScreenName}
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
             </div>
-
-          </div>
-
-        </div>
+          </Grid>
+          <Grid
+            item
+            xs={6}
+          >
+            asdasd
+          </Grid>
+        </Grid>
 
       </div>
     )
