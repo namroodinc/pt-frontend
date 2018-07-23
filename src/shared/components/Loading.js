@@ -1,12 +1,16 @@
 import React from "react";
 
+import { Logo } from "./Icons/Index";
+
 class Loading extends React.Component {
   render() {
     return (
       <div
         className="loading"
       >
-        Loading
+        <Logo
+          size={200}
+        />
       </div>
     );
   }

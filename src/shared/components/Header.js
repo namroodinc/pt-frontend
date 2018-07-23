@@ -1,15 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { Logo } from "./Icons/Index";
+
 export default class Header extends React.Component {
   render() {
     const links = (
       <div>
-        <Link
-          to="/"
-        >
-          Home
-        </Link>
         <Link
           to="/publications"
         >
@@ -31,7 +28,7 @@ export default class Header extends React.Component {
             <Link
               to="/"
             >
-              PT
+              <Logo />
             </Link>
           </div>
 
