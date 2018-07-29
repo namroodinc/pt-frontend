@@ -27,6 +27,10 @@ app.set('trust proxy', 1); // trust first proxy
 
 app.use(bodyParser.json({ limit: '50mb' }));
 
+app.post('/api/retrieve/article/:articleId', function (request, response) {
+  _doPost(`retrieve/article/${request.params.articleId}`, request, response);
+});
+
 app.post('/api/search/articles', function (request, response) {
   _doPost('search/articles', request, response);
 });
@@ -65,12 +69,11 @@ app.listen(app.get("port"), function () {
 });
 
 function _doPost(name, request, response, key) {
-  const { headers, body } = request;
   superagent
     .post(process.env['API_BASE_URL'] + '/api/' + name)
-    .set('X-CORS-TOKEN', headers['x-cors-token'])
+    .set('X-CORS-TOKEN', process.env['API_KEY'])
     .set('Content-Type', 'application/json')
-    .send(body)
+    .send(request.body)
     .end(function (err, res) {
       response.send(err || res[key || 'body'])
     });

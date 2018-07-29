@@ -4,6 +4,23 @@ import request from "superagent";
 import Store from "../stores/Store";
 
 class Actions {
+  @action getArticle(articleId) {
+    Store.loading = true;
+
+    request
+      .post(`/api/retrieve/article/${articleId}`)
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.article = res.body;
+        }
+      });
+  }
+
   @action getArticles(loading = true, reset = false) {
     Store.loading = loading;
 
@@ -14,8 +31,6 @@ class Actions {
 
     request
       .post(`/api/search/articles`)
-      .set('X-CORS-TOKEN', process.env['API_KEY'])
-      .set('Content-Type', 'application/json')
       .send({
         searchTerm: Store.retrieveSearchTerm(),
         page: Store.retrieveCurrentPageNumber()
@@ -41,8 +56,6 @@ class Actions {
 
     request
       .post(`/api/search/publications`)
-      .set('X-CORS-TOKEN', process.env['API_KEY'])
-      .set('Content-Type', 'application/json')
       .send({})
       .end(function (err, res) {
         Store.loading = false;
@@ -60,8 +73,6 @@ class Actions {
 
     request
       .post(`/api/retrieve/publication/${publicationId}`)
-      .set('X-CORS-TOKEN', process.env['API_KEY'])
-      .set('Content-Type', 'application/json')
       .send({})
       .end(function (err, res) {
         Store.loading = false;

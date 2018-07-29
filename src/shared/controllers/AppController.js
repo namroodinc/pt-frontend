@@ -6,6 +6,7 @@ import {
 } from "../components/Index";
 
 import {
+  Article,
   Home,
   Publication,
   Publications
@@ -25,6 +26,11 @@ export default class AppController extends React.Component {
               exact
               path="/"
               component={Home}
+            />
+            <Route
+              exact
+              path="/article/:articleId"
+              component={Article}
             />
             <Route
               exact

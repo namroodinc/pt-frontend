@@ -65,6 +65,6 @@ export default class Logo extends React.Component {
 
 Logo.defaultProps = {
   colorAccent: '#880E4F',
-  colorCircle: '#FCE4EC',
-  size: 50
+  colorCircle: '#fff',
+  size: 70
 };

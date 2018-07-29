@@ -15,19 +15,25 @@ const styles = theme => ({
 class NewsItem extends React.Component {
   render() {
     const { authors, datePublished, description, publication, title, trends } = this.props;
+    const id = this.props._id;
 
     const authorsJoin = authors.map(author => author.name).join(', ');
     const timeAgo = moment(datePublished).fromNow();
-    const trendsJoin = trends.join(', ');
+    const trendsJoin = trends !== null ? trends.join(', ') : '';
 
     return (
       <div
         className="news-item"
       >
+
         <h4
           className="news-item__heading"
         >
-          {title}
+          <Link
+            to={`/article/${id}`}
+          >
+            {title}
+          </Link>
         </h4>
 
         <span
@@ -115,13 +121,19 @@ NewsItem.defaultProps = {
 };
 
 NewsItem.propTypes = {
-  authors: PropTypes.object.isRequired,
+  authors: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]),
   classes: PropTypes.object.isRequired,
   datePublished: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   publication: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
-  trends: PropTypes.object.isRequired
+  trends: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 };
 
 export default withStyles(styles)(NewsItem);

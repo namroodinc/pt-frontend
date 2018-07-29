@@ -8,6 +8,7 @@ class Store {
   @action reset() {
     extendObservable(this, {
       articles: [],
+      article: {},
       currentPageNumber: 0,
       loading: false,
       publication: {},
@@ -22,6 +23,10 @@ class Store {
 
   retrieveArticles() {
     return this.articles;
+  }
+
+  retrieveArticle() {
+    return this.article;
   }
 
   retrieveCurrentPageNumber() {
