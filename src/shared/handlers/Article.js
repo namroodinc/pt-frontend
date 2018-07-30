@@ -23,7 +23,7 @@ class Article extends React.Component {
 
     return (
       <div
-        className="container"
+        className="container container--news-items"
       >
         <NewsItem
           {...article}
