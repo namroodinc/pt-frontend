@@ -29,7 +29,9 @@ class Article extends React.Component {
           {...article}
         />
 
-        <ReviewMessage />
+        <ReviewMessage
+          articleId={article._id}
+        />
       </div>
     )
   }

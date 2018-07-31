@@ -4,23 +4,6 @@ import request from "superagent";
 import Store from "../stores/Store";
 
 class Actions {
-  @action getArticle(articleId) {
-    Store.loading = true;
-
-    request
-      .post(`/api/retrieve/article/${articleId}`)
-      .send({})
-      .end(function (err, res) {
-        Store.loading = false;
-
-        if (err) {
-          console.log(err);
-        } else if (res) {
-          Store.article = res.body;
-        }
-      });
-  }
-
   @action getArticles(loading = true, reset = false) {
     Store.loading = loading;
 
@@ -43,6 +26,23 @@ class Actions {
         } else if (res) {
           Store.articles.push(...res.body.results);
           Store.currentPageNumber = res.body.page + 1;
+        }
+      });
+  }
+
+  @action getArticle(articleId) {
+    Store.loading = true;
+
+    request
+      .post(`/api/retrieve/article/${articleId}`)
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.article = res.body;
         }
       });
   }
@@ -81,6 +81,43 @@ class Actions {
           console.log(err);
         } else if (res) {
           Store.publication = res.body;
+        }
+      });
+  }
+
+  @action getReviews() {
+    Store.loading = true;
+
+    request
+      .post(`/api/search/reviews`)
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.reviews = res.body;
+        }
+      });
+  }
+
+  @action postReview(articleId, message) {
+    // Store.loading = true;
+
+    request
+      .post(`/api/create/review`)
+      .send({
+        articleId,
+        message
+      })
+      .end(function (err, res) {
+        // Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          console.log(res.body);
         }
       });
   }

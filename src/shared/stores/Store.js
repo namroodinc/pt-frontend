@@ -13,6 +13,7 @@ class Store {
       loading: false,
       publication: {},
       publications: [],
+      reviews: [],
       searchTerm: ''
     });
   }
@@ -39,6 +40,10 @@ class Store {
 
   retrievePublications() {
     return this.publications;
+  }
+
+  retrieveReviews() {
+    return this.reviews;
   }
 
   retrieveSearchTerm() {

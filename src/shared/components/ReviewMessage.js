@@ -1,5 +1,19 @@
 import React from "react";
 import { Editor, EditorState, RichUtils } from "draft-js";
+import { stateToMarkdown } from "draft-js-export-markdown";
+import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+
+import Actions from "../actions/Actions";
+
+const styles = theme => ({
+  button: {
+    borderColor: '#FFF',
+    float: 'right',
+    margin: '10px 0'
+  }
+});
 
 class ReviewMessage extends React.Component {
   constructor(props) {
@@ -13,6 +27,7 @@ class ReviewMessage extends React.Component {
     this.focus = () => this.refs.editor.focus();
     this.handleKeyCommand = (command) => this._handleKeyCommand(command);
     this.onTab = (e) => this._onTab(e);
+    this.submit = (e) => this._submit();
     this.toggleBlockType = (type) => this._toggleBlockType(type);
     this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
   }
@@ -30,6 +45,13 @@ class ReviewMessage extends React.Component {
   _onTab(e) {
     const maxDepth = 4;
     this.onChange(RichUtils.onTab(e, this.state.editorState, maxDepth));
+  }
+
+  _submit() {
+    Actions.postReview(
+      this.props.articleId,
+      stateToMarkdown(this.state.editorState.getCurrentContent())
+    );
   }
 
   _toggleBlockType(blockType) {
@@ -51,6 +73,7 @@ class ReviewMessage extends React.Component {
   }
 
   render() {
+    const { classes } = this.props;
     const { editorState } = this.state;
 
     let className = 'RichEditor-editor';
@@ -87,6 +110,18 @@ class ReviewMessage extends React.Component {
             />
           </div>
         </div>
+
+        <div>
+          <Button
+            className={classes.button}
+            color="primary"
+            onClick={this.submit}
+            size="large"
+            variant="outlined"
+          >
+            Submit
+          </Button>
+        </div>
       </div>
     );
   }
@@ -112,6 +147,7 @@ class StyleButton extends React.Component {
 
   render() {
     let className = 'RichEditor-styleButton';
+
     if (this.props.active) {
       className += ' RichEditor-activeButton';
     }
@@ -200,4 +236,8 @@ const InlineStyleControls = (props) => {
   );
 };
 
-export default ReviewMessage;
+ReviewMessage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(ReviewMessage);

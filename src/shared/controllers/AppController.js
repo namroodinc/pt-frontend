@@ -9,7 +9,8 @@ import {
   Article,
   Home,
   Publication,
-  Publications
+  Publications,
+  Reviews
 } from "../handlers/Index";
 
 export default class AppController extends React.Component {
@@ -41,6 +42,11 @@ export default class AppController extends React.Component {
               exact
               path="/publication/:publicationId"
               component={Publication}
+            />
+            <Route
+              exact
+              path="/reviews"
+              component={Reviews}
             />
           </Switch>
         </div>
