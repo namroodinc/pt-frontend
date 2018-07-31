@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { Loading, NewsItem } from "../components/Index";
+import { Loading, NewsItem, ReviewMessage } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -28,6 +28,10 @@ class Article extends React.Component {
         <NewsItem
           {...article}
         />
+
+        <hr />
+
+        <ReviewMessage />
       </div>
     )
   }

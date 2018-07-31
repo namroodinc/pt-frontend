@@ -27,20 +27,37 @@ app.set('trust proxy', 1); // trust first proxy
 
 app.use(bodyParser.json({ limit: '50mb' }));
 
+// Articles
 app.post('/api/retrieve/article/:articleId', function (request, response) {
   _doPost(`retrieve/article/${request.params.articleId}`, request, response);
 });
-
 app.post('/api/search/articles', function (request, response) {
   _doPost('search/articles', request, response);
 });
 
+// Publications
 app.post('/api/retrieve/publication/:publicationId', function (request, response) {
   _doPost(`retrieve/publication/${request.params.publicationId}`, request, response);
 });
-
 app.post('/api/search/publications', function (request, response) {
   _doPost('search/publications', request, response);
+});
+
+// Reviews
+app.post('/api/create/review', function (request, response) {
+  _doPost('create/review', request, response);
+});
+app.post('/api/delete/review/:reviewId', function (request, response) {
+  _doPost(`delete/review/${request.params.reviewId}`, request, response);
+});
+app.post('/api/retrieve/review/:reviewId', function (request, response) {
+  _doPost(`retrieve/review/${request.params.reviewId}`, request, response);
+});
+app.post('/api/update/review/:reviewId', function (request, response) {
+  _doPost(`update/review/${request.params.reviewId}`, request, response);
+});
+app.post('/api/search/reviews', function (request, response) {
+  _doPost('search/reviews', request, response);
 });
 
 app.all('/api/*', function (req, res) {
