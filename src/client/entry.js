@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import 'draft-js/dist/Draft.css';
 
 import CustomMaterialUITheme from "./theme/material.ui.config";
 import App from "../shared/controllers/AppController";

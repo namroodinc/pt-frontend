@@ -29,8 +29,6 @@ class Article extends React.Component {
           {...article}
         />
 
-        <hr />
-
         <ReviewMessage />
       </div>
     )
