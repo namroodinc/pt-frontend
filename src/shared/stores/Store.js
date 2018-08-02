@@ -48,7 +48,7 @@ class Store {
   }
 
   isReviewLoading() {
-    return this.loading;
+    return this.reviewLoading;
   }
 
   retrieveSearchTerm() {

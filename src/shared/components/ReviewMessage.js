@@ -1,11 +1,14 @@
 import React from "react";
+import { observer } from "mobx-react";
 import { Editor, EditorState, RichUtils } from "draft-js";
 import { stateToMarkdown } from "draft-js-export-markdown";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { VictoryPie } from "victory";
 
 import Actions from "../actions/Actions";
+import Store from "../stores/Store";
 
 const styles = theme => ({
   button: {
@@ -15,21 +18,31 @@ const styles = theme => ({
   }
 });
 
+@observer
 class ReviewMessage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      characterLength: 0,
       editorState: EditorState.createEmpty()
     };
-    this.onChange = (editorState) => this.setState({
-      editorState
-    });
+    this.onChange = (editorState) => this._handleChange(editorState);
     this.focus = () => this.refs.editor.focus();
     this.handleKeyCommand = (command) => this._handleKeyCommand(command);
     this.onTab = (e) => this._onTab(e);
     this.submit = (e) => this._submit();
     this.toggleBlockType = (type) => this._toggleBlockType(type);
     this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
+  }
+
+  _handleChange(editorState) {
+    const currentContent = editorState.getCurrentContent();
+    const currentContentLength = currentContent.getPlainText('').length;
+
+    this.setState({
+      characterLength: currentContentLength,
+      editorState
+    });
   }
 
   _handleKeyCommand(command) {
@@ -73,8 +86,8 @@ class ReviewMessage extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
-    const { editorState } = this.state;
+    const { characterLimit, classes } = this.props;
+    const { characterLength, editorState } = this.state;
 
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
@@ -107,15 +120,52 @@ class ReviewMessage extends React.Component {
           </div>
         </div>
 
-        <div>
+        <div
+          className="review__message__controls"
+        >
+          <div
+            className="review__message__controls__chart"
+          >
+            <VictoryPie
+              colorScale={[
+                '#AD1457',
+                '#FCE4EC'
+              ]}
+              data={[
+                {
+                  x: 'used',
+                  y: characterLength
+                },
+                {
+                  x: 'remaining',
+                  y: characterLimit - characterLength
+                }
+              ]}
+              labels={() => null}
+              innerRadius={160}
+              padding={0}
+            />
+          </div>
+
           <Button
             className={classes.button}
             color="primary"
+            disabled={characterLength >= characterLimit || characterLength === 0}
             onClick={this.submit}
             size="large"
             variant="outlined"
           >
-            Submit
+            {Store.isReviewLoading() ?
+              (
+                <span>
+                  Submitting ...
+                </span>
+              ) : (
+                <span>
+                  Submit
+                </span>
+              )
+            }
           </Button>
         </div>
       </div>
@@ -166,8 +216,8 @@ var INLINE_STYLES = [
     style: 'ITALIC'
   },
   {
-    label: 'Underline',
-    style: 'UNDERLINE'
+    label: 'Quote',
+    style: 'blockquote'
   }
 ];
 
@@ -188,7 +238,13 @@ const InlineStyleControls = (props) => {
   );
 };
 
+ReviewMessage.defaultProps = {
+  characterLimit: 60
+}
+
 ReviewMessage.propTypes = {
+  articleId: PropTypes.string,
+  characterLimit: PropTypes.number.isRequired,
   classes: PropTypes.object.isRequired
 };
 

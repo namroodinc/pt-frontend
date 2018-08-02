@@ -1,5 +1,15 @@
 .review__message {
+  height: auto;
+  overflow: hidden;
   padding: 40px 0 20px 0;
+
+  &__controls {
+    &__chart {
+      float: left;
+      padding: 5px 5px 5px 0;
+      width: 50px;
+    }
+  }
 }
 
 .RichEditor-root {

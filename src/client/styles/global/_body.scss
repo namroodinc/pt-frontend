@@ -32,6 +32,13 @@ hr {
   }
 }
 
+.VictoryContainer {
+  height: auto !important;
+  & > svg {
+    height: auto !important;
+  }
+}
+
 a {
   color: $linkColor;
   font-weight: 600;
