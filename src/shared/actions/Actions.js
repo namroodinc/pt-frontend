@@ -103,7 +103,7 @@ class Actions {
   }
 
   @action postReview(articleId, message) {
-    // Store.loading = true;
+    Store.reviewLoading = true;
 
     request
       .post(`/api/create/review`)
@@ -112,7 +112,7 @@ class Actions {
         message
       })
       .end(function (err, res) {
-        // Store.loading = false;
+        Store.reviewLoading = false;
 
         if (err) {
           console.log(err);

@@ -1,7 +1,7 @@
 {
   "name": "pt-frontend",
   "version": "1.0.0",
-  "description": "Boilerplate for a React project",
+  "description": "PT FRONTEND react project",
   "main": "src/server/server.js",
   "scripts": {
     "clean-lib": "rimraf lib",
