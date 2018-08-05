@@ -3,84 +3,33 @@
   overflow: hidden;
   padding: 40px 0 20px 0;
 
-  &__controls {
-    &__chart {
-      float: left;
-      padding: 5px 5px 5px 0;
-      width: 50px;
+  &__textarea {
+    padding: 0 0 5px 0;
+    textarea {
+      background-color: $textColor;
+      border: 0 none transparent;
+      color: $backgroundColor;
+      font-family: $bodyFont;
+      font-size: 0.8em;
+      padding: 14px;
+      width: 100%;
     }
   }
-}
 
-.RichEditor-root {
-  background: #FFF;
-  font-family: $bodyFont;
-  font-size: 1em;
-  padding: 20px;
-}
-
-.RichEditor-editor {
-  border-top: 1px solid $borderColor;
-  color: $backgroundColor;
-  cursor: text;
-  font-size: 1em;
-  margin-top: 10px;
-}
-
-.RichEditor-editor .public-DraftEditorPlaceholder-root,
-.RichEditor-editor .public-DraftEditor-content {
-  margin: 0 -15px -15px;
-  padding: 15px;
-}
-
-.RichEditor-editor .public-DraftEditorPlaceholder-root {
-  color: $linkColor;
-}
-
-.RichEditor-editor .public-DraftEditor-content {
-  color: $backgroundColor;
-}
-
-.RichEditor-editor .public-DraftEditor-content {
-  min-height: 100px;
-}
-
-.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
-  display: none;
-}
-
-.RichEditor-editor .RichEditor-blockquote {
-  border-left: 5px solid $borderColor;
-  color: $backgroundColor;
-  font-family: $bodyFont;
-  font-style: italic;
-  margin: 16px 0;
-  padding: 10px 20px;
-}
-
-.RichEditor-editor .public-DraftStyleDefault-pre {
-  background-color: $linkColor;
-  color: $backgroundColor;
-  font-family: $bodyFont;
-  font-size: 1em;
-  padding: 20px;
-}
-
-.RichEditor-controls {
-  font-family: $bodyFont;
-  font-size: 0.8em;
-  margin-bottom: 5px;
-  user-select: none;
-}
-
-.RichEditor-styleButton {
-  color: $linkColor;
-  cursor: pointer;
-  margin-right: 20px;
-  padding: 2px 0;
-  display: inline-block;
-}
-
-.RichEditor-activeButton {
-  color: $backgroundColor;
+  &__controls {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    &__column {
+      width: 50%;
+      &__character-count {
+        line-height: 50px;
+      }
+      &__chart {
+        float: left;
+        padding: 5px 20px 5px 0;
+        width: 40px;
+      }
+    }
+  }
 }

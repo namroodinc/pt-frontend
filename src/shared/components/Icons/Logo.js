@@ -8,6 +8,9 @@ export default class Logo extends React.Component {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height={size}
+        style={{
+          transform: 'rotate(-90deg)'
+        }}
         width={size}
         viewBox={`0 0 300 300`}
       >
@@ -64,7 +67,7 @@ export default class Logo extends React.Component {
 }
 
 Logo.defaultProps = {
-  colorAccent: '#880E4F',
-  colorCircle: '#fff',
+  colorAccent: '#FFEB3B',
+  colorCircle: '#E65100',
   size: 70
 };

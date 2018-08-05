@@ -6,6 +6,8 @@ import { withStyles } from "@material-ui/core/styles";
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 
+import PublicationLabel from "./PublicationLabel";
+
 const styles = theme => ({
   button: {
     margin: '0 10px 10px 0'
@@ -43,27 +45,25 @@ class NewsItem extends React.Component {
         </span>
 
         <div
-          className="news-item__footer"
+          className="news-item__publication"
         >
           <span
-            className="news-item__footer__publication"
+            className="news-item__publication__label"
           >
-            <Link
-              to={`/publication/${publication._id}`}
-            >
-              {publication.name}
-            </Link>
+            <PublicationLabel
+              publication={publication}
+            />
           </span>
           <span
-            className="news-item__footer__time"
+            className="news-item__publication__time"
           >
             {timeAgo}
           </span>
           <span
-            className="news-item__footer__information"
+            className="news-item__publication__information"
           >
             <span
-              className="news-item__footer__information__icon"
+              className="news-item__publication__information__icon"
             >
               <Tooltip
                 title={authorsJoin}
@@ -74,7 +74,7 @@ class NewsItem extends React.Component {
               </Tooltip>
             </span>
             <span
-              className="news-item__footer__information__icon"
+              className="news-item__publication__information__icon"
             >
               <Tooltip
                 title={trendsJoin}

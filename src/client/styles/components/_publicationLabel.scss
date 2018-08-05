@@ -1,0 +1,9 @@
+.publication-label {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  &__avatar {
+    padding: 0 5px 0 0;
+  }
+}

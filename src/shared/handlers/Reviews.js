@@ -1,7 +1,5 @@
 import React from "react";
 import { observer } from "mobx-react";
-import ReactHtmlParser from "react-html-parser";
-import Marked from "marked";
 
 import { Loading } from "../components/Index";
 
@@ -37,9 +35,10 @@ class Reviews extends React.Component {
           <hr />
           {reviews.map((review, i) =>
             <div
+              className="reviews__item"
               key={i}
             >
-              {ReactHtmlParser(Marked(review.message))}
+              {review.message}
               <hr />
             </div>
           )}

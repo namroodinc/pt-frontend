@@ -56,7 +56,9 @@ class Actions {
 
     request
       .post(`/api/search/publications`)
-      .send({})
+      .send({
+        'newsApiIdOrNot': true
+      })
       .end(function (err, res) {
         Store.loading = false;
 

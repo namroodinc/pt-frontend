@@ -16,13 +16,13 @@
     font-size: 0.9em;
   }
 
-  &__footer {
+  &__publication {
     align-items: center;
     display: flex;
     font-size: 0.7em;
     padding-top: 15px;
 
-    &__publication {
+    &__label {
       padding-right: 10px;
     }
 
@@ -36,5 +36,15 @@
         padding-left: 10px;
       }
     }
+  }
+
+  &__authors {
+    font-size: 0.7em;
+    padding-top: 15px;
+  }
+
+  &__trends {
+    font-size: 0.7em;
+    padding-top: 15px;
   }
 }

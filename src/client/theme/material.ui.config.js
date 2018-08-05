@@ -13,6 +13,15 @@ export default {
     }
   },
   overrides: {
+    MuiButton: {
+      disabled: {
+        borderColor: '#F06292',
+        color: '#F06292 !important'
+      },
+      outlined: {
+        borderColor: textColor
+      }
+    },
     MuiInput: {
       root: {
         color: textColor

@@ -9,7 +9,7 @@ class Loading extends React.Component {
         className="loading"
       >
         <Logo
-          size={200}
+          size={300}
         />
       </div>
     );
