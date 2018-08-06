@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { withStyles } from "@material-ui/core/styles";
-import Icon from '@material-ui/core/Icon';
-import Tooltip from '@material-ui/core/Tooltip';
 
 import PublicationLabel from "./PublicationLabel";
 
@@ -19,9 +17,43 @@ class NewsItem extends React.Component {
     const { authors, datePublished, description, publication, title, trends } = this.props;
     const id = this.props._id;
 
-    const authorsJoin = authors.map(author => author.name).join(', ');
+    const authorsHtml = (
+      <div>
+        {authors.length > 0 &&
+          <div
+            className="news-item__authors"
+          >
+            {authors.map((author, i) =>
+              <Link
+                key={i}
+                to={`/author/${author._id}`}
+              >
+                {author.prettyName}
+              </Link>
+            )}
+          </div>
+        }
+      </div>
+    );
     const timeAgo = moment(datePublished).fromNow();
-    const trendsJoin = trends !== null ? trends.join(', ') : '';
+    const trendsHtml = (
+      <div>
+        {trends.length > 0 &&
+          <div
+            className="news-item__trends"
+          >
+            {trends.map((trend, i) =>
+              <Link
+                key={i}
+                to={`/trend/${trend}`}
+              >
+                {trend}
+              </Link>
+            )}
+          </div>
+        }
+      </div>
+    );
 
     return (
       <div
@@ -59,33 +91,12 @@ class NewsItem extends React.Component {
           >
             {timeAgo}
           </span>
-          <span
-            className="news-item__publication__information"
-          >
-            <span
-              className="news-item__publication__information__icon"
-            >
-              <Tooltip
-                title={authorsJoin}
-              >
-                <Icon>
-                  {authors.length > 1 ? 'people' : 'person'}
-                </Icon>
-              </Tooltip>
-            </span>
-            <span
-              className="news-item__publication__information__icon"
-            >
-              <Tooltip
-                title={trendsJoin}
-              >
-                <Icon>
-                  local_offer
-                </Icon>
-              </Tooltip>
-            </span>
-          </span>
         </div>
+
+        {authorsHtml}
+
+        {trendsHtml}
+
       </div>
     );
   }

@@ -1,10 +1,11 @@
 .news-item {
   border-bottom: 1px solid $borderColor;
   color: $textColor;
-  padding: 20px 5px;
+  padding: 20px;
 
   &:first-child {
-    border-top: 1px solid $borderColor;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
   }
 
   &__heading {
@@ -28,14 +29,6 @@
 
     &__time {
     }
-
-    &__information {
-      padding-left: 10px;
-
-      &__icon {
-        padding-left: 10px;
-      }
-    }
   }
 
   &__authors {
@@ -46,5 +39,23 @@
   &__trends {
     font-size: 0.7em;
     padding-top: 15px;
+
+    a {
+      display: inline-block;
+      font-style: italic;
+      line-height: 1.4em;
+      white-space: nowrap;
+
+      &:after {
+        content: '//';
+        padding: 0 5px;
+      }
+
+      &:last-child {
+        &:after {
+          content: '';
+        }
+      }
+    }
   }
 }
