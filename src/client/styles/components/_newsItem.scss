@@ -8,6 +8,13 @@
     border-radius: 5px;
   }
 
+  &__section {
+    display: block;
+    font-size: 0.9em;
+    line-height: 1.3em;
+    padding: 0 0 10px 0;
+  }
+
   &__heading {
     padding: 0;
   }
@@ -15,6 +22,7 @@
   &__description {
     display: block;
     font-size: 0.9em;
+    line-height: 1.3em;
   }
 
   &__publication {
@@ -43,12 +51,13 @@
     a {
       display: inline-block;
       font-style: italic;
-      line-height: 1.4em;
+      line-height: 1.5em;
       white-space: nowrap;
 
       &:after {
+        color: $borderColor;
         content: '//';
-        padding: 0 5px;
+        padding: 0 7px;
       }
 
       &:last-child {

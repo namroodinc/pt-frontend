@@ -1,11 +1,13 @@
 $backgroundColor: #880E4F;
 $linkColor: #F8BBD0;
+$linkHoverColor: #FCE4EC;
 $textColor: #FFFFFF;
 $borderColor: #FF4081;
 
 :export {
   backgroundColor: $backgroundColor;
   linkColor: $linkColor;
+  linkHoverColor: $linkHoverColor;
   textColor: $textColor;
   borderColor: $borderColor;
 }

@@ -14,7 +14,7 @@ const styles = theme => ({
 
 class NewsItem extends React.Component {
   render() {
-    const { authors, datePublished, description, publication, title, trends } = this.props;
+    const { authors, datePublished, description, publication, section, title, trends } = this.props;
     const id = this.props._id;
 
     const authorsHtml = (
@@ -55,10 +55,23 @@ class NewsItem extends React.Component {
       </div>
     );
 
+    console.log(section);
+
     return (
       <div
         className="news-item"
       >
+        {section &&
+          <span
+            className="news-item__section"
+          >
+            <Link
+              to={`/section/${section}`}
+            >
+              {section}
+            </Link>
+          </span>
+        }
 
         <h4
           className="news-item__heading"
@@ -140,6 +153,7 @@ NewsItem.propTypes = {
   datePublished: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   publication: PropTypes.object.isRequired,
+  section: PropTypes.string,
   title: PropTypes.string.isRequired,
   trends: PropTypes.oneOfType([
     PropTypes.array,

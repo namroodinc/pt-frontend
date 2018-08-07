@@ -1,6 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
+import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { withStyles } from "@material-ui/core/styles";
@@ -10,8 +11,8 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 const styles = theme => ({
-  iconFontSize: {
-    fontSize: 'inherit'
+  iconButton: {
+    marginRight: -10
   },
   searchBox: {
     fontSize: '1.4em',
@@ -51,16 +52,15 @@ class Search extends React.Component {
           defaultValue={Store.retrieveSearchTerm()}
           endAdornment={
             <InputAdornment position="end">
-              <button
-                className="circle-button circle-button--small"
+              <IconButton
+                className={classes.iconButton}
+                color="primary"
                 onClick={this.handleSearchNewsItems}
               >
-                <Icon
-                  className={classes.iconFontSize}
-                >
+                <Icon>
                   search
                 </Icon>
-              </button>
+              </IconButton>
             </InputAdornment>
           }
           inputProps={{
