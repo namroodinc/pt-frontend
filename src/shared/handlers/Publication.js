@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -23,7 +24,7 @@ class Publication extends React.Component {
     if (Store.isLoading()) return <Loading />;
 
     const publication = Store.retrievePublication();
-    const { avatarUrlToImage, backgroundColor, country, headquarters, name, twitterScreenName, url } = publication;
+    const { avatarUrlToImage, backgroundColor, country, headquarters, ideology, name, twitterScreenName, url } = publication;
 
     return (
       <div
@@ -120,6 +121,27 @@ class Publication extends React.Component {
                     </tr>
                   </tbody>
                 </table>
+              </div>
+
+              <div
+                className="publication__ideologies"
+              >
+                {ideology !== undefined &&
+                  <div>
+                    {ideology.length > 0 &&
+                      <div>
+                        {ideology.map((item, i) =>
+                          <Link
+                            key={i}
+                            to={`/ideology/${item._id}`}
+                          >
+                            {item.name}
+                          </Link>
+                        )}
+                      </div>
+                    }
+                  </div>
+                }
               </div>
 
             </div>
