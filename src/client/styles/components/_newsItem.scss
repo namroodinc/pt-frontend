@@ -1,11 +1,15 @@
+.news-items {
+  border: 1px solid $borderColor;
+  border-radius: 5px;
+}
+
 .news-item {
   border-bottom: 1px solid $borderColor;
   color: $textColor;
   padding: 20px;
 
-  &:first-child {
-    border: 1px solid $borderColor;
-    border-radius: 5px;
+  &:last-child {
+    border-bottom-width: 0;
   }
 
   &__section {

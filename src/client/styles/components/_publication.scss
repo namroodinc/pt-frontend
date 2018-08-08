@@ -1,4 +1,12 @@
 .publication {
+  background-color: $publicationBackground;
+  border-radius: 5px;
+  color: $backgroundColor;
+  padding: 20px;
+
+  a {
+    color: $backgroundColor;
+  }
 
   &__avatar {
     padding-bottom: 20px;

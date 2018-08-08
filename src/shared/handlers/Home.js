@@ -41,12 +41,16 @@ class Home extends React.Component {
       >
         <Search />
 
-        {articles.map((article, i) =>
-          <NewsItem
-            key={i}
-            {...article}
-          />
-        )}
+        <div
+          className="news-items"
+        >
+          {articles.map((article, i) =>
+            <NewsItem
+              key={i}
+              {...article}
+            />
+          )}
+        </div>
 
         <div
           className="button-group button-group--loading-more"

@@ -25,9 +25,13 @@ class Article extends React.Component {
       <div
         className="container container--news-items"
       >
-        <NewsItem
-          {...article}
-        />
+        <div
+          className="news-items"
+        >
+          <NewsItem
+            {...article}
+          />
+        </div>
 
         <ReviewMessage
           articleId={article._id}

@@ -3,6 +3,7 @@ $linkColor: #F8BBD0;
 $linkHoverColor: #FCE4EC;
 $textColor: #FFFFFF;
 $borderColor: #FF4081;
+$publicationBackground: #FCE4EC;
 
 :export {
   backgroundColor: $backgroundColor;
@@ -10,4 +11,5 @@ $borderColor: #FF4081;
   linkHoverColor: $linkHoverColor;
   textColor: $textColor;
   borderColor: $borderColor;
+  publicationBackground: $publicationBackground;
 }

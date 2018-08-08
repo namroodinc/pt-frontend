@@ -55,8 +55,6 @@ class NewsItem extends React.Component {
       </div>
     );
 
-    console.log(section);
-
     return (
       <div
         className="news-item"
@@ -118,24 +116,17 @@ class NewsItem extends React.Component {
 NewsItem.defaultProps = {
   authors: [
     {
-      'name': 'Leonardo'
-    },
-    {
-      'name': 'Donatello'
-    },
-    {
-      'name': 'Raphael'
-    },
-    {
-      'name': 'Michaelangelo'
+      '_id': '123',
+      'prettyName': 'Author Name'
     }
   ],
   datePublished: '2018-07-01T00:05:00Z',
   description: 'A description about the news article.',
   publication: {
-    id: 'the-new-yorker',
-    name: 'The New Yorker'
+    '_id': '123',
+    'name': 'Publication Name'
   },
+  section: 'World News',
   title: 'News headline',
   trends: [
     'United Kingdom',

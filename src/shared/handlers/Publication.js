@@ -1,9 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { Link } from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
-import Icon from '@material-ui/core/Icon';
-import Tooltip from '@material-ui/core/Tooltip';
 
 import { Loading } from "../components/Index";
 
@@ -24,135 +21,75 @@ class Publication extends React.Component {
     if (Store.isLoading()) return <Loading />;
 
     const publication = Store.retrievePublication();
-    const { avatarUrlToImage, backgroundColor, country, headquarters, ideology, name, twitterScreenName, url } = publication;
+    const {
+      avatarUrlToImage,
+      backgroundColor,
+      ideology,
+      name,
+      url
+    } = publication;
 
     return (
       <div
-        className="container"
+        className="container container--publication"
       >
 
-        <Grid
-          container
-          spacing={24}
+        <div
+          className="publication"
         >
-          <Grid
-            item
-            xs={3}
+
+          <div
+            className="publication__avatar"
           >
-
             <div
-              className="publication"
+              className="circle-button circle-button--extra-large"
+              style={{
+                backgroundColor
+              }}
             >
+              {avatarUrlToImage &&
+                <img
+                  src={avatarUrlToImage}
+                />
+              }
+            </div>
+          </div>
 
-              <div
-                className="publication__avatar"
-              >
-                <div
-                  className="circle-button circle-button--extra-large"
-                  style={{
-                    backgroundColor
-                  }}
-                >
-                  {avatarUrlToImage &&
-                    <img
-                      src={avatarUrlToImage}
-                    />
-                  }
-                </div>
-              </div>
+          <h3>
+            {name}
+          </h3>
 
-              <h3>
-                {name}
-              </h3>
+          <h5>
+            <a
+              href={`https://www.${url}`}
+              target="_blank"
+            >
+              {url}
+            </a>
+          </h5>
 
-              <h5>
-                <a
-                  href={`https://www.${url}`}
-                  target="_blank"
-                >
-                  {url}
-                </a>
-              </h5>
-
-              <div
-                className="publication__details"
-              >
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <Tooltip
-                          title="Country"
-                        >
-                          <Icon>
-                            public
-                          </Icon>
-                        </Tooltip>
-                      </td>
-                      <td>
-                        {country}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <Tooltip
-                          title="Headquarters"
-                        >
-                          <Icon>
-                            domain
-                          </Icon>
-                        </Tooltip>
-                      </td>
-                      <td>
-                        {headquarters}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td
-                        colSpan="2"
-                      >
-                        <a
-                          href={`http://twitter.com/${twitterScreenName}`}
-                          target="_blank"
-                        >
-                          @{twitterScreenName}
-                        </a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div
-                className="publication__ideologies"
-              >
-                {ideology !== undefined &&
+          <div
+            className="publication__ideologies"
+          >
+            {ideology !== undefined &&
+              <div>
+                {ideology.length > 0 &&
                   <div>
-                    {ideology.length > 0 &&
-                      <div>
-                        {ideology.map((item, i) =>
-                          <Link
-                            key={i}
-                            to={`/ideology/${item._id}`}
-                          >
-                            {item.name}
-                          </Link>
-                        )}
-                      </div>
-                    }
+                    {ideology.map((item, i) =>
+                      <Link
+                        key={i}
+                        to={`/ideology/${item._id}`}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
                   </div>
                 }
               </div>
+            }
+          </div>
 
-            </div>
-          </Grid>
-          <Grid
-            item
-            xs={6}
-          >
-            asdasd
-          </Grid>
-        </Grid>
+        </div>
 
       </div>
     )
