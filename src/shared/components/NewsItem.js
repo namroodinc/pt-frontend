@@ -45,7 +45,7 @@ class NewsItem extends React.Component {
             {trends.map((trend, i) =>
               <Link
                 key={i}
-                to={`/trend/${trend}`}
+                to={`/?trend=${trend}`}
               >
                 {trend}
               </Link>
@@ -59,6 +59,7 @@ class NewsItem extends React.Component {
       <div
         className="news-item"
       >
+
         {section &&
           <span
             className="news-item__section"

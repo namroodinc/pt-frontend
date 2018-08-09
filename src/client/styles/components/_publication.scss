@@ -6,6 +6,10 @@
 
   a {
     color: $backgroundColor;
+
+    &:hover {
+      color: $linkColor;
+    }
   }
 
   &__avatar {

@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 
-import { Loading, PublicationItem } from "../components/Index";
+import { Loading, Publication } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -33,7 +33,7 @@ class Publications extends React.Component {
           className="publications-grid"
         >
           {publications.map((publication, i) =>
-            <PublicationItem
+            <Publication
               key={i}
               {...publication}
             />

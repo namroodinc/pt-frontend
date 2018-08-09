@@ -31,6 +31,9 @@ class Home extends React.Component {
 
   render() {
     if (Store.isLoading()) return <Loading />;
+
+    console.log(this);
+
     const { classes } = this.props;
 
     const articles = Store.retrieveArticles();
