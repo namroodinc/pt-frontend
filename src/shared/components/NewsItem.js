@@ -14,7 +14,7 @@ const styles = theme => ({
 
 class NewsItem extends React.Component {
   render() {
-    const { authors, datePublished, description, publication, section, title, trends } = this.props;
+    const { authors, datePublished, description, publication, section, title, trends, url } = this.props;
     const id = this.props._id;
 
     const authorsHtml = (
@@ -102,6 +102,16 @@ class NewsItem extends React.Component {
             className="news-item__publication__time"
           >
             {timeAgo}
+          </span>
+          <span
+            className="news-item__publication__url"
+          >
+            <a
+              href={url}
+              target="_blank"
+            >
+              Link to article
+            </a>
           </span>
         </div>
 

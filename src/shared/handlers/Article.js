@@ -22,24 +22,34 @@ class Article extends React.Component {
     const article = Store.retrieveArticle();
 
     return (
-      <div
-        className="container container--news-items"
-      >
+      <div>
         <div
-          className="news-items"
+          className="container container--news-items"
         >
-          <NewsItem
-            {...article}
+          <div
+            className="news-items"
+          >
+            <NewsItem
+              {...article}
+            />
+          </div>
+        </div>
+
+        <div
+          className="container container--publication"
+        >
+          <PublicationItem
+            {...article.publication}
           />
         </div>
 
-        <PublicationItem
-          {...article.publication}
-        />
-
-        <ReviewMessage
-          articleId={article._id}
-        />
+        <div
+          className="container container--news-items"
+        >
+          <ReviewMessage
+            articleId={article._id}
+          />
+        </div>
       </div>
     )
   }

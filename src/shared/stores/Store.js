@@ -11,7 +11,10 @@ class Store {
       article: {},
       currentPageNumber: 0,
       loading: false,
-      publication: {},
+      publication: {
+        publication: {},
+        results: []
+      },
       publications: [],
       reviews: [],
       reviewLoading: false,

@@ -1,10 +1,6 @@
 .news-items {
   border: 1px solid $borderColor;
   border-radius: 5px;
-
-  & + .publication {
-    margin-top: 20px;
-  }
 }
 
 .news-item {
@@ -39,11 +35,8 @@
     font-size: 0.7em;
     padding-top: 15px;
 
-    &__label {
-      padding-right: 10px;
-    }
-
-    &__time {
+    span {
+      padding-right: 15px;
     }
   }
 
