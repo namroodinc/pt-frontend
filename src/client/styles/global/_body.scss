@@ -22,12 +22,12 @@ hr {
   max-width: $fullContainerWidth;
 
   &--news-items {
-    max-width: $fullContainerWidth / 2;
+    max-width: $mobile;
     padding: 20px 0;
   }
 
   &--publication {
-    max-width: $fullContainerWidth / 2;
+    max-width: $mobile;
     padding: 0 0 20px 0;
   }
 }

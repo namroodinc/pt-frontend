@@ -1,6 +1,10 @@
 .news-items {
   border: 1px solid $borderColor;
   border-radius: 5px;
+
+  @media only screen and (max-width: $mobile) {
+    border: 0 none transparent;
+  }
 }
 
 .news-item {
