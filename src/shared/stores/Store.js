@@ -18,7 +18,11 @@ class Store {
       publications: [],
       reviews: [],
       reviewLoading: false,
-      searchTerm: ''
+      searchTerm: '',
+      trend: {
+        trend: {},
+        results: []
+      }
     });
   }
 
@@ -56,6 +60,10 @@ class Store {
 
   retrieveSearchTerm() {
     return this.searchTerm;
+  }
+
+  retrieveTrend() {
+    return this.trend;
   }
 }
 

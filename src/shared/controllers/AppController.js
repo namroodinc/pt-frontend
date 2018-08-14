@@ -10,7 +10,8 @@ import {
   Home,
   Publication,
   Publications,
-  Reviews
+  Reviews,
+  Trend
 } from "../handlers/Index";
 
 export default class AppController extends React.Component {
@@ -47,6 +48,11 @@ export default class AppController extends React.Component {
               exact
               path="/reviews"
               component={Reviews}
+            />
+            <Route
+              exact
+              path="/trend/:trendId"
+              component={Trend}
             />
           </Switch>
         </div>

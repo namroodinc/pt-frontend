@@ -4,6 +4,7 @@ import Page from "./Page";
 import Publication from "./Publication";
 import Publications from "./Publications";
 import Reviews from "./Reviews";
+import Trend from "./Trend";
 
 export {
   Article,
@@ -11,5 +12,6 @@ export {
   Page,
   Publication,
   Publications,
-  Reviews
+  Reviews,
+  Trend
 }

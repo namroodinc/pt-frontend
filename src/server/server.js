@@ -60,6 +60,11 @@ app.post('/api/search/reviews', function (request, response) {
   _doPost('search/reviews', request, response);
 });
 
+// Reviews
+app.post('/api/retrieve/trend/:trendId', function (request, response) {
+  _doPost(`retrieve/trend/${request.params.trendId}`, request, response);
+});
+
 app.all('/api/*', function (req, res) {
   res.sendStatus(404)
 });

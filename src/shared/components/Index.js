@@ -7,6 +7,7 @@ import PublicationItem from "./PublicationItem";
 import PublicationLabel from "./PublicationLabel";
 import ReviewMessage from "./ReviewMessage";
 import Search from "./Search";
+import TrendItem from "./TrendItem";
 
 export {
   Header,
@@ -17,5 +18,6 @@ export {
   PublicationItem,
   PublicationLabel,
   ReviewMessage,
-  Search
+  Search,
+  TrendItem
 }

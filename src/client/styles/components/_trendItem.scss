@@ -1,0 +1,21 @@
+.trend {
+  background-color: $trendBackground;
+  border-radius: 5px;
+  color: $backgroundColor;
+  padding: 20px;
+
+  a {
+    color: $backgroundColor;
+
+    &:hover {
+      color: $linkColor;
+    }
+  }
+
+  &__avatar {
+    padding-bottom: 20px;
+  }
+
+  &__details {
+  }
+}

@@ -123,6 +123,23 @@ class Actions {
         }
       });
   }
+
+  @action getTrend(trendId) {
+    Store.loading = true;
+
+    request
+      .post(`/api/retrieve/trend/${trendId}`)
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.trend = res.body;
+        }
+      });
+  }
 }
 
 export default new Actions();

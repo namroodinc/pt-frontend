@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { observer } from "mobx-react";
 
 import NewsItem from "./NewsItem";
 
+@observer
 class NewsItems extends React.Component {
   render() {
     const { articles } = this.props;
@@ -27,7 +29,10 @@ NewsItems.defaultProps = {
 };
 
 NewsItems.propTypes = {
-  articles: PropTypes.array.isRequired
+  articles: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ])
 };
 
 export default NewsItems;
