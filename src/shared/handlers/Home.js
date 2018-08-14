@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Icon from '@material-ui/core/Icon';
 import PropTypes from "prop-types";
 
-import { Loading, NewsItem, Search } from "../components/Index";
+import { Loading, NewsItems, Search } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -44,16 +44,9 @@ class Home extends React.Component {
       >
         <Search />
 
-        <div
-          className="news-items"
-        >
-          {articles.map((article, i) =>
-            <NewsItem
-              key={i}
-              {...article}
-            />
-          )}
-        </div>
+        <NewsItems
+          articles={articles}
+        />
 
         <div
           className="button-group button-group--loading-more"

@@ -25,9 +25,6 @@ class Publications extends React.Component {
       <div
         className="container"
       >
-        <h1>
-          Publications followed
-        </h1>
 
         <div
           className="publications-grid"
@@ -39,6 +36,7 @@ class Publications extends React.Component {
             />
           )}
         </div>
+
       </div>
     )
   }
