@@ -65,9 +65,9 @@ class NewsItem extends React.Component {
             className="news-item__section"
           >
             <Link
-              to={`/section/${section}`}
+              to={`/section/${section._id}`}
             >
-              {section}
+              {section.prettyName}
             </Link>
           </span>
         }
@@ -137,7 +137,10 @@ NewsItem.defaultProps = {
     '_id': '123',
     'name': 'Publication Name'
   },
-  section: 'World News',
+  section: {
+    '_id': '123',
+    'name': 'Section Name'
+  },
   title: 'News headline',
   trends: [
     'United Kingdom',
@@ -155,7 +158,7 @@ NewsItem.propTypes = {
   datePublished: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   publication: PropTypes.object.isRequired,
-  section: PropTypes.string,
+  section: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   trends: PropTypes.oneOfType([
     PropTypes.array,

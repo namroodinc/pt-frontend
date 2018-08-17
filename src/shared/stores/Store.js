@@ -11,18 +11,13 @@ class Store {
       article: {},
       currentPageNumber: 0,
       loading: false,
-      publication: {
-        publication: {},
-        results: []
-      },
+      publication: {},
       publications: [],
       reviews: [],
       reviewLoading: false,
       searchTerm: '',
-      trend: {
-        trend: {},
-        results: []
-      }
+      section: {},
+      trend: {}
     });
   }
 
@@ -60,6 +55,10 @@ class Store {
 
   retrieveSearchTerm() {
     return this.searchTerm;
+  }
+
+  retrieveSection() {
+    return this.section;
   }
 
   retrieveTrend() {

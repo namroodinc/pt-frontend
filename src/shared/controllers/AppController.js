@@ -11,6 +11,7 @@ import {
   Publication,
   Publications,
   Reviews,
+  Section,
   Trend
 } from "../handlers/Index";
 
@@ -48,6 +49,11 @@ export default class AppController extends React.Component {
               exact
               path="/reviews"
               component={Reviews}
+            />
+            <Route
+              exact
+              path="/section/:sectionId"
+              component={Section}
             />
             <Route
               exact

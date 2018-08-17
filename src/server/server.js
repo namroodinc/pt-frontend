@@ -60,7 +60,12 @@ app.post('/api/search/reviews', function (request, response) {
   _doPost('search/reviews', request, response);
 });
 
-// Reviews
+// Sections
+app.post('/api/retrieve/section/:sectionId', function (request, response) {
+  _doPost(`retrieve/section/${request.params.sectionId}`, request, response);
+});
+
+// Trends
 app.post('/api/retrieve/trend/:trendId', function (request, response) {
   _doPost(`retrieve/trend/${request.params.trendId}`, request, response);
 });

@@ -7,9 +7,9 @@ import Actions from "../actions/Actions";
 import Store from "../stores/Store";
 
 @observer
-class Trend extends React.Component {
+class Section extends React.Component {
   componentDidMount() {
-    Actions.getTrend(this.props.match.params.trendId);
+    Actions.getSection(this.props.match.params.sectionId);
   }
 
   componentWillUnmount() {
@@ -20,16 +20,16 @@ class Trend extends React.Component {
     if (Store.isLoading()) return <Loading />;
 
     const articles = Store.retrieveArticles();
-    const trend = Store.retrieveTrend();
+    const section = Store.retrieveSection();
 
     return (
       <div>
         <div
-          className="container container--trend"
+          className="container container--section"
         >
 
           <TrendItem
-            {...trend}
+            {...section}
           />
 
         </div>
@@ -48,4 +48,4 @@ class Trend extends React.Component {
   }
 }
 
-export default Trend;
+export default Section;

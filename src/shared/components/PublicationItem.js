@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-// import Icon from '@material-ui/core/Icon';
 
 const styles = theme => ({
 });
@@ -12,7 +11,7 @@ class PublicationItem extends React.Component {
     const {
       avatarUrlToImage,
       backgroundColor,
-      // description,
+      description,
       ideology,
       name,
       url
@@ -54,6 +53,12 @@ class PublicationItem extends React.Component {
           </a>
         </h5>
 
+        {description &&
+          <h5>
+            {description}
+          </h5>
+        }
+
         <div
           className="publication__ideologies"
         >
@@ -83,7 +88,7 @@ class PublicationItem extends React.Component {
 PublicationItem.defaultProps = {
   avatarUrlToImage: undefined,
   backgroundColor: '#000',
-  description: 'This is a description of the publication.',
+  description: undefined,
   _id: '1234567890',
   name: 'Publication name',
   url: 'publication.com'
@@ -93,7 +98,7 @@ PublicationItem.propTypes = {
   avatarUrlToImage: PropTypes.string,
   backgroundColor: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired

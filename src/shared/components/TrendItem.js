@@ -33,9 +33,11 @@ class TrendItem extends React.Component {
           {prettyName}
         </h3>
 
-        <h5>
-          {description}
-        </h5>
+        {description &&
+          <h5>
+            {description}
+          </h5>
+        }
 
       </div>
     );
@@ -44,13 +46,13 @@ class TrendItem extends React.Component {
 
 TrendItem.defaultProps = {
   avatarUrlToImage: undefined,
-  description: 'This is a description of the trend.',
+  description: undefined,
   prettyName: 'Trend name'
 };
 
 TrendItem.propTypes = {
   avatarUrlToImage: PropTypes.string,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   prettyName: PropTypes.string.isRequired
 };
 

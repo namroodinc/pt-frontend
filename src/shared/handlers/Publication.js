@@ -19,7 +19,8 @@ class Publication extends React.Component {
   render() {
     if (Store.isLoading()) return <Loading />;
 
-    const { publication, results } = Store.retrievePublication();
+    const articles = Store.retrieveArticles();
+    const publication = Store.retrievePublication();
 
     return (
       <div>
@@ -38,7 +39,7 @@ class Publication extends React.Component {
         >
 
           <NewsItems
-            articles={results}
+            articles={articles}
           />
 
         </div>

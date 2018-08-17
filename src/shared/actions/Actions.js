@@ -71,7 +71,9 @@ class Actions {
   }
 
   @action getPublication(publicationId) {
+    Store.articles = [];
     Store.loading = true;
+    Store.publication = {};
 
     request
       .post(`/api/retrieve/publication/${publicationId}`)
@@ -82,7 +84,8 @@ class Actions {
         if (err) {
           console.log(err);
         } else if (res) {
-          Store.publication = res.body;
+          Store.articles = res.body.results;
+          Store.publication = res.body.publication;
         }
       });
   }
@@ -124,8 +127,30 @@ class Actions {
       });
   }
 
-  @action getTrend(trendId) {
+  @action getSection(sectionId) {
+    Store.articles = [];
     Store.loading = true;
+    Store.section = {};
+
+    request
+      .post(`/api/retrieve/section/${sectionId}`)
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.articles = res.body.results;
+          Store.section = res.body.section;
+        }
+      });
+  }
+
+  @action getTrend(trendId) {
+    Store.articles = [];
+    Store.loading = true;
+    Store.trend = {};
 
     request
       .post(`/api/retrieve/trend/${trendId}`)
@@ -136,7 +161,8 @@ class Actions {
         if (err) {
           console.log(err);
         } else if (res) {
-          Store.trend = res.body;
+          Store.articles = res.body.results;
+          Store.trend = res.body.trend;
         }
       });
   }

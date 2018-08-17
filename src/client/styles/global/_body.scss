@@ -31,6 +31,11 @@ hr {
     padding: 0 0 20px 0;
   }
 
+  &--section {
+    max-width: $mobile;
+    padding: 20px 0;
+  }
+
   &--trend {
     max-width: $mobile;
     padding: 20px 0;
