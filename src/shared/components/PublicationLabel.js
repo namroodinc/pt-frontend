@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
@@ -12,7 +11,7 @@ const styles = theme => ({
 class PublicationLabel extends React.Component {
   render() {
     const { publication } = this.props;
-    const { avatarUrlToImage, _id, backgroundColor, name } = publication;
+    const { _id, backgroundColor, name, urlToImage } = publication;
 
     return (
       <div
@@ -27,18 +26,18 @@ class PublicationLabel extends React.Component {
               backgroundColor
             }}
           >
-            {avatarUrlToImage &&
+            {urlToImage &&
               <img
-                src={avatarUrlToImage}
+                src={urlToImage}
               />
             }
           </div>
         </div>
-        <Link
-          to={`/publication/${_id}`}
+        <a
+          href={`/publication/${_id}`}
         >
           {name}
-        </Link>
+        </a>
       </div>
     );
   }

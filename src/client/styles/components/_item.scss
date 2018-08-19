@@ -1,5 +1,5 @@
 .item {
-  background-color: $publicationBackground;
+  background-color: $itemBackground;
   border-radius: 5px;
   color: $backgroundColor;
   padding: 20px;
@@ -17,5 +17,26 @@
   }
 
   &__details {
+  }
+
+  &--publication {
+    background-color: $publicationBackground;
+  }
+
+  &--section {
+    background-color: $sectionBackground;
+  }
+
+  &--trend {
+    background-color: $trendBackground;
+    color: $textColor;
+
+    a {
+      color: $textColor;
+
+      &:hover {
+        color: $linkColor;
+      }
+    }
   }
 }

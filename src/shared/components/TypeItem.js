@@ -13,12 +13,14 @@ class TypeItem extends React.Component {
       description,
       ideology,
       name,
+      prettyName,
       type,
       url,
       urlToImage
     } = this.props;
 
     const className = `item item--${type}`;
+    const heading = prettyName || name; // TODO: update Publications to have a prettyName
 
     return (
       <div
@@ -43,7 +45,7 @@ class TypeItem extends React.Component {
         </div>
 
         <h3>
-          {name}
+          {heading}
         </h3>
 
         <h5>
@@ -89,7 +91,7 @@ class TypeItem extends React.Component {
 
 TypeItem.defaultProps = {
   backgroundColor: '#F06292',
-  name: 'Title',
+  name: 'Heading',
   type: 'publication'
 };
 
@@ -100,6 +102,7 @@ TypeItem.propTypes = {
   description: PropTypes.string,
   ideology: PropTypes.array,
   name: PropTypes.string.isRequired,
+  prettyName: PropTypes.string,
   type: PropTypes.string.isRequired,
   url: PropTypes.string,
   urlToImage: PropTypes.string
