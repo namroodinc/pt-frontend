@@ -8,11 +8,12 @@ import {
 import {
   Article,
   Home,
-  Publication,
+  PageType,
+  // Publication,
   Publications,
   Reviews,
-  Section,
-  Trend
+  Section
+  // Trend
 } from "../handlers/Index";
 
 export default class AppController extends React.Component {
@@ -43,7 +44,7 @@ export default class AppController extends React.Component {
             <Route
               exact
               path="/publication/:publicationId"
-              component={Publication}
+              component={PageType}
             />
             <Route
               exact
@@ -58,7 +59,7 @@ export default class AppController extends React.Component {
             <Route
               exact
               path="/trend/:trendId"
-              component={Trend}
+              component={PageType}
             />
           </Switch>
         </div>
