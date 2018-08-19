@@ -9,11 +9,8 @@ import {
   Article,
   Home,
   PageType,
-  // Publication,
   Publications,
-  Reviews,
-  Section
-  // Trend
+  Reviews
 } from "../handlers/Index";
 
 export default class AppController extends React.Component {
@@ -43,8 +40,8 @@ export default class AppController extends React.Component {
             />
             <Route
               exact
-              path="/publication/:publicationId"
-              component={PageType}
+              path="/publication/:id"
+              render={(props) => <PageType {...props} type="publication" />}
             />
             <Route
               exact
@@ -53,13 +50,13 @@ export default class AppController extends React.Component {
             />
             <Route
               exact
-              path="/section/:sectionId"
-              component={Section}
+              path="/section/:id"
+              render={(props) => <PageType {...props} type="section" />}
             />
             <Route
               exact
-              path="/trend/:trendId"
-              component={PageType}
+              path="/trend/:id"
+              render={(props) => <PageType {...props} type="trend" />}
             />
           </Switch>
         </div>

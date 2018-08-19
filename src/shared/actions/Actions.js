@@ -47,8 +47,24 @@ class Actions {
       });
   }
 
-  @action setSearchTerm(searchTerm) {
-    Store.searchTerm = searchTerm;
+  @action getPageType(type, pageTypeId) {
+    Store.articles = [];
+    Store.loading = true;
+    Store[type] = {};
+
+    request
+      .post(`/api/retrieve/${type}/${pageTypeId}`)
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.articles = res.body.results;
+          Store[type] = res.body.page;
+        }
+      });
   }
 
   @action getPublications() {
@@ -66,26 +82,6 @@ class Actions {
           console.log(err);
         } else if (res) {
           Store.publications = res.body.results;
-        }
-      });
-  }
-
-  @action getPublication(publicationId) {
-    Store.articles = [];
-    Store.loading = true;
-    Store.publication = {};
-
-    request
-      .post(`/api/retrieve/publication/${publicationId}`)
-      .send({})
-      .end(function (err, res) {
-        Store.loading = false;
-
-        if (err) {
-          console.log(err);
-        } else if (res) {
-          Store.articles = res.body.results;
-          Store.publication = res.body.publication;
         }
       });
   }
@@ -127,44 +123,8 @@ class Actions {
       });
   }
 
-  @action getSection(sectionId) {
-    Store.articles = [];
-    Store.loading = true;
-    Store.section = {};
-
-    request
-      .post(`/api/retrieve/section/${sectionId}`)
-      .send({})
-      .end(function (err, res) {
-        Store.loading = false;
-
-        if (err) {
-          console.log(err);
-        } else if (res) {
-          Store.articles = res.body.results;
-          Store.section = res.body.section;
-        }
-      });
-  }
-
-  @action getTrend(trendId) {
-    Store.articles = [];
-    Store.loading = true;
-    Store.trend = {};
-
-    request
-      .post(`/api/retrieve/trend/${trendId}`)
-      .send({})
-      .end(function (err, res) {
-        Store.loading = false;
-
-        if (err) {
-          console.log(err);
-        } else if (res) {
-          Store.articles = res.body.results;
-          Store.trend = res.body.trend;
-        }
-      });
+  @action setSearchTerm(searchTerm) {
+    Store.searchTerm = searchTerm;
   }
 }
 

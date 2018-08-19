@@ -10,7 +10,7 @@ class Store {
       articles: [],
       article: {},
       currentPageNumber: 0,
-      loading: false,
+      loading: true,
       publication: {},
       publications: [],
       reviews: [],
@@ -37,8 +37,8 @@ class Store {
     return this.currentPageNumber;
   }
 
-  retrievePublication() {
-    return this.publication;
+  retrievePageType(type) {
+    return this[type];
   }
 
   retrievePublications() {
@@ -55,14 +55,6 @@ class Store {
 
   retrieveSearchTerm() {
     return this.searchTerm;
-  }
-
-  retrieveSection() {
-    return this.section;
-  }
-
-  retrieveTrend() {
-    return this.trend;
   }
 }
 

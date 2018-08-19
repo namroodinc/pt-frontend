@@ -13,13 +13,16 @@ class TypeItem extends React.Component {
       description,
       ideology,
       name,
+      type,
       url,
       urlToImage
     } = this.props;
 
+    const className = `item item--${type}`;
+
     return (
       <div
-        className="item"
+        className={className}
       >
 
         <div
@@ -85,23 +88,20 @@ class TypeItem extends React.Component {
 }
 
 TypeItem.defaultProps = {
-  backgroundColor: '#000',
-  description: undefined,
-  _id: '1234567890',
-  ideology: [],
-  name: 'Publication name',
-  url: 'publication.com',
-  urlToImage: undefined
+  backgroundColor: '#F06292',
+  name: 'Title',
+  type: 'publication'
 };
 
 TypeItem.propTypes = {
+  _id: PropTypes.string,
   backgroundColor: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   description: PropTypes.string,
-  _id: PropTypes.string.isRequired,
   ideology: PropTypes.array,
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  url: PropTypes.string,
   urlToImage: PropTypes.string
 };
 

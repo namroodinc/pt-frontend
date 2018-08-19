@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { observer } from "mobx-react";
 
 import { Loading, NewsItems, TypeItem } from "../components/Index";
@@ -9,51 +10,53 @@ import Store from "../stores/Store";
 @observer
 class PageType extends React.Component {
   componentDidMount() {
-    const { publicationId, trendId } = this.props.match.params;
-
-    if (publicationId !== undefined) Actions.getPublication(publicationId);
-    if (trendId !== undefined) Actions.getTrend(trendId);
+    Store.reset();
+    const { match, type } = this.props;
+    Actions.getPageType(type, match.params.id);
   }
 
   componentWillUnmount() {
-    // Store.reset();
+    Store.reset();
   }
 
   render() {
     if (Store.isLoading()) return <Loading />;
 
-    const { publicationId, trendId } = this.props.match.params;
+    const { type } = this.props;
 
-    let item = [];
-    if (publicationId !== undefined) item = Store.retrievePublication();
-    if (trendId !== undefined) item = Store.retrieveTrend();
-
+    const page = Store.retrievePageType(type);
     const articles = Store.retrieveArticles();
+
+    const className = `container container--${type}`;
 
     return (
       <div>
         <div
-          className="container container--publication"
+          className={className}
         >
-
           <TypeItem
-            {...item}
+            {...page}
+            type={type}
           />
-
         </div>
 
         <div
           className="container container--news-items"
         >
-
           <NewsItems
             articles={articles}
           />
-
         </div>
       </div>
     )
   }
 }
+
+PageType.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired
+  }),
+  type: PropTypes.string.isRequired
+};
 
 export default PageType;
