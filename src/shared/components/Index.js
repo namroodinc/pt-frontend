@@ -3,11 +3,10 @@ import Loading from "./Loading";
 import NewsItem from "./NewsItem";
 import NewsItems from "./NewsItems";
 import Publication from "./Publication";
-import PublicationItem from "./PublicationItem";
 import PublicationLabel from "./PublicationLabel";
 import ReviewMessage from "./ReviewMessage";
 import Search from "./Search";
-import TrendItem from "./TrendItem";
+import TypeItem from "./TypeItem";
 
 export {
   Header,
@@ -15,9 +14,8 @@ export {
   NewsItem,
   NewsItems,
   Publication,
-  PublicationItem,
   PublicationLabel,
   ReviewMessage,
   Search,
-  TrendItem
+  TypeItem
 }

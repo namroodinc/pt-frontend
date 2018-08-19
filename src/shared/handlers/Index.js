@@ -1,19 +1,13 @@
 import Article from "./Article";
 import Home from "./Home";
-import Page from "./Page";
-import Publication from "./Publication";
+import PageType from "./PageType";
 import Publications from "./Publications";
 import Reviews from "./Reviews";
-import Section from "./Section";
-import Trend from "./Trend";
 
 export {
   Article,
   Home,
-  Page,
-  Publication,
+  PageType,
   Publications,
-  Reviews,
-  Section,
-  Trend
+  Reviews
 }

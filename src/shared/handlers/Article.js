@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { observer } from "mobx-react";
 
-import { Loading, NewsItem, PublicationItem, ReviewMessage } from "../components/Index";
+import { Loading, NewsItem, TypeItem } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -13,7 +14,7 @@ class Article extends React.Component {
   }
 
   componentWillUnmount() {
-    // Store.reset();
+    Store.reset();
   }
 
   render() {
@@ -38,21 +39,20 @@ class Article extends React.Component {
         <div
           className="container container--publication"
         >
-          <PublicationItem
+          <TypeItem
             {...article.publication}
-          />
-        </div>
-
-        <div
-          className="container container--news-items"
-        >
-          <ReviewMessage
-            articleId={article._id}
+            type="publication"
           />
         </div>
       </div>
     )
   }
 }
+
+Article.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired
+  })
+};
 
 export default Article;

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import moment from "moment";
 import { withStyles } from "@material-ui/core/styles";
@@ -24,12 +23,12 @@ class NewsItem extends React.Component {
             className="news-item__authors"
           >
             {authors.map((author, i) =>
-              <Link
+              <a
+                href={`/author/${author._id}`}
                 key={i}
-                to={`/author/${author._id}`}
               >
                 {author.prettyName}
-              </Link>
+              </a>
             )}
           </div>
         }
@@ -43,12 +42,12 @@ class NewsItem extends React.Component {
             className="news-item__trends"
           >
             {trends.map((trend, i) =>
-              <Link
+              <a
+                href={`/trend/${trend._id}`}
                 key={i}
-                to={`/trend/${trend._id}`}
               >
                 {trend.prettyName}
-              </Link>
+              </a>
             )}
           </div>
         }
@@ -64,22 +63,22 @@ class NewsItem extends React.Component {
           <span
             className="news-item__section"
           >
-            <Link
-              to={`/section/${section._id}`}
+            <a
+              href={`/section/${section._id}`}
             >
               {section.prettyName}
-            </Link>
+            </a>
           </span>
         }
 
         <h4
           className="news-item__heading"
         >
-          <Link
-            to={`/article/${id}`}
+          <a
+            href={`/article/${id}`}
           >
             {title}
-          </Link>
+          </a>
         </h4>
 
         <span
@@ -150,6 +149,7 @@ NewsItem.defaultProps = {
 };
 
 NewsItem.propTypes = {
+  _id: PropTypes.string.isRequired,
   authors: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object
@@ -163,7 +163,8 @@ NewsItem.propTypes = {
   trends: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object
-  ])
+  ]),
+  url: PropTypes.string.isRequired
 };
 
 export default withStyles(styles)(NewsItem);

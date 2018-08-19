@@ -6,25 +6,27 @@ import { withStyles } from "@material-ui/core/styles";
 const styles = theme => ({
 });
 
-class PublicationItem extends React.Component {
+class TypeItem extends React.Component {
   render() {
     const {
-      avatarUrlToImage,
       backgroundColor,
       description,
       ideology,
       name,
-      url
+      type,
+      url,
+      urlToImage
     } = this.props;
 
-    return (
+    const className = `item item--${type}`;
 
+    return (
       <div
-        className="publication"
+        className={className}
       >
 
         <div
-          className="publication__avatar"
+          className="item__avatar"
         >
           <div
             className="circle-button circle-button--extra-large"
@@ -32,9 +34,9 @@ class PublicationItem extends React.Component {
               backgroundColor
             }}
           >
-            {avatarUrlToImage &&
+            {urlToImage &&
               <img
-                src={avatarUrlToImage}
+                src={urlToImage}
               />
             }
           </div>
@@ -60,7 +62,7 @@ class PublicationItem extends React.Component {
         }
 
         <div
-          className="publication__ideologies"
+          className="item__ideologies"
         >
           {ideology !== undefined &&
             <div>
@@ -85,23 +87,22 @@ class PublicationItem extends React.Component {
   }
 }
 
-PublicationItem.defaultProps = {
-  avatarUrlToImage: undefined,
-  backgroundColor: '#000',
-  description: undefined,
-  _id: '1234567890',
-  name: 'Publication name',
-  url: 'publication.com'
+TypeItem.defaultProps = {
+  backgroundColor: '#F06292',
+  name: 'Title',
+  type: 'publication'
 };
 
-PublicationItem.propTypes = {
-  avatarUrlToImage: PropTypes.string,
+TypeItem.propTypes = {
+  _id: PropTypes.string,
   backgroundColor: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   description: PropTypes.string,
-  _id: PropTypes.string.isRequired,
+  ideology: PropTypes.array,
   name: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  url: PropTypes.string,
+  urlToImage: PropTypes.string
 };
 
-export default withStyles(styles)(PublicationItem);
+export default withStyles(styles)(TypeItem);
