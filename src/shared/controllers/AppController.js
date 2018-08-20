@@ -35,6 +35,11 @@ export default class AppController extends React.Component {
             />
             <Route
               exact
+              path="/author/:id"
+              render={(props) => <PageType {...props} type="author" />}
+            />
+            <Route
+              exact
               path="/publications"
               component={Publications}
             />

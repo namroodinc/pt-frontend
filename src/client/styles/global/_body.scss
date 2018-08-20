@@ -21,21 +21,10 @@ hr {
   width: 100%;
   max-width: $fullContainerWidth;
 
-  &--news-items {
-    max-width: $mobile;
-    padding: 20px 0;
-  }
-
-  &--publication {
-    max-width: $mobile;
-    padding: 0 0 20px 0;
-  }
-
-  &--section {
-    max-width: $mobile;
-    padding: 20px 0;
-  }
-
+  &--author,
+  &--news-items,
+  &--publication,
+  &--section,
   &--trend {
     max-width: $mobile;
     padding: 20px 0;

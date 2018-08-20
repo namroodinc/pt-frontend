@@ -7,6 +7,7 @@ class Store {
 
   @action reset() {
     extendObservable(this, {
+      author: {},
       articles: [],
       article: {},
       currentPageNumber: 0,
