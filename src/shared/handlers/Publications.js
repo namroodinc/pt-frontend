@@ -27,7 +27,7 @@ class Publications extends React.Component {
       >
 
         <div
-          className="publications-grid"
+          className="cube"
         >
           {publications.map((publication, i) =>
             <Publication

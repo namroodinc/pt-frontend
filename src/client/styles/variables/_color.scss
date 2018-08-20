@@ -1,17 +1,21 @@
 $backgroundColor: #880E4F;
 $borderColor: #FF4081;
+$itemBackground: #FFFFFF;
 $linkColor: #F8BBD0;
 $linkHoverColor: #FCE4EC;
 $publicationBackground: #FCE4EC;
+$sectionBackground: #F8BBD0;
 $textColor: #FFFFFF;
-$trendBackground: #F48FB1;
+$trendBackground: #FF80AB;
 
 :export {
   backgroundColor: $backgroundColor;
   borderColor: $borderColor;
+  itemBackground: $itemBackground;
   linkColor: $linkColor;
   linkHoverColor: $linkHoverColor;
   publicationBackground: $publicationBackground;
+  sectionBackground: $sectionBackground;
   textColor: $textColor;
   trendBackground: $trendBackground;
 }
