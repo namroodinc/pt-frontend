@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Icon from '@material-ui/core/Icon';
 import PropTypes from "prop-types";
 
-import { Loading, NewsItems, Search } from "../components/Index";
+import { Loading, NewsItems, Search, Shell } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -37,28 +37,32 @@ class Home extends React.Component {
     const articles = Store.retrieveArticles();
 
     return (
-      <div
-        className="container container--news-items"
-      >
-        <Search />
-
-        <NewsItems
-          articles={articles}
-        />
+      <div>
+        <Shell>
+          <Search />
+        </Shell>
 
         <div
-          className="button-group button-group--loading-more"
+          className="container container--news-items"
         >
-          <button
-            className="circle-button circle-button--large"
-            onClick={this.handleLoadMoreNewsItems}
+          <NewsItems
+            articles={articles}
+          />
+
+          <div
+            className="button-group button-group--loading-more"
           >
-            <Icon
-              className={classes.iconFontSize}
+            <button
+              className="circle-button circle-button--large"
+              onClick={this.handleLoadMoreNewsItems}
             >
-              more_horiz
-            </Icon>
-          </button>
+              <Icon
+                className={classes.iconFontSize}
+              >
+                more_horiz
+              </Icon>
+            </button>
+          </div>
         </div>
       </div>
     )

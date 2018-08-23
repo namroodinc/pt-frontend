@@ -6,6 +6,7 @@ import Publication from "./Publication";
 import PublicationLabel from "./PublicationLabel";
 import ReviewMessage from "./ReviewMessage";
 import Search from "./Search";
+import Shell from "./Shell";
 import TypeItem from "./TypeItem";
 
 export {
@@ -17,5 +18,6 @@ export {
   PublicationLabel,
   ReviewMessage,
   Search,
+  Shell,
   TypeItem
 }
