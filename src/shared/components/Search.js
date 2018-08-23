@@ -12,7 +12,6 @@ import Store from "../stores/Store";
 
 const styles = theme => ({
   iconButton: {
-    marginRight: -10
   },
   searchBox: {
     fontSize: '1.4em',
@@ -20,7 +19,6 @@ const styles = theme => ({
     paddingTop: 0
   },
   searchBoxWrapper: {
-    marginBottom: 20,
     width: '100%'
   }
 });
