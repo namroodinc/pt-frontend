@@ -1,11 +1,14 @@
 import React from "react";
 import { observer } from "mobx-react";
 import PropTypes from "prop-types";
+import FormControl from '@material-ui/core/FormControl';
+import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import { withStyles } from "@material-ui/core/styles";
-import Icon from '@material-ui/core/Icon';
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -39,6 +42,10 @@ class Search extends React.Component {
     }
   }
 
+  handleSearchTime = (event) => {
+    console.log(event.target.value);
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -69,6 +76,28 @@ class Search extends React.Component {
           placeholder="Search articles"
         />
 
+        <FormControl>
+          <Select
+            value={Store.retrieveSearchTerm()}
+            onChange={this.handleSearchTime}
+          >
+            <MenuItem
+              value={10}
+            >
+              Ten
+            </MenuItem>
+            <MenuItem
+              value={20}
+            >
+              Twenty
+            </MenuItem>
+            <MenuItem
+              value={30}
+            >
+              Thirty
+            </MenuItem>
+          </Select>
+        </FormControl>
       </div>
     );
   }
