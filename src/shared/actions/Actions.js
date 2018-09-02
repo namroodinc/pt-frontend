@@ -15,6 +15,7 @@ class Actions {
     request
       .post(`/api/search/articles`)
       .send({
+        limit: true,
         searchTerm: Store.retrieveSearchTerm(),
         page: Store.retrieveCurrentPageNumber()
       })
