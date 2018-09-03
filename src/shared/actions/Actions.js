@@ -99,7 +99,23 @@ class Actions {
         if (err) {
           console.log(err);
         } else if (res) {
+          Store.loading = false;
           Store.reviews = res.body;
+        }
+      });
+  }
+
+  @action getTrends() {
+    request
+      .post(`/api/retrieve/trends`)
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.trends = res.body.trends;
         }
       });
   }

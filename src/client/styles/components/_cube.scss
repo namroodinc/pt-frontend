@@ -13,6 +13,30 @@
     overflow: hidden;
     width: 23%;
 
+    &:nth-child(6n-1) {
+      background-color: #AD1457;
+    }
+
+    &:nth-child(6n-2) {
+      background-color: #6A1B9A;
+    }
+
+    &:nth-child(6n-3) {
+      background-color: #1565C0;
+    }
+
+    &:nth-child(6n-4) {
+      background-color: #4527A0;
+    }
+
+    &:nth-child(6n-5) {
+      background-color: #2E7D32;
+    }
+
+    &:nth-child(6n-6) {
+      background-color: #EF6C00;
+    }
+
     @media only screen and (max-width: $fullContainerWidth) {
       width: 30%;
     }

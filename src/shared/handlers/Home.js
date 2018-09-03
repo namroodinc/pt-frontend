@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Icon from '@material-ui/core/Icon';
 import PropTypes from "prop-types";
 
-import { Loading, NewsItems, Search, Shell } from "../components/Index";
+import { Loading, NewsItems, Search, Shell, TrendsItems } from "../components/Index";
 
 import Actions from "../actions/Actions";
 import Store from "../stores/Store";
@@ -38,6 +38,10 @@ class Home extends React.Component {
 
     return (
       <div>
+        <Shell>
+          <TrendsItems />
+        </Shell>
+
         <Shell>
           <Search />
         </Shell>

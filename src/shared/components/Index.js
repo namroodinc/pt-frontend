@@ -7,6 +7,8 @@ import PublicationLabel from "./PublicationLabel";
 import ReviewMessage from "./ReviewMessage";
 import Search from "./Search";
 import Shell from "./Shell";
+import TrendsItem from "./TrendsItem";
+import TrendsItems from "./TrendsItems";
 import TypeItem from "./TypeItem";
 
 export {
@@ -19,5 +21,7 @@ export {
   ReviewMessage,
   Search,
   Shell,
+  TrendsItem,
+  TrendsItems,
   TypeItem
 }

@@ -74,6 +74,9 @@ app.post('/api/retrieve/section/:sectionId', function (request, response) {
 app.post('/api/retrieve/trend/:trendId', function (request, response) {
   _doPost(`retrieve/trend/${request.params.trendId}`, request, response);
 });
+app.post('/api/retrieve/trends', function (request, response) {
+  _doPost(`retrieve/trends`, request, response);
+});
 
 app.all('/api/*', function (req, res) {
   res.sendStatus(404)
