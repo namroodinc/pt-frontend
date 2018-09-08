@@ -3,14 +3,37 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
+import Actions from "../actions/Actions";
+import { TextArea } from "./Index";
+
 const styles = theme => ({
 });
 
 class TypeItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(body) {
+    const { _id } = this.props;
+
+    Actions.updatePublication(
+      Object.assign(
+        {},
+        {
+          id: _id
+        },
+        body
+      )
+    );
+  }
+
   render() {
     const {
       backgroundColor,
       description,
+      editMode,
       ideology,
       name,
       prettyName,
@@ -58,31 +81,36 @@ class TypeItem extends React.Component {
         </h5>
 
         {description &&
-          <h5>
-            {description}
-          </h5>
+          <div>
+            {editMode ?
+              (
+                <TextArea
+                  defaultValue={description}
+                  onSubmit={this.handleSubmit}
+                />
+              ) : (
+                <h5>
+                  {description}
+                </h5>
+              )
+            }
+          </div>
         }
 
-        <div
-          className="item__ideologies"
-        >
-          {ideology !== undefined &&
-            <div>
-              {ideology.length > 0 &&
-                <div>
-                  {ideology.map((item, i) =>
-                    <Link
-                      key={i}
-                      to={`/ideology/${item._id}`}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </div>
-              }
-            </div>
-          }
-        </div>
+        {ideology.length > 0 &&
+          <div
+            className="item__ideologies"
+          >
+            {ideology.map((item, i) =>
+              <Link
+                key={i}
+                to={`/ideology/${item._id}`}
+              >
+                {item.name}
+              </Link>
+            )}
+          </div>
+        }
 
       </div>
     );
@@ -91,6 +119,8 @@ class TypeItem extends React.Component {
 
 TypeItem.defaultProps = {
   backgroundColor: '#F06292',
+  editMode: false,
+  ideology: [],
   name: 'Heading',
   type: 'publication'
 };
@@ -100,7 +130,11 @@ TypeItem.propTypes = {
   backgroundColor: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   description: PropTypes.string,
-  ideology: PropTypes.array,
+  editMode: PropTypes.bool,
+  ideology: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]),
   name: PropTypes.string.isRequired,
   prettyName: PropTypes.string,
   type: PropTypes.string.isRequired,

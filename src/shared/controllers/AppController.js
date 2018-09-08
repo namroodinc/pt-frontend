@@ -6,6 +6,7 @@ import {
 } from "../components/Index";
 
 import {
+  AdminPublications,
   Article,
   Home,
   PageType,
@@ -27,6 +28,11 @@ export default class AppController extends React.Component {
               exact
               path="/"
               component={Home}
+            />
+            <Route
+              exact
+              path="/admin/publications"
+              component={AdminPublications}
             />
             <Route
               exact

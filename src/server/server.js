@@ -41,6 +41,9 @@ app.post('/api/retrieve/author/:authorId', function (request, response) {
 });
 
 // Publications
+app.post('/api/create/publication', function (request, response) {
+  _doPost('create/publication', request, response);
+});
 app.post('/api/retrieve/publication/:publicationId', function (request, response) {
   _doPost(`retrieve/publication/${request.params.publicationId}`, request, response);
 });

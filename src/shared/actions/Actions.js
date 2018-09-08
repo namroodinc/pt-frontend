@@ -143,6 +143,19 @@ class Actions {
   @action setSearchTerm(searchTerm) {
     Store.searchTerm = searchTerm;
   }
+
+  @action updatePublication(body) {
+    request
+      .post(`/api/create/publication`)
+      .send(body)
+      .end(function (err, res) {
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          console.log(res.body);
+        }
+      });
+  }
 }
 
 export default new Actions();

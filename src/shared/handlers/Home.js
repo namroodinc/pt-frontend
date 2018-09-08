@@ -38,7 +38,9 @@ class Home extends React.Component {
 
     return (
       <div>
-        <Shell>
+        <Shell
+          subHeading="Top Trends for the past 24 hours"
+        >
           <TrendsItems />
         </Shell>
 
