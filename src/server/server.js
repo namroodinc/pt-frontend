@@ -40,6 +40,11 @@ app.post('/api/retrieve/author/:authorId', function (request, response) {
   _doPost(`retrieve/author/${request.params.authorId}`, request, response);
 });
 
+// Ideologies
+app.post('/api/search/ideologies', function (request, response) {
+  _doPost('search/ideologies', request, response);
+});
+
 // Publications
 app.post('/api/create/publication', function (request, response) {
   _doPost('create/publication', request, response);

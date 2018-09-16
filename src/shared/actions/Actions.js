@@ -48,6 +48,21 @@ class Actions {
       });
   }
 
+  @action getIdeologies() {
+    request
+      .post(`/api/search/ideologies`)
+      .send({})
+      .end(function (err, res) {
+        Store.loading = false;
+
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.ideologies = res.body;
+        }
+      });
+  }
+
   @action getPageType(type, pageTypeId) {
     Store.articles = [];
     Store.loading = true;
@@ -83,6 +98,10 @@ class Actions {
           console.log(err);
         } else if (res) {
           Store.publications = res.body.results;
+          Store.snackbar = {
+            message: 'Publication\'s listed',
+            open: true
+          };
         }
       });
   }
@@ -120,6 +139,10 @@ class Actions {
       });
   }
 
+  @action isSnackbarOpen(isOpen) {
+    Store.snackbar.open = isOpen;
+  }
+
   @action postReview(articleId, message) {
     Store.reviewLoading = true;
 
@@ -152,7 +175,10 @@ class Actions {
         if (err) {
           console.log(err);
         } else if (res) {
-          console.log(res.body);
+          Store.snackbar = {
+            message: res.body.message,
+            open: true
+          };
         }
       });
   }

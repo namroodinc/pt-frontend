@@ -109,7 +109,7 @@ class TextArea extends React.Component {
               disabled={characterLength >= characterLimit || characterLength === 0}
               onClick={this.handleSubmit}
               size="large"
-              variant="outlined"
+              variant="contained"
             >
               {isLoading ?
                 (

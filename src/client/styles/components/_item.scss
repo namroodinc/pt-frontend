@@ -19,6 +19,11 @@
   &__details {
   }
 
+  &__ideologies {
+    border-top: 2px solid $backgroundColor;
+    padding-top: 20px;
+  }
+
   &--publication {
     background-color: $publicationBackground;
   }

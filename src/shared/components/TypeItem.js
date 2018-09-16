@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { withStyles } from "@material-ui/core/styles";
 
 import Actions from "../actions/Actions";
@@ -80,36 +82,58 @@ class TypeItem extends React.Component {
           </a>
         </h5>
 
-        {description &&
-          <div>
-            {editMode ?
-              (
-                <TextArea
-                  defaultValue={description}
-                  onSubmit={this.handleSubmit}
-                />
-              ) : (
+        {editMode ?
+          (
+            <TextArea
+              defaultValue={description}
+              onSubmit={this.handleSubmit}
+            />
+          ) : (
+            <div>
+              {description &&
                 <h5>
                   {description}
                 </h5>
-              )
-            }
-          </div>
+              }
+            </div>
+          )
         }
 
         {ideology.length > 0 &&
-          <div
-            className="item__ideologies"
-          >
-            {ideology.map((item, i) =>
-              <Link
-                key={i}
-                to={`/ideology/${item._id}`}
-              >
-                {item.name}
-              </Link>
-            )}
-          </div>
+          (
+            <div
+              className="item__ideologies"
+            >
+              {editMode ?
+                (
+                  <div>
+                    {ideology.map((item, i) =>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            value="checkedC"
+                          />
+                        }
+                        key={i}
+                        label={item.name}
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <div>
+                    {ideology.map((item, i) =>
+                      <Link
+                        key={i}
+                        to={`/ideology/${item._id}`}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                )
+              }
+            </div>
+          )
         }
 
       </div>

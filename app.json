@@ -11,6 +11,9 @@
     },
     "API_KEY": {
       "required": true
+    },
+    "MODE": {
+      "required": true
     }
   },
   "formation": {

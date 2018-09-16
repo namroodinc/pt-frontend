@@ -11,6 +11,7 @@ class Store {
       articles: [],
       article: {},
       currentPageNumber: 0,
+      ideologies: [],
       loading: true,
       publication: {},
       publications: [],
@@ -18,6 +19,10 @@ class Store {
       reviewLoading: false,
       searchTerm: '',
       section: {},
+      snackbar: {
+        message: '',
+        open: false
+      },
       trend: {},
       trends: []
     });
@@ -27,16 +32,24 @@ class Store {
     return this.loading;
   }
 
-  retrieveArticles() {
-    return this.articles;
+  isReviewLoading() {
+    return this.reviewLoading;
   }
 
   retrieveArticle() {
     return this.article;
   }
 
+  retrieveArticles() {
+    return this.articles;
+  }
+
   retrieveCurrentPageNumber() {
     return this.currentPageNumber;
+  }
+
+  retrieveIdeologies() {
+    return this.ideologies;
   }
 
   retrievePageType(type) {
@@ -51,12 +64,12 @@ class Store {
     return this.reviews;
   }
 
-  isReviewLoading() {
-    return this.reviewLoading;
-  }
-
   retrieveSearchTerm() {
     return this.searchTerm;
+  }
+
+  retrieveSnackbar() {
+    return this.snackbar;
   }
 
   retrieveTrends() {

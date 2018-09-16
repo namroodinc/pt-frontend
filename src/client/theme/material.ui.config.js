@@ -1,7 +1,7 @@
 // Use this for reference: https://material-ui-next.com/customization/themes/
 
 import Styles from '../styles/app.scss'
-const { borderColor, textColor } = Styles;
+const { backgroundColor, borderColor, textColor } = Styles;
 
 export default {
   palette: {
@@ -14,6 +14,12 @@ export default {
   },
   overrides: {
     MuiButton: {
+      contained: {
+        boxShadow: '0 0 0 0 transparent'
+      },
+      containedPrimary: {
+        backgroundColor
+      },
       disabled: {
         borderColor: '#F06292',
         color: '#F06292 !important'

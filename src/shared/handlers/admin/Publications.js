@@ -9,6 +9,7 @@ import Store from "../../stores/Store";
 @observer
 class Publications extends React.Component {
   componentDidMount() {
+    Actions.getIdeologies();
     Actions.getPublications();
   }
 
@@ -19,7 +20,10 @@ class Publications extends React.Component {
   render() {
     if (Store.isLoading()) return <Loading />;
 
+    const ideologies = Store.retrieveIdeologies();
     const publications = Store.retrievePublications();
+
+    const isEditMode = process.env.MODE === 'edit';
 
     return (
       <div
@@ -32,7 +36,8 @@ class Publications extends React.Component {
           >
             <TypeItem
               {...publication}
-              editMode
+              editMode={isEditMode}
+              ideology={ideologies}
             />
           </div>
         )}

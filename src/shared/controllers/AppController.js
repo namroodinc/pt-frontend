@@ -1,5 +1,10 @@
 import React from "react";
+import { observer } from "mobx-react";
+import Snackbar from "@material-ui/core/Snackbar";
 import { Switch, Route } from "react-router-dom";
+
+import Actions from "../actions/Actions";
+import Store from "../stores/Store";
 
 import {
   Header
@@ -14,8 +19,16 @@ import {
   Reviews
 } from "../handlers/Index";
 
+@observer
 export default class AppController extends React.Component {
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') return;
+    Actions.isSnackbarOpen(false);
+  };
+
   render() {
+    const snackbar = Store.retrieveSnackbar();
+
     return (
       <div>
         <div
@@ -75,6 +88,21 @@ export default class AppController extends React.Component {
         <footer>
           pt
         </footer>
+
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left'
+          }}
+          open={snackbar.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          message={
+            <span>
+              {snackbar.message}
+            </span>
+          }
+        />
       </div>
     )
   }

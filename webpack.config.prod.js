@@ -60,7 +60,8 @@ module.exports = {
     new webpack.EnvironmentPlugin([
       "NODE_ENV",
       "API_BASE_URL",
-      "API_KEY"
+      "API_KEY",
+      "MODE"
     ])
   ]
 };
