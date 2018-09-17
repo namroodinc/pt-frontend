@@ -14,7 +14,15 @@ const styles = theme => ({
 class TypeItem extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      ideologies: []
+    }
+    this.handleCheckbox = this.handleCheckbox.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleCheckbox(event) {
+    console.log(event.target.value);
   }
 
   handleSubmit(body) {
@@ -37,6 +45,7 @@ class TypeItem extends React.Component {
       description,
       editMode,
       ideology,
+      ideologies,
       name,
       prettyName,
       type,
@@ -99,7 +108,7 @@ class TypeItem extends React.Component {
           )
         }
 
-        {ideology.length > 0 &&
+        {(ideology.length > 0 || ideologies.length) > 0 &&
           (
             <div
               className="item__ideologies"
@@ -107,11 +116,12 @@ class TypeItem extends React.Component {
               {editMode ?
                 (
                   <div>
-                    {ideology.map((item, i) =>
+                    {ideologies.map((item, i) =>
                       <FormControlLabel
                         control={
                           <Checkbox
-                            value="checkedC"
+                            onChange={this.handleCheckbox}
+                            value={item._id}
                           />
                         }
                         key={i}
@@ -121,12 +131,12 @@ class TypeItem extends React.Component {
                   </div>
                 ) : (
                   <div>
-                    {ideology.map((item, i) =>
+                    {ideology.map((ideology, i) =>
                       <Link
                         key={i}
-                        to={`/ideology/${item._id}`}
+                        to={`/ideology/${ideology._id}`}
                       >
-                        {item.name}
+                        {ideology.name}
                       </Link>
                     )}
                   </div>
@@ -145,6 +155,7 @@ TypeItem.defaultProps = {
   backgroundColor: '#F06292',
   editMode: false,
   ideology: [],
+  ideologies: [],
   name: 'Heading',
   type: 'publication'
 };
@@ -156,6 +167,10 @@ TypeItem.propTypes = {
   description: PropTypes.string,
   editMode: PropTypes.bool,
   ideology: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]),
+  ideologies: PropTypes.oneOfType([
     PropTypes.array,
     PropTypes.object
   ]),

@@ -37,7 +37,7 @@ class Publications extends React.Component {
             <TypeItem
               {...publication}
               editMode={isEditMode}
-              ideology={ideologies}
+              ideologies={ideologies}
             />
           </div>
         )}
