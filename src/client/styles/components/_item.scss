@@ -12,16 +12,33 @@
     }
   }
 
-  &__avatar {
+  &__header {
+    align-items: center;
+    display: flex;
     padding-bottom: 20px;
-  }
 
-  &__details {
+    &__avatar {
+      padding-right: 20px;
+    }
+
+    &__title {
+      h5 {
+        margin-bottom: 0;
+      }
+    }
   }
 
   &__ideologies {
-    border-top: 2px solid $backgroundColor;
-    padding-top: 20px;
+    &__controls {
+      margin-top: 10px;
+      padding-top: 10px;
+      text-align: right;
+    }
+  }
+
+  &--ideology {
+    background-color: $ideologyBackground;
+    color: $textColor;
   }
 
   &--publication {

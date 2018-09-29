@@ -59,6 +59,10 @@ class Actions {
           console.log(err);
         } else if (res) {
           Store.ideologies = res.body;
+          Store.snackbar = {
+            message: 'Ideologies listed',
+            open: true
+          };
         }
       });
   }
@@ -165,6 +169,22 @@ class Actions {
 
   @action setSearchTerm(searchTerm) {
     Store.searchTerm = searchTerm;
+  }
+
+  @action updateIdeology(id, body) {
+    request
+      .post(`/api/update/ideology/${id}`)
+      .send(body)
+      .end(function (err, res) {
+        if (err) {
+          console.log(err);
+        } else if (res) {
+          Store.snackbar = {
+            message: res.body.message,
+            open: true
+          };
+        }
+      });
   }
 
   @action updatePublication(body) {

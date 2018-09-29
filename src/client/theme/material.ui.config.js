@@ -1,16 +1,19 @@
 // Use this for reference: https://material-ui-next.com/customization/themes/
 
 import Styles from '../styles/app.scss'
-const { backgroundColor, borderColor, textColor } = Styles;
+const { backgroundColor, borderColor, bodyFont, textColor } = Styles;
 
 export default {
   palette: {
     primary: {
       light: textColor,
-      main: textColor,
+      main: backgroundColor,
       dark: textColor,
       contrastText: textColor
     }
+  },
+  typography: {
+    fontFamily: bodyFont
   },
   overrides: {
     MuiButton: {
@@ -19,6 +22,7 @@ export default {
       },
       containedPrimary: {
         backgroundColor,
+        fontWeight: 700,
         '&:hover': {
           backgroundColor: borderColor
         }
@@ -64,6 +68,27 @@ export default {
     MuiSvgIcon: {
       root: {
         fill: backgroundColor
+      }
+    },
+    MuiTab: {
+      label: {
+        fontSize: `18px !important`,
+        fontWeight: 700,
+        textTransform: 'none'
+      },
+      root: {
+        maxWidth: 'none'
+      },
+      textColorPrimary: {
+        color: borderColor
+      }
+    },
+    MuiTabs: {
+      root: {
+        marginBottom: 10
+      },
+      indicator: {
+        height: 3
       }
     }
   }

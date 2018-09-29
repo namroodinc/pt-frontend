@@ -11,6 +11,7 @@ import {
 } from "../components/Index";
 
 import {
+  AdminIdeologies,
   AdminPublications,
   Article,
   Home,
@@ -41,6 +42,11 @@ export default class AppController extends React.Component {
               exact
               path="/"
               component={Home}
+            />
+            <Route
+              exact
+              path="/admin/ideologies"
+              component={AdminIdeologies}
             />
             <Route
               exact
@@ -84,10 +90,6 @@ export default class AppController extends React.Component {
             />
           </Switch>
         </div>
-
-        <footer>
-          pt
-        </footer>
 
         <Snackbar
           anchorOrigin={{

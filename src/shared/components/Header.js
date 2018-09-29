@@ -5,13 +5,22 @@ import { Logo } from "./Icons/Index";
 
 export default class Header extends React.Component {
   render() {
+    const isEditMode = process.env.MODE === 'edit';
+
     const links = (
       <div>
         <Link
-          to="/publications"
+          to={isEditMode ? '/admin/publications' : '/publications'}
         >
           Publications
         </Link>
+        {isEditMode &&
+          <Link
+            to="/admin/ideologies"
+          >
+            Ideologies
+          </Link>
+        }
       </div>
     );
 
@@ -28,7 +37,9 @@ export default class Header extends React.Component {
             <Link
               to="/"
             >
-              <Logo />
+              <Logo
+                size={50}
+              />
             </Link>
           </div>
 

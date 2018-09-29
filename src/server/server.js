@@ -44,6 +44,9 @@ app.post('/api/retrieve/author/:authorId', function (request, response) {
 app.post('/api/search/ideologies', function (request, response) {
   _doPost('search/ideologies', request, response);
 });
+app.post('/api/update/ideology/:ideologyId', function (request, response) {
+  _doPost(`update/ideology/${request.params.ideologyId}`, request, response);
+});
 
 // Publications
 app.post('/api/create/publication', function (request, response) {
@@ -66,11 +69,11 @@ app.post('/api/delete/review/:reviewId', function (request, response) {
 app.post('/api/retrieve/review/:reviewId', function (request, response) {
   _doPost(`retrieve/review/${request.params.reviewId}`, request, response);
 });
-app.post('/api/update/review/:reviewId', function (request, response) {
-  _doPost(`update/review/${request.params.reviewId}`, request, response);
-});
 app.post('/api/search/reviews', function (request, response) {
   _doPost('search/reviews', request, response);
+});
+app.post('/api/update/review/:reviewId', function (request, response) {
+  _doPost(`update/review/${request.params.reviewId}`, request, response);
 });
 
 // Sections

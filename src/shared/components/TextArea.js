@@ -45,7 +45,7 @@ class TextArea extends React.Component {
   }
 
   render() {
-    const { characterLimit, classes, defaultValue } = this.props;
+    const { characterLimit, classes, defaultValue, label, rows } = this.props;
     const { characterLength, isLoading } = this.state;
 
     return (
@@ -60,7 +60,7 @@ class TextArea extends React.Component {
             onChange={this.handleChange}
             placeholder="Add your review"
             ref={this.review}
-            rows={4}
+            rows={rows}
           />
         </div>
 
@@ -106,19 +106,18 @@ class TextArea extends React.Component {
             <Button
               className={classes.button}
               color="primary"
-              disabled={characterLength >= characterLimit || characterLength === 0}
+              disabled={characterLength >= characterLimit || characterLength === 0 || isLoading}
               onClick={this.handleSubmit}
-              size="large"
               variant="contained"
             >
               {isLoading ?
                 (
                   <span>
-                    Submitting ...
+                    Submitting {label} ...
                   </span>
                 ) : (
                   <span>
-                    Submit
+                    Submit {label}
                   </span>
                 )
               }
@@ -133,9 +132,11 @@ class TextArea extends React.Component {
 TextArea.defaultProps = {
   characterLimit: 280,
   defaultValue: '',
+  label: '',
   onSubmit: (() => {
     console.log('onSubmit prop missing and required')
-  })
+  }),
+  rows: 4
 }
 
 TextArea.propTypes = {
@@ -143,7 +144,9 @@ TextArea.propTypes = {
   characterLimit: PropTypes.number.isRequired,
   classes: PropTypes.object.isRequired,
   defaultValue: PropTypes.string,
-  onSubmit: PropTypes.func.isRequired
+  label: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+  rows: PropTypes.number.isRequired
 };
 
 export default withStyles(styles)(TextArea);
